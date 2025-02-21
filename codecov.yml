@@ -1,6 +1,6 @@
 coverage:
   status:
-    project: # coverage of whole project including changes in patch
+    project: # coverage of project
       default:
         target: 60% # project coverage must be maintained at 60% or higher
     patch: # coverage of lines changed in patch
