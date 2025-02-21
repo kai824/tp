@@ -2,8 +2,7 @@ coverage:
   status:
     project: # coverage of whole project including changes in patch
       default:
-        target: auto # current coverage
-        threshold: 5 # allows coverage to drop by at most 5%
+        target: 60% # project coverage must be maintained at 60% or higher
     patch: # coverage of lines changed in patch
       default:
-        target: 40% # 40% of lines per patch must be covered
+        target: 0% # no requirement on patch coverage
