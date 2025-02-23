@@ -3,6 +3,7 @@ coverage:
     project: # coverage of project
       default:
         target: 60% # project coverage must be maintained at 60% or higher
+        threshold: 5% # allow project coverage to drop by at most 5%
     patch: # coverage of lines changed in patch
       default:
         target: 0% # no requirement on patch coverage
