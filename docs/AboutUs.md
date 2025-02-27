@@ -11,44 +11,44 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Hibiki
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/h-b-k-nishi.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/h-b-k-nishi)]
+[[portfolio](team/h-b-k-nishi.md)]
 
-- Role: Project Advisor
+* Role: Developers
+* Responsibilities: Deliverables and deadlines
 
-### Jane Doe
+### Russell
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/luna-ortus-cor.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/luna-ortus-cor)]
+[[portfolio](https://www.youtube.com/watch?v=dQw4w9WgXcQ)]
 
-- Role: Team Lead
-- Responsibilities: UI
+* Role: Developer
+* Responsibilities: Code quality
 
-### Johnny Doe
+### Samuel
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/samuelneo.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/samuelneo)] [[portfolio](team/samuelneo.md)]
 
-- Role: Developer
-- Responsibilities: Data
+* Role: Developer
+* Responsibilities: Documentation, deliverables and deadlines
 
-### Jean Doe
+### Yi Kai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kai824.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kai824)]
+[[portfolio](team/kai824.md)]
 
-- Role: Developer
-- Responsibilities: Dev Ops + Threading
+* Role: Developer
+* Responsibilities: Code Quality
 
 ### Zihan
 
@@ -57,5 +57,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/OvOtter)]
 [[portfolio](team/ovotter.md)]
 
-- Role: Developer
-- Responsibilities: Testing
+* Role: Developer
+* Responsibilities: Testing
