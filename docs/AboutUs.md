@@ -11,15 +11,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Hibiki
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/h-b-k-nishi.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/h-b-k-nishi)]
+[[portfolio](team/h-b-k-nishi.md)]
 
-* Role: Project Advisor
+* Role: Developers
+* Responsibilities: Deliverables and deadlines
 
 ### Jane Doe
 
