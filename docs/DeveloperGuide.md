@@ -342,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Command**: A string of text that the user enters via the command line.
 * **Duplicate**: A string that matches exactly, ignoring case.
 * **Mainstream OS**: Windows, Linux, Unix, MacOS.
-* **Valid name**: Any series of whitespace and alphabetical characters is a valid name.
+* **Valid name**: Any sequence of whitespace and/or alphabetical characters.
 
 --------------------------------------------------------------------------------------------------------------------
 
