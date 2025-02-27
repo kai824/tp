@@ -21,15 +21,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developers
 * Responsibilities: Deliverables and deadlines
 
-### Jane Doe
+### Russell
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/luna-ortus-cor.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/luna-ortus-cor)]
+[[portfolio](https://www.youtube.com/watch?v=dQw4w9WgXcQ)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Code quality
 
 ### Johnny Doe
 
