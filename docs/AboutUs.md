@@ -52,7 +52,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Zihan
 
-<img src="images/ovotter.png" width="200px">
+<img src="images/zihan.png" width="200px">
 
 [[github](https://github.com/OvOtter)]
 [[portfolio](team/ovotter.md)]
