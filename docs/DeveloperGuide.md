@@ -289,12 +289,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
 |----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| `* * *`  | new user                                   | see a user guide             | I can learn how to use the program                                     |
+| `* * *`  | user managing a number of candidates       | sort candidates by some value (graduation years, discipline, etc.)| I can access to the relevant candidates easily                         |
+| `* * *`  | user managing a number of candidates       | also filter the candidates   | I can access to the relevant candidates easily                         |
+| `* *`    | careless user                              | undo my most recent command  | accidental changes I make can be reverted easily                       |
+| `* *`    | careless user                              | get back my most recent command| I don't have to retype my previous command should there be typoes      |
+| `* *`    | user who is managing information of high privacy concerns| ensure that the system is safe enough (i.e., no significant risk of data leakage)| I can protect candidates privacy well                                  |
+| `* *`    | user who needs to frequently filter out appliactants in some domain-specific aspects| add tag feature and relevant filter| so that users can organise data in more customised way                 |
+| `* *`    | existing user but I forgot about available commands| make list of all commands and their syntax easily assessible| I can check against the list                                           |
+| `* *`    | meticulous user                            | edit a contact's information | I can keep my address book up to date                                  |
+| `* *`    | user required to share the information on candidates with others| pick up candidates and print out their information, in an organized way| I can present the candidates to others                                 |
+| `* *`    | user interviewing the candidates           | relate the date of interview to the candidates| I can organize my schedule easily                                      |
+| `* *`    | user managing candidates across different positions| tag candidates               | I can easily categorize them                                           |
+| `* *`    | forgetful user                             | see my most recent commands  | I can be reminded of what changes I just made                          |
+| `* *`    | creative user                              | assign custom tags to contacts| categorize them in a way that is most sensible to me                   |
+| `*`      | user changing their computer               | import my data               | I can transfer data over from my old computer                          |
+| `*`      | user who is familiar with regular expression| use regular expression when search for certain keywords among applicants| more efficient search can be done                                      |
+| `*`      | user changing their computer               | export my data               | I can transfer it over to the new computer                             |
+| `*`      | use who needs to collaborate with others   | synchronise my database with others| we can stay on the same page                                           |
+| `*`      | frequent user                              | create snippets for commands | I can enter frequently-used commands more quickly                      |
+| `*`      | recruiter who needs to regularly remove some candidate from the address book at the end of each recruit season| have built-in script to automatically delete irrelevant candidates (i.e., those who meet certain conditions)| I don't have to manually do deletions routinely                        |
+| `*`      | careless user                              | have my command autocorrected| I don't need to fix my typos                                           |
+| `*`      | busy user                                  | have my command predicted and auto-filled| I can save time typing commands in full                                |
+| `*`      | event organiser                            | quickly find people who live near to a certain location|                                                                        |
+| `*`      | user with limited PC resource              | delete candidates easily     | I can free up the memory resource                                      |
 
 *{More to be added}*
 
