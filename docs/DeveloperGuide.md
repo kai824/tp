@@ -350,6 +350,7 @@ _{More to be added}_
 - 2c. Required parameters are missing.
 
   - 2c1. System displays an error: “Error: The command format is add n/{candidate name} p/{phone number} e/{email} a/{address} [t/{tag}].”
+
     Use case ends.
 
 _{More to be added}_
