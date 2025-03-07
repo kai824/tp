@@ -334,24 +334,23 @@ _{More to be added}_
    Use case ends.
 
 **Extensions**
+* 2a. Name is invalid.
 
-- 2a. Name is invalid.
+   * 2a1. System displays an error: “Error: {candidate name} is not a valid name.”
 
-  - 2a1. System displays an error: “Error: {candidate name} is not a valid name.”
+     Use case ends.
 
-    Use case ends.
+* 2b. Email is invalid.
 
-- 2b. Email is invalid.
+   * 2b1. System displays an error: “Error: {candidate email} is not a valid email.”
 
-  - 2b1. System displays an error: “Error: {candidate email} is not a valid email.”
+     Use case ends.
 
-    Use case ends.
+* 2c. Required parameters are missing.
 
-- 2c. Required parameters are missing.
+   * 2c1. System displays an error: “Error: The command format is add n/{candidate name} p/{phone number} e/{email} a/{address} [t/{tag}].”
 
-  - 2c1. System displays an error: “Error: The command format is add n/{candidate name} p/{phone number} e/{email} a/{address} [t/{tag}].”
-
-    Use case ends.
+     Use case ends.
 
 _{More to be added}_
 
