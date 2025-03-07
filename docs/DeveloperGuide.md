@@ -357,9 +357,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Attribute**: A key-value pair associated with a candidate.
   * For example, `Graduation Year: 2027` is an attribute, where the **attribute name** is `Graduation Year` and the **attribute value** is `2027`.
+* **Candidate**: Any contact in the address book.
 * **Command**: A string of text that the user enters via the command line.
-* **Duplicate**: A string that matches exactly, ignoring case.
-* **Mainstream OS**: Windows, Linux, Unix, MacOS.
+* **Duplicate**: A string that matches another string exactly, ignoring case.
+* **Mainstream OS**: Windows, Linux, Unix, macOS.
+* **Valid email**: A string of characters of the form `{local-part}@{domain}` adhering to the following constraints:
+  * `{local-part}` contains only alphanumeric characters and the special characters `+_.-`, and cannot start or end with a special character.
+  * `{domain}` consists of _domain labels_ separated by periods (`.`), where the last domain label is at least 2 characters long.
+  * Each _domain label_ contains only alphanumeric characters and hyphens (`-`), and cannot start or end with a hyphen.
 * **Valid name**: Any sequence of whitespace and/or alphabetical characters.
 
 --------------------------------------------------------------------------------------------------------------------
