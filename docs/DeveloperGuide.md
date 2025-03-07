@@ -274,14 +274,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a hiring manager
+* has a need to manage a significant number of applicants
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: provides fast access to applicants and their socials, while allowing them to quickly filter applicants
 
 ### User stories
 
@@ -318,30 +318,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TalentFolio` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use Case: Add a candidate**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a candidate with name, phone number, email, address, and optional tags.
+2. System verifies that the input values are valid.
+3. System adds the candidate.
+4. System displays confirmation message.
+5. GUI updates to show the new candidate.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
+* 2a. Name is invalid.
 
-* 2a. The list is empty.
+   * 2a1. System displays an error: “Error: {candidate name} is not a valid name.”
 
-  Use case ends.
+     Use case ends.
 
-* 3a. The given index is invalid.
+* 2b. Email is invalid.
 
-    * 3a1. AddressBook shows an error message.
+   * 2b1. System displays an error: “Error: {candidate email} is not a valid email.”
 
-      Use case resumes at step 2.
+     Use case ends.
+
+* 2c. Required parameters are missing.
+
+   * 2c1. System displays an error: “Error: The command format is add n/{candidate name} p/{phone number} e/{email} a/{address} [t/{tag}].”
+
+     Use case ends.
 
 *{More to be added}*
 
@@ -350,8 +358,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Logs must be automatically generated.
+5.  Any information related to candidates must remain confidential in the logs.
+6.  Logs must be identical across different operating systems to enable sharing between the same app on different OS platforms.
+7.  The UI has to be clear enough for the user to find the necessary information at a glance.
+8.  The app design should offer flexibility in the tag feature to accommodate unforeseen criteria in the future.
+9.  Copy and paste should be supported in text fields, allowing the user to enter information without typing manually.
+10. The app has to respond within one second.
 
-*{More to be added}*
 
 ### Glossary
 
