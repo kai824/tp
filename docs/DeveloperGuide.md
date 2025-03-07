@@ -318,30 +318,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TalentFolio` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use Case: Add a candidate**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a candidate with name, phone number, email, address, and optional tags.
+2. System verifies that the input values are valid.
+3. System adds the candidate.
+4. System displays confirmation message.
+5. GUI updates to show the new candidate.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
+* 2a. Name is invalid.
 
-* 2a. The list is empty.
+   * 2a1. System displays an error: “Error: {candidate name} is not a valid name.”
 
-  Use case ends.
+     Use case ends.
 
-* 3a. The given index is invalid.
+* 2b. Email is invalid.
 
-    * 3a1. AddressBook shows an error message.
+   * 2b1. System displays an error: “Error: {candidate email} is not a valid email.”
 
-      Use case resumes at step 2.
+     Use case ends.
+
+* 2c. Required parameters are missing.
+
+   * 2c1. System displays an error: “Error: The command format is add n/{candidate name} p/{phone number} e/{email} a/{address} [t/{tag}].”
+
+     Use case ends.
 
 *{More to be added}*
 
