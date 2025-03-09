@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -26,6 +27,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Set<Attribute> attributes;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +38,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        attributes = new HashSet<>();
     }
 
     /**
@@ -47,6 +50,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        attributes = new HashSet<>(personToCopy.getAttributes());
     }
 
     /**
@@ -60,7 +64,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -89,8 +93,22 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code attributes} into a {@code Set<Attribute>} and
+     * set it to the {@code Person} that we are building.
+     * <p>
+     * For each attribute specified, two Strings should be provided (name and value).
+     * <p>
+     * E.g. To add the attributes "Graduation Year: 2027" and "Degree: Computer Science", use
+     * {@code withAttributes("Graduation Year", "2027", "Degree", "Computer Science")}.
+     */
+    public PersonBuilder withAttributes(String... attributes) {
+        this.attributes = SampleDataUtil.getAttributeSet(attributes);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, tags, attributes);
     }
 
 }
