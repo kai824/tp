@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,17 +25,19 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Attribute> attributes = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Attribute> attributes) {
+        requireAllNonNull(name, phone, email, address, tags, attributes);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.attributes.addAll(attributes);
     }
 
     public Name getName() {
@@ -59,6 +62,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable attribute set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Attribute> getAttributes() {
+        return Collections.unmodifiableSet(attributes);
     }
 
     /**
