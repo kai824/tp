@@ -9,6 +9,9 @@ import seedu.address.logic.commands.AttributeRemoveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 
+/**
+ * Parses input arguments and creates a new AttributeRemoveCommand object
+ */
 public class AttributeRemoveCommandParser implements Parser<AttributeRemoveCommand> {
 
     @Override
@@ -17,16 +20,15 @@ public class AttributeRemoveCommandParser implements Parser<AttributeRemoveComma
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ATTRIBUTE);
-        
-        String candidateName = argMultimap.getValue(PREFIX_NAME).orElseThrow(
-                () -> new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+
+        String candidateName = argMultimap.getValue(PREFIX_NAME).orElseThrow(()
+                -> new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AttributeRemoveCommand.MESSAGE_USAGE))
         );
-        String attributeName = argMultimap.getValue(PREFIX_ATTRIBUTE).orElseThrow(
-            () -> new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        String attributeName = argMultimap.getValue(PREFIX_ATTRIBUTE).orElseThrow(()
+            -> new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             AttributeRemoveCommand.MESSAGE_USAGE))
-    );
+        );
         return new AttributeRemoveCommand(new Name(candidateName), attributeName);
     }
-    ;
 }

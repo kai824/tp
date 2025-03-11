@@ -1,15 +1,19 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 import java.util.List;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
+/**
+ * Removes an attribute from a person in the address book.
+ */
 public class AttributeRemoveCommand extends Command {
 
     public static final String COMMAND_WORD = "remove-attribute";
@@ -38,7 +42,7 @@ public class AttributeRemoveCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
         Person matchedPerson = null;
 
-        for(Person person: lastShownList){
+        for (Person person: lastShownList) {
             if (person.getName().equals(this.candidateName)) {
                 matchedPerson = person;
                 break;
@@ -49,8 +53,8 @@ public class AttributeRemoveCommand extends Command {
             throw new CommandException("No person with name " + this.candidateName + " found!");
         }
 
-        Attribute matchingAttribute = matchedPerson.getAttribute(this.attributeName).orElseThrow(
-            () -> new CommandException("Person has no matching attribute with name " + this.attributeName)
+        Attribute matchingAttribute = matchedPerson.getAttribute(this.attributeName).orElseThrow(()
+                -> new CommandException("Person has no matching attribute with name " + this.attributeName)
         );
         matchedPerson.removeAttribute(matchingAttribute);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
