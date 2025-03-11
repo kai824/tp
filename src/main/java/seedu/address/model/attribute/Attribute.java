@@ -49,6 +49,10 @@ public class Attribute {
                     && attributeValue.equals(attribute.attributeValue);
         }
 
+        if (other instanceof String str) {
+            return attributeName.equals(str);
+        }
+
         return false;
     }
 

@@ -1,8 +1,13 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import seedu.address.model.attribute.Attribute;
+import seedu.address.model.person.Person;
 
 public class AttributeRemoveCommand extends Command {
 
@@ -17,7 +22,8 @@ public class AttributeRemoveCommand extends Command {
     private final String attributeName;
 
     /**
-     * @param
+     * @param candidateName name of the person to be edited
+     * @param attributeName name of the attribute to be deleted
      */
     public AttributeRemoveCommand(String candidateName, String attributeName) {
         requireAllNonNull(candidateName, attributeName);
@@ -28,7 +34,26 @@ public class AttributeRemoveCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // TODO find candidate and remove attribute
-        return new CommandResult("Success!");
+        List<Person> lastShownList = model.getFilteredPersonList();
+        Person matchedPerson = null;
+
+        for(Person person: lastShownList){
+            if (person.getName().toString().toLowerCase().equals(this.candidateName)) {
+                matchedPerson = person;
+                break;
+            }
+        }
+
+        if (matchedPerson == null) {
+            throw new CommandException("No person with name " + this.candidateName + " found!");
+        }
+
+        Attribute matchingAttribute = matchedPerson.getAttribute(this.attributeName).orElseThrow(
+            () -> new CommandException("Person has no matching attribute with name " + this.attributeName)
+        );
+        matchedPerson.removeAttribute(matchingAttribute);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        return new CommandResult(matchingAttribute.toString() + "was deleted successfully.");
     }
 }
