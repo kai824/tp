@@ -7,6 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.address.model.attribute.Attribute;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 public class AttributeRemoveCommand extends Command {
@@ -18,14 +19,14 @@ public class AttributeRemoveCommand extends Command {
             + "Parameters: n/ [NAME] w/ [ATTRIBUTE_NAME]\n"
             + "Example: " + COMMAND_WORD + "n/ Alex Yeoh w/graduation year";
 
-    private final String candidateName;
+    private final Name candidateName;
     private final String attributeName;
 
     /**
      * @param candidateName name of the person to be edited
      * @param attributeName name of the attribute to be deleted
      */
-    public AttributeRemoveCommand(String candidateName, String attributeName) {
+    public AttributeRemoveCommand(Name candidateName, String attributeName) {
         requireAllNonNull(candidateName, attributeName);
 
         this.candidateName = candidateName;
@@ -38,7 +39,7 @@ public class AttributeRemoveCommand extends Command {
         Person matchedPerson = null;
 
         for(Person person: lastShownList){
-            if (person.getName().toString().toLowerCase().equals(this.candidateName)) {
+            if (person.getName().equals(this.candidateName)) {
                 matchedPerson = person;
                 break;
             }

@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.AttributeRemoveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
 
 public class AttributeRemoveCommandParser implements Parser<AttributeRemoveCommand> {
 
@@ -25,7 +26,7 @@ public class AttributeRemoveCommandParser implements Parser<AttributeRemoveComma
             () -> new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             AttributeRemoveCommand.MESSAGE_USAGE))
     );
-        return new AttributeRemoveCommand(candidateName, attributeName);
+        return new AttributeRemoveCommand(new Name(candidateName), attributeName);
     }
     ;
 }
