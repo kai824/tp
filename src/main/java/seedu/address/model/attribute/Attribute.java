@@ -50,7 +50,7 @@ public class Attribute {
         }
 
         if (other instanceof String str) {
-            return attributeName.equals(str);
+            return attributeName.toLowerCase().equals(str.toLowerCase());
         }
 
         return false;
