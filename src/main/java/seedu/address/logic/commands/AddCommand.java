@@ -64,12 +64,11 @@ public class AddCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
-            return false;
+        if (other instanceof AddCommand otherAddCommand) {
+            return toAdd.equals(otherAddCommand.toAdd);
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        return false;
     }
 
     @Override

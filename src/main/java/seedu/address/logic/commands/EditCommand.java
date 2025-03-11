@@ -111,13 +111,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
-            return false;
+        if (other instanceof EditCommand otherEditCommand) {
+            return index.equals(otherEditCommand.index)
+                    && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
         }
 
-        EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+        return false;
     }
 
     @Override
@@ -206,15 +205,14 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
-                return false;
+            if (other instanceof EditPersonDescriptor otherEditPersonDescriptor) {
+                return Objects.equals(name, otherEditPersonDescriptor.name)
+                        && Objects.equals(phone, otherEditPersonDescriptor.phone)
+                        && Objects.equals(email, otherEditPersonDescriptor.email)
+                        && Objects.equals(tags, otherEditPersonDescriptor.tags);
             }
 
-            EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+            return false;
         }
 
         @Override
