@@ -5,11 +5,13 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -66,21 +68,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -120,5 +107,43 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String attribute} into an {@code Attribute}.
+     * The attribute should be provided in the format {@code name=value}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code attribute} is invalid.
+     */
+    public static Attribute parseAttribute(String attribute) throws ParseException {
+        requireNonNull(attribute);
+        String trimmedAtribute = attribute.trim();
+
+        Matcher matcher = Pattern.compile("^([^=]+)=([^=]+)$").matcher(trimmedAtribute);
+        if (!matcher.find()) {
+            throw new ParseException(Attribute.MESSAGE_CONSTRAINTS);
+        }
+
+        String attributeName = matcher.group(1);
+        String attributeValue = matcher.group(2);
+
+        if (!Attribute.isValidAttribute(attributeName) || !Attribute.isValidAttribute(attributeValue)) {
+            throw new ParseException(Attribute.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Attribute(attributeName, attributeValue);
+    }
+
+    /**
+     * Parses {@code Collection<String> attributes} into a {@code Set<Attribute>}.
+     */
+    public static Set<Attribute> parseAttributes(Collection<String> attributes) throws ParseException {
+        requireNonNull(attributes);
+        final Set<Attribute> attributeSet = new HashSet<>();
+        for (String attribute : attributes) {
+            attributeSet.add(parseAttribute(attribute));
+        }
+        return attributeSet;
     }
 }
