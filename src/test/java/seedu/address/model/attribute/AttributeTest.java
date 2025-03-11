@@ -48,10 +48,11 @@ public class AttributeTest {
     @Test
     public void validAttribute() {
         String[] validAttributes = {"Graduation Year", "2027", "(){}[]<>", "1234567890!@#$%^&*()",
-            "-_+=''\"\"", "'); DROP DATABASE records;",
+            "-_+''\"\"", "'); DROP DATABASE records;",
             "very very very very very very very very very very very very very very very long string"};
         String[] invalidAttributes = {"", "/", "\\", "//////////////", "\\\\\\\\\\\\\\\\\\\\",
-            "/here is a string containing a forward slash", "here is one \\ containing a backslash"};
+            "/here is a string containing a forward slash", "here is one \\ containing a backslash",
+            "here=is=one=containing=equals"};
 
         for (String s : validAttributes) {
             new Attribute(s, "dummy");
