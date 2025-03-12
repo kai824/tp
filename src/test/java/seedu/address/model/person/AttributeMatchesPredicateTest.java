@@ -33,6 +33,11 @@ public class AttributeMatchesPredicateTest {
             .withAttributes(
                 "CCA", "Dance", "Hobby", "k-pop", "Graduation year", "2028", "Age", "20")
                     .build()));
+
+        // Mixed-case attributes: name
+        predicate =
+                new AttributeMatchesPredicate(List.of(new Attribute("University", "NUS")));
+        assertTrue(predicate.test(new PersonBuilder().withAttributes("university", "NUS").build()));
     }
 
     @Test
@@ -41,17 +46,6 @@ public class AttributeMatchesPredicateTest {
         AttributeMatchesPredicate predicate =
             new AttributeMatchesPredicate(List.of(new Attribute("University", "NUS")));
         assertFalse(predicate.test(new PersonBuilder().withAttributes("University", "nus").build()));
-
-        // Same name but different value
-        predicate = new AttributeMatchesPredicate(
-            List.of(new Attribute("University", "NUS")));
-        assertFalse(predicate.test(new PersonBuilder()
-            .withAttributes("University", "NTU").build()));
-
-        // Mixed-case attributes: name
-        predicate =
-                new AttributeMatchesPredicate(List.of(new Attribute("University", "NUS")));
-        assertFalse(predicate.test(new PersonBuilder().withAttributes("university", "NUS").build()));
 
         // Non-matching attributes: value
         predicate = new AttributeMatchesPredicate(
@@ -69,6 +63,12 @@ public class AttributeMatchesPredicateTest {
         predicate = new AttributeMatchesPredicate(
             List.of(new Attribute("Graduation year", "2022")));
         assertFalse(predicate.test(new PersonBuilder().build()));
+
+        // Same name but different value
+        predicate = new AttributeMatchesPredicate(
+            List.of(new Attribute("University", "NUS")));
+        assertFalse(predicate.test(new PersonBuilder()
+            .withAttributes("University", "NTU").build()));
 
         // Name and value are swapped
         predicate =
