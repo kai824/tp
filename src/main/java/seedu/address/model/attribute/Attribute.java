@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Attribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Attribute names and values should not contain / or \\";
-    public static final String VALIDATION_REGEX = "[^\\\\/]+";
+    public static final String MESSAGE_CONSTRAINTS = "Attribute names and values should not contain /, \\, or =";
+    public static final String VALIDATION_REGEX = "[^\\\\/=]+";
 
     public final String attributeName;
     public final String attributeValue;
@@ -45,11 +45,20 @@ public class Attribute {
         }
 
         if (other instanceof Attribute attribute) {
-            return attributeName.equals(attribute.attributeName)
+            return attributeName.equalsIgnoreCase(attribute.attributeName)
                     && attributeValue.equals(attribute.attributeValue);
         }
 
         return false;
+    }
+
+    /**
+     * Checks if attribute name matches a given string, case insensitively.
+     * @param name Attribute name to check against
+     * @return True if it matches, false otherwise
+     */
+    public boolean matchesName(String name) {
+        return attributeName.equalsIgnoreCase(name);
     }
 
     @Override
