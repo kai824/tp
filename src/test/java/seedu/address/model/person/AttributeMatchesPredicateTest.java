@@ -77,8 +77,9 @@ public class AttributeMatchesPredicateTest {
 
         // Attributes match name, phone, email and address, but does not match the attributes
         predicate = new AttributeMatchesPredicate(
-            List.of(new Attribute("Alice", "12345"), new Attribute("alice@email.com", "Main Street")));
+            List.of(new Attribute("Alice", "12345"),
+                new Attribute("alice@email.com", "Hobby")));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+                .withEmail("alice@email.com").withAttributes("Hobby", "Baseball").build()));
     }
 }
