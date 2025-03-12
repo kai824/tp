@@ -45,15 +45,20 @@ public class Attribute {
         }
 
         if (other instanceof Attribute attribute) {
-            return attributeName.equals(attribute.attributeName)
+            return attributeName.equalsIgnoreCase(attribute.attributeName)
                     && attributeValue.equals(attribute.attributeValue);
         }
 
-        if (other instanceof String str) {
-            return attributeName.toLowerCase().equals(str.toLowerCase());
-        }
-
         return false;
+    }
+
+    /**
+     * Checks if attribute name matches a given string, case insensitively.
+     * @param name Attribute name to check against
+     * @return True if it matches, false otherwise
+     */
+    public boolean matchesName(String name) {
+        return attributeName.equalsIgnoreCase(name);
     }
 
     @Override

@@ -71,18 +71,23 @@ public class Person {
      * Finds an attribute by the attribute name. If it exists,
      * returns Optional object with matching Attribute. Else, returns empty Optional.
      *
-     * @param attributeName attribute name to esearch for
+     * @param attributeName attribute name to search for
      * @return Optional object with the matching attribute.
      */
     public Optional<Attribute> getAttribute(String attributeName) {
         for (Attribute attr: attributes) {
-            if (attr.equals(attributeName)) {
+            if (attr.matchesName(attributeName)) {
                 return Optional.of(attr);
             }
         }
         return Optional.empty();
     }
 
+    /**
+     * Removes specified {@code Attribute} object from list of attributes in Peron's list.
+     * @param attribute Attribute object to be added
+     * @return If the removal was successful
+     */
     public boolean removeAttribute(Attribute attribute) {
         return attributes.remove(attribute);
     }
