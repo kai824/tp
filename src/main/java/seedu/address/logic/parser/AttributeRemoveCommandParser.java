@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AttributeRemoveCommand;
@@ -29,11 +31,13 @@ public class AttributeRemoveCommandParser implements Parser<AttributeRemoveComma
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AttributeRemoveCommand.MESSAGE_USAGE), e);
         }
 
-        String attributeName = argMultimap.getValue(PREFIX_ATTRIBUTE).orElseThrow(()
-            -> new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            AttributeRemoveCommand.MESSAGE_USAGE))
-        );
+        List<String> attributes = argMultimap.getAllValues(PREFIX_ATTRIBUTE);
 
-        return new AttributeRemoveCommand(index, attributeName);
+        if (attributes.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AttributeRemoveCommand.MESSAGE_USAGE));
+        }
+
+        return new AttributeRemoveCommand(index, attributes);
     }
 }

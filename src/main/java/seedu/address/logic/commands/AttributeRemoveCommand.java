@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -25,17 +26,18 @@ public class AttributeRemoveCommand extends Command {
             + "Example: " + COMMAND_WORD + "n/ Alex Yeoh w/graduation year";
 
     private final Index index;
-    private final String attributeName;
+    private final List<String> attributeNames;
 
     /**
      * @param index name of the person to be edited
-     * @param attributeName name of the attribute to be deleted
+     * @param attributeNames List of names of the attributes to be deleted
      */
-    public AttributeRemoveCommand(Index index, String attributeName) {
-        requireAllNonNull(index, attributeName);
+    public AttributeRemoveCommand(Index index, List<String> attributeNames) {
+        requireAllNonNull(index, attributeNames);
+        assert attributeNames.size() > 0;
 
         this.index = index;
-        this.attributeName = attributeName;
+        this.attributeNames = attributeNames;
     }
 
     @Override
@@ -48,13 +50,19 @@ public class AttributeRemoveCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        Attribute matchingAttribute = personToEdit.getAttribute(attributeName).orElseThrow(()
-                -> new CommandException(String.format("%s has no matching attribute with name %s",
-                personToEdit.getName(), attributeName))
-        );
-        personToEdit.removeAttribute(matchingAttribute);
+        List<Attribute> attributesToRemove = new ArrayList<>();
+        for (String attributeName : attributeNames) {
+            Attribute matchingAttribute = personToEdit.getAttribute(attributeName).orElseThrow(()
+                    -> new CommandException(String.format("%s has no matching attribute with name %s",
+                    personToEdit.getName(), attributeName))
+            );
+            attributesToRemove.add(matchingAttribute);
+        }
+        for (Attribute attribute : attributesToRemove) {
+            personToEdit.removeAttribute(attribute);
+        }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(matchingAttribute.toString() + " was deleted successfully.");
+        return new CommandResult(personToEdit.getName() + "'s attributes were deleted successfully.");
     }
 }
