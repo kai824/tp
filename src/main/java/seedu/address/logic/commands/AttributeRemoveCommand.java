@@ -22,8 +22,8 @@ public class AttributeRemoveCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes the attribute of the person identified by name.\n"
-            + "Parameters: [person index] w/ [ATTRIBUTE_NAME]\n"
-            + "Example: " + COMMAND_WORD + "n/ Alex Yeoh w/graduation year";
+            + "Parameters: [person index] a/ [ATTRIBUTE_NAME]\n"
+            + "Example: " + COMMAND_WORD + "n/ Alex Yeoh a/graduation year";
 
     private final Index index;
     private final List<String> attributeNames;
