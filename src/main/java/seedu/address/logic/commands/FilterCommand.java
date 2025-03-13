@@ -9,6 +9,7 @@ import seedu.address.model.person.AttributeMatchesPredicate;
 
 /**
  * Filter the candidates with the provided attribute.
+ * Guarantees: immutable.
  */
 public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
@@ -16,10 +17,11 @@ public class FilterCommand extends Command {
             + ": Filter the candidates with the provided attribute.\n"
             + "Parameters: ATTRIBUTE_NAME=ATTRIBUTE_VALUE (case-sensitive, can be more than one)\n"
             + "Example: " + COMMAND_WORD + "a/major=Computer Science";
-
     private final AttributeMatchesPredicate filter;
 
     /**
+     * Initializes an instance with the predicate comprised of attributes.
+     *
      * @param filter The filtering predicate created with the user input attributes.
      */
     public FilterCommand(AttributeMatchesPredicate filter) {
