@@ -1,7 +1,7 @@
 ---
-  layout: default.md
-  title: "Developer Guide"
-  pageNav: 3
+layout: default.md
+title: "Developer Guide"
+pageNav: 3
 ---
 
 # AB-3 Developer Guide
@@ -93,8 +93,6 @@ Here's a (partial) class diagram of the `Logic` component:
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
 <puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
-
-<box type="info" seamless>
 
 **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </box>
