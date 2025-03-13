@@ -152,6 +152,20 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Adding a new attribute to existing entry: `attribute`
+
+Adds a new attribute and attribute value to the specified person in the address book.
+
+Format: `attribute n/NAME a/ATTRIBUTE_NAME v/ATTRIBUTE_VALUE`
+
+* Adds an attribute and attribute value to the person with the specified `NAME`.
+* `NAME` must match exactly the full name of the person in the address book.
+* No type consistency is guaranteed between `ATTRIBUTE_VALUE` and `ATTRIBUTE_NAME`.
+* i.e. `ATTRIBUTE_VALUE` will always be a string even if `ATTRIBUTE_NAME` may be better represented by a different data type.
+
+Examples:
+* `attribute n/Alex a/Highest Educational Qualification v/Bachelors` adds the "Highest Educational Qualification" attribute to the person "Alex" with a value of "Bachelors".
+
 ### Exiting the program : `exit`
 
 Exits the program.
