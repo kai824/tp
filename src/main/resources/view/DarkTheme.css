@@ -1,5 +1,5 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#1e1e2e, 20%);
     background-color: #383838; /* Used in the default.html file */
 }
 
@@ -40,9 +40,9 @@
 }
 
 .table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-base: #1e1e2e;
+    -fx-control-inner-background: #1e1e2e;
+    -fx-background-color: #1e1e2e;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -77,20 +77,20 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#1e1e2e, 20%);
     -fx-border-color: transparent transparent transparent #4d4d4d;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#1e1e2e, 20%);
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#1e1e2e, 20%);
 }
 
 .list-cell {
@@ -104,7 +104,7 @@
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-background-color: linear-gradient(to bottom right, #323242, #2a2a3c);
+    -fx-background-color: linear-gradient(to bottom right, #1f1f2d, #15151e);
 }
 
 .list-cell .label {
@@ -124,17 +124,17 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: derive(#1e1e2e, 20%);
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
+     -fx-background-color: derive(#1e1e2e, 20%);
+     -fx-border-color: derive(#1e1e2e, 10%);
      -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#1e1e2e, 30%);
 }
 
 .result-display {
@@ -156,8 +156,8 @@
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 25%);
+    -fx-background-color: derive(#1e1e2e, 30%);
+    -fx-border-color: derive(#1e1e2e, 25%);
     -fx-border-width: 1px;
 }
 
@@ -166,17 +166,17 @@
 }
 
 .grid-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#1e1e2e, 30%);
+    -fx-border-color: derive(#1e1e2e, 30%);
     -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#1e1e2e, 30%);
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#1e1e2e, 50%);
 }
 
 .context-menu .label {
@@ -184,7 +184,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#1e1e2e, 20%);
 }
 
 .menu-bar .label {
@@ -208,7 +208,7 @@
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #1e1e2e;
     -fx-font-family: "Inter Semi Bold", Helvetica, Arial, sans-serif;
     -fx-font-size: 12pt;
     -fx-text-fill: #d8d8d8;
@@ -221,7 +221,7 @@
 
 .button:pressed, .button:default:hover:pressed {
   -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+  -fx-text-fill: #1e1e2e;
 }
 
 .button:focused {
@@ -234,7 +234,7 @@
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #1e1e2e;
     -fx-text-fill: white;
 }
 
@@ -248,11 +248,11 @@
 }
 
 .dialog-pane {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #1e1e2e;
 }
 
 .dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #1e1e2e;
 }
 
 .dialog-pane > *.label.content {
@@ -262,7 +262,7 @@
 }
 
 .dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#1d1d1d, 25%);
+    -fx-background-color: derive(#1e1e2e, 25%);
 }
 
 .dialog-pane:header *.header-panel *.label {
@@ -273,11 +273,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#1e1e2e, 20%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#1e1e2e, 50%);
     -fx-background-insets: 3;
 }
 
@@ -331,7 +331,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: derive(#1d1d1d, 10%);
+    -fx-background-color: derive(#1e1e2e, 10%);
     -fx-background-radius: 0;
 }
 
