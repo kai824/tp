@@ -345,7 +345,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2c. Required parameters are missing.
 
-   * 2c1. System displays an error: “Error: The command format is add n/{candidate name} p/{phone number} e/{email} a/{address} [t/{tag}].”
+   * 2c1. System displays an error: “Error: The command format is add n/{candidate name} p/{phone number} e/{email} [t/{tag}].”
 
      Use case ends.
 
