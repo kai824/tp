@@ -104,11 +104,7 @@
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
-    -fx-padding: 2;
-    -fx-background-insets: 2;
-    -fx-border-insets: 2;
+    -fx-background-color: linear-gradient(to bottom right, #323242, #2a2a3c);
 }
 
 .list-cell .label {
@@ -308,9 +304,7 @@
     -fx-background-insets: 4;
     -fx-border-insets: 4;
 
-    top-left: #2D2D3A;
-    bottom-right: #242433;
-    -fx-background-color: linear-gradient(to bottom right, top-left, bottom-right);
+    -fx-background-color: linear-gradient(to bottom right, #2a2a36, #21212b);
 
     -fx-background-radius: 18;
     -fx-border-radius: 18;
@@ -337,7 +331,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: derive(#1d1d1d, 10%);
     -fx-background-radius: 0;
 }
 
