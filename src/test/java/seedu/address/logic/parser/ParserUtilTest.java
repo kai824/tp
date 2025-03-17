@@ -285,5 +285,7 @@ public class ParserUtilTest {
     public void parseAttributes_duplicateAttributeNames_throwsParseException() {
         assertThrows(ParseException.class, () ->
                 ParserUtil.parseAttributes(Arrays.asList(VALID_ATTRIBUTE, VALID_ATTRIBUTE_ALT)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseAttributes(
+                Arrays.asList(VALID_ATTRIBUTE.toUpperCase(), VALID_ATTRIBUTE_ALT.toLowerCase())));
     }
 }

@@ -145,7 +145,7 @@ public class ParserUtil {
         for (String attribute : attributes) {
             Attribute newAttribute = parseAttribute(attribute);
             attributeSet.add(newAttribute);
-            attributeNames.add(newAttribute.attributeName);
+            attributeNames.add(newAttribute.attributeName.toLowerCase());
         }
         if (attributeSet.size() != attributeNames.size()) {
             throw new ParseException(Attribute.NO_DUPLICATES);
