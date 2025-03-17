@@ -141,8 +141,14 @@ public class ParserUtil {
     public static Set<Attribute> parseAttributes(Collection<String> attributes) throws ParseException {
         requireNonNull(attributes);
         final Set<Attribute> attributeSet = new HashSet<>();
+        final Set<String> attributeNames = new HashSet<>();
         for (String attribute : attributes) {
-            attributeSet.add(parseAttribute(attribute));
+            Attribute newAttribute = parseAttribute(attribute);
+            attributeSet.add(newAttribute);
+            attributeNames.add(newAttribute.attributeName);
+        }
+        if (attributeSet.size() != attributeNames.size()) {
+            throw new ParseException(Attribute.NO_DUPLICATES);
         }
         return attributeSet;
     }

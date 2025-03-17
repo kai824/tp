@@ -36,6 +36,7 @@ public class ParserUtilTest {
     private static final String VALID_ATTRIBUTE_NAME = "Graduation Year";
     private static final String VALID_ATTRIBUTE_VALUE = "2027";
     private static final String VALID_ATTRIBUTE = "Graduation Year=2027";
+    private static final String VALID_ATTRIBUTE_ALT = "Graduation Year=2028";
     private static final String INVALID_ATTRIBUTE_WITH_INVALID_NAME = "Graduation/Year=2027";
     private static final String INVALID_ATTRIBUTE_WITH_INVALID_VALUE = "Graduation Year=2027\\";
     private static final String INVALID_ATTRIBUTE_NO_EQUALS = "Graduation Year: 2027";
@@ -278,5 +279,11 @@ public class ParserUtilTest {
 
         assertEquals(expectedAttributeSet, actualAttributeSet);
         assertEquals(1, actualAttributeSet.size());
+    }
+
+    @Test
+    public void parseAttributes_duplicateAttributeNames_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseAttributes(Arrays.asList(VALID_ATTRIBUTE, VALID_ATTRIBUTE_ALT)));
     }
 }
