@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -35,6 +36,11 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_ATTRIBUTE_NAME_GRAD_YEAR = "Graduation Year";
     public static final String VALID_ATTRIBUTE_VALUE_GRAD_YEAR = "2027";
+    public static final String VALID_ATTRIBUTE_VALUE_ALT_GRAD_YEAR = "2025";
+    public static final String VALID_ATTRIBUTE_NAME_MAJOR = "Major";
+    public static final String VALID_ATTRIBUTE_VALUE_MAJOR = "Computer Science";
+    public static final String VALID_ATTRIBUTE_VALUE_ALT_MAJOR = "Math";
+    public static final String INVALID_ATTRIBUTE_NAME = "Equal is=not allowed";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -44,6 +50,17 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+
+    public static final String ATTRIBUTE_GRAD_YEAR = " " + PREFIX_ATTRIBUTE
+            + VALID_ATTRIBUTE_NAME_GRAD_YEAR + "=" + VALID_ATTRIBUTE_VALUE_GRAD_YEAR;
+    public static final String ATTRIBUTE_ALT_GRAD_YEAR = " " + PREFIX_ATTRIBUTE
+            + VALID_ATTRIBUTE_NAME_GRAD_YEAR + "=" + VALID_ATTRIBUTE_VALUE_ALT_GRAD_YEAR;
+    public static final String ATTRIBUTE_MAJOR = " " + PREFIX_ATTRIBUTE
+            + VALID_ATTRIBUTE_NAME_MAJOR + "=" + VALID_ATTRIBUTE_VALUE_MAJOR;
+    public static final String ATTRIBUTE_ALT_MAJOR = " " + PREFIX_ATTRIBUTE
+            + VALID_ATTRIBUTE_NAME_MAJOR + "=" + VALID_ATTRIBUTE_VALUE_ALT_MAJOR;
+    public static final String INVALID_ATTRIBUTE = " " + PREFIX_ATTRIBUTE
+            + INVALID_ATTRIBUTE_NAME + "=" + VALID_ATTRIBUTE_VALUE_GRAD_YEAR;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
