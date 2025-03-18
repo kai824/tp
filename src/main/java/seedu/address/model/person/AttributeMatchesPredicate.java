@@ -2,7 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.model.attribute.Attribute;
@@ -12,7 +12,7 @@ import seedu.address.model.attribute.Attribute;
  * Guarantees: immutable.
  */
 public class AttributeMatchesPredicate implements Predicate<Person> {
-    private final List<Attribute> attributes;
+    private final Set<Attribute> attributes;
 
     /**
      * Initializes an instance with the list of attributes.
@@ -20,7 +20,7 @@ public class AttributeMatchesPredicate implements Predicate<Person> {
      *
      * @param attributes The pairs of attribute name and value with which the candidates will be filtered.
      */
-    public AttributeMatchesPredicate(List<Attribute> attributes) {
+    public AttributeMatchesPredicate(Set<Attribute> attributes) {
         requireNonNull(attributes);
         assert attributes.size() > 0;
         this.attributes = attributes;
