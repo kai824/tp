@@ -33,4 +33,15 @@ public class AttributeMatchesPredicate implements Predicate<Person> {
                     -> person.getAttributes().stream().anyMatch(personAttribute
                         -> personAttribute.equals(testAttribute)));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (other instanceof AttributeMatchesPredicate otherPredicate) {
+            return otherPredicate.attributes.equals(this.attributes);
+        }
+        return false;
+    }
 }
