@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.PersonBuilder;
 
 public class AttributeSortComparatorTest {
@@ -31,7 +32,7 @@ public class AttributeSortComparatorTest {
     }
 
     @Test
-    public void compare_firstPersonHasAttribute_SecondPersonDoesNot_returnsNegative() {
+    public void compare_firstPersonHasAttribute_secondPersonDoesNot_returnsNegative() {
         assertEquals(-1, comparator.compare(person1, person4));
     }
 
