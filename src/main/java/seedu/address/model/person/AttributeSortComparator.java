@@ -5,6 +5,11 @@ import java.util.Optional;
 
 import seedu.address.model.attribute.Attribute;
 
+/**
+ * Compare two persons based on the lexicographical order of the value of a specified attribute name.
+ * Guarantees: immutable.
+ */
+
 public class AttributeSortComparator implements Comparator<Person> {
     private final String attributeName;
 

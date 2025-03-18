@@ -6,9 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.AttributeRemoveCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
