@@ -16,7 +16,7 @@ public class FilterCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Filter the candidates with the provided attribute.\n"
             + "Parameters: ATTRIBUTE_NAME=ATTRIBUTE_VALUE (case-sensitive, can be more than one)\n"
-            + "Example: " + COMMAND_WORD + "a/major=Computer Science";
+            + "Example: " + COMMAND_WORD + " a/major=Computer Science";
     private final AttributeMatchesPredicate filter;
 
     /**
