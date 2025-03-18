@@ -19,6 +19,7 @@ public class Messages {
     public static final String MESSAGE_PERSONS_FILTERED_OVERVIEW = "%1$d persons match all the attributes!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_PERSONS_SORTED_OVERVIEW = "All persons sorted!";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

@@ -1,10 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.attribute.Attribute;
+import seedu.address.model.person.AttributeSortComparator;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +87,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns an unmodifiable view of the sorted person list */
+    ObservableList<Person> getSortedPersonList();
+
+    /**
+     * Updates the attributeToSort of the sorted person list to the given {@code attributeToSort}.
+     * @throws NullPointerException if {@code attributeToSort} is null.
+     */
+    void updateSortedPersonList(Comparator<Person> sorter);
 }
