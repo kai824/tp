@@ -27,12 +27,12 @@ public class AttributeSortComparatorTest {
     }
 
     @Test
-    public void compare_secondPersonHasAttribute_firstPersonDoesNot_returnsPositive() {
+    public void secondPersonHasAttribute_firstPersonDoesNot_returnsPositive() {
         assertEquals(1, comparator.compare(person3, person2));
     }
 
     @Test
-    public void compare_firstPersonHasAttribute_secondPersonDoesNot_returnsNegative() {
+    public void firstPersonHasAttribute_secondPersonDoesNot_returnsNegative() {
         assertEquals(-1, comparator.compare(person1, person4));
     }
 
