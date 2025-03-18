@@ -5,15 +5,17 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Person;
 
 /**
@@ -25,7 +27,6 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final SortedList<Person> sortedPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,8 +38,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        sortedPersons = new SortedList<>(this.addressBook.getPersonList());
+        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -133,17 +133,12 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== Sorted Person List Accessors =============================================================
-
+    /**
+     * Sorts filteredPerson with a given comparator.
+     */
     @Override
-    public ObservableList<Person> getSortedPersonList() {
-        return sortedPersons;
-    }
-
-    @Override
-    public void updateSortedPersonList(Comparator<Person> sorter) {
-        requireNonNull(sorter);
-        sortedPersons.setComparator(sorter);
+    public void sortFilteredPersonList(Comparator<Person> comparator) {
+        addressBook.sortPersons(comparator);
     }
 
     @Override

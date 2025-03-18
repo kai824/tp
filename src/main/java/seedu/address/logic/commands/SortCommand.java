@@ -17,27 +17,35 @@ public class SortCommand extends Command {
             + ": Sort the candidates with the provided attribute provided attribute name."
             + "Candidates lacking the specified attribute name will be placed last, preserving their original order.\n"
             + "Parameters: ATTRIBUTE_NAME (case-sensitive)\n"
-            + "Example: " + COMMAND_WORD + "a/Graduation Year";
-    private final AttributeSortComparator sorter;
+            + "Example: " + COMMAND_WORD + " a/Graduation Year";
+    private final String attributeName;
 
     /**
      * Initializes an instance with the comparator based on the attribute name.
      *
-     * @param sorter The comparator created with the user input attribute name.
+     * @param attributeName The name of the attribute to sort the user input.
      */
-    public SortCommand(AttributeSortComparator sorter) {
-        requireNonNull(sorter);
-        this.sorter = sorter;
+    public SortCommand(String attributeName) {
+        requireNonNull(attributeName);
+        this.attributeName = attributeName;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        model.updateSortedPersonList(sorter);
+        model.sortFilteredPersonList(new AttributeSortComparator(this.attributeName));
 
         return new CommandResult(
+
                 String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW
                 ));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof SortCommand) {
+            return this.attributeName.equals(((SortCommand) other).attributeName);
+        }
+        return false;
     }
 }
