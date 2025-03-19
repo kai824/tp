@@ -183,7 +183,7 @@ public class AddCommandParserTest {
 
         // invalid attribute
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ATTRIBUTE,
-                Attribute.MESSAGE_CONSTRAINTS);
+                ParserUtil.MESSAGE_TOO_MANY_ARGUMENT_FOR_ATTRIBUTE);
 
         // duplicate attribute
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
