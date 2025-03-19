@@ -25,18 +25,15 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
-    public static final String MESSAGE_INVALID_ARGUMENT_FOR_ATTRIBUTE =
-        "An attribute must consist of exactly one name and one value (both non-empty), separated by =.";
-
     public static final String MESSAGE_TOO_MANY_ARGUMENT_FOR_ATTRIBUTE =
-        MESSAGE_INVALID_ARGUMENT_FOR_ATTRIBUTE + "\n" + "Also, " + Attribute.MESSAGE_CONSTRAINTS.toLowerCase();
+        Attribute.MESSAGE_USAGE + "\n" + "Also, " + Attribute.MESSAGE_CONSTRAINTS.toLowerCase();
 
     public static final String MESSAGE_MISSING_ARGUMENT_FOR_ATTRIBUTE =
         "Attribute names and values cannot be empty.";
 
     public static final String MESSAGE_EMPTY_ARGUMENT_FOR_ATTRIBUTE =
         "You need to enter an attribute after " + PREFIX_ATTRIBUTE + ".\n"
-            + MESSAGE_INVALID_ARGUMENT_FOR_ATTRIBUTE;
+            + Attribute.MESSAGE_USAGE;
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -138,7 +135,7 @@ public class ParserUtil {
         long numOfEquals = countCharactors(trimmedAttribute, '=');
 
         if (numOfEquals == 0) {
-            throw new ParseException(MESSAGE_INVALID_ARGUMENT_FOR_ATTRIBUTE);
+            throw new ParseException(Attribute.MESSAGE_USAGE);
         } else if (numOfEquals >= 2) {
             throw new ParseException(MESSAGE_TOO_MANY_ARGUMENT_FOR_ATTRIBUTE);
         }

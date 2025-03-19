@@ -241,9 +241,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseAttribute_zeroEqual_throwsParseException() throws Exception {
-        assertThrows(ParseException.class, ParserUtil.MESSAGE_INVALID_ARGUMENT_FOR_ATTRIBUTE, ()
+        assertThrows(ParseException.class, Attribute.MESSAGE_USAGE, ()
             -> ParserUtil.parseAttribute(VALID_ATTRIBUTE_NAME));
-        assertThrows(ParseException.class, ParserUtil.MESSAGE_INVALID_ARGUMENT_FOR_ATTRIBUTE, ()
+        assertThrows(ParseException.class, Attribute.MESSAGE_USAGE, ()
             -> ParserUtil.parseAttribute(VALID_ATTRIBUTE_NAME + VALID_ATTRIBUTE_VALUE));
     }
 
