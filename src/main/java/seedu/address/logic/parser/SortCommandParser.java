@@ -25,7 +25,7 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         List<String> attributes = argMultimap.getAllValues(PREFIX_ATTRIBUTE);
 
-        if (attributes.size() != 1) {
+        if (attributes.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortCommand.MESSAGE_USAGE));
         }
