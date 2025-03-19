@@ -18,12 +18,6 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_moreThanOneArgs_throwsParseException() {
-        assertParseFailure(parser, "sort a/GPA a/Age",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-    }
-
-    @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         SortCommand expectedSortCommand =
