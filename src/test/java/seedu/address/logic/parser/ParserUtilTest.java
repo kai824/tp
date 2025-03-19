@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_NAME_GRAD_YEAR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_VALUE_ALT_GRAD_YEAR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_VALUE_GRAD_YEAR;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -242,17 +245,21 @@ public class ParserUtilTest {
     @Test
     public void parseAttributes_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseAttributes(null, false));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttributes(null, true));
     }
 
     @Test
     public void parseAttributes_emptyCollection_returnsEmptySet() throws Exception {
         assertTrue(ParserUtil.parseAttributes(Collections.emptyList(), false).isEmpty());
+        assertTrue(ParserUtil.parseAttributes(Collections.emptyList(), true).isEmpty());
     }
 
     @Test
     public void parseAttributes_collectionWithInvalidAttribute_throwsParseException() {
         assertThrows(ParseException.class, () ->
                 ParserUtil.parseAttributes(Arrays.asList(VALID_ATTRIBUTE, INVALID_ATTRIBUTE_NO_EQUALS), false));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseAttributes(Arrays.asList(VALID_ATTRIBUTE, INVALID_ATTRIBUTE_NO_EQUALS), true));
     }
 
     @Test
@@ -267,6 +274,10 @@ public class ParserUtilTest {
                 new Attribute("size", "large")));
 
         assertEquals(expectedAttributeSet, actualAttributeSet);
+
+        actualAttributeSet = ParserUtil.parseAttributes(
+                Arrays.asList(VALID_ATTRIBUTE, validAttribute2), true);
+        assertEquals(expectedAttributeSet, actualAttributeSet);
     }
 
     @Test
@@ -279,6 +290,11 @@ public class ParserUtilTest {
 
         assertEquals(expectedAttributeSet, actualAttributeSet);
         assertEquals(1, actualAttributeSet.size());
+
+        actualAttributeSet = ParserUtil.parseAttributes(
+                Arrays.asList(VALID_ATTRIBUTE, VALID_ATTRIBUTE), true);
+        assertEquals(expectedAttributeSet, actualAttributeSet);
+        assertEquals(1, actualAttributeSet.size());
     }
 
     @Test
@@ -287,5 +303,15 @@ public class ParserUtilTest {
                 ParserUtil.parseAttributes(Arrays.asList(VALID_ATTRIBUTE, VALID_ATTRIBUTE_ALT), false));
         assertThrows(ParseException.class, () -> ParserUtil.parseAttributes(
                 Arrays.asList(VALID_ATTRIBUTE.toUpperCase(), VALID_ATTRIBUTE_ALT.toLowerCase()), false));
+    }
+
+    @Test
+    public void parseAttributes_allowedDuplicateAttributeNames_success() throws Exception {
+        Attribute attributeA = new Attribute(VALID_ATTRIBUTE_NAME_GRAD_YEAR, VALID_ATTRIBUTE_VALUE_GRAD_YEAR);
+        Attribute attributeB = new Attribute(VALID_ATTRIBUTE_NAME_GRAD_YEAR, VALID_ATTRIBUTE_VALUE_ALT_GRAD_YEAR);
+        assertEquals(ParserUtil.parseAttributes(
+            Set.of(VALID_ATTRIBUTE_NAME_GRAD_YEAR + "=" + VALID_ATTRIBUTE_VALUE_GRAD_YEAR,
+                VALID_ATTRIBUTE_NAME_GRAD_YEAR + "=" + VALID_ATTRIBUTE_VALUE_ALT_GRAD_YEAR), true),
+                    Set.of(attributeA, attributeB));
     }
 }
