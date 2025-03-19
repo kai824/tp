@@ -182,7 +182,7 @@ Examples:
 
 ### Filtering candidates by attributes: `filter`
 
-Filter the candidates based on whether they have a specific attribute or not.
+Filters the candidates based on whether they have a specific attribute or not.
 
 Format: `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]...`
 
