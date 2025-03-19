@@ -257,5 +257,5 @@ Action     | Format, Examples
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Remove Attribute** | `remove-attribute INDEX [a/ATTRIBUTE_NAME]…​`
-**Sort by One Attribute** | `sort a/ATTRIBUTE_NAME`<br> e.g., `sort a/Graduation Year`
+**Sort** | `sort a/ATTRIBUTE_NAME`<br> e.g., `sort a/Graduation Year`
 **Help**   | `help`
