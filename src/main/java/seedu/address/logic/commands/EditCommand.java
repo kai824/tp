@@ -12,11 +12,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -107,10 +105,21 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        // edit does not support editing attributes yet
-        Set<Attribute> updatedAttributes = editPersonDescriptor.getAttributes().orElse(personToEdit.getAttributes());
+        Set<Attribute> updatedAttributes = editPersonDescriptor.getUpdateAttributes().orElse(null);
+        Set<String> removedAttributes = editPersonDescriptor.getRemoveAttributes().orElse(null);
+        if (updatedAttributes != null) {
+            for (Attribute attr: updatedAttributes) {
+                personToEdit.updateAttribute(attr);
+            }
+        }
+        if (removedAttributes != null) {
+            for (String attrName: removedAttributes) {
+                personToEdit.removeAttributeByName(attrName);
+            }
+        }
+        Set<Attribute> updatedRemovedAttributes = personToEdit.getAttributes();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedTags, updatedAttributes);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedTags, updatedRemovedAttributes);
     }
 
     @Override
@@ -145,7 +154,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Set<Tag> tags;
-        private Set<Attribute> attributes;
+        private Set<Attribute> updateAttributes;
+        private Set<String> removeAttributes;
 
         public EditPersonDescriptor() {}
 
@@ -158,14 +168,15 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setTags(toCopy.tags);
-            setAttributes(toCopy.attributes);
+            setUpdateAttributes(toCopy.updateAttributes);
+            setRemoveAttributes(toCopy.removeAttributes);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, tags, attributes);
+            return CollectionUtil.isAnyNonNull(name, phone, email, tags, updateAttributes, removeAttributes);
         }
 
         public void setName(Name name) {
@@ -210,32 +221,39 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Updates attributes in {@code attributes} based on the attributes in {@code attributes} where necessary.
+         * Sets {@code updateAttributes} to this object's {@code updateAttributes}.
+         * A defensive copy of {@code updateAttributes} is used internally.
          */
-        public void setAttributes(Set<Attribute> attributes) {
-            Map<String, Attribute> attributeMap = this.attributes.stream()
-                    .collect(Collectors.toMap(a -> a.attributeName.toLowerCase(), a -> a));
-            attributes.stream()
-                    .forEach(a -> attributeMap.put(a.attributeName.toLowerCase(), a));
-            this.attributes = (attributes != null) ? new HashSet<>(attributeMap.values()) : null;
+        public void setUpdateAttributes(Set<Attribute> updateAttributes) {
+            this.updateAttributes = (updateAttributes != null) ? new HashSet<>(updateAttributes) : null;
         }
 
         /**
          * Returns an unmodifiable attribute set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code attributes} is null.
+         * Returns {@code Optional#empty()} if {@code updateAttributes} is null.
          */
-        public Optional<Set<Attribute>> getAttributes() {
-            return (attributes != null) ? Optional.of(Collections.unmodifiableSet(attributes)) : Optional.empty();
+        public Optional<Set<Attribute>> getUpdateAttributes() {
+            return (updateAttributes != null)
+                ? Optional.of(Collections.unmodifiableSet(updateAttributes)) : Optional.empty();
         }
 
         /**
-         * Removes attributes in {@code attributes} based on {@code attributeNames}.
+         * Sets {@code removeAttributes} to this object's {@code removeAttributes}.
+         * A defensive copy of {@code removeAttributes} is used internally.
          */
-        public void removeAttributes(Set<String> attributeNames) {
-            this.attributes = this.attributes.stream()
-                    .filter(a -> !attributeNames.contains(a.attributeName.toLowerCase()))
-                    .collect(Collectors.toSet());
+        public void setRemoveAttributes(Set<String> removeAttributes) {
+            this.removeAttributes = (removeAttributes != null) ? new HashSet<>(removeAttributes) : null;
+        }
+
+        /**
+         * Returns an unmodifiable string set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code removeAttributes} is null.
+         */
+        public Optional<Set<String>> getRemoveAttributes() {
+            return (removeAttributes != null)
+                ? Optional.of(Collections.unmodifiableSet(removeAttributes)) : Optional.empty();
         }
 
         @Override
@@ -250,7 +268,8 @@ public class EditCommand extends Command {
                         && Objects.equals(phone, otherEditPersonDescriptor.phone)
                         && Objects.equals(email, otherEditPersonDescriptor.email)
                         && Objects.equals(tags, otherEditPersonDescriptor.tags)
-                        && Objects.equals(attributes, otherEditPersonDescriptor.attributes);
+                        && Objects.equals(updateAttributes, otherEditPersonDescriptor.updateAttributes)
+                        && Objects.equals(removeAttributes, otherEditPersonDescriptor.removeAttributes);
             }
 
             return false;
@@ -263,7 +282,8 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("tags", tags)
-                    .add("attributes", attributes)
+                    .add("updateAttributes", updateAttributes)
+                    .add("removeAttributes", removeAttributes)
                     .toString();
         }
     }

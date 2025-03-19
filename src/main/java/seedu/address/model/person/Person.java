@@ -84,13 +84,37 @@ public class Person {
     }
 
     /**
-     * Removes specified {@code Attribute} object from list of attributes in Peron's list.
+     * Updates an attribute if the attribute name exists, else adds the attribute.
      *
-     * @param attribute Attribute object to be added
+     * @param attribute Attribute to be updated or added
+     */
+    public void updateAttribute(Attribute attribute) {
+        getAttribute(attribute.attributeName)
+                .ifPresent(this::removeAttribute);
+        attributes.add(attribute);
+    }
+
+    /**
+     * Removes specified {@code Attribute} object from list of attributes in Person's list.
+     *
+     * @param attribute Attribute object to be removed
      * @return If the removal was successful
      */
     public boolean removeAttribute(Attribute attribute) {
         return attributes.remove(attribute);
+    }
+
+    /**
+     * Removes attribute object from list of attributes in Person's list specified by attribute name
+     * {@code attributeName}.
+     *
+     * @param attributeName Attribute name of attribute object to be removed
+     * @return If the removal was successful
+     */
+    public boolean removeAttributeByName(String attributeName) {
+        return getAttribute(attributeName)
+                .map(this::removeAttribute)
+                .orElse(false);
     }
 
     /**

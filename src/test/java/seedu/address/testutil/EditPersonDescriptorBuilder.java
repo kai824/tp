@@ -36,7 +36,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setTags(person.getTags());
-        descriptor.setAttributes(person.getAttributes());
+        descriptor.setUpdateAttributes(null);
+        descriptor.setRemoveAttributes(null);
     }
 
     /**
@@ -79,7 +80,17 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAttribute(Attribute... attributes) {
         Set<Attribute> attributeSet = Stream.of(attributes).collect(Collectors.toSet());
-        descriptor.setAttributes(attributeSet);
+        descriptor.setUpdateAttributes(attributeSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code attributeNames} into a {@code Set<String>} and set it to the {@code
+     * EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withRemoveAttriute(String... attributeNames) {
+        Set<String> attributeNameSet = Stream.of(attributeNames).collect(Collectors.toSet());
+        descriptor.setRemoveAttributes(attributeNameSet);
         return this;
     }
 
