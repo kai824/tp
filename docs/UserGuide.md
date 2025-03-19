@@ -195,7 +195,7 @@ Examples:
 
 ### Sorting entries by an attribute: `sort`
 
-Sort the current view of entries by the value of the specified attribute name in lexicographical order. 
+Sorts the current view of entries by the value of the specified attribute name in lexicographical order. 
 
 Format: `sort a/ATTRIBUTE_NAME`
 
