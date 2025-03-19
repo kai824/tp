@@ -187,7 +187,7 @@ Filters the candidates based on whether they have a specific attribute or not.
 Format: `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]...`
 
 * `ATTRIBUTE_NAME` is matched case-insensitively, while `ATTRIBUTE_VALUE` is matched case-sensitively.
-* You can specify more than one attributes. In this case, only candidates who meet **ALL** of them will be desplayed.
+* You can specify more than one attribute. In this case, only candidates who meet **ALL** of them will be desplayed.
 
 Examples:
 * `filter a/Major=Computer Science a/Graduation year=2028` filters all the candidates who major in Computer Science and will graduate in 2028.
