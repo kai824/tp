@@ -26,7 +26,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     public static final String MESSAGE_INVALID_ARGUMENT_FOR_ATTRIBUTE =
-        "An attribute must consist of one name and one value (both non-empty), separated by =.";
+        "An attribute must consist of exactly one name and one value (both non-empty), separated by =.";
 
     public static final String MESSAGE_TOO_MANY_ARGUMENT_FOR_ATTRIBUTE =
         MESSAGE_INVALID_ARGUMENT_FOR_ATTRIBUTE + "\n" + "Also, " + Attribute.MESSAGE_CONSTRAINTS.toLowerCase();
