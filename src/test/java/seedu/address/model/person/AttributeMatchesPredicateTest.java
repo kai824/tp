@@ -1,7 +1,14 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_NAME_GRAD_YEAR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_NAME_MAJOR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_VALUE_ALT_MAJOR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_VALUE_GRAD_YEAR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_VALUE_MAJOR;
 
 import java.util.Set;
 
@@ -11,6 +18,9 @@ import seedu.address.model.attribute.Attribute;
 import seedu.address.testutil.PersonBuilder;
 
 public class AttributeMatchesPredicateTest {
+    private Attribute major1 = new Attribute(VALID_ATTRIBUTE_NAME_MAJOR, VALID_ATTRIBUTE_VALUE_MAJOR);
+    private Attribute major2 = new Attribute(VALID_ATTRIBUTE_NAME_MAJOR, VALID_ATTRIBUTE_VALUE_ALT_MAJOR);
+    private Attribute year1 = new Attribute(VALID_ATTRIBUTE_NAME_GRAD_YEAR, VALID_ATTRIBUTE_VALUE_GRAD_YEAR);
 
     @Test
     public void test_attributeMatches_returnsTrue() {
@@ -81,5 +91,25 @@ public class AttributeMatchesPredicateTest {
                 new Attribute("alice@email.com", "Hobby")));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAttributes("Hobby", "Baseball").build()));
+    }
+
+    @Test
+    public void equals() {
+        AttributeMatchesPredicate majorYear =
+            new AttributeMatchesPredicate(Set.of(major1, year1));
+        AttributeMatchesPredicate yearMajor =
+            new AttributeMatchesPredicate(Set.of(year1, major1));
+        AttributeMatchesPredicate majorA = new AttributeMatchesPredicate(Set.of(major1));
+        AttributeMatchesPredicate majorB = new AttributeMatchesPredicate(Set.of(major2));
+
+        // same objects -> returns true
+        assertEquals(majorYear, majorYear);
+        // same values -> returns true
+        assertEquals(majorYear, yearMajor);
+        // different types -> returns false
+        assertNotEquals(majorA, majorB);
+        assertNotEquals(majorA, majorYear);
+        // null -> returns false
+        assertNotEquals(null, majorA);
     }
 }
