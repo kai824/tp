@@ -46,7 +46,7 @@ public class Attribute {
         }
 
         if (other instanceof Attribute attribute) {
-            return this.matchesName(attribute.attributeName)
+            return attributeName.equalsIgnoreCase(attribute.attributeName)
                     && attributeValue.equals(attribute.attributeValue);
         }
 
@@ -70,7 +70,7 @@ public class Attribute {
      * @return 0 if they have the same attribute value, -1 if attribute1 has a smaller value, 1 otherwise
      */
     public int compareToAttributeOfSameAttributeName(Attribute other) {
-        assert this.attributeName.equals(other.attributeName);
+        assert this.matchesName(other.attributeName);
         return this.attributeValue.compareTo(other.attributeValue);
     }
 
