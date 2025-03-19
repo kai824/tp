@@ -1,8 +1,6 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_NAME_GRAD_YEAR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_NAME_MAJOR;
@@ -103,13 +101,13 @@ public class AttributeMatchesPredicateTest {
         AttributeMatchesPredicate majorB = new AttributeMatchesPredicate(Set.of(major2));
 
         // same objects -> returns true
-        assertEquals(majorYear, majorYear);
+        assertTrue(majorYear.equals(majorYear));
         // same values -> returns true
-        assertEquals(majorYear, yearMajor);
+        assertTrue(majorYear.equals(yearMajor));
         // different types -> returns false
-        assertNotEquals(majorA, majorB);
-        assertNotEquals(majorA, majorYear);
+        assertFalse(majorA.equals(majorB));
+        assertFalse(majorA.equals(majorYear));
         // null -> returns false
-        assertNotEquals(null, majorA);
+        assertFalse(majorA.equals(null));
     }
 }
