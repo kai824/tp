@@ -36,7 +36,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        Set<Attribute> attributes = ParserUtil.parseAttributes(attributeStrings);
+        Set<Attribute> attributes = ParserUtil.parseAttributes(attributeStrings, true);
 
         AttributeMatchesPredicate predicate = new AttributeMatchesPredicate(attributes);
 

@@ -138,7 +138,8 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> attributes} into a {@code Set<Attribute>}.
      */
-    public static Set<Attribute> parseAttributes(Collection<String> attributes) throws ParseException {
+    public static Set<Attribute> parseAttributes(Collection<String> attributes,
+        boolean isDuplicateAllowed) throws ParseException {
         requireNonNull(attributes);
         final Set<Attribute> attributeSet = new HashSet<>();
         final Set<String> attributeNames = new HashSet<>();
@@ -147,7 +148,7 @@ public class ParserUtil {
             attributeSet.add(newAttribute);
             attributeNames.add(newAttribute.attributeName.toLowerCase());
         }
-        if (attributeSet.size() != attributeNames.size()) {
+        if (!isDuplicateAllowed && attributeSet.size() != attributeNames.size()) {
             throw new ParseException(Attribute.NO_DUPLICATES);
         }
         return attributeSet;

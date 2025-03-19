@@ -12,6 +12,7 @@ import seedu.address.model.attribute.Attribute;
  * Guarantees: immutable.
  */
 public class AttributeMatchesPredicate implements Predicate<Person> {
+    private final long numOfDistinctAttributeNames;
     private final Set<Attribute> attributes;
 
     /**
@@ -24,14 +25,18 @@ public class AttributeMatchesPredicate implements Predicate<Person> {
         requireNonNull(attributes);
         assert attributes.size() > 0;
         this.attributes = attributes;
+        this.numOfDistinctAttributeNames =
+            attributes.stream().map(attribute -> attribute.attributeName).distinct().count();
     }
 
     @Override
     public boolean test(Person person) {
-        return attributes.stream()
-                .allMatch(testAttribute
-                    -> person.getAttributes().stream().anyMatch(personAttribute
-                        -> personAttribute.equals(testAttribute)));
+        long numOfMatchedAttributes =
+            person.getAttributes().stream()
+                .filter(attribute
+                    -> attributes.stream().anyMatch(specifiedAttribute
+                        -> specifiedAttribute.equals(attribute))).count();
+        return numOfMatchedAttributes == numOfDistinctAttributeNames;
     }
 
     @Override

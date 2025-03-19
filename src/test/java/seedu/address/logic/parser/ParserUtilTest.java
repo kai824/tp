@@ -241,18 +241,18 @@ public class ParserUtilTest {
 
     @Test
     public void parseAttributes_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttributes(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttributes(null, false));
     }
 
     @Test
     public void parseAttributes_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseAttributes(Collections.emptyList()).isEmpty());
+        assertTrue(ParserUtil.parseAttributes(Collections.emptyList(), false).isEmpty());
     }
 
     @Test
     public void parseAttributes_collectionWithInvalidAttribute_throwsParseException() {
         assertThrows(ParseException.class, () ->
-                ParserUtil.parseAttributes(Arrays.asList(VALID_ATTRIBUTE, INVALID_ATTRIBUTE_NO_EQUALS)));
+                ParserUtil.parseAttributes(Arrays.asList(VALID_ATTRIBUTE, INVALID_ATTRIBUTE_NO_EQUALS), false));
     }
 
     @Test
@@ -260,7 +260,7 @@ public class ParserUtilTest {
         String validAttribute2 = "size=large";
 
         Set<Attribute> actualAttributeSet = ParserUtil.parseAttributes(
-                Arrays.asList(VALID_ATTRIBUTE, validAttribute2));
+                Arrays.asList(VALID_ATTRIBUTE, validAttribute2), false);
 
         Set<Attribute> expectedAttributeSet = new HashSet<>(Arrays.asList(
                 new Attribute(VALID_ATTRIBUTE_NAME, VALID_ATTRIBUTE_VALUE),
@@ -272,7 +272,7 @@ public class ParserUtilTest {
     @Test
     public void parseAttributes_duplicateAttributes_returnsUniqueAttributeSet() throws Exception {
         Set<Attribute> actualAttributeSet = ParserUtil.parseAttributes(
-                Arrays.asList(VALID_ATTRIBUTE, VALID_ATTRIBUTE));
+                Arrays.asList(VALID_ATTRIBUTE, VALID_ATTRIBUTE), false);
 
         Set<Attribute> expectedAttributeSet = new HashSet<>(List.of(
                 new Attribute(VALID_ATTRIBUTE_NAME, VALID_ATTRIBUTE_VALUE)));
@@ -284,8 +284,8 @@ public class ParserUtilTest {
     @Test
     public void parseAttributes_duplicateAttributeNames_throwsParseException() {
         assertThrows(ParseException.class, () ->
-                ParserUtil.parseAttributes(Arrays.asList(VALID_ATTRIBUTE, VALID_ATTRIBUTE_ALT)));
+                ParserUtil.parseAttributes(Arrays.asList(VALID_ATTRIBUTE, VALID_ATTRIBUTE_ALT), false));
         assertThrows(ParseException.class, () -> ParserUtil.parseAttributes(
-                Arrays.asList(VALID_ATTRIBUTE.toUpperCase(), VALID_ATTRIBUTE_ALT.toLowerCase())));
+                Arrays.asList(VALID_ATTRIBUTE.toUpperCase(), VALID_ATTRIBUTE_ALT.toLowerCase()), false));
     }
 }
