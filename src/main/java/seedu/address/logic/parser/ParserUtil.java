@@ -193,7 +193,7 @@ public class ParserUtil {
         for (String attribute : attributes) {
             Attribute newAttribute = parseAttribute(attribute);
             attributeSet.add(newAttribute);
-            attributeNames.add(newAttribute.attributeName.toLowerCase());
+            attributeNames.add(newAttribute.getAttributeName());
         }
         if (attributeSet.size() != attributeNames.size()) {
             throw new ParseException(Attribute.NO_DUPLICATES);
