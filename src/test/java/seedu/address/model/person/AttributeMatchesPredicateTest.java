@@ -105,6 +105,8 @@ public class AttributeMatchesPredicateTest {
         // same values -> returns true
         assertTrue(majorYear.equals(yearMajor));
         // different types -> returns false
+        assertFalse(majorA.equals(100));
+        // different values -> returns false
         assertFalse(majorA.equals(majorB));
         assertFalse(majorA.equals(majorYear));
         // null -> returns false
