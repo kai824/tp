@@ -63,6 +63,17 @@ public class Attribute {
         return attributeName.equalsIgnoreCase(name);
     }
 
+    /**
+     * Compare to another attributes with the same attribute name by their attribute value.
+     *
+     * @param other The other attribute to compare with
+     * @return 0 if they have the same attribute value, -1 if attribute1 has a smaller value, 1 otherwise
+     */
+    public int compareToAttributeOfSameAttributeName(Attribute other) {
+        assert this.matchesName(other.attributeName);
+        return this.attributeValue.compareTo(other.attributeValue);
+    }
+
     @Override
     public int hashCode() {
         return attributeName.hashCode();
