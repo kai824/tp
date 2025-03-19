@@ -46,7 +46,7 @@ public class Attribute {
         }
 
         if (other instanceof Attribute attribute) {
-            return attributeName.equalsIgnoreCase(attribute.attributeName)
+            return this.matchesName(attribute.attributeName)
                     && attributeValue.equals(attribute.attributeValue);
         }
 
