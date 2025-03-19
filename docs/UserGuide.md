@@ -193,7 +193,7 @@ Examples:
 * `filter a/Major=Computer Science a/Graduation year=2028` filters all the candidates who major in Computer Science and will graduate in 2028.
 
 
-### Sort entries by an attribute: `sort`
+### Sorting entries by an attribute: `sort`
 
 Sort the current view of entries by the value of the specified attribute name in lexicographical order. 
 
