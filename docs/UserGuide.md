@@ -180,6 +180,19 @@ Examples:
 * `remove-attribute 2 a/major` removes the attribute "Major" from the person at index 2, as long as they currently have that attribute specified.
 * `remove-attribute 3 a/major a/graduation year` removes both attributes "Major" and "Graduation Year" from the person at index 3, as long as they currently have both attributes specified.
 
+### Filtering candidates by attributes: `filter`
+
+Filters the candidates based on whether they have a specific attribute or not.
+
+Format: `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]...`
+
+* `ATTRIBUTE_NAME` is matched case-insensitively, while `ATTRIBUTE_VALUE` is matched case-sensitively.
+* You can specify more than one attribute. In this case, only candidates who meet **ALL** of them will be desplayed.
+
+Examples:
+* `filter a/Major=Computer Science a/Graduation year=2028` filters all the candidates who major in Computer Science and will graduate in 2028.
+
+
 ### Sort entries by an attribute: `sort`
 
 Sort the current view of entries by the value of the specified attribute name in lexicographical order. 
