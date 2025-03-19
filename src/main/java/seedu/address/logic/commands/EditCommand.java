@@ -1,18 +1,22 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_ATTRIBUTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -37,11 +41,16 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
+            + "New values will be added with the specified input values. \n"
+            + "Removed attributes do not require a value to be specified. \n"
+            + "Addition and removal of attributed will be executed in the order they appear in the command. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_ATTRIBUTE + "ATTRIBUTE_NAME=ATTRIBUTE_VALUE]..."
+            + "[" + PREFIX_REMOVE_ATTRIBUTE + "ATTRIBUTE_NAME]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -99,7 +108,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         // edit does not support editing attributes yet
-        Set<Attribute> updatedAttributes = personToEdit.getAttributes();
+        Set<Attribute> updatedAttributes = editPersonDescriptor.getAttributes().orElse(personToEdit.getAttributes());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedTags, updatedAttributes);
     }
@@ -136,6 +145,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Set<Tag> tags;
+        private Set<Attribute> attributes;
 
         public EditPersonDescriptor() {}
 
@@ -148,13 +158,14 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setTags(toCopy.tags);
+            setAttributes(toCopy.attributes);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, tags, attributes);
         }
 
         public void setName(Name name) {
@@ -198,6 +209,35 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Updates attributes in {@code attributes} based on the attributes in {@code attributes} where necessary.
+         */
+        public void setAttributes(Set<Attribute> attributes) {
+            Map<String, Attribute> attributeMap = this.attributes.stream()
+                    .collect(Collectors.toMap(a -> a.attributeName.toLowerCase(), a -> a));
+            attributes.stream()
+                    .forEach(a -> attributeMap.put(a.attributeName.toLowerCase(), a));
+            this.attributes = (attributes != null) ? new HashSet<>(attributeMap.values()) : null;
+        }
+
+        /**
+         * Returns an unmodifiable attribute set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code attributes} is null.
+         */
+        public Optional<Set<Attribute>> getAttributes() {
+            return (attributes != null) ? Optional.of(Collections.unmodifiableSet(attributes)) : Optional.empty();
+        }
+
+        /**
+         * Removes attributes in {@code attributes} based on {@code attributeNames}.
+         */
+        public void removeAttributes(Set<String> attributeNames) {
+            this.attributes = this.attributes.stream()
+                    .filter(a -> !attributeNames.contains(a.attributeName.toLowerCase()))
+                    .collect(Collectors.toSet());
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -209,7 +249,8 @@ public class EditCommand extends Command {
                 return Objects.equals(name, otherEditPersonDescriptor.name)
                         && Objects.equals(phone, otherEditPersonDescriptor.phone)
                         && Objects.equals(email, otherEditPersonDescriptor.email)
-                        && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                        && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                        && Objects.equals(attributes, otherEditPersonDescriptor.attributes);
             }
 
             return false;
@@ -222,6 +263,7 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("tags", tags)
+                    .add("attributes", attributes)
                     .toString();
         }
     }

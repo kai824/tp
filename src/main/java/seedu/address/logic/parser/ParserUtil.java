@@ -152,4 +152,16 @@ public class ParserUtil {
         }
         return attributeSet;
     }
+
+    /**
+     * Parses {@code Collection<String> attributes} into a {@code Set<String>}.
+     */
+    public static Set<String> parseRemoveAttributes(Collection<String> attributes) throws ParseException {
+        requireNonNull(attributes);
+        final Set<String> attributeNames = new HashSet<>();
+        for (String attribute : attributes) {
+            attributeNames.add(attribute.toLowerCase());
+        }
+        return attributeNames;
+    }
 }
