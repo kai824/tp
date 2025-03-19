@@ -180,6 +180,18 @@ Examples:
 * `remove-attribute 2 a/major` removes the attribute "Major" from the person at index 2, as long as they currently have that attribute specified.
 * `remove-attribute 3 a/major a/graduation year` removes both attributes "Major" and "Graduation Year" from the person at index 3, as long as they currently have both attributes specified.
 
+### Sort entries by an attribute: `sort`
+
+Sort the current view of entries by the value of the specified attribute name in lexicographical order. 
+
+Format: `sort a/ATTRIBUTE_NAME`
+
+*  Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
+* `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`
+
+Examples:
+* `sort a/major` sorts all entries with the "Major" attribute by lexicographical order of the attribute value of "Major".
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -232,4 +244,5 @@ Action     | Format, Examples
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Remove Attribute** | `remove-attribute INDEX [a/ATTRIBUTE_NAME]…​`
+**Sort by One Attribute** | `sort a/ATTRIBUTE_NAME`<br> e.g., `sort a/Graduation Year`
 **Help**   | `help`
