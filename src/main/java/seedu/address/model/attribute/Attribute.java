@@ -10,9 +10,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Attribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Attribute names and values should not contain /, \\, or =";
+    public static final String MESSAGE_CONSTRAINTS = "Attribute names and values should not contain /, \\, or =.";
     public static final String NO_DUPLICATES = "Duplicate attribute names with different values are not allowed!";
     public static final String VALIDATION_REGEX = "[^\\\\/=]+";
+    public static final String MESSAGE_USAGE =
+        "An attribute must consist of exactly one name and one value (both non-empty), separated by =.";
 
     public final String attributeName;
     public final String attributeValue;

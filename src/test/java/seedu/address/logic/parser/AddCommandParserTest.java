@@ -29,6 +29,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -183,7 +184,7 @@ public class AddCommandParserTest {
 
         // invalid attribute
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ATTRIBUTE,
-                Attribute.MESSAGE_CONSTRAINTS);
+                ParserUtil.MESSAGE_TOO_MANY_ARGUMENT_FOR_ATTRIBUTE);
 
         // duplicate attribute
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -191,5 +192,9 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ATTRIBUTE_GRAD_YEAR + ATTRIBUTE_ALT_GRAD_YEAR + ATTRIBUTE_MAJOR + ATTRIBUTE_ALT_MAJOR,
                 Attribute.NO_DUPLICATES);
+
+        // empty attribute
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + TAG_DESC_FRIEND + " " + PREFIX_ATTRIBUTE, ParserUtil.MESSAGE_EMPTY_ARGUMENT_FOR_ATTRIBUTE);
     }
 }
