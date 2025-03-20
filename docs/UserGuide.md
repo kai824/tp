@@ -161,34 +161,6 @@ Clears all entries from the database.
 
 Format: `clear`
 
-### Adding a new attribute to existing entry: `attribute`
-
-Adds a new attribute and attribute value to the specified person in the database.
-
-Format: `attribute n/NAME a/ATTRIBUTE_NAME v/ATTRIBUTE_VALUE`
-
-* Adds an attribute and attribute value to the person with the specified `NAME`.
-* `NAME` must match exactly the full name of the person in the database.
-* No type consistency is guaranteed between `ATTRIBUTE_VALUE` and `ATTRIBUTE_NAME`.
-* i.e. `ATTRIBUTE_VALUE` will always be a string even if `ATTRIBUTE_NAME` may be better represented by a different data type.
-
-Examples:
-* `attribute n/Alex a/Highest Educational Qualification v/Bachelors` adds the "Highest Educational Qualification" attribute to the person "Alex" with a value of "Bachelors".
-
-### Removing an attribute from an existing entry: `remove-attribute`
-
-Removes one or more attributes from the specified person in the database.
-
-Format: `remove-attribute INDEX [a/ATTRIBUTE_NAME]…​`
-
-* Removes attributes from the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* Command is only executed are only deleted if the person has all specified attributes.
-* `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `remove-attribute 2 a/graduation year` can delete an attribute with name `Graduation Year`
-
-Examples:
-* `remove-attribute 2 a/major` removes the attribute "Major" from the person at index 2, as long as they currently have that attribute specified.
-* `remove-attribute 3 a/major a/graduation year` removes both attributes "Major" and "Graduation Year" from the person at index 3, as long as they currently have both attributes specified.
-
 ### Filtering candidates by attributes: `filter`
 
 Filters the candidates based on whether they have a specific attribute or not.
@@ -213,7 +185,6 @@ Examples:
   * A candidate majoring in Compute Science and graduating in 2027 will **NOT** be matched, since they do not meet the second condition.
   * Please note that, in this case, candidates who are missing any of the attributes (i.e., do not have an attribute with the name Major or Graduation year) will **NOT** be matched. For instance, a candidate with no attributes will not be matched.
   * You can also obtain the same result with `filter a/Major=Computer Science a/Graduation year=2028 a/Major=Mathematics`, because the order of the arguments does not matter.
-
 
 ### Sorting entries by an attribute: `sort`
 
