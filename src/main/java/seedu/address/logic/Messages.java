@@ -42,9 +42,16 @@ public class Messages {
                 .append("; Phone: ")
                 .append(person.getPhone())
                 .append("; Email: ")
-                .append(person.getEmail())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append(person.getEmail());
+        if (!person.getTags().isEmpty()) {
+            builder.append("; Tags:");
+            person.getTags().forEach(x -> builder.append(" ").append(x));
+        }
+        if (!person.getAttributes().isEmpty()) {
+            builder.append("; Attributes:");
+            person.getAttributes().forEach(x -> builder.append(" ").append(x));
+        }
+
         return builder.toString();
     }
 

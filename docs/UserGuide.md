@@ -91,34 +91,37 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com`
 * `add n/Betsy Crowe t/C++ e/betsycrowe@example.com p/1234567 t/Java a/Major=Data Science`
 
-### Listing all persons : `list`
+### Listing all persons: `list`
 
 Shows a list of all persons in the database.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a person: `edit`
 
 Edits an existing person in the database.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG] [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE] [ra/ATTRIBUTE_NAME] …​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/ATTRIBUTE_NAME]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+
+For tags:
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+
+For attributes:
 * Update of attributes must specify both the attribute name and attribute value.
 * Update of attributes will update an existing attribute if it exists, else it will add it as a new attribute.
 * Removal of attributes only requires specifying the attribute name.
-* Regardless of the order that update attribute and remove attribute parameters are provided in,
-* All attribute updates will be processed and executed first, before attribue removal.
+* Regardless of the order that update attribute and remove attribute parameters are provided in, all attribute updates will be processed and executed first, before attribute removal.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 1 a/graduation year=2027` Adds or edits an attribute named "Graduation Year" to the 1st person.
-*  `edit 1 ra/graduation year` Removes the attribute named "Graduation Year" from the 1st person.
+*  `edit 1 a/Graduation Year=2027` Adds or edits an attribute named "Graduation Year" to the 1st person.
+*  `edit 1 ra/Graduation Year` Removes the attribute named "Graduation Year" from the 1st person.
 
 ### Locating persons by name: `find`
 
@@ -138,7 +141,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a person: `delete`
 
 Deletes the specified person from the database.
 
@@ -152,39 +155,11 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the database.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from the database.
 
 Format: `clear`
-
-### Adding a new attribute to existing entry: `attribute`
-
-Adds a new attribute and attribute value to the specified person in the database.
-
-Format: `attribute n/NAME a/ATTRIBUTE_NAME v/ATTRIBUTE_VALUE`
-
-* Adds an attribute and attribute value to the person with the specified `NAME`.
-* `NAME` must match exactly the full name of the person in the database.
-* No type consistency is guaranteed between `ATTRIBUTE_VALUE` and `ATTRIBUTE_NAME`.
-* i.e. `ATTRIBUTE_VALUE` will always be a string even if `ATTRIBUTE_NAME` may be better represented by a different data type.
-
-Examples:
-* `attribute n/Alex a/Highest Educational Qualification v/Bachelors` adds the "Highest Educational Qualification" attribute to the person "Alex" with a value of "Bachelors".
-
-### Removing an attribute from an existing entry: `remove-attribute`
-
-Removes one or more attributes from the specified person in the database.
-
-Format: `remove-attribute INDEX [a/ATTRIBUTE_NAME]…​`
-
-* Removes attributes from the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* Command is only executed are only deleted if the person has all specified attributes.
-* `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `remove-attribute 2 a/graduation year` can delete an attribute with name `Graduation Year`
-
-Examples:
-* `remove-attribute 2 a/major` removes the attribute "Major" from the person at index 2, as long as they currently have that attribute specified.
-* `remove-attribute 3 a/major a/graduation year` removes both attributes "Major" and "Graduation Year" from the person at index 3, as long as they currently have both attributes specified.
 
 ### Filtering candidates by attributes: `filter`
 
@@ -211,7 +186,6 @@ Examples:
   * Please note that, in this case, candidates who are missing any of the attributes (i.e., do not have an attribute with the name Major or Graduation year) will **NOT** be matched. For instance, a candidate with no attributes will not be matched.
   * You can also obtain the same result with `filter a/Major=Computer Science a/Graduation year=2028 a/Major=Mathematics`, because the order of the arguments does not matter.
 
-
 ### Sorting entries by an attribute: `sort`
 
 Sorts the current view of entries by the value of the specified attribute name in lexicographical order. 
@@ -224,7 +198,7 @@ Format: `sort a/ATTRIBUTE_NAME`
 Examples:
 * `sort a/major` sorts all entries with the "Major" attribute by lexicographical order of the attribute value of "Major".
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
