@@ -84,7 +84,7 @@ Format: `help`
 
 Adds a person to the database.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ [a/ATTRIBUTE=VALUE]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…​`
 
 <box type="tip" seamless>
 
@@ -169,7 +169,7 @@ Format: `clear`
 
 Filters the candidates based on whether they have a specific attribute or not.
 
-Format: `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]...`
+Format: `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…`
 
 * You must specify at least one attribute.
 * You can specify more than one attribute:
@@ -192,14 +192,14 @@ Examples:
 
 ### Sorting entries by an attribute: `sort`
 
-Sorts the current view of entries by the value of the specified attribute name in lexicographical order. 
+Sorts the current view of entries by the value of the specified attribute name in lexicographically ascending order. 
 
 Format: `sort a/ATTRIBUTE_NAME`
 
 *  Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
-* `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`
+* `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
 
-Examples:
+Example:
 * `sort a/major` sorts all entries with the "Major" attribute by lexicographical order of the attribute value of "Major".
 
 ### Exiting the program: `exit`
@@ -247,12 +247,12 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]… [a/ATTRIBUTE=VALUE]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/C++ t/Java a/Major=Data Science`
+**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/C++ t/Java a/Major=Data Science`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/ATTRIBUTE_NAME]…` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
-**Remove Attribute** | `remove-attribute INDEX [a/ATTRIBUTE_NAME]…​`
 **Sort** | `sort a/ATTRIBUTE_NAME`<br> e.g., `sort a/Graduation Year`
+**Filter** | `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `filter a/Major=Computer Science`
 **Help**   | `help`
