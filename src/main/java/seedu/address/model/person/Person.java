@@ -112,7 +112,7 @@ public class Person {
      * @return True if no duplicates, False otherwise.
      */
     public boolean hasNoDuplicateInAttributeNames() {
-        return attributes.stream().map(attribute -> attribute.attributeName.toLowerCase())
+        return attributes.stream().map(attribute -> attribute.getAttributeName())
             .distinct().count() == attributes.size();
     }
 

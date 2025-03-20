@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -23,6 +24,16 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    public static final String MESSAGE_TOO_MANY_ARGUMENT_FOR_ATTRIBUTE =
+        Attribute.MESSAGE_USAGE + "\n" + "Also, " + Attribute.MESSAGE_CONSTRAINTS.toLowerCase();
+
+    public static final String MESSAGE_MISSING_ARGUMENT_FOR_ATTRIBUTE =
+        "Attribute names and values cannot be empty.";
+
+    public static final String MESSAGE_EMPTY_ARGUMENT_FOR_ATTRIBUTE =
+        "You need to enter an attribute after " + PREFIX_ATTRIBUTE + ".\n"
+            + Attribute.MESSAGE_USAGE;
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -109,6 +120,34 @@ public class ParserUtil {
         return tagSet;
     }
 
+    private static long countCharactors(String str, char target) {
+        return str.chars().filter(c -> c == target).count();
+    }
+
+    /**
+     * Checks if the given string, representing an Attribute, contains exactly one '=' in a proper position
+     * (i.e., not at the beginning or end of the string).
+     *
+     * @param trimmedAttribute The raw string representation of Attribute.
+     * @throws ParseException Thrown when the position or number of '=' is incorrect.
+     */
+    private static void checkCorrectnessForEquals(String trimmedAttribute) throws ParseException {
+        long numOfEquals = countCharactors(trimmedAttribute, '=');
+
+        if (numOfEquals == 0) {
+            throw new ParseException(Attribute.MESSAGE_USAGE);
+        } else if (numOfEquals >= 2) {
+            throw new ParseException(MESSAGE_TOO_MANY_ARGUMENT_FOR_ATTRIBUTE);
+        }
+
+        assert !trimmedAttribute.isEmpty() : "The trimmed attribute should not be empty here.";
+
+        if (trimmedAttribute.charAt(0) == '='
+            || trimmedAttribute.charAt(trimmedAttribute.length() - 1) == '=') {
+            throw new ParseException(MESSAGE_MISSING_ARGUMENT_FOR_ATTRIBUTE);
+        }
+    }
+
     /**
      * Parses a {@code String attribute} into an {@code Attribute}.
      * The attribute should be provided in the format {@code name=value}.
@@ -118,15 +157,24 @@ public class ParserUtil {
      */
     public static Attribute parseAttribute(String attribute) throws ParseException {
         requireNonNull(attribute);
-        String trimmedAtribute = attribute.trim();
+        String trimmedAttribute = attribute.trim();
 
-        Matcher matcher = Pattern.compile("^([^=]+)=([^=]+)$").matcher(trimmedAtribute);
+        if (trimmedAttribute.isEmpty()) {
+            throw new ParseException(MESSAGE_EMPTY_ARGUMENT_FOR_ATTRIBUTE);
+        }
+
+        checkCorrectnessForEquals(trimmedAttribute);
+
+        Matcher matcher = Pattern.compile("^([^=]+)=([^=]+)$").matcher(trimmedAttribute);
         if (!matcher.find()) {
             throw new ParseException(Attribute.MESSAGE_CONSTRAINTS);
         }
 
-        String attributeName = matcher.group(1);
-        String attributeValue = matcher.group(2);
+        String attributeName = matcher.group(1).trim();
+        String attributeValue = matcher.group(2).trim();
+
+        assert !attributeName.isEmpty() : "Attribute name should not be empty here.";
+        assert !attributeValue.isEmpty() : "Attribute value should not be empty here.";
 
         if (!Attribute.isValidAttribute(attributeName) || !Attribute.isValidAttribute(attributeValue)) {
             throw new ParseException(Attribute.MESSAGE_CONSTRAINTS);
@@ -143,14 +191,23 @@ public class ParserUtil {
         requireNonNull(attributes);
         final Set<Attribute> attributeSet = new HashSet<>();
         final Set<String> attributeNames = new HashSet<>();
+        final Set<String> caseAwareAttributeNames = new HashSet<>();
+
         for (String attribute : attributes) {
             Attribute newAttribute = parseAttribute(attribute);
             attributeSet.add(newAttribute);
-            attributeNames.add(newAttribute.attributeName.toLowerCase());
+            attributeNames.add(newAttribute.getAttributeName());
+            caseAwareAttributeNames.add(newAttribute.getCaseAwareAttributeName());
         }
+
+        if (attributeNames.size() != caseAwareAttributeNames.size()) {
+            throw new ParseException(Attribute.NO_DUPLICATES_CASE_INSENSITIVITY);
+        }
+
         if (!isDuplicateAllowed && attributeSet.size() != attributeNames.size()) {
             throw new ParseException(Attribute.NO_DUPLICATES);
         }
+
         return attributeSet;
     }
 }

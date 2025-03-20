@@ -243,6 +243,51 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseAttribute_zeroEqual_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, Attribute.MESSAGE_USAGE, ()
+            -> ParserUtil.parseAttribute(VALID_ATTRIBUTE_NAME));
+        assertThrows(ParseException.class, Attribute.MESSAGE_USAGE, ()
+            -> ParserUtil.parseAttribute(VALID_ATTRIBUTE_NAME + VALID_ATTRIBUTE_VALUE));
+    }
+
+    @Test
+    public void parseAttribute_twoEquals_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, ParserUtil.MESSAGE_TOO_MANY_ARGUMENT_FOR_ATTRIBUTE, ()
+            -> ParserUtil.parseAttribute(VALID_ATTRIBUTE_NAME + "==" + VALID_ATTRIBUTE_VALUE));
+    }
+
+    @Test
+    public void parseAttribute_missingName_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, ParserUtil.MESSAGE_MISSING_ARGUMENT_FOR_ATTRIBUTE, ()
+            -> ParserUtil.parseAttribute("  =" + VALID_ATTRIBUTE_VALUE));
+    }
+
+    @Test
+    public void parseAttribute_missingValue_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, ParserUtil.MESSAGE_MISSING_ARGUMENT_FOR_ATTRIBUTE, ()
+            -> ParserUtil.parseAttribute(VALID_ATTRIBUTE_NAME + "=  "));
+    }
+
+    @Test
+    public void parseAttribute_onlyEqual_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, ParserUtil.MESSAGE_MISSING_ARGUMENT_FOR_ATTRIBUTE, ()
+            -> ParserUtil.parseAttribute("="));
+    }
+
+    @Test
+    public void parseAttribute_emptyInput_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, ParserUtil.MESSAGE_EMPTY_ARGUMENT_FOR_ATTRIBUTE, ()
+            -> ParserUtil.parseAttribute(""));
+    }
+
+    @Test
+    public void parseAttribute_spacesBeforeAndAfterEqual_returnsAttribute() throws Exception {
+        assertEquals(
+            ParserUtil.parseAttribute(VALID_ATTRIBUTE_NAME + "         =                 " + VALID_ATTRIBUTE_VALUE),
+                new Attribute(VALID_ATTRIBUTE_NAME, VALID_ATTRIBUTE_VALUE));
+    }
+
+    @Test
     public void parseAttributes_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseAttributes(null, false));
         assertThrows(NullPointerException.class, () -> ParserUtil.parseAttributes(null, true));

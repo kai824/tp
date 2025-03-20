@@ -26,7 +26,7 @@ public class AttributeMatchesPredicate implements Predicate<Person> {
         assert attributes.size() > 0;
         this.attributes = attributes;
         this.numOfDistinctAttributeNames =
-            attributes.stream().map(attribute -> attribute.attributeName.toLowerCase()).distinct().count();
+            attributes.stream().map(attribute -> attribute.getAttributeName()).distinct().count();
     }
 
     @Override
