@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_NAME_
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_VALUE_ALT_MAJOR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_VALUE_GRAD_YEAR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_VALUE_MAJOR;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Set;
 
@@ -110,6 +111,18 @@ public class AttributeMatchesPredicateTest {
         predicate =
             new AttributeMatchesPredicate(Set.of(major1, major2));
         assertFalse(predicate.test(new PersonBuilder().build()));
+    }
+
+    @Test
+    public void test_attributeMatches_assertions() {
+        AttributeMatchesPredicate predicate = new AttributeMatchesPredicate(Set.of(major1));
+        Person person = new PersonBuilder().withAttributes("A", "B", "a", "D").build();
+        // A person has a duplicate -> assertion
+        assertThrows(AssertionError.class,
+            "Person should not have duplicates in attribute names", () -> predicate.test(person));
+        // A person does not have a duplicate -> no assertion
+        Person person2 = new PersonBuilder().withAttributes("A", "B", "a", "B").build();
+        assertFalse(predicate.test(person2));
     }
 
     @Test

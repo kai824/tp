@@ -31,12 +31,13 @@ public class AttributeMatchesPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        // Count the number of the person's attributes that match the specified attributes,
-        // and compare it with the number of distinct attribute names in the specified attributes.
-        // This approach works as long as:
+        requireNonNull(person);
+        // The following approach works as long as:
         // - The person's attribute names are distinct (which aligns with the design of Attribute), and
         // - There are no duplicates in the specified attributes
         // (which is unlikely since Set does not accept duplicates).
+        assert person.hasNoDuplicateInAttributeNames() : "Person should not have duplicates in attribute names";
+
         long numOfMatchedAttributes =
             person.getAttributes().stream()
                 .filter(attribute

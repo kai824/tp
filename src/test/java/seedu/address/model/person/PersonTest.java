@@ -55,6 +55,23 @@ public class PersonTest {
     }
 
     @Test
+    public void hasNoDuplicateInAttributeNames() {
+        Person person = new PersonBuilder().withAttributes("A", "B", "C", "D").build();
+        // No duplicate -> True
+        assertTrue(person.hasNoDuplicateInAttributeNames());
+        person = new PersonBuilder().withAttributes("A", "B", "A", "B").build();
+        assertTrue(person.hasNoDuplicateInAttributeNames());
+        // No attribute -> True
+        person = new PersonBuilder().build();
+        assertTrue(person.hasNoDuplicateInAttributeNames());
+        // Duplicates -> False
+        person = new PersonBuilder().withAttributes("A", "B", "a", "D").build();
+        assertFalse(person.hasNoDuplicateInAttributeNames());
+        person = new PersonBuilder().withAttributes("A", "B", "A", "D").build();
+        assertFalse(person.hasNoDuplicateInAttributeNames());
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();
