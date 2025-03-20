@@ -91,13 +91,13 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com`
 * `add n/Betsy Crowe t/C++ e/betsycrowe@example.com p/1234567 t/Java a/Major=Data Science`
 
-### Listing all persons : `list`
+### Listing all persons: `list`
 
 Shows a list of all persons in the database.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a person: `edit`
 
 Edits an existing person in the database.
 
@@ -141,7 +141,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a person: `delete`
 
 Deletes the specified person from the database.
 
@@ -155,7 +155,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the database.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from the database.
 
@@ -227,7 +227,7 @@ Format: `sort a/ATTRIBUTE_NAME`
 Examples:
 * `sort a/major` sorts all entries with the "Major" attribute by lexicographical order of the attribute value of "Major".
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
