@@ -103,7 +103,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> attributeSet =
                 attributes.size() == 1 && attributes.contains("") ? Collections.emptySet() : attributes;
-        return Optional.of(ParserUtil.parseAttributes(attributeSet));
+        return Optional.of(ParserUtil.parseAttributes(attributeSet, false));
     }
 
     /**
