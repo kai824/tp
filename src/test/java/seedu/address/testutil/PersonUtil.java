@@ -39,7 +39,7 @@ public class PersonUtil {
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         person.getAttributes().forEach(
-            a -> sb.append(PREFIX_ATTRIBUTE + a.attributeName + "=" + a.attributeValue + " ")
+            a -> sb.append(PREFIX_ATTRIBUTE + a.getCaseAwareAttributeName() + "=" + a.getAttributeValue() + " ")
         );
         return sb.toString();
     }
@@ -65,8 +65,9 @@ public class PersonUtil {
             if (updateAttributes.isEmpty()) {
                 sb.append(PREFIX_ATTRIBUTE);
             } else {
-                updateAttributes.forEach(a -> sb.append(PREFIX_ATTRIBUTE).append(a.attributeName).append("=")
-                        .append(a.attributeValue).append(" "));
+                updateAttributes.forEach(a ->
+                    sb.append(PREFIX_ATTRIBUTE).append(a.getCaseAwareAttributeName()).append("=")
+                        .append(a.getAttributeValue()).append(" "));
             }
         }
         if (descriptor.getRemoveAttributes().isPresent()) {
