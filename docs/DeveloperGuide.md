@@ -4,7 +4,7 @@ title: "Developer Guide"
 pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# TalentFolio Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
