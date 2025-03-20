@@ -9,8 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * The hash code of an Attribute is that of the attribute name.
  */
 public class Attribute {
-
+    public static final String PROHIBITED_CHARACTERS = "/\\=";
     public static final String MESSAGE_CONSTRAINTS = "Attribute names and values should not contain /, \\, or =.";
+    public static final String MESSAGE_CONSTRAINTS_FOR_NAME = "Attribute names should not contain /, \\, or =.";
     public static final String NO_DUPLICATES = "Duplicate attribute names with different values are not allowed!";
     public static final String CAPITALISATION_NOTE =
         "Note that attribute names that differ only in capitalisation are treated as duplicates.";

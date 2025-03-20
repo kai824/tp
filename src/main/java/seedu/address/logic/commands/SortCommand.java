@@ -14,7 +14,7 @@ import seedu.address.model.person.AttributeSortComparator;
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sort the candidates with the provided attribute provided attribute name."
+            + ": Sort the candidates with the provided attribute provided attribute name. "
             + "Candidates lacking the specified attribute name will be placed last, preserving their original order.\n"
             + "Parameters: ATTRIBUTE_NAME (case-insensitive)\n"
             + "Example: " + COMMAND_WORD + " a/Graduation Year";
