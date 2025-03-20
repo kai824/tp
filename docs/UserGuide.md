@@ -33,6 +33,10 @@ TalentFolio is an application for hiring managers to manage information on job c
 
    * `add n/John Doe p/98765432 e/johnd@example.com` : Adds a candidate named `John Doe` to the database.
 
+   * `filter a/Major=Computer Science` : Filters all candidates who major in Computer Science.
+
+   * `sort a/Graduation Year` : Sorts candidates in ascending order of Graduation Year.
+
    * `delete 3` : Deletes the 3rd candidate shown in the current list.
 
    * `clear` : Deletes all candidates.
