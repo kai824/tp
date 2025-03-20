@@ -18,7 +18,7 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsSortCommand() {
         // no leading and trailing whitespaces
         SortCommand expectedSortCommand =
                 new SortCommand("Graduation Year");
