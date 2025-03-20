@@ -35,7 +35,8 @@ public class AttributeMatchesPredicate implements Predicate<Person> {
         // and compare it with the number of distinct attribute names in the specified attributes.
         // This approach works as long as:
         // - The person's attribute names are distinct (which aligns with the design of Attribute), and
-        // - There are no duplicates in the specified attributes (which is unlikely since Set does not accept duplicates).
+        // - There are no duplicates in the specified attributes
+        // (which is unlikely since Set does not accept duplicates).
         long numOfMatchedAttributes =
             person.getAttributes().stream()
                 .filter(attribute
