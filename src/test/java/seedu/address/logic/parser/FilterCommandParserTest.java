@@ -26,11 +26,11 @@ public class FilterCommandParserTest {
 
     private FilterCommandParser parser = new FilterCommandParser();
 
-    private Attribute major = new Attribute(VALID_ATTRIBUTE_NAME_MAJOR, VALID_ATTRIBUTE_VALUE_MAJOR);
+    private Attribute major = new Attribute(VALID_ATTRIBUTE_NAME_MAJOR.toLowerCase(), VALID_ATTRIBUTE_VALUE_MAJOR);
     private Attribute year = new Attribute(VALID_ATTRIBUTE_NAME_GRAD_YEAR, VALID_ATTRIBUTE_VALUE_GRAD_YEAR);
 
-    private FilterCommand createFilterCommand(Attribute... attributes) {
-        return new FilterCommand(new AttributeMatchesPredicate(Set.of(attributes)));
+    private FilterCommand createFilterCommand(boolean duplicate, Attribute... attributes) {
+        return new FilterCommand(new AttributeMatchesPredicate(Set.of(attributes)), duplicate);
     }
 
     @Test
@@ -45,12 +45,18 @@ public class FilterCommandParserTest {
 
     @Test
     public void parse_oneAttribute_success() {
-        assertParseSuccess(parser, ATTRIBUTE_MAJOR, createFilterCommand(major));
+        assertParseSuccess(parser, ATTRIBUTE_MAJOR, createFilterCommand(false, major));
     }
 
     @Test
-    public void parse_twoAttributes_success() {
+    public void parse_twoAttributes_success() throws Exception {
         assertParseSuccess(parser, ATTRIBUTE_MAJOR + PREAMBLE_WHITESPACE + ATTRIBUTE_GRAD_YEAR,
-            createFilterCommand(major, year));
+            createFilterCommand(false, major, year));
+    }
+
+    @Test
+    public void parse_duplicateAttributes_successWithWarnings() {
+        assertParseSuccess(parser,
+            ATTRIBUTE_MAJOR + PREAMBLE_WHITESPACE + ATTRIBUTE_MAJOR, createFilterCommand(true, major));
     }
 }

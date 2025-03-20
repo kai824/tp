@@ -31,7 +31,7 @@ public class FilterCommandTest {
     // Basic idea comes from AddCommandTest.java.
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new FilterCommand(null));
+        assertThrows(NullPointerException.class, () -> new FilterCommand(null, false));
     }
 
     @Test
@@ -49,30 +49,45 @@ public class FilterCommandTest {
         twoPersons.addPerson(personWithYear);
         twoPersons.addPerson(personWithMajor);
 
-        FilterCommand year = new FilterCommand(yearPredicate);
-        FilterCommand yearMajor = new FilterCommand(yearMajorPredicate);
+        FilterCommand year = new FilterCommand(yearPredicate, false);
+        FilterCommand yearMajor = new FilterCommand(yearMajorPredicate, false);
 
         assertEquals(year.execute(zeroPerson), year.execute(zeroPerson));
         assertEquals(year.execute(zeroPerson), yearMajor.execute(zeroPerson));
         assertNotEquals(year.execute(onePerson), year.execute(twoPersons));
         CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_PERSONS_FILTERED_OVERVIEW, 1));
         assertEquals(year.execute(twoPersons), expectedResult);
+
+        // With duplicates
+        year = new FilterCommand(yearPredicate, true);
+        yearMajor = new FilterCommand(yearMajorPredicate, true);
+
+        assertEquals(year.execute(zeroPerson), year.execute(zeroPerson));
+        assertEquals(year.execute(zeroPerson), yearMajor.execute(zeroPerson));
+        assertNotEquals(year.execute(onePerson), year.execute(twoPersons));
+        expectedResult = new CommandResult(String.format(
+            FilterCommand.MESSAGE_WARNING_DUPLICATE + "\n" + Messages.MESSAGE_PERSONS_FILTERED_OVERVIEW, 1));
+        assertEquals(year.execute(twoPersons), expectedResult);
     }
 
     @Test
     public void equals() {
-        FilterCommand yearMajor = new FilterCommand(yearMajorPredicate);
-        FilterCommand year = new FilterCommand(yearPredicate);
+        FilterCommand yearMajor = new FilterCommand(yearMajorPredicate, false);
+        FilterCommand year = new FilterCommand(yearPredicate, false);
 
         // same object -> returns true
         assertTrue(yearMajor.equals(yearMajor));
         // same values -> returns true
-        assertTrue(yearMajor.equals(new FilterCommand(yearMajorPredicate)));
+        assertTrue(yearMajor.equals(new FilterCommand(yearMajorPredicate, false)));
         // different types -> returns false
         assertFalse(year.equals(""));
         // different values -> returns false
         assertFalse(year.equals(yearMajor));
         // null -> returns false
         assertFalse(yearMajor.equals(null));
+
+        FilterCommand yearDuplicate = new FilterCommand(yearPredicate, true);
+        // different duplicate state -> returns false
+        assertFalse(year.equals(yearDuplicate));
     }
 }

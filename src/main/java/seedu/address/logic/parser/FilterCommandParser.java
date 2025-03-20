@@ -40,6 +40,8 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         AttributeMatchesPredicate predicate = new AttributeMatchesPredicate(attributes);
 
-        return new FilterCommand(predicate);
+        boolean wasDuplicate = (attributeStrings.size() != attributes.size());
+
+        return new FilterCommand(predicate, wasDuplicate);
     }
 }

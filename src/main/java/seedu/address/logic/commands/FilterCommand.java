@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.attribute.Attribute.CAPITALISATION_NOTE;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -17,16 +18,22 @@ public class FilterCommand extends Command {
             + ": Filter the candidates with the provided attribute.\n"
             + "Parameters: ATTRIBUTE_NAME=ATTRIBUTE_VALUE (case-sensitive, can be more than one)\n"
             + "Example: " + COMMAND_WORD + " a/major=Computer Science";
+    public static final String MESSAGE_WARNING_DUPLICATE =
+        "WARNING! There are duplicate attributes (i.e. name-value pairs). " + CAPITALISATION_NOTE;
+
     private final AttributeMatchesPredicate filter;
+    private final boolean wasDuplicate;
 
     /**
      * Initializes an instance with the predicate comprised of attributes.
      *
      * @param filter The filtering predicate created with the user input attributes.
+     * @param wasDuplicate Indicates whether there was a duplicate attribute in the user input.
      */
-    public FilterCommand(AttributeMatchesPredicate filter) {
+    public FilterCommand(AttributeMatchesPredicate filter, boolean wasDuplicate) {
         requireNonNull(filter);
         this.filter = filter;
+        this.wasDuplicate = wasDuplicate;
     }
 
     @Override
@@ -35,9 +42,12 @@ public class FilterCommand extends Command {
 
         model.updateFilteredPersonList(filter);
 
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_FILTERED_OVERVIEW,
-                    model.getFilteredPersonList().size()));
+        String message = String.format(Messages.MESSAGE_PERSONS_FILTERED_OVERVIEW,
+            model.getFilteredPersonList().size());
+        if (wasDuplicate) {
+            message = MESSAGE_WARNING_DUPLICATE + "\n" + message;
+        }
+        return new CommandResult(message);
     }
 
     @Override
@@ -46,7 +56,8 @@ public class FilterCommand extends Command {
             return true;
         }
         if (other instanceof FilterCommand otherFilterCommand) {
-            return otherFilterCommand.filter.equals(this.filter);
+            return otherFilterCommand.filter.equals(this.filter)
+                && otherFilterCommand.wasDuplicate == this.wasDuplicate;
         }
         return false;
     }
