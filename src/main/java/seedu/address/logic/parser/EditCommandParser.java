@@ -2,9 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_ATTRIBUTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -16,6 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,7 +34,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG,
+                        PREFIX_ATTRIBUTE, PREFIX_REMOVE_ATTRIBUTE);
 
         Index index;
 
@@ -54,7 +58,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+
+        parseAttributesForEdit(argMultimap.getAllValues(PREFIX_ATTRIBUTE))
+                .ifPresent(editPersonDescriptor::setUpdateAttributes);
+
+        parseAttributesForRemoval(argMultimap.getAllValues(PREFIX_REMOVE_ATTRIBUTE))
+                .ifPresent(editPersonDescriptor::setRemoveAttributes);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -76,6 +87,40 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> atttibutes} into a {@code Set<Attribute} if {@code attributes} is
+     * non-empty.
+     * If {@code attributes} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Attribute>} containing zero attributes.
+     */
+    private Optional<Set<Attribute>> parseAttributesForEdit(Collection<String> attributes) throws ParseException {
+        assert attributes != null;
+
+        if (attributes.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> attributeSet =
+                attributes.size() == 1 && attributes.contains("") ? Collections.emptySet() : attributes;
+        return Optional.of(ParserUtil.parseAttributes(attributeSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> attributes} into a {@code Set<String>} if {@code attributes} is
+     * non-empty.
+     * If {@code attributes} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<String>} containing zero strings.
+     */
+    private Optional<Set<String>> parseAttributesForRemoval(Collection<String> attributes) throws ParseException {
+        assert attributes != null;
+
+        if (attributes.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> attributeSet =
+                attributes.size() == 1 && attributes.contains("") ? Collections.emptySet() : attributes;
+        return Optional.of(ParserUtil.parseRemoveAttributes(attributeSet));
     }
 
 }
