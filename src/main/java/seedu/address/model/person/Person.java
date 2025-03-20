@@ -89,7 +89,7 @@ public class Person {
      * @param attribute Attribute to be updated or added
      */
     public void updateAttribute(Attribute attribute) {
-        getAttribute(attribute.attributeName)
+        getAttribute(attribute.getAttributeName())
                 .ifPresent(this::removeAttribute);
         attributes.add(attribute);
     }
