@@ -28,8 +28,8 @@ class JsonAdaptedAttribute {
      * Converts a given {@code Attribute} into this class for Jackson use.
      */
     public JsonAdaptedAttribute(Attribute source) {
-        attributeName = source.attributeName;
-        attributeValue = source.attributeValue;
+        attributeName = source.getCaseAwareAttributeName();
+        attributeValue = source.getAttributeValue();
     }
 
     public String getAttributeName() {

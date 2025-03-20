@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Person;
 
 /**
@@ -55,8 +56,8 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         person.getAttributes().stream()
-                .sorted(Comparator.comparing(attribute -> attribute.attributeName))
+                .sorted(Comparator.comparing(Attribute::getAttributeName))
                 .forEach(attribute -> attributes.getChildren()
-                        .add(new Label(attribute.attributeName + ": " + attribute.attributeValue)));
+                        .add(new Label(attribute.getDisplayText())));
     }
 }

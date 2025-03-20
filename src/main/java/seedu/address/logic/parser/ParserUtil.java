@@ -190,14 +190,23 @@ public class ParserUtil {
         requireNonNull(attributes);
         final Set<Attribute> attributeSet = new HashSet<>();
         final Set<String> attributeNames = new HashSet<>();
+        final Set<String> caseAwareAttributeNames = new HashSet<>();
+
         for (String attribute : attributes) {
             Attribute newAttribute = parseAttribute(attribute);
             attributeSet.add(newAttribute);
-            attributeNames.add(newAttribute.attributeName.toLowerCase());
+            attributeNames.add(newAttribute.getAttributeName());
+            caseAwareAttributeNames.add(newAttribute.getCaseAwareAttributeName());
         }
+
+        if (attributeNames.size() != caseAwareAttributeNames.size()) {
+            throw new ParseException(Attribute.NO_DUPLICATES_CASE_INSENSITIVITY);
+        }
+
         if (attributeSet.size() != attributeNames.size()) {
             throw new ParseException(Attribute.NO_DUPLICATES);
         }
+
         return attributeSet;
     }
 }

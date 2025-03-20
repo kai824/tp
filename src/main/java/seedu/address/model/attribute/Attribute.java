@@ -12,12 +12,14 @@ public class Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Attribute names and values should not contain /, \\, or =.";
     public static final String NO_DUPLICATES = "Duplicate attribute names with different values are not allowed!";
+    public static final String NO_DUPLICATES_CASE_INSENSITIVITY = "Duplicate attribute names are not allowed!\n"
+            + "Note that attribute names that differ only in capitalisation are treated as duplicates.";
     public static final String VALIDATION_REGEX = "[^\\\\/=]+";
     public static final String MESSAGE_USAGE =
         "An attribute must consist of exactly one name and one value (both non-empty), separated by =.";
 
-    public final String attributeName;
-    public final String attributeValue;
+    private final String attributeName;
+    private final String attributeValue;
 
     /**
      * Constructs an {@code Attribute}.
@@ -32,6 +34,32 @@ public class Attribute {
         checkArgument(isValidAttribute(attributeValue), MESSAGE_CONSTRAINTS);
         this.attributeName = attributeName;
         this.attributeValue = attributeValue;
+    }
+
+    /**
+     * Returns the attribute name in lowercase.
+     */
+    public String getAttributeName() {
+        return attributeName.toLowerCase();
+    }
+
+    /**
+     * Returns the attribute name with the original case.
+     */
+    public String getCaseAwareAttributeName() {
+        return attributeName;
+    }
+
+    public String getAttributeValue() {
+        return attributeValue;
+    }
+
+    /**
+     * Returns the {@code Attribute} displayed in the style "name: value".
+     * The actual case of the attribute name is used.
+     */
+    public String getDisplayText() {
+        return attributeName + ": " + attributeValue;
     }
 
     /**
