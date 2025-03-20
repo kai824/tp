@@ -200,7 +200,7 @@ public class ParserUtil {
             caseAwareAttributeNames.add(newAttribute.getCaseAwareAttributeName());
         }
 
-        if (attributeNames.size() != caseAwareAttributeNames.size()) {
+        if (!isDuplicateAllowed && attributeNames.size() != caseAwareAttributeNames.size()) {
             throw new ParseException(Attribute.NO_DUPLICATES_CASE_INSENSITIVITY);
         }
 
