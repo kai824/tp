@@ -76,7 +76,7 @@ public class Attribute {
 
     @Override
     public int hashCode() {
-        return attributeName.hashCode();
+        return attributeName.toLowerCase().hashCode();
     }
 
     /**
