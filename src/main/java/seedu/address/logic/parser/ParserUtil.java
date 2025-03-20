@@ -186,7 +186,8 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> attributes} into a {@code Set<Attribute>}.
      */
-    public static Set<Attribute> parseAttributes(Collection<String> attributes) throws ParseException {
+    public static Set<Attribute> parseAttributes(Collection<String> attributes,
+        boolean isDuplicateAllowed) throws ParseException {
         requireNonNull(attributes);
         final Set<Attribute> attributeSet = new HashSet<>();
         final Set<String> attributeNames = new HashSet<>();
@@ -199,11 +200,11 @@ public class ParserUtil {
             caseAwareAttributeNames.add(newAttribute.getCaseAwareAttributeName());
         }
 
-        if (attributeNames.size() != caseAwareAttributeNames.size()) {
+        if (!isDuplicateAllowed && attributeNames.size() != caseAwareAttributeNames.size()) {
             throw new ParseException(Attribute.NO_DUPLICATES_CASE_INSENSITIVITY);
         }
 
-        if (attributeSet.size() != attributeNames.size()) {
+        if (!isDuplicateAllowed && attributeSet.size() != attributeNames.size()) {
             throw new ParseException(Attribute.NO_DUPLICATES);
         }
 

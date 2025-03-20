@@ -107,6 +107,16 @@ public class Person {
     }
 
     /**
+     * Checks if the person has no duplicates in attribute names.
+     *
+     * @return True if no duplicates, False otherwise.
+     */
+    public boolean hasNoDuplicateInAttributeNames() {
+        return attributes.stream().map(attribute -> attribute.getAttributeName())
+            .distinct().count() == attributes.size();
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */

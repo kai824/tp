@@ -12,6 +12,7 @@ import seedu.address.model.attribute.Attribute;
  * Guarantees: immutable.
  */
 public class AttributeMatchesPredicate implements Predicate<Person> {
+    private final long numOfDistinctAttributeNames;
     private final Set<Attribute> attributes;
 
     /**
@@ -24,14 +25,25 @@ public class AttributeMatchesPredicate implements Predicate<Person> {
         requireNonNull(attributes);
         assert attributes.size() > 0;
         this.attributes = attributes;
+        this.numOfDistinctAttributeNames =
+            attributes.stream().map(attribute -> attribute.getAttributeName()).distinct().count();
     }
 
     @Override
     public boolean test(Person person) {
-        return attributes.stream()
-                .allMatch(testAttribute
-                    -> person.getAttributes().stream().anyMatch(personAttribute
-                        -> personAttribute.equals(testAttribute)));
+        requireNonNull(person);
+        // The following approach works as long as:
+        // - The person's attribute names are distinct (which aligns with the design of Attribute), and
+        // - There are no duplicates in the specified attributes
+        // (which is unlikely since Set does not accept duplicates).
+        assert person.hasNoDuplicateInAttributeNames() : "Person should not have duplicates in attribute names";
+
+        long numOfMatchedAttributes =
+            person.getAttributes().stream()
+                .filter(attribute
+                    -> attributes.stream().anyMatch(specifiedAttribute
+                        -> specifiedAttribute.equals(attribute))).count();
+        return numOfMatchedAttributes == numOfDistinctAttributeNames;
     }
 
     @Override
