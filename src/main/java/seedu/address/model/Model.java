@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -78,9 +79,10 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
-     * Adds an alias mapping from {@code attributeName} to {@code siteLink}.
+     * Updates an alias mapping for {@code attributeName} with {@code siteLink}.
+     * To remove the currently existing site link, set {@code siteLink} to empty.
      */
-    void addAlias(String attributeName, String siteLink);
+    void updateAlias(String attributeName, Optional<String> siteLink);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -137,10 +138,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// alias-level operations
 
     /**
-     * Adds an alias mapping from {@code attributeName} to {@code siteLink}.
+     * Updates an alias mapping for {@code attributeName} with {@code siteLink}.
+     * To remove the currently existing site link, set {@code siteLink} to empty.
      */
-    void addAlias(String attributeName, String siteLink) {
-        this.aliasMappings.addAlias(attributeName, siteLink);
+    void updateAlias(String attributeName, Optional<String> siteLink) {
+        this.aliasMappings.updateAlias(attributeName, siteLink);
     }
 
     //// util methods

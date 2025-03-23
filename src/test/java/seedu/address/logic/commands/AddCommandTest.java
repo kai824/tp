@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -164,7 +165,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public void addAlias(String attributeName, String siteLink) {
+        public void updateAlias(String attributeName, Optional<String> siteLink) {
             throw new AssertionError("This method should not be called.");
         }
     }

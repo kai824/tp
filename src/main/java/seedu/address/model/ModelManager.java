@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -113,8 +114,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addAlias(String attributeName, String siteLink) {
-        addressBook.addAlias(attributeName, siteLink);
+    public void updateAlias(String attributeName, Optional<String> siteLink) {
+        addressBook.updateAlias(attributeName, siteLink);
     }
 
     //=========== Filtered Person List Accessors =============================================================

@@ -34,13 +34,20 @@ public class AliasMappingList {
     }
 
     /**
-     * Adds an alias mapping between an attribute name and a site link.
+     * Updates an alias mapping between an attribute name and a site link.
+     * If there is no mapping for the attribute name currently, it creates a new mapping.
+     * If the given siteLink is empty, the currently existing mapping will be removed (if it exists).
      *
      * @param attributeName The attribute name, which is case insensitive.
      * @param siteLink The site link which will be displayed and copied on behalf of the attribute name.
+     *     To remove the current mapping, set it empty.
      */
-    public void addAlias(String attributeName, String siteLink) {
-        dictionary.put(attributeName.toLowerCase(), siteLink);
+    public void updateAlias(String attributeName, Optional<String> siteLink) {
+        if (siteLink.isPresent()) {
+            dictionary.put(attributeName.toLowerCase(), siteLink.get());
+        } else {
+            dictionary.remove(attributeName.toLowerCase());
+        }
     }
 
     /**
