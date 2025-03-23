@@ -47,34 +47,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
-
-    /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
-    }
-
-    /**
-     * Replaces the alias mappings with the given {@code mappings};
-     */
-    public void setAliasMappings(ObservableMap<String, String> mappings) {
-        this.aliasMappings.setAliases(mappings);
-    }
-
-    /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
-     */
-    public void resetData(ReadOnlyAddressBook newData) {
-        requireNonNull(newData);
-
-        setPersons(newData.getPersonList());
-        setAliasMappings(newData.getAliases());
-    }
-
-    //// person-level operations
+    //// update aliasing
 
     /**
      * Updates site links in the {@code person}'s attributes, based on the current aliasMappings.
@@ -87,6 +60,46 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         updatedAttributes.forEach(updatedAttribute -> person.updateAttribute(updatedAttribute));
     }
+
+    /**
+     * Updates site links for each Person in this address book.
+     */
+    private void updateAliasingsForAllPersons() {
+        persons.asUnmodifiableObservableList().stream()
+            .forEach(person -> updateAliasingsForPerson(person));
+    }
+
+    //// list overwrite operations
+
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setPersons(List<Person> persons) {
+        this.persons.setPersons(persons);
+        updateAliasingsForAllPersons();
+    }
+
+    /**
+     * Replaces the alias mappings with the given {@code mappings};
+     */
+    public void setAliasMappings(ObservableMap<String, String> mappings) {
+        this.aliasMappings.setAliases(mappings);
+        updateAliasingsForAllPersons();
+    }
+
+    /**
+     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     */
+    public void resetData(ReadOnlyAddressBook newData) {
+        requireNonNull(newData);
+
+        setPersons(newData.getPersonList());
+        setAliasMappings(newData.getAliases());
+        updateAliasingsForAllPersons();
+    }
+
+    //// person-level operations
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -142,7 +155,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * To remove the currently existing site link, set {@code siteLink} to empty.
      */
     void updateAlias(String attributeName, Optional<String> siteLink) {
-        this.aliasMappings.updateAlias(attributeName, siteLink);
+        aliasMappings.updateAlias(attributeName, siteLink);
+        updateAliasingsForAllPersons();
     }
 
     //// util methods

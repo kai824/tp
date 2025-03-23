@@ -15,7 +15,7 @@ public class AliasCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Associates a website domain with an attribute name.\n"
             + "Parameters: ATTRIBUTE_NAME=WEB_SITE_DOMAIN_LINK\n"
-            + "Example: " + COMMAND_WORD + " a/GitHub=https://";
+            + "Example: " + COMMAND_WORD + " a/GitHub=https://github.com/";
     public static final String MESSAGE_ADD_ALIAS_SUCCESS =
         "Added the site link: the site domain %2$s is now associated with %1$s";
     public static final String MESSAGE_REMOVE_ALIAS_SUCCESS =

@@ -104,6 +104,7 @@ public class Attribute {
         }
         return new Attribute(attributeName, attributeValue, newLink);
     }
+
     private Attribute removeSiteLink() {
         if (!siteLink.isPresent()) {
             return this;
