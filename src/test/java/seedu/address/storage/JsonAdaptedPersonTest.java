@@ -11,9 +11,12 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.testutil.PersonBuilder;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -98,10 +101,21 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidAttributes_throwsIllegalValueException() {
         List<JsonAdaptedAttribute> invalidAttributes = new ArrayList<>(VALID_ATTRIBUTES);
-        invalidAttributes.add(new JsonAdaptedAttribute(INVALID_ATTRIBUTE, "2027"));
+        invalidAttributes.add(new JsonAdaptedAttribute(INVALID_ATTRIBUTE, "2027", null));
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_TAGS, invalidAttributes);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
+    @Test
+    public void toModelType_nullSiteLink_sucessOptional() throws Exception {
+        List<JsonAdaptedAttribute> nullSiteLink = new ArrayList<>(VALID_ATTRIBUTES);
+        nullSiteLink.add(
+            new JsonAdaptedAttribute("hogehoge", "fugafuga", null));
+        JsonAdaptedPerson person =
+            new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TAGS, nullSiteLink);
+        Person expected = new PersonBuilder(BENSON).build();
+        expected.updateAttribute(new Attribute("hogehoge", "fugafuga"));
+        assertEquals(person.toModelType(), expected);
+    }
 }
