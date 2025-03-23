@@ -3,6 +3,8 @@ package seedu.address.model.attribute;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Optional;
+
 /**
  * Represents an Attribute in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidAttribute(String)}.
@@ -23,6 +25,7 @@ public class Attribute {
 
     private final String attributeName;
     private final String attributeValue;
+    private final Optional<String> siteLink;
 
     /**
      * Constructs an {@code Attribute}.
@@ -37,6 +40,18 @@ public class Attribute {
         checkArgument(isValidAttribute(attributeValue), MESSAGE_CONSTRAINTS);
         this.attributeName = attributeName;
         this.attributeValue = attributeValue;
+        this.siteLink = Optional.empty();
+    }
+
+    private Attribute(String attributeName, String attributeValue, String siteLink) {
+        requireNonNull(attributeName);
+        requireNonNull(attributeValue);
+        requireNonNull(siteLink);
+        checkArgument(isValidAttribute(attributeName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidAttribute(attributeValue), MESSAGE_CONSTRAINTS);
+        this.attributeName = attributeName;
+        this.attributeValue = attributeValue;
+        this.siteLink = Optional.of(siteLink);
     }
 
     /**
@@ -63,6 +78,54 @@ public class Attribute {
      */
     public String getDisplayText() {
         return attributeName + ": " + attributeValue;
+    }
+
+    /**
+     * Checks if this attribute has a site link associated with it.
+     */
+    public boolean hasSiteLink() {
+        return siteLink.isPresent();
+    }
+
+    /**
+     * Returns an {@code Attribute} formatted for user copying.
+     * This method cannot be called when this attribute does not have a site link associated with it.
+     * In such a case, assertion will be thrown.
+     */
+    public String getCopyableText() {
+        assert siteLink.isPresent() : "Site link must be present to retrieve a copyable text.";
+        return siteLink.orElse("Error") + this.attributeValue;
+    }
+
+    private Attribute setSiteLink(String newLink) {
+        requireNonNull(newLink);
+        if (siteLink.isPresent() && siteLink.get().equals(newLink)) {
+            return this;
+        }
+        return new Attribute(attributeName, attributeValue, newLink);
+    }
+
+    private Attribute removeSiteLink() {
+        if (!siteLink.isPresent()) {
+            return this;
+        }
+        return new Attribute(attributeName, attributeValue);
+    }
+
+    /**
+     * Updates the site link with the given {@code newLink}.
+     * If the newLink contains a new site link, the site link will be updated with the value.
+     * If the newLink is empty, then the site link will be removed.
+     *
+     * @return A new instance of Attribute with the updated site link.
+     */
+    public Attribute updateSiteLink(Optional<String> newLink) {
+        requireNonNull(newLink);
+        if (newLink.isPresent()) {
+            return setSiteLink(newLink.get());
+        } else {
+            return removeSiteLink();
+        }
     }
 
     /**
