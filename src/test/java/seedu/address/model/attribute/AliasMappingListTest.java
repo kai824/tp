@@ -3,6 +3,7 @@ package seedu.address.model.attribute;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Map;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -32,5 +33,10 @@ public class AliasMappingListTest {
         assertTrue(list.getAlias(name1.toUpperCase()).isPresent());
         assertTrue(list.getAlias(name1).get().equals(link1));
         assertTrue(list.getAlias(name1.toUpperCase()).get().equals(link1));
+        Map<String, String> internalList = list.getUnmodifiableAliases();
+        assertTrue(internalList.containsKey(name1));
+        assertFalse(internalList.containsKey(""));
+        assertFalse(internalList.containsKey("github"));
+        assertTrue(internalList.get(name1.toLowerCase()).equals(link1));
     }
 }

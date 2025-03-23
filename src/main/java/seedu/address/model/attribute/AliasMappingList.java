@@ -69,4 +69,16 @@ public class AliasMappingList {
     public ObservableMap<String, String> getUnmodifiableAliases() {
         return this.unmodifiableDictionary;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (other instanceof AliasMappingList otherList) {
+            return otherList.dictionary.equals(this.dictionary)
+                && otherList.unmodifiableDictionary.equals(this.unmodifiableDictionary);
+        }
+        return false;
+    }
 }
