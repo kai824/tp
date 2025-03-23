@@ -65,8 +65,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Updates site links for each Person in this address book.
      */
     private void updateAliasingsForAllPersons() {
-        persons.asUnmodifiableObservableList().stream()
-            .forEach(person -> updateAliasingsForPerson(person));
+        persons.asUnmodifiableObservableList()
+            .stream().forEach(person -> updateAliasingsForPerson(person));
     }
 
     //// list overwrite operations
@@ -154,7 +154,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Updates an alias mapping for {@code attributeName} with {@code siteLink}.
      * To remove the currently existing site link, set {@code siteLink} to empty.
      */
-    void updateAlias(String attributeName, Optional<String> siteLink) {
+    public void updateAlias(String attributeName, Optional<String> siteLink) {
         aliasMappings.updateAlias(attributeName, siteLink);
         updateAliasingsForAllPersons();
     }
