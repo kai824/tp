@@ -167,11 +167,6 @@ public class AddCommandTest {
         public void addAlias(String attributeName, String siteLink) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public String getAlias(String attributeName) {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
     /**

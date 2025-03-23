@@ -2,6 +2,7 @@ package seedu.address.model.attribute;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
@@ -46,14 +47,13 @@ public class AliasMappingList {
      * Returns a mapping for the given attribute name.
      * @param attributeName The attribute name for which the mapped site link will be returned. Case insensitive.
      * @return The mapped site link is returned if there is a mapping for the given name.
-     *     Otherwise, an attribute name + ": " will be returned.
+     *     Otherwise, an empty instance will be returned.
      */
-    public String getAlias(String attributeName) {
+    public Optional<String> getAlias(String attributeName) {
         if (dictionary.containsKey(attributeName.toLowerCase())) {
-            return dictionary.get(attributeName.toLowerCase());
-        } else {
-            return attributeName + ": ";
+            return Optional.of(dictionary.get(attributeName.toLowerCase()));
         }
+        return Optional.empty();
     }
 
     /**

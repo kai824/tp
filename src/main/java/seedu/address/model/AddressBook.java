@@ -4,11 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.attribute.AliasMappingList;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -73,6 +76,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
+     * Updates site links in the {@code person}'s attributes, based on the current aliasMappings.
+     */
+    private void updateAliasingsForPerson(Person person) {
+        Set<Attribute> updatedAttributes =
+            person.getAttributes().stream()
+                .map(attribute -> attribute.updateSiteLink(aliasMappings.getAlias(attribute.getAttributeName())))
+                .collect(Collectors.toSet());
+
+        updatedAttributes.forEach(updatedAttribute -> person.updateAttribute(updatedAttribute));
+    }
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     public boolean hasPerson(Person person) {
@@ -86,6 +101,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+        updateAliasingsForPerson(p);
     }
 
     /**
@@ -97,6 +113,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+        updateAliasingsForPerson(editedPerson);
     }
 
     /**
@@ -124,13 +141,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     void addAlias(String attributeName, String siteLink) {
         this.aliasMappings.addAlias(attributeName, siteLink);
-    }
-
-    /**
-     * Returns an alias (e.g. site link) mapped from {@code attributeName}.
-     */
-    String getAlias(String attributeName) {
-        return this.aliasMappings.getAlias(attributeName);
     }
 
     //// util methods

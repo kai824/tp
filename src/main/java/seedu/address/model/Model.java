@@ -82,11 +82,6 @@ public interface Model {
      */
     void addAlias(String attributeName, String siteLink);
 
-    /**
-     * Returns an alias (e.g. site link) mapped from {@code attributeName}.
-     */
-    String getAlias(String attributeName);
-
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

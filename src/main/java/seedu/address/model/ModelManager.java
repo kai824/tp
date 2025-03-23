@@ -117,11 +117,6 @@ public class ModelManager implements Model {
         addressBook.addAlias(attributeName, siteLink);
     }
 
-    @Override
-    public String getAlias(String attributeName) {
-        return addressBook.getAlias(attributeName);
-    }
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**
