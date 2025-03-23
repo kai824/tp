@@ -31,7 +31,7 @@ public class AliasCommandParser implements Parser<AliasCommand> {
 
         String aliasString = aliasStrings.get(0).trim();
 
-        Matcher matcher = Pattern.compile("^(.*)=(.*)$").matcher(aliasString);
+        Matcher matcher = Pattern.compile("^([^=]+)=(.*)$").matcher(aliasString);
 
         if (!matcher.find()) {
             throw new ParseException(AliasCommand.COMMAND_WORD);

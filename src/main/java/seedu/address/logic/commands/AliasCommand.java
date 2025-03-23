@@ -51,4 +51,15 @@ public class AliasCommand extends Command {
         return new CommandResult(message);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (other instanceof AliasCommand otherFilterCommand) {
+            return otherFilterCommand.attributeName.equals(this.attributeName)
+                && otherFilterCommand.siteLink.equals(this.siteLink);
+        }
+        return false;
+    }
 }
