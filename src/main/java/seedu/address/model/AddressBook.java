@@ -6,7 +6,9 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.attribute.AliasMappingList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -17,6 +19,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final AliasMappingList aliasMappings;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -27,6 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        aliasMappings = new AliasMappingList();
     }
 
     public AddressBook() {}
@@ -50,12 +54,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the alias mappings with the given {@code mappings};
+     */
+    public void setAliasMappings(ObservableMap<String, String> mappings) {
+        this.aliasMappings.setAliases(mappings);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setAliasMappings(newData.getAliases());
     }
 
     //// person-level operations
@@ -105,6 +117,22 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// alias-level operations
+
+    /**
+     * Adds an alias mapping from {@code attributeName} to {@code siteLink}.
+     */
+    void addAlias(String attributeName, String siteLink) {
+        this.aliasMappings.addAlias(attributeName, siteLink);
+    }
+
+    /**
+     * Returns an alias (e.g. site link) mapped from {@code attributeName}.
+     */
+    String getAlias(String attributeName) {
+        return this.aliasMappings.getAlias(attributeName);
+    }
+
     //// util methods
 
     @Override
@@ -117,6 +145,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableMap<String, String> getAliases() {
+        return this.aliasMappings.getUnmodifiableAliases();
     }
 
     @Override
