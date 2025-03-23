@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.model.attribute.Attribute;
-import seedu.address.model.person.AttributeMatchesPredicate;
 
 public class FilterCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
@@ -30,7 +29,7 @@ public class FilterCommandParserTest {
     private Attribute year = new Attribute(VALID_ATTRIBUTE_NAME_GRAD_YEAR, VALID_ATTRIBUTE_VALUE_GRAD_YEAR);
 
     private FilterCommand createFilterCommand(boolean duplicate, Attribute... attributes) {
-        return new FilterCommand(new AttributeMatchesPredicate(Set.of(attributes)), duplicate);
+        return new FilterCommand(Set.of(attributes), duplicate);
     }
 
     @Test

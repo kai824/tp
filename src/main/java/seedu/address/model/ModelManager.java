@@ -144,6 +144,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Optional<String> findClosestAttributeName(String target) {
+        return addressBook.findClosestAttributeName(target);
+    }
+
+    @Override
+    public Optional<String> findClosestAttributeValue(String target) {
+        return addressBook.findClosestAttributeValue(target);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

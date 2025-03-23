@@ -3,9 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.attribute.Attribute.CAPITALISATION_NOTE;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.AttributeMatchesPredicate;
 
 /**
@@ -21,7 +25,7 @@ public class FilterCommand extends Command {
     public static final String MESSAGE_WARNING_DUPLICATE =
         "WARNING! There are duplicate attributes (i.e. name-value pairs). " + CAPITALISATION_NOTE;
 
-    private final AttributeMatchesPredicate filter;
+    private final Set<Attribute> attribtues;
     private final boolean wasDuplicate;
 
     /**
@@ -30,15 +34,26 @@ public class FilterCommand extends Command {
      * @param filter The filtering predicate created with the user input attributes.
      * @param wasDuplicate Indicates whether there was a duplicate attribute in the user input.
      */
-    public FilterCommand(AttributeMatchesPredicate filter, boolean wasDuplicate) {
-        requireNonNull(filter);
-        this.filter = filter;
+    public FilterCommand(Set<Attribute> attributes, boolean wasDuplicate) {
+        requireNonNull(attributes);
+        this.attribtues = attributes;
         this.wasDuplicate = wasDuplicate;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        Set<Attribute> adjustedAttribtues =
+            attribtues.stream()
+                .map(attribute -> new Attribute(
+                    model.findClosestAttributeName(attribute.getAttributeName())
+                        .orElse(attribute.getAttributeName()),
+                        model.findClosestAttributeValue(attribute.getAttributeValue())
+                            .orElse(attribute.getAttributeValue())))
+                            .collect(Collectors.toSet());
+
+        AttributeMatchesPredicate filter = new AttributeMatchesPredicate(adjustedAttribtues);
 
         model.updateFilteredPersonList(filter);
 
@@ -56,7 +71,7 @@ public class FilterCommand extends Command {
             return true;
         }
         if (other instanceof FilterCommand otherFilterCommand) {
-            return otherFilterCommand.filter.equals(this.filter)
+            return otherFilterCommand.attribtues.equals(this.attribtues)
                 && otherFilterCommand.wasDuplicate == this.wasDuplicate;
         }
         return false;
