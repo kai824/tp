@@ -128,6 +128,13 @@ public class MainWindow extends UiPart<Stage> {
 
         personDetailsPanel = new PersonDetailsPanel();
         personDetailsPanelPlaceholder.getChildren().add(personDetailsPanel.getRoot());
+
+        // Update personDetailsPanel when selected Person changes
+        personListPanel.getListView()
+                .getSelectionModel()
+                .selectedItemProperty()
+                .addListener((observable, oldValue, newValue) ->
+                        personDetailsPanel.showPerson(newValue));
     }
 
     /**

@@ -357,3 +357,41 @@
 #attributes .label {
     -fx-background-color: #87386e;
 }
+
+.details_big_label {
+    -fx-font-family: "Inter Semi Bold";
+    -fx-font-size: 24px;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 0 0 15px 0;
+}
+
+.details_label {
+    -fx-font-family: "Inter Semi Bold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 15px 0 5px 0;
+}
+
+.details_small_label {
+    -fx-font-family: "Inter";
+    -fx-font-size: 13px;
+    -fx-text-fill: #ffffff;
+}
+
+.tag-details {
+    -fx-padding: 5px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-background-color: #3e7b91;
+    -fx-text-fill: white;
+    -fx-margin: 5px;
+}
+
+.attribute-details {
+    -fx-padding: 5px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-background-color: #6B4423;
+    -fx-text-fill: white;
+    -fx-margin: 5px;
+}
