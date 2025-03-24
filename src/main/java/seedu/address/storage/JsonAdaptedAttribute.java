@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.util.Optional;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -13,15 +15,18 @@ class JsonAdaptedAttribute {
 
     private final String attributeName;
     private final String attributeValue;
+    private final String siteLink;
 
     /**
      * Constructs a {@code JsonAdaptedAttribute} with the given {@code attributeName} and {@code attributeValue}.
      */
     @JsonCreator
     public JsonAdaptedAttribute(@JsonProperty("name") String attributeName,
-                                @JsonProperty("value") String attributeValue) {
+                                @JsonProperty("value") String attributeValue,
+                                @JsonProperty("link") String siteLink) {
         this.attributeName = attributeName;
         this.attributeValue = attributeValue;
+        this.siteLink = siteLink;
     }
 
     /**
@@ -30,6 +35,7 @@ class JsonAdaptedAttribute {
     public JsonAdaptedAttribute(Attribute source) {
         attributeName = source.getCaseAwareAttributeName();
         attributeValue = source.getAttributeValue();
+        siteLink = source.getSiteLink().orElse(null);
     }
 
     public String getAttributeName() {
@@ -38,6 +44,10 @@ class JsonAdaptedAttribute {
 
     public String getAttributeValue() {
         return attributeValue;
+    }
+
+    public Optional<String> getSiteLink() {
+        return Optional.ofNullable(siteLink);
     }
 
     /**
@@ -49,7 +59,7 @@ class JsonAdaptedAttribute {
         if (!Attribute.isValidAttribute(attributeName) || !Attribute.isValidAttribute(attributeValue)) {
             throw new IllegalValueException(Attribute.MESSAGE_CONSTRAINTS);
         }
-        return new Attribute(attributeName, attributeValue);
+        return new Attribute(attributeName, attributeValue).updateSiteLink(Optional.ofNullable(siteLink));
     }
 
 }

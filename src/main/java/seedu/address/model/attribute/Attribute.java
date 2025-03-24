@@ -129,6 +129,13 @@ public class Attribute {
     }
 
     /**
+     * Returns {@code siteLink}, which is either the site link or an empty Optional.
+     */
+    public Optional<String> getSiteLink() {
+        return siteLink;
+    }
+
+    /**
      * Returns true if a given string is a valid attribute name or value.
      */
     public static boolean isValidAttribute(String test) {

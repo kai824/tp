@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,12 +24,16 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
+    private final List<JsonAdaptedAliasMapping> aliases = new ArrayList<>();
+
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+            @JsonProperty("aliases") List<JsonAdaptedAliasMapping> aliases) {
         this.persons.addAll(persons);
+        this.aliases.addAll(aliases);
     }
 
     /**
@@ -38,6 +43,9 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        aliases.addAll(source.getAliases().entrySet().stream()
+            .map(entry -> new JsonAdaptedAliasMapping(entry.getKey(), entry.getValue()))
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +61,9 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
+        }
+        for (JsonAdaptedAliasMapping alias : aliases) {
+            addressBook.updateAlias(alias.getAttributeName(), Optional.of(alias.getSiteLink()));
         }
         return addressBook;
     }
