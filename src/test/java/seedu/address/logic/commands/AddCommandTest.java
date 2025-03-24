@@ -168,6 +168,16 @@ public class AddCommandTest {
         public void updateAlias(String attributeName, Optional<String> siteLink) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Optional<String> findClosestAttributeName(String target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<String> findClosestAttributeValue(String target) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

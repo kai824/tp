@@ -10,7 +10,6 @@ import java.util.Set;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attribute.Attribute;
-import seedu.address.model.person.AttributeMatchesPredicate;
 
 /**
  * Parses input arguments and creates a new FilterCommand instance.
@@ -38,10 +37,8 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         Set<Attribute> attributes = ParserUtil.parseAttributes(attributeStrings, true);
 
-        AttributeMatchesPredicate predicate = new AttributeMatchesPredicate(attributes);
-
         boolean wasDuplicate = (attributeStrings.size() != attributes.size());
 
-        return new FilterCommand(predicate, wasDuplicate);
+        return new FilterCommand(attributes, wasDuplicate);
     }
 }
