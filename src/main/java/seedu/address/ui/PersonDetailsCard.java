@@ -1,12 +1,17 @@
 package seedu.address.ui;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.attribute.Attribute;
@@ -40,11 +45,25 @@ public class PersonDetailsCard extends UiPart<Region> {
             label.setId("site-attribute-details");
             label.setOnMouseClicked(event -> {
                 String link = attribute.getSiteLink().orElseThrow(() ->
-                        new AssertionError("Unreachable, Optional<String> siteLink should not be empty"));
-                final Clipboard clipboard = javafx.scene.input.Clipboard.getSystemClipboard();
-                final ClipboardContent url = new javafx.scene.input.ClipboardContent();
-                url.putString(link);
-                clipboard.setContent(url);
+                        new AssertionError("Unreachable, Optional<String> siteLink should not be empty"))
+                        + attribute.getAttributeValue();
+                try {
+                    Desktop.getDesktop().browse(new URI(link));
+                } catch (IOException | URISyntaxException e) {
+                    // Solution below inspired by
+                    // https://stackoverflow.com/questions/45620901/javafx-copy-text-from-alert
+                    TextArea textArea = new TextArea("There was an error in opening the link: " + link);
+                    textArea.setEditable(false);
+                    textArea.setWrapText(true);
+                    GridPane gridPane = new GridPane();
+                    gridPane.setMaxWidth(Double.MAX_VALUE);
+                    gridPane.add(textArea, 0, 0);
+
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.getDialogPane().setContent(gridPane);
+                    alert.showAndWait();
+                }
             });
         }
         return label;
