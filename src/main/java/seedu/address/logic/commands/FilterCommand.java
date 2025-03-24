@@ -25,7 +25,7 @@ public class FilterCommand extends Command {
     public static final String MESSAGE_WARNING_DUPLICATE =
         "WARNING! There are duplicate attributes (i.e. name-value pairs). " + CAPITALISATION_NOTE;
 
-    private final Set<Attribute> attribtues;
+    private final Set<Attribute> attributes;
     private final boolean wasDuplicate;
 
     /**
@@ -36,7 +36,7 @@ public class FilterCommand extends Command {
      */
     public FilterCommand(Set<Attribute> attributes, boolean wasDuplicate) {
         requireNonNull(attributes);
-        this.attribtues = attributes;
+        this.attributes = attributes;
         this.wasDuplicate = wasDuplicate;
     }
 
@@ -45,7 +45,7 @@ public class FilterCommand extends Command {
         requireNonNull(model);
 
         Set<Attribute> adjustedAttribtues =
-            attribtues.stream()
+            attributes.stream()
                 .map(attribute -> new Attribute(
                     model.findClosestAttributeName(attribute.getAttributeName())
                         .orElse(attribute.getAttributeName()),
@@ -71,7 +71,7 @@ public class FilterCommand extends Command {
             return true;
         }
         if (other instanceof FilterCommand otherFilterCommand) {
-            return otherFilterCommand.attribtues.equals(this.attribtues)
+            return otherFilterCommand.attributes.equals(this.attributes)
                 && otherFilterCommand.wasDuplicate == this.wasDuplicate;
         }
         return false;

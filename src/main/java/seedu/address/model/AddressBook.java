@@ -190,7 +190,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Returns the closest matching existing attribute name, given a {@code target} string.
-     * An empty Optinal will be returned if there is no name close enough.
+     * An empty Optional will be returned if there is no name close enough.
      */
     Optional<String> findClosestAttributeName(String target) {
         String adjustedTarget = target.toLowerCase();
@@ -207,7 +207,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Returns the closest matching existing attribute value, given a {@code target} string.
-     * An empty Optinal will be returned if there is no value close enough.
+     * An empty Optional will be returned if there is no value close enough.
      */
     Optional<String> findClosestAttributeValue(String target) {
         Optional<String> closestName =
