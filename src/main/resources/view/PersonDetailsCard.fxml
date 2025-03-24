@@ -18,21 +18,21 @@
                 <Insets top="15" right="15" bottom="15" left="15" />
             </padding>
             <HBox alignment="CENTER">
-                <Label fx:id="name" styleClass="details_big_label" text="\$name" />
+                <Label fx:id="name" styleClass="details-big-label" text="\$name" />
             </HBox>
-            <Label styleClass="details_label" text="Contact Information" />
+            <Label styleClass="details-label" text="Contact Information" />
             <GridPane vgap="5" hgap="5">
-                <Label text="Phone:" styleClass="details_small_label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <Label fx:id="phone" styleClass="details_small_label" text="\$phone"
+                <Label text="Phone:" styleClass="details-small-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label fx:id="phone" styleClass="details-small-label" text="\$phone"
                        GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                <Label text="Email:" styleClass="details_small_label" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <Label fx:id="email" styleClass="details_small_label" text="\$email"
+                <Label text="Email:" styleClass="details-small-label" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label fx:id="email" styleClass="details-small-label" text="\$email"
                        GridPane.columnIndex="1" GridPane.rowIndex="1" />
             </GridPane>
-            <Label styleClass="details_label" text="Tags" />
+            <Label styleClass="details-label" text="Tags" />
             <FlowPane fx:id="tags" />
-            <Label styleClass="details_label" text="Attributes" />
+            <Label styleClass="details-label" text="Attributes" />
             <FlowPane fx:id="attributes" />
         </VBox>
     </GridPane>

@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -32,6 +34,22 @@ public class PersonDetailsCard extends UiPart<Region> {
     @FXML
     private FlowPane attributes;
 
+    private static Label createAttributeLabel(Attribute attribute) {
+        Label label = new Label(attribute.getDisplayText());
+        if (attribute.hasSiteLink()) {
+            label.setId("site-attribute-details");
+            label.setOnMouseClicked(event -> {
+                String link = attribute.getSiteLink().orElseThrow(() ->
+                        new AssertionError("Unreachable, Optional<String> siteLink should not be empty"));
+                final Clipboard clipboard = javafx.scene.input.Clipboard.getSystemClipboard();
+                final ClipboardContent url = new javafx.scene.input.ClipboardContent();
+                url.putString(link);
+                clipboard.setContent(url);
+            });
+        }
+        return label;
+    }
+
     /**
      * Creates a {@code PersonDetailsCard} with the given {@code Person}.
      */
@@ -43,17 +61,9 @@ public class PersonDetailsCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> {
-                    Label tagLabel = new Label(tag.tagName);
-                    tagLabel.getStyleClass().add("tag-details");
-                    tags.getChildren().add(tagLabel);
-                });
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         person.getAttributes().stream()
                 .sorted(Comparator.comparing(Attribute::getAttributeName))
-                .forEach(attribute -> {
-                    Label attributeLabel = new Label(attribute.getDisplayText());
-                    attributeLabel.getStyleClass().add("attribute-details");
-                    attributes.getChildren().add(attributeLabel);
-                });
+                .forEach(attribute -> attributes.getChildren().add(createAttributeLabel(attribute)));
     }
 }

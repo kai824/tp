@@ -12,6 +12,6 @@
     </padding>
     <StackPane fx:id="personDetailsPlaceholder" VBox.vgrow="ALWAYS">
         <Label fx:id="placeholderLabel" text="Select a person to view their details"
-               styleClass="details_label"/>
+               styleClass="details-label"/>
     </StackPane>
 </VBox>
