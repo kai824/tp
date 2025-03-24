@@ -67,7 +67,7 @@ public class PersonDetailsCard extends UiPart<Region> {
                 try {
                     Desktop.getDesktop().browse(new URI(link));
                 } catch (IOException | URISyntaxException e) {
-                    // Solution below inspired by
+                    // Solution below adapted from
                     // https://stackoverflow.com/questions/45620901/javafx-copy-text-from-alert
                     TextArea textArea = new TextArea("There was an error in opening the link: " + link);
                     textArea.setEditable(false);
