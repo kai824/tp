@@ -4,9 +4,6 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -45,14 +42,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane attributes;
 
-    private static Label createAttributeLabel(Attribute attribute) {
-        Label label = new Label(attribute.getDisplayText());
-        if (attribute.hasSiteLink()) {
-            label.setId("site-attribute-list");
-        }
-        return label;
-    }
-
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -69,5 +58,13 @@ public class PersonCard extends UiPart<Region> {
         person.getAttributes().stream()
                 .sorted(Comparator.comparing(Attribute::getAttributeName))
                 .forEach(attribute -> attributes.getChildren().add(createAttributeLabel(attribute)));
+    }
+
+    private static Label createAttributeLabel(Attribute attribute) {
+        Label label = new Label(attribute.getDisplayText());
+        if (attribute.hasSiteLink()) {
+            label.setId("site-attribute-list");
+        }
+        return label;
     }
 }

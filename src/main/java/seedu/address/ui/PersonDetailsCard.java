@@ -39,6 +39,23 @@ public class PersonDetailsCard extends UiPart<Region> {
     @FXML
     private FlowPane attributes;
 
+    /**
+     * Creates a {@code PersonDetailsCard} with the given {@code Person}.
+     */
+    public PersonDetailsCard(Person person) {
+        super(FXML);
+        this.person = person;
+        name.setText(person.getName().fullName);
+        phone.setText(person.getPhone().value);
+        email.setText(person.getEmail().value);
+        person.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getAttributes().stream()
+                .sorted(Comparator.comparing(Attribute::getAttributeName))
+                .forEach(attribute -> attributes.getChildren().add(createAttributeLabel(attribute)));
+    }
+
     private static Label createAttributeLabel(Attribute attribute) {
         Label label = new Label(attribute.getDisplayText());
         if (attribute.hasSiteLink()) {
@@ -67,22 +84,5 @@ public class PersonDetailsCard extends UiPart<Region> {
             });
         }
         return label;
-    }
-
-    /**
-     * Creates a {@code PersonDetailsCard} with the given {@code Person}.
-     */
-    public PersonDetailsCard(Person person) {
-        super(FXML);
-        this.person = person;
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        person.getAttributes().stream()
-                .sorted(Comparator.comparing(Attribute::getAttributeName))
-                .forEach(attribute -> attributes.getChildren().add(createAttributeLabel(attribute)));
     }
 }
