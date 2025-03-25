@@ -30,7 +30,8 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    private CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Optional<Person> personToShow, boolean undo) {
+    private CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                          Optional<Person> personToShow, boolean undo) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
