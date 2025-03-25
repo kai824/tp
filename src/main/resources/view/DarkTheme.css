@@ -344,8 +344,8 @@
 }
 
 #tags, #attributes {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
+    -fx-hgap: 6;
+    -fx-vgap: 2;
 }
 
 #tags .label, #attributes .label {
@@ -403,7 +403,6 @@
     -fx-underline: true;
 }
 
-/* Optional hover effect for clickable attributes */
 #attributes .label#site-attribute-details:hover {
     -fx-background-color: derive(#644c9f, 20%);
 }
