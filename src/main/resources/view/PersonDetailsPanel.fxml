@@ -11,7 +11,7 @@
         <Insets top="10" right="10" bottom="10" left="10" />
     </padding>
     <StackPane fx:id="personDetailsPlaceholder" VBox.vgrow="ALWAYS">
-        <Label fx:id="placeholderLabel" text="Select a person to view their details"
-               styleClass="details-label"/>
+        <Label fx:id="placeholderLabel" text="Select a person or type &quot;show [index]&quot;&#xA;(e.g., &quot;show 1&quot;) to view their details"
+               styleClass="details-label-faded" wrapText="true" textAlignment="CENTER"/>
     </StackPane>
 </VBox>
