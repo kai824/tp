@@ -13,6 +13,6 @@ public class UndoCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_UNDO_SUCCESS, false, false);
+        return new CommandResult(MESSAGE_UNDO_SUCCESS, false, false, true);
     }
 }

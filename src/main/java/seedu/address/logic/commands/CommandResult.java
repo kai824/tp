@@ -24,14 +24,18 @@ public class CommandResult {
     /** The person to show. */
     private final Optional<Person> personToShow;
 
+    /** The last command should be undone. */
+    private final boolean undo;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    private CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Optional<Person> personToShow) {
+    private CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Optional<Person> personToShow, boolean undo) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.personToShow = personToShow;
+        this.undo = undo;
     }
 
     /**
@@ -39,14 +43,14 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, Optional.empty());
+        this(feedbackToUser, false, false, Optional.empty(), false);
     }
 
     /**
      * Returns a {@code CommandResult} with the specified {@code feedbackToUser} and {@code personToShow}.
      */
     public static CommandResult createShowResult(String feedbackToUser, Person personToShow) {
-        return new CommandResult(feedbackToUser, false, false, Optional.of(personToShow));
+        return new CommandResult(feedbackToUser, false, false, Optional.of(personToShow), false);
     }
 
     /**
@@ -54,7 +58,7 @@ public class CommandResult {
      * and with {@code showHelp} set to {@code true}.
      */
     public static CommandResult createHelpResult(String feedbackToUser) {
-        return new CommandResult(feedbackToUser, true, false, Optional.empty());
+        return new CommandResult(feedbackToUser, true, false, Optional.empty(), false);
     }
 
     /**
@@ -62,7 +66,7 @@ public class CommandResult {
      * and with {@code exit} set to {@code true}.
      */
     public static CommandResult createExitResult(String feedbackToUser) {
-        return new CommandResult(feedbackToUser, false, true, Optional.empty());
+        return new CommandResult(feedbackToUser, false, true, Optional.empty(), false);
     }
 
     public String getFeedbackToUser() {
@@ -79,6 +83,10 @@ public class CommandResult {
 
     public Optional<Person> getPersonToShow() {
         return personToShow;
+    }
+
+    public boolean isUndo() {
+        return undo;
     }
 
     @Override
