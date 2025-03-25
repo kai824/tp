@@ -196,7 +196,7 @@ public class Attribute implements Comparable<Attribute> {
     @Override
     public int compareTo(Attribute other) {
         return (this.hasSiteLink() == other.hasSiteLink())
-                ? this.attributeName.compareTo(other.attributeName)
+                ? this.getAttributeName().compareTo(other.getAttributeName())
                 : (this.hasSiteLink() ? 1 : -1);
     }
 }
