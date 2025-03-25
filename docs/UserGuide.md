@@ -204,14 +204,16 @@ Format: `sort a/ATTRIBUTE_NAME`
 Example:
 * `sort a/major` sorts all entries with the "Major" attribute by lexicographical order of the attribute value of "Major".
 
-### Undo the last command: `undo`
+### Undo the last data change: `undo`
 
-Undoes the last command. For instance, if you deleted the wrong entry accidentally, you can use this command to revert the data.
+Undoes the last data change. For instance, if you deleted the wrong entry accidentally, you can use this command to revert the data.
 
 Format: `undo`
-* Only the last command can be undone. If `undo` is used multiple times consecutively, it will revert back and forth between the latest 2 versions of the data.
+* Only changes since the app was opened can be undone.
+* Changes that are undone cannot be redone.
+* `undo` can be used multiple times in succession to undo more changes.
 * Does not change any applied filters. If a filter was accidentally applied, you can use `list` to clear any existing filters.
-* Does not work after exitting and re-opening the app. Using `undo` on a freshly opened app will not change anything.
+* Does not work after exiting and re-opening the app. Using `undo` on a freshly opened app will not change anything.
 
 ### Exiting the program: `exit`
 
