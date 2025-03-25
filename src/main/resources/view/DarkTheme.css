@@ -357,3 +357,38 @@
 #attributes .label {
     -fx-background-color: #87386e;
 }
+
+.details-big-label {
+    -fx-font-family: "Inter Semi Bold";
+    -fx-font-size: 24px;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 0 0 15px 0;
+}
+
+.details-label {
+    -fx-font-family: "Inter Semi Bold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 15px 0 5px 0;
+}
+
+.details-small-label {
+    -fx-font-family: "Inter";
+    -fx-font-size: 13px;
+    -fx-text-fill: #ffffff;
+}
+
+#attributes .label#site-attribute-list {
+    -fx-background-color: #644c9f;
+}
+
+#attributes .label#site-attribute-details {
+    -fx-background-color: #644c9f;
+    -fx-cursor: hand;
+    -fx-underline: true;
+}
+
+/* Optional hover effect for clickable attributes */
+#attributes .label#site-attribute-details:hover {
+    -fx-background-color: derive(#644c9f, 20%);
+}

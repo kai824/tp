@@ -192,7 +192,7 @@ Examples:
 
 ### Sorting entries by an attribute: `sort`
 
-Sorts the current view of entries by the value of the specified attribute name in lexicographically ascending order. 
+Sorts the current view of entries by the value of the specified attribute name in lexicographically ascending order.
 
 Format: `sort a/ATTRIBUTE_NAME`
 

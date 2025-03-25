@@ -57,7 +57,14 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         person.getAttributes().stream()
                 .sorted(Comparator.comparing(Attribute::getAttributeName))
-                .forEach(attribute -> attributes.getChildren()
-                        .add(new Label(attribute.getDisplayText())));
+                .forEach(attribute -> attributes.getChildren().add(createAttributeLabel(attribute)));
+    }
+
+    private static Label createAttributeLabel(Attribute attribute) {
+        Label label = new Label(attribute.getDisplayText());
+        if (attribute.hasSiteLink()) {
+            label.setId("site-attribute-list");
+        }
+        return label;
     }
 }
