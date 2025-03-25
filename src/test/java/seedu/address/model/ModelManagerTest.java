@@ -93,6 +93,50 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
 
+    /**
+     * Tests ModelManager::revertLastState with ModelManager::saveState
+     */
+    @Test
+    public void manageState() {
+        modelManager = new ModelManager();
+
+        // No history to load from
+        assertFalse(modelManager.revertLastState());
+
+        // No changes made, nothing to load
+        modelManager.saveState();
+        assertFalse(modelManager.revertLastState());
+
+        // Make one change, test
+        ReadOnlyAddressBook prevState = modelManager.getAddressBook();
+        modelManager.saveState();
+        modelManager.addPerson(ALICE);
+        modelManager.saveState();
+
+        assertTrue(modelManager.revertLastState());
+        assertEquals(prevState, modelManager.getAddressBook());
+        assertFalse(modelManager.revertLastState());
+
+        // Two changes, with repeat saveState
+        modelManager = new ModelManager();
+        ReadOnlyAddressBook stateVersion1 = modelManager.getAddressBook();
+        modelManager.saveState();
+        modelManager.saveState();
+        modelManager.addPerson(ALICE);
+        ReadOnlyAddressBook stateVersion2 = modelManager.getAddressBook();
+        modelManager.saveState();
+        modelManager.saveState();
+        modelManager.setPerson(ALICE, BENSON);
+        modelManager.saveState();
+        modelManager.saveState();
+
+        assertTrue(modelManager.revertLastState());
+        assertEquals(stateVersion2, modelManager.getAddressBook());
+        assertTrue(modelManager.revertLastState());
+        assertEquals(stateVersion1, modelManager.getAddressBook());
+        assertFalse(modelManager.revertLastState());
+    }
+
     @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
