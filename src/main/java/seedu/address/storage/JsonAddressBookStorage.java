@@ -36,6 +36,15 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         return filePath;
     }
 
+    public Path getPreviousStateFilePath() {
+        return previousStateFilePath;
+    }
+
+    @Override
+    public Optional<ReadOnlyAddressBook> readPreviousAddressBook() throws DataLoadingException {
+        return readAddressBook(previousStateFilePath);
+    }
+
     @Override
     public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
         return readAddressBook(filePath);
@@ -79,7 +88,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        FileUtil.copyFile(filePath, previousStateFilePath);  // Copy file into previous state for undo-ing
+        FileUtil.copyFile(filePath, previousStateFilePath); // Copy file into previous state for undo-ing
         JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
     }
 

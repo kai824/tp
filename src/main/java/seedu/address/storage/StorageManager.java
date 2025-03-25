@@ -54,6 +54,16 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public Path getPreviousStateFilePath() {
+        return addressBookStorage.getPreviousStateFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyAddressBook> readPreviousAddressBook() throws DataLoadingException {
+        return readAddressBook(addressBookStorage.getPreviousStateFilePath());
+    }
+
+    @Override
     public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
         return readAddressBook(addressBookStorage.getAddressBookFilePath());
     }

@@ -18,6 +18,19 @@ public interface AddressBookStorage {
     Path getAddressBookFilePath();
 
     /**
+     * Returns the file path of the previous state data file.
+     */
+    Path getPreviousStateFilePath();
+
+    /**
+     * Returns Previous State AddressBook data as a {@link ReadOnlyAddressBook}.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
+     * @throws DataLoadingException if loading the data from storage failed.
+     */
+    Optional<ReadOnlyAddressBook> readPreviousAddressBook() throws DataLoadingException;
+
+    /**
      * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
