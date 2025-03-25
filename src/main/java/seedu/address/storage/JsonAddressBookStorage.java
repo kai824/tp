@@ -22,9 +22,14 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
     private Path filePath;
+    private Path previousStateFilePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    /**
+     * Constructor for JsonAddressBookStorage
+     */
+    public JsonAddressBookStorage(Path filePath, Path previousStateFilePath) {
         this.filePath = filePath;
+        this.previousStateFilePath = previousStateFilePath;
     }
 
     public Path getAddressBookFilePath() {
@@ -74,6 +79,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
+        FileUtil.copyFile(filePath, previousStateFilePath);  // Copy file into previous state for undo-ing
         JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
     }
 
