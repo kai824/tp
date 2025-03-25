@@ -204,9 +204,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.getPersonToShow() != null) {
-                personListPanel.showPerson(commandResult.getPersonToShow());
-            }
+            commandResult.getPersonToShow().ifPresent(person -> personListPanel.showPerson(person));
 
             return commandResult;
         } catch (CommandException | ParseException e) {

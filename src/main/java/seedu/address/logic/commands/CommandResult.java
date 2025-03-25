@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
@@ -21,12 +22,12 @@ public class CommandResult {
     private final boolean exit;
 
     /** The person to show. */
-    private final Person personToShow;
+    private final Optional<Person> personToShow;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Person personToShow) {
+    private CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Optional<Person> personToShow) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -38,15 +39,30 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, null);
+        this(feedbackToUser, false, false, Optional.empty());
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and {@code personToShow}.
+     * Returns a {@code CommandResult} with the specified {@code feedbackToUser} and {@code personToShow}.
      */
-    public CommandResult(String feedbackToUser, Person personToShow) {
-        this(feedbackToUser, false, false, personToShow);
+    public static CommandResult createShowResult(String feedbackToUser, Person personToShow) {
+        return new CommandResult(feedbackToUser, false, false, Optional.of(personToShow));
+    }
+
+    /**
+     * Returns a {@code CommandResult} with the specified {@code feedbackToUser}
+     * and with {@code showHelp} set to {@code true}.
+     */
+    public static CommandResult createHelpResult(String feedbackToUser) {
+        return new CommandResult(feedbackToUser, true, false, Optional.empty());
+    }
+
+    /**
+     * Returns a {@code CommandResult} with the specified {@code feedbackToUser}
+     * and with {@code exit} set to {@code true}.
+     */
+    public static CommandResult createExitResult(String feedbackToUser) {
+        return new CommandResult(feedbackToUser, false, true, Optional.empty());
     }
 
     public String getFeedbackToUser() {
@@ -61,7 +77,7 @@ public class CommandResult {
         return exit;
     }
 
-    public Person getPersonToShow() {
+    public Optional<Person> getPersonToShow() {
         return personToShow;
     }
 
