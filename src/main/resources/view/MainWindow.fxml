@@ -46,7 +46,6 @@
           </padding>
         </StackPane>
 
-        <!-- Replace the existing VBox containing personList with this: -->
         <SplitPane VBox.vgrow="ALWAYS" dividerPositions="0.5">
           <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340">
             <padding>

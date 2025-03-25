@@ -10,7 +10,7 @@ import java.util.Optional;
  * Guarantees: immutable; name is valid as declared in {@link #isValidAttribute(String)}.
  * The hash code of an Attribute is that of the attribute name.
  */
-public class Attribute {
+public class Attribute implements Comparable<Attribute> {
     public static final String PROHIBITED_CHARACTERS = "/\\=";
     public static final String MESSAGE_CONSTRAINTS = "Attribute names and values should not contain /, \\, or =.";
     public static final String MESSAGE_CONSTRAINTS_FOR_NAME = "Attribute names should not contain /, \\, or =.";
@@ -189,4 +189,14 @@ public class Attribute {
         return String.format("[%s: %s]", attributeName, attributeValue);
     }
 
+    /**
+     * {@inheritDoc}
+     * Attributes with a site link appear after attributes without a site link.
+     */
+    @Override
+    public int compareTo(Attribute other) {
+        return (this.hasSiteLink() == other.hasSiteLink())
+                ? this.getAttributeName().compareTo(other.getAttributeName())
+                : (this.hasSiteLink() ? 1 : -1);
+    }
 }

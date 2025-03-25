@@ -52,7 +52,7 @@ public class PersonDetailsCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         person.getAttributes().stream()
-                .sorted(Comparator.comparing(Attribute::getAttributeName))
+                .sorted()
                 .forEach(attribute -> attributes.getChildren().add(createAttributeLabel(attribute)));
     }
 

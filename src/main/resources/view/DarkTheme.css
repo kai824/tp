@@ -171,6 +171,14 @@
     -fx-border-width: 1px;
 }
 
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
 .grid-pane .stack-pane {
     -fx-background-color: derive(#1e1e2e, 30%);
 }
@@ -336,8 +344,8 @@
 }
 
 #tags, #attributes {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
+    -fx-hgap: 6;
+    -fx-vgap: 2;
 }
 
 #tags .label, #attributes .label {
@@ -395,7 +403,6 @@
     -fx-underline: true;
 }
 
-/* Optional hover effect for clickable attributes */
 #attributes .label#site-attribute-details:hover {
     -fx-background-color: derive(#644c9f, 20%);
 }
