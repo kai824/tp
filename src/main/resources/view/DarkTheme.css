@@ -378,6 +378,13 @@
     -fx-text-fill: #ffffff;
 }
 
+.details-label-faded {
+    -fx-font-family: "Inter Semi Bold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #bbbbbb;
+    -fx-padding: 15px 0 5px 0;
+}
+
 #attributes .label#site-attribute-list {
     -fx-background-color: #644c9f;
 }

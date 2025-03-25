@@ -3,8 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Person;
 
 /**
  * Represents the result of a command execution.
@@ -19,13 +21,17 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The person to show. */
+    private final Optional<Person> personToShow;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    private CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Optional<Person> personToShow) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.personToShow = personToShow;
     }
 
     /**
@@ -33,7 +39,30 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, Optional.empty());
+    }
+
+    /**
+     * Returns a {@code CommandResult} with the specified {@code feedbackToUser} and {@code personToShow}.
+     */
+    public static CommandResult createShowResult(String feedbackToUser, Person personToShow) {
+        return new CommandResult(feedbackToUser, false, false, Optional.of(personToShow));
+    }
+
+    /**
+     * Returns a {@code CommandResult} with the specified {@code feedbackToUser}
+     * and with {@code showHelp} set to {@code true}.
+     */
+    public static CommandResult createHelpResult(String feedbackToUser) {
+        return new CommandResult(feedbackToUser, true, false, Optional.empty());
+    }
+
+    /**
+     * Returns a {@code CommandResult} with the specified {@code feedbackToUser}
+     * and with {@code exit} set to {@code true}.
+     */
+    public static CommandResult createExitResult(String feedbackToUser) {
+        return new CommandResult(feedbackToUser, false, true, Optional.empty());
     }
 
     public String getFeedbackToUser() {
@@ -48,6 +77,10 @@ public class CommandResult {
         return exit;
     }
 
+    public Optional<Person> getPersonToShow() {
+        return personToShow;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -55,19 +88,19 @@ public class CommandResult {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof CommandResult)) {
-            return false;
+        if (other instanceof CommandResult otherCommandResult) {
+            return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                    && showHelp == otherCommandResult.showHelp
+                    && exit == otherCommandResult.exit
+                    && Objects.equals(personToShow, otherCommandResult.personToShow);
         }
 
-        CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+        return false;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, personToShow);
     }
 
     @Override
