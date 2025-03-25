@@ -69,6 +69,14 @@ public class CommandResult {
         return new CommandResult(feedbackToUser, false, true, Optional.empty(), false);
     }
 
+    /**
+     * Returns a {@code CommandResult} with the specified {@code feedbackToUser}
+     * and with {@code undo} set to {@code true}.
+     */
+    public static CommandResult createUndoResult(String feedbackToUser) {
+        return new CommandResult(feedbackToUser, false, false, Optional.empty(), true);
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
