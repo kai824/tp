@@ -41,6 +41,8 @@ TalentFolio is an application for hiring managers to manage information on job c
 
    * `clear` : Deletes all candidates.
 
+   * `undo` : Undoes the last command.
+
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -202,6 +204,15 @@ Format: `sort a/ATTRIBUTE_NAME`
 Example:
 * `sort a/major` sorts all entries with the "Major" attribute by lexicographical order of the attribute value of "Major".
 
+### Undo the last command: `undo`
+
+Undoes the last command. For instance, if you deleted the wrong entry accidentally, you can use this command to revert the data.
+
+Format: `undo`
+* Only the last command can be undone. If `undo` is used multiple times consecutively, it will revert back and forth between the latest 2 versions of the data.
+* Does not change any applied filters. If a filter was accidentally applied, you can use `list` to clear any existing filters.
+* Does not work after exitting and re-opening the app. Using `undo` on a freshly opened app will not change anything.
+
 ### Exiting the program: `exit`
 
 Exits the program.
@@ -255,4 +266,5 @@ Action     | Format, Examples
 **List**   | `list`
 **Sort** | `sort a/ATTRIBUTE_NAME`<br> e.g., `sort a/Graduation Year`
 **Filter** | `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `filter a/Major=Computer Science`
+**Undo**   | `undo`
 **Help**   | `help`
