@@ -40,7 +40,7 @@ UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Attribute
+Person *--> "*" Attribute
 Person *--> "*" Tag
 
 Person -[hidden]up--> I
