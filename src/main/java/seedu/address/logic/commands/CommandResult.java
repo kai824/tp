@@ -109,7 +109,8 @@ public class CommandResult {
             return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                     && showHelp == otherCommandResult.showHelp
                     && exit == otherCommandResult.exit
-                    && Objects.equals(personToShow, otherCommandResult.personToShow);
+                    && Objects.equals(personToShow, otherCommandResult.personToShow)
+                    && undo == otherCommandResult.undo;
         }
 
         return false;
@@ -117,7 +118,7 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, personToShow);
+        return Objects.hash(feedbackToUser, showHelp, exit, personToShow, undo);
     }
 
     @Override
@@ -126,6 +127,7 @@ public class CommandResult {
                 .add("feedbackToUser", feedbackToUser)
                 .add("showHelp", showHelp)
                 .add("exit", exit)
+                .add("undo", undo)
                 .toString();
     }
 

@@ -9,7 +9,9 @@ public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
 
-    public static final String MESSAGE_UNDO_SUCCESS = "Undo success!";
+    public static final String MESSAGE_UNDO_SUCCESS = "Undo is executed successfully!";
+
+    public static final String PREV_ADDR_BOOK_UNAVAILABLE = "Previous address book unavailable!";
 
     @Override
     public CommandResult execute(Model model) {

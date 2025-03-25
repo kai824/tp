@@ -12,6 +12,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -64,7 +65,7 @@ public class LogicManager implements Logic {
             if (prevAddressBook.isPresent()) {
                 model.setAddressBook(prevAddressBook.get());
             } else {
-                throw new CommandException(String.format(FILE_OPS_ERROR_FORMAT, commandText));
+                throw new CommandException(UndoCommand.PREV_ADDR_BOOK_UNAVAILABLE);
             }
         }
 
