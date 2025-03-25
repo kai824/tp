@@ -25,18 +25,18 @@ public class CommandResult {
     private final Optional<Person> personToShow;
 
     /** The last command should be undone. */
-    private final boolean undo;
+    private final boolean isUndoCommand;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     private CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                          Optional<Person> personToShow, boolean undo) {
+                          Optional<Person> personToShow, boolean isUndoCommand) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.personToShow = personToShow;
-        this.undo = undo;
+        this.isUndoCommand = isUndoCommand;
     }
 
     /**
@@ -95,7 +95,7 @@ public class CommandResult {
     }
 
     public boolean isUndo() {
-        return undo;
+        return isUndoCommand;
     }
 
     @Override
@@ -110,7 +110,7 @@ public class CommandResult {
                     && showHelp == otherCommandResult.showHelp
                     && exit == otherCommandResult.exit
                     && Objects.equals(personToShow, otherCommandResult.personToShow)
-                    && undo == otherCommandResult.undo;
+                    && isUndoCommand == otherCommandResult.isUndoCommand;
         }
 
         return false;
@@ -118,7 +118,7 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, personToShow, undo);
+        return Objects.hash(feedbackToUser, showHelp, exit, personToShow, isUndoCommand);
     }
 
     @Override
@@ -127,7 +127,7 @@ public class CommandResult {
                 .add("feedbackToUser", feedbackToUser)
                 .add("showHelp", showHelp)
                 .add("exit", exit)
-                .add("undo", undo)
+                .add("undo", isUndoCommand)
                 .toString();
     }
 
