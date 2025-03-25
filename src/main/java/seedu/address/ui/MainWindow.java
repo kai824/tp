@@ -204,6 +204,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.getPersonToShow() != null) {
+                personListPanel.showPerson(commandResult.getPersonToShow());
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);

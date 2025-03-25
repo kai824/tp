@@ -50,4 +50,12 @@ public class PersonListPanel extends UiPart<Region> {
         return personListView;
     }
 
+    /**
+     * Shows the person in the details panel.
+     */
+    public void showPerson(Person person) {
+        personListView.scrollTo(person);
+        personListView.getSelectionModel().select(person);
+    }
+
 }
