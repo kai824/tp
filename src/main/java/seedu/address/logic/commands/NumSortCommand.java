@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 
 import seedu.address.model.attribute.NumericalValueBasedAttributeComparator;
-import seedu.address.model.attribute.ValueBasedAttributeComparator;
 import seedu.address.model.person.AttributeBasedPersonComparator;
 
 /**

@@ -8,24 +8,24 @@ import static seedu.address.model.attribute.Attribute.PROHIBITED_CHARACTERS;
 
 import java.util.List;
 
-import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.LexSortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new AttributeRemoveCommand object
+ * Parses input arguments and creates a new LexSortCommand object
  */
-public class SortCommandParser implements Parser<SortCommand> {
+public class LexSortCommandParser implements Parser<LexSortCommand> {
     public static final String MESSAGE_ONLY_ONE_PARAMETER =
-        "Note that this command accepts exactly ONE attribute as a parameter.";
+            "Note that this command accepts exactly ONE attribute as a parameter.";
     public static final String MESSAGE_EMPTY_ATTRIBUTE_NAME =
-        "The attribute name cannot be empty!";
+            "The attribute name cannot be empty!";
 
     private boolean isContainProhibitedCharacters(String str) {
         return str.chars().anyMatch(c -> PROHIBITED_CHARACTERS.chars().anyMatch(ng -> ng == c));
     }
 
     @Override
-    public SortCommand parse(String args) throws ParseException {
+    public LexSortCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap =
@@ -35,12 +35,12 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         if (attributes.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    SortCommand.MESSAGE_USAGE));
+                    LexSortCommand.MESSAGE_USAGE));
         }
 
         if (attributes.size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            MESSAGE_ONLY_ONE_PARAMETER + "\n" + SortCommand.MESSAGE_USAGE));
+                    MESSAGE_ONLY_ONE_PARAMETER + "\n" + LexSortCommand.MESSAGE_USAGE));
         }
 
         String attributeName = attributes.get(0);
@@ -57,6 +57,6 @@ public class SortCommandParser implements Parser<SortCommand> {
                     MESSAGE_CONSTRAINTS_FOR_NAME));
         }
 
-        return new SortCommand(attributes.get(0));
+        return new LexSortCommand(attributes.get(0));
     }
 }
