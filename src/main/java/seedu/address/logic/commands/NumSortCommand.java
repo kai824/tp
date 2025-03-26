@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 import seedu.address.model.attribute.NumericalValueBasedAttributeComparator;
 import seedu.address.model.person.AttributeBasedPersonComparator;
 
@@ -20,6 +22,7 @@ public class NumSortCommand extends SortCommand {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ATTRIBUTE + "Graduation Year";
     private final String attributeName;
+    private String adjustedAttributeName;
 
     /**
      * Initializes an instance with the comparator based on the attribute name.
@@ -29,6 +32,14 @@ public class NumSortCommand extends SortCommand {
     public NumSortCommand(String attributeName) {
         requireNonNull(attributeName);
         this.attributeName = attributeName;
+        this.adjustedAttributeName = attributeName;
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        this.adjustedAttributeName = model.findClosestAttributeName(this.attributeName).orElse(this.attributeName);
+        return super.execute(model);
     }
 
     @Override

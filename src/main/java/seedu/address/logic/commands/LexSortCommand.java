@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 import seedu.address.model.attribute.ValueBasedAttributeComparator;
 import seedu.address.model.person.AttributeBasedPersonComparator;
 
@@ -19,6 +21,7 @@ public class LexSortCommand extends SortCommand {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ATTRIBUTE + "Graduation Year";
     private final String attributeName;
+    private String adjustedAttributeName;
 
     /**
      * Initializes an instance with the comparator based on the attribute name.
@@ -28,11 +31,19 @@ public class LexSortCommand extends SortCommand {
     public LexSortCommand(String attributeName) {
         requireNonNull(attributeName);
         this.attributeName = attributeName;
+        this.adjustedAttributeName = attributeName;
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        this.adjustedAttributeName = model.findClosestAttributeName(this.attributeName).orElse(this.attributeName);
+        return super.execute(model);
     }
 
     @Override
     public AttributeBasedPersonComparator getComparator() {
-        return new AttributeBasedPersonComparator(this.attributeName, new ValueBasedAttributeComparator());
+        return new AttributeBasedPersonComparator(this.adjustedAttributeName, new ValueBasedAttributeComparator());
     }
 
     @Override
