@@ -81,6 +81,17 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Showing a person's details: `show`
+
+Shows the specified person's details in the right panel.
+
+Format: `show INDEX`
+
+* You can also view a person's details by clicking on them in the left panel.
+
+Example:
+* `show 1` shows the details of the 1st person.<br>
+  ![result for 'show 1'](images/showAlexYeohResult.png)
 
 ### Adding a person: `add`
 
@@ -281,6 +292,7 @@ Action     | Format, Examples
 **Exit**   | `edit`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
+**Show**   | `show INDEX` <br> e.g., `show 1`
 **Sort** | `sort a/ATTRIBUTE_NAME`<br> e.g., `sort a/Graduation Year`
 **Filter** | `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `filter a/Major=Computer Science`
 **Undo**   | `undo`
