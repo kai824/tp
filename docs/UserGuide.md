@@ -192,7 +192,7 @@ Examples:
   * Please note that, in this case, candidates who are missing any of the attributes (i.e., do not have an attribute with the name Major or Graduation year) will **NOT** be matched. For instance, a candidate with no attributes will not be matched.
   * You can also obtain the same result with `filter a/Major=Computer Science a/Graduation year=2028 a/Major=Mathematics`, because the order of the arguments does not matter.
 
-### Sorting entries by an attribute: `sort`
+### Sorting entries by the string representation of an attribute: `sort`
 
 Sorts the current view of entries by the value of the specified attribute name in lexicographically ascending order.
 
@@ -200,9 +200,25 @@ Format: `sort a/ATTRIBUTE_NAME`
 
 *  Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
+* The input names and values are tolerant of typos–the app automatically corrects them.
 
 Example:
 * `sort a/major` sorts all entries with the "Major" attribute by lexicographical order of the attribute value of "Major".
+
+### Sorting entries by the numerical value of an attribute: `sort`
+
+Sorts the current view of entries by the numeric value of the specified attribute name in ascending order.
+
+Format: `sort-num a/ATTRIBUTE_NAME`
+
+* For each attribute value which can be parsed into a number, its numerical value will be stored.
+* Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
+* Among entries with the specified attribute name, those without a valid numerical value is placed at the back without altering their internal order. 
+* `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
+* The input names and values are tolerant of typos–the app automatically corrects them.
+
+Example:
+* `sort-num a/GPA` sorts all entries with the "GPA" attribute by ascending order of the numerical attribute value of "GPA".
 
 ### Undo the last data change: `undo`
 
@@ -278,7 +294,8 @@ Action     | Format, Examples
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/ATTRIBUTE_NAME]…` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
-**Sort** | `sort a/ATTRIBUTE_NAME`<br> e.g., `sort a/Graduation Year`
+**Sort** | `sort a/ATTRIBUTE_NAME`<br> e.g., `sort a/Degree`
+**Numerical Sort** | `sort-num a/ATTRIBUTE_NAME`<br> e.g., `sort-num a/Expected Salary`
 **Filter** | `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `filter a/Major=Computer Science`
 **Undo**   | `undo`
 **Help**   | `help`
