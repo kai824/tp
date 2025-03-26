@@ -159,6 +159,10 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Optional<Long> numOfPersonsWithNumericalValue(String attributeName) {
+        return addressBook.numOfPersonsWithNumericalValue(attributeName);
+    }
+    @Override
     public boolean revertLastState() {
         // Ignore previous state if no change happened since. Happens if last command doesn't change any data
         while (!previousStates.isEmpty() && previousStates.peek().equals(addressBook)) {

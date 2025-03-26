@@ -35,7 +35,7 @@ public abstract class SortCommand extends Command {
      * Returns the warning message produced by this sort command.
      * If there is no warning, an empty String is returned.
      */
-    public abstract String getWarningMessage();
+    public abstract String getWarningMessage(Model model);
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -43,7 +43,7 @@ public abstract class SortCommand extends Command {
 
         this.adjustedAttributeName = model.findClosestAttributeName(this.attributeName).orElse(this.attributeName);
         model.sortFilteredPersonList(this.getComparator());
-        String message = this.getWarningMessage() + String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW);
+        String message = this.getWarningMessage(model) + Messages.MESSAGE_PERSONS_SORTED_OVERVIEW;
         return new CommandResult(message);
 
     }

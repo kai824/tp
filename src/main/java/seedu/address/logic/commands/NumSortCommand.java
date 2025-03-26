@@ -3,6 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 
+import java.util.Optional;
+
+import seedu.address.model.Model;
 import seedu.address.model.attribute.NumericalValueBasedAttributeComparator;
 import seedu.address.model.person.AttributeBasedPersonComparator;
 
@@ -20,6 +23,9 @@ public class NumSortCommand extends SortCommand {
             + "Parameters: ATTRIBUTE_NAME (case-insensitive)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ATTRIBUTE + "Graduation Year";
+    public static final String MESSAGE_WARNING_MISSING_NUMERICALS =
+            "WARNING! Only entries up to index %1$d have valid numerical values for the specified attribute.\n";
+
 
     /**
      * Initializes an instance with the comparator based on the attribute name.
@@ -36,9 +42,9 @@ public class NumSortCommand extends SortCommand {
     }
 
     @Override
-    public String getWarningMessage() {
-        //TODO
-        return "";
+    public String getWarningMessage(Model model) {
+        Optional<Long> count = model.numOfPersonsWithNumericalValue(this.adjustedAttributeName);
+        return count.map(val -> String.format(MESSAGE_WARNING_MISSING_NUMERICALS, val)).orElse("");
     }
 
     @Override

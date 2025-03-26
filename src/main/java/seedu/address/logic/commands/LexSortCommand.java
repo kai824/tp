@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 
+import seedu.address.model.Model;
 import seedu.address.model.attribute.ValueBasedAttributeComparator;
 import seedu.address.model.person.AttributeBasedPersonComparator;
 
@@ -36,7 +37,7 @@ public class LexSortCommand extends SortCommand {
     }
 
     @Override
-    public String getWarningMessage() {
+    public String getWarningMessage(Model model) {
         return "";
     }
 
