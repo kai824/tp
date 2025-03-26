@@ -12,6 +12,7 @@ public class ValueBasedAttributeComparator implements Comparator<Attribute> {
     public int compare(Attribute o1, Attribute o2) {
         requireNonNull(o1);
         requireNonNull(o2);
+        assert(o1.matchesName(o2.getAttributeName()));
         return o1.compareToSameNameAttributeDefault(o2);
     }
 }

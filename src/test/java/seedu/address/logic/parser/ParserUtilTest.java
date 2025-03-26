@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_NAME_
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_VALUE_ALT_GRAD_YEAR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_VALUE_GRAD_YEAR;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.parser.ParserUtil.parseStringValueToNumericalValue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -13,6 +14,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -81,6 +83,14 @@ public class ParserUtilTest {
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
         Name expectedName = new Name(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+    }
+
+    @Test
+    public void testParseStringValueToNumericalValue() {
+        assertEquals(Optional.empty(), ParserUtil.parseStringValueToNumericalValue("Hi"));
+        assertEquals(Optional.of((Double)2.0), ParserUtil.parseStringValueToNumericalValue("2.00000"));
+        assertEquals(Optional.of((Double)(-10.0)), parseStringValueToNumericalValue("-10"));
+        assertEquals(Optional.empty(), ParserUtil.parseStringValueToNumericalValue("$200"));
     }
 
     @Test

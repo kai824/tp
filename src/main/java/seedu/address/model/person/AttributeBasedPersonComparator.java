@@ -13,10 +13,6 @@ import seedu.address.model.attribute.Attribute;
 public class AttributeBasedPersonComparator implements Comparator<Person> {
     private final String attributeName;
     private final Comparator<Attribute> attributeComparator;
-    private enum SortType {
-        LEXICOGRAPHICAL,
-        NUMERICAL
-    }
 
     /**
      * Initializes an instance with an attribute.
