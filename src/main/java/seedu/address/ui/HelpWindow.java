@@ -5,11 +5,8 @@ import java.net.URI;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
