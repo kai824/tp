@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.Stack;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -25,6 +26,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private final Stack<AddressBook> previousStates;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -36,6 +39,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        this.previousStates = new Stack<>();
     }
 
     public ModelManager() {
@@ -151,6 +156,29 @@ public class ModelManager implements Model {
     @Override
     public Optional<String> findClosestAttributeValue(String target) {
         return addressBook.findClosestAttributeValue(target);
+    }
+
+    @Override
+    public boolean revertLastState() {
+        // Ignore previous state if no change happened since. Happens if last command doesn't change any data
+        while (!previousStates.isEmpty() && previousStates.peek().equals(addressBook)) {
+            previousStates.pop();
+        }
+        if (previousStates.isEmpty()) {
+            return false;
+        }
+        addressBook.resetData(previousStates.pop());
+        return true;
+    }
+
+    @Override
+    public void saveState() {
+        // don't save if state has not changed
+        if (previousStates.isEmpty()) {
+            previousStates.push(new AddressBook(addressBook));
+        } else if (!previousStates.peek().equals(addressBook)) {
+            previousStates.push(new AddressBook(addressBook));
+        }
     }
 
     @Override

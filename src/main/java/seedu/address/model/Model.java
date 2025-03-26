@@ -110,4 +110,15 @@ public interface Model {
      * An empty Optional will be returned if there is no value close enough.
      */
     Optional<String> findClosestAttributeValue(String target);
+
+    /**
+     * Saves the current AddressBook into the history
+     */
+    void saveState();
+
+    /**
+     * Reverts the AddressBook to the last saved state.
+     * @return A boolean of whether the AddressBook was successfully reverted
+     */
+    boolean revertLastState();
 }

@@ -41,6 +41,8 @@ TalentFolio is an application for hiring managers to manage information on job c
 
    * `clear` : Deletes all candidates.
 
+   * `undo` : Undoes the last command.
+
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -202,6 +204,29 @@ Format: `sort a/ATTRIBUTE_NAME`
 Example:
 * `sort a/major` sorts all entries with the "Major" attribute by lexicographical order of the attribute value of "Major".
 
+### Undo the last data change: `undo`
+
+Undoes the last data change. For instance, if you deleted the wrong entry accidentally, you can use this command to revert the data.
+
+Format: `undo`
+* Only changes since the app was opened can be undone.
+* Changes that are undone cannot be redone.
+* `undo` can be used multiple times in succession to undo more changes.
+* Does not change any applied filters. If a filter was accidentally applied, you can use `list` to clear any existing filters.
+* Does not work after exiting and re-opening the app. Using `undo` on a freshly opened app will not change anything.
+
+### Navigating past executed commands: `UP_ARROW`/`DOWN_ARROW`
+
+Navigates through past command history, replacing the text in the command box with the past executed command.
+The `UP_ARROW` key shows the previous executed command while the `DOWN_ARROW` key shows the next executed command.
+`ENTER` is not required to be pressed for navigation.
+No error message will be shown if attempting to navigate beyond the first and last executed commands.
+If attempting to navigate beyond the first executed command, the first executed command will remain shown.
+If attempting to navigate beyond the last executed command, an empty string will be shown.
+Executing any valid command will reset the last executed command to the command that was just executed.
+Editing the command shown without execution will not change the previous and next executed commands.
+Navigating to previous or next executed commands will overwrite any edits to previous command and edits will not be maintained when navigating back.
+
 ### Exiting the program: `exit`
 
 Exits the program.
@@ -255,4 +280,5 @@ Action     | Format, Examples
 **List**   | `list`
 **Sort** | `sort a/ATTRIBUTE_NAME`<br> e.g., `sort a/Graduation Year`
 **Filter** | `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `filter a/Major=Computer Science`
+**Undo**   | `undo`
 **Help**   | `help`

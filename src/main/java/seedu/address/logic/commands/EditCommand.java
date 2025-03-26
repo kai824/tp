@@ -105,21 +105,25 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
+        // relies on Attribute being immutable
+        Set<Attribute> prevAttributes = personToEdit.getAttributes();
+
+        Person personToReturn = new Person(updatedName, updatedPhone, updatedEmail, updatedTags, prevAttributes);
+
         Set<Attribute> updatedAttributes = editPersonDescriptor.getUpdateAttributes().orElse(null);
         Set<String> removedAttributes = editPersonDescriptor.getRemoveAttributes().orElse(null);
         if (updatedAttributes != null) {
             for (Attribute attr: updatedAttributes) {
-                personToEdit.updateAttribute(attr);
+                personToReturn.updateAttribute(attr);
             }
         }
         if (removedAttributes != null) {
             for (String attrName: removedAttributes) {
-                personToEdit.removeAttributeByName(attrName);
+                personToReturn.removeAttributeByName(attrName);
             }
         }
-        Set<Attribute> updatedRemovedAttributes = personToEdit.getAttributes();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedTags, updatedRemovedAttributes);
+        return personToReturn;
     }
 
     @Override
