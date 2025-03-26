@@ -19,7 +19,7 @@ public class NumSortCommand extends SortCommand {
             + ": Sort the candidates in ascending order based on numerical value of the specified attribute.\n"
             + "Candidates lacking the specified attribute name will be placed last, preserving their original order.\n"
             + "Among Candidates with the specified attribute name, "
-            + "./gthose without a numerical value will be placed last.\n"
+            + "those without a numerical value will be placed last.\n"
             + "Parameters: ATTRIBUTE_NAME (case-insensitive)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ATTRIBUTE + "Graduation Year";

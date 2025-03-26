@@ -13,12 +13,6 @@ public class NumericalValueBasedAttributeComparator implements Comparator<Attrib
         requireNonNull(o1);
         requireNonNull(o2);
         assert(o1.matchesName(o2.getAttributeName()));
-        if (!o2.hasNumericalValue()) {
-            return -1;
-        } else if (!o1.hasNumericalValue()) {
-            return 1;
-        } else {
-            return o1.compareToSameNameAttributeNumeric(o2);
-        }
+        return o1.compareToSameNameAttributeNumeric(o2);
     }
 }

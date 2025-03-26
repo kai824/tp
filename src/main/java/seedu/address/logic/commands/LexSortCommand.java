@@ -20,7 +20,7 @@ public class LexSortCommand extends SortCommand {
             + "will be placed last, preserving their original order.\n"
             + "Parameters: ATTRIBUTE_NAME (case-insensitive)\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ATTRIBUTE + "Graduation Year";
+            + PREFIX_ATTRIBUTE + "Location";
 
     /**
      * Initializes an instance with the comparator based on the attribute name.
