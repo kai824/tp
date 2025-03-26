@@ -215,17 +215,19 @@ Format: `undo`
 * Does not change any applied filters. If a filter was accidentally applied, you can use `list` to clear any existing filters.
 * Does not work after exiting and re-opening the app. Using `undo` on a freshly opened app will not change anything.
 
-### Navigating past executed commands: `UP_ARROW`/`DOWN_ARROW`
+### Navigating past commands: `↑` `↓`
 
-Navigates through past command history, replacing the text in the command box with the past executed command.
-The `UP_ARROW` key shows the previous executed command while the `DOWN_ARROW` key shows the next executed command.
-`ENTER` is not required to be pressed for navigation.
-No error message will be shown if attempting to navigate beyond the first and last executed commands.
-If attempting to navigate beyond the first executed command, the first executed command will remain shown.
-If attempting to navigate beyond the last executed command, an empty string will be shown.
-Executing any valid command will reset the last executed command to the command that was just executed.
-Editing the command shown without execution will not change the previous and next executed commands.
-Navigating to previous or next executed commands will overwrite any edits to previous command and edits will not be maintained when navigating back.
+Navigates through command history, replacing the text in the command box with the past executed command.
+
+Format: Press the up arrow (`↑`) or down arrow (`↓`) key while the command box is selected.
+* The up arrow (`↑`) key shows the previous executed command while the down arrow (`↓`) key shows the next executed command.
+* `ENTER` is not required to be pressed for navigation.
+* No error message will be shown if attempting to navigate beyond the first and last executed commands.
+* If attempting to navigate beyond the first executed command, the first executed command will remain shown.
+* If attempting to navigate beyond the last executed command, the command box will be emptied.
+* Executing any valid command will reset the last executed command to the command that was just executed.
+* Editing the command shown without execution will not change the previous and next executed commands.
+* After editing the command shown, navigating to previous or next executed commands will discard any edits done (these edits will not be maintained when navigating back).
 
 ### Exiting the program: `exit`
 
@@ -276,6 +278,7 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/ATTRIBUTE_NAME]…` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Exit**   | `edit`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Sort** | `sort a/ATTRIBUTE_NAME`<br> e.g., `sort a/Graduation Year`
