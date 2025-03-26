@@ -129,6 +129,31 @@ Examples:
 *  `edit 1 a/Graduation Year=2027` Adds or edits an attribute named "Graduation Year" to the 1st person.
 *  `edit 1 ra/Graduation Year` Removes the attribute named "Graduation Year" from the 1st person.
 
+### Linking an attribute name to a site URL: `link`
+
+Adds a mapping between an attribute name and a site URL. By doing so, you can visit the website by simply clicking on the attribute in the individual view of the candidate, which can be shown by clicking on them or by entering the `show` command.
+
+Format: `link [a/ATTRIBUTE_NAME=SITE_LINK]`
+
+* Adds a mapping between the `ATTRIBUTE_NAME` (attribute name) and the `SITE_LINK` (site URL). This change applies to all candidates with an attribute that has the given name.
+* The attribute name is treated case-insensitively.
+* To remove an existing mapping, leave the `SITE_LINK` empty.
+
+Examples:
+* `link a/github=https://github.com/`
+  * You can now visit the `https://github.com/ATTRIBUTE_VALUE` (i.e., the username) by clicking on the attribute.
+  * For example, if a candidate has an attribute with the name `GitHub` and the value (i.e., usename) `pochitaro2025`, you will be redirected to `https://github.com/pochitaro2025`! Note the case-insensitivity.
+* `link a/github=`
+  * Conversely, this will delete the mapping between `github` and `https://github.com/`.
+  * You will no longer be redirected to the GitHub page from now on.
+
+<box type="tip" seamless>
+
+**Tip:** Mappings for `github` and `linkedin` (`https://github.com/` and `https://www.linkedin.com/in/`) are added by default!
+
+Enjoy the easy management of websites!!
+</box>
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
