@@ -47,22 +47,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         resetData(toBeCopied);
     }
 
-    /**
-     * Returns the number of persons with a numerical value for the given {@code attributeName}.
-     * This method should only be called after a sort-num is applied to the saved list.
-     * An empty Optional will be returned if all persons have a numerical value.
-     */
-    public Optional<Long> numOfPersonsWithNumericalValue(String attributeName) {
-        long countNumerical = persons.asUnmodifiableObservableList().stream().filter(person ->
-                person.getAttribute(attributeName).isPresent()
-                        && person.getAttribute(attributeName).get().hasNumericalValue()).count();
-        if (countNumerical == (long) persons.asUnmodifiableObservableList().size()) {
-            return Optional.empty();
-        } else {
-            return Optional.of(countNumerical);
-        }
-    }
-
     //// update aliasing
 
     /**
