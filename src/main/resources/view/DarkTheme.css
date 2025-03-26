@@ -1,3 +1,6 @@
+* {
+}
+
 .background {
     -fx-background-color: derive(#1e1e2e, 20%);
     background-color: derive(#1e1e2e, 20%); /* Used in the default.html file */
@@ -386,25 +389,25 @@
 }
 
 #tags .label {
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #356b80;
 }
 
 #attributes .label {
-    -fx-background-color: #87386e;
+    -fx-background-color: #5a458c;
 }
 
 #attributes .label#site-attribute-list {
-    -fx-background-color: #644c9f;
+    -fx-background-color: #773963;
 }
 
 #attributes .label#site-attribute-details {
-    -fx-background-color: #644c9f;
+    -fx-background-color: #773963;
+    -fx-text-fill: #B8E6FF;
     -fx-cursor: hand;
     -fx-underline: true;
-    -fx-text-fill: skyblue;
 }
 
 #attributes .label#site-attribute-details:hover {
-    -fx-background-color: derive(#644c9f, 20%);
-    -fx-text-fill: lightskyblue;
+    -fx-background-color: derive(#773963, 20%);
+    -fx-text-fill: derive(#B8E6FF, 40%);
 }

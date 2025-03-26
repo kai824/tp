@@ -58,15 +58,14 @@ public class AddressBook implements ReadOnlyAddressBook {
                 .map(attribute -> attribute.updateSiteLink(aliasMappings.getAlias(attribute.getAttributeName())))
                 .collect(Collectors.toSet());
 
-        updatedAttributes.forEach(updatedAttribute -> person.updateAttribute(updatedAttribute));
+        updatedAttributes.forEach(person::updateAttribute);
     }
 
     /**
      * Updates site links for each Person in this address book.
      */
     private void updateAliasingsForAllPersons() {
-        persons.asUnmodifiableObservableList()
-            .stream().forEach(person -> updateAliasingsForPerson(person));
+        persons.asUnmodifiableObservableList().forEach(this::updateAliasingsForPerson);
     }
 
     //// list overwrite operations
