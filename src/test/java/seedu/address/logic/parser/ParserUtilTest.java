@@ -88,8 +88,8 @@ public class ParserUtilTest {
     @Test
     public void testParseStringValueToNumericalValue() {
         assertEquals(Optional.empty(), ParserUtil.parseStringValueToNumericalValue("Hi"));
-        assertEquals(Optional.of((Double)2.0), ParserUtil.parseStringValueToNumericalValue("2.00000"));
-        assertEquals(Optional.of((Double)(-10.0)), parseStringValueToNumericalValue("-10"));
+        assertEquals(Optional.of((Double) 2.0), ParserUtil.parseStringValueToNumericalValue("2.00000"));
+        assertEquals(Optional.of((Double) (-10.0)), parseStringValueToNumericalValue("-10"));
         assertEquals(Optional.empty(), ParserUtil.parseStringValueToNumericalValue("$200"));
     }
 
