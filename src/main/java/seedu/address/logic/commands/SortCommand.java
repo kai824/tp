@@ -7,6 +7,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.AttributeBasedPersonComparator;
 
+/**
+ * Represents a sort command that sorts the list of persons based on a specified attribute comparator.
+ * Subclasses should provide the appropriate comparator and any relevant warning message.
+ */
 public abstract class SortCommand extends Command {
     /**
      * Returns the Comparator to use for this sort command
