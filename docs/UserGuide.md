@@ -216,6 +216,8 @@ Format: `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…`
   3. You can specify attributes of different names, with multiple values of each. In this case, the first rule will be applied first, followed by the second rule (see Examples).
   4. The order of the given attributes does not matter (see Examples).
 * `ATTRIBUTE_NAME` is matched case-insensitively, while `ATTRIBUTE_VALUE` is matched case-sensitively.
+* The input names and values are tolerant of typos–the app automatically corrects them.
+  * For example, `GraduatOIn year` will be corrected to `GraduatIOn year` automatically, if only `Graduation year` exists as an attribute name.
 
 Examples:
 * `filter a/Major=Computer Science a/Graduation year=2028` filters all the candidates who major in Computer Science **AND** will graduate in 2028.
