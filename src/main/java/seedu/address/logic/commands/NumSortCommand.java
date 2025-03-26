@@ -17,7 +17,8 @@ public class NumSortCommand extends SortCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sort the candidates in ascending order based on numerical value of the specified attribute.\n"
             + "Candidates lacking the specified attribute name will be placed last, preserving their original order.\n"
-            + "Among Candidates with the specified attribute name, those without a numerical value will be placed last.\n"
+            + "Among Candidates with the specified attribute name, "
+            + "./gthose without a numerical value will be placed last.\n"
             + "Parameters: ATTRIBUTE_NAME (case-insensitive)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ATTRIBUTE + "Graduation Year";
