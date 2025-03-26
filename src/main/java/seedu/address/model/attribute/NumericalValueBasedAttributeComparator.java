@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 
-public class NumericalValueBasedAttributeComparator extends Comparator<Attribute> {
+public class NumericalValueBasedAttributeComparator implements Comparator<Attribute> {
     @Override
     public int compare(Attribute o1, Attribute o2) {
         requireNonNull(o1);

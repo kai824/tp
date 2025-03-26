@@ -12,6 +12,7 @@ import seedu.address.model.attribute.Attribute;
 
 public class AttributeBasedPersonComparator implements Comparator<Person> {
     private final String attributeName;
+    private final Comparator<Attribute> attributeComparator;
     private enum SortType {
         LEXICOGRAPHICAL,
         NUMERICAL
@@ -23,8 +24,9 @@ public class AttributeBasedPersonComparator implements Comparator<Person> {
      *
      * @param attributeName The attribute name with which the candidates will be sorted.
      */
-    public AttributeBasedPersonComparator(String attributeName) {
+    public AttributeBasedPersonComparator(String attributeName, Comparator<Attribute> attributeComparator) {
         this.attributeName = attributeName;
+        this.attributeComparator = attributeComparator;
     }
 
     @Override
@@ -37,6 +39,6 @@ public class AttributeBasedPersonComparator implements Comparator<Person> {
         if (o1Attribute.isEmpty()) {
             return 1;
         }
-        return o1Attribute.get().compareToAttributeOfSameAttributeName(o2Attribute.get());
+        return attributeComparator.compare(o1Attribute.get(), o2Attribute.get());
     }
 }
