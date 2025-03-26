@@ -43,7 +43,7 @@ public class Attribute {
         checkArgument(isValidAttribute(attributeValue), MESSAGE_CONSTRAINTS);
         this.attributeName = attributeName;
         this.attributeValue = attributeValue;
-        this.attributeNumericalValue = ParserUtil.parseStringValueToNumericalValue(attributeName);
+        this.attributeNumericalValue = ParserUtil.parseStringValueToNumericalValue(attributeValue);
         this.siteLink = Optional.empty();
     }
 
@@ -54,7 +54,7 @@ public class Attribute {
         checkArgument(isValidAttribute(attributeName), MESSAGE_CONSTRAINTS);
         checkArgument(isValidAttribute(attributeValue), MESSAGE_CONSTRAINTS);
         this.attributeName = attributeName;
-        this.attributeNumericalValue = ParserUtil.parseStringValueToNumericalValue(attributeName);
+        this.attributeNumericalValue = ParserUtil.parseStringValueToNumericalValue(attributeValue);
         this.attributeValue = attributeValue;
         this.siteLink = Optional.of(siteLink);
     }
