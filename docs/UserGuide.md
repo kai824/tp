@@ -204,7 +204,7 @@ Format: `sort a/ATTRIBUTE_NAME`
 Example:
 * `sort a/major` sorts all entries with the "Major" attribute by lexicographical order of the attribute value of "Major".
 
-### Undo the last data change: `undo`
+### Undoing the last data change: `undo`
 
 Undoes the last data change. For instance, if you deleted the wrong entry accidentally, you can use this command to revert the data.
 
