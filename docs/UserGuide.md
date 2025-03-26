@@ -152,11 +152,11 @@ Format: `link [a/ATTRIBUTE_NAME=SITE_LINK]`
 
 Examples:
 * `link a/github=https://github.com/`
-    * You can now visit the `https://github.com/ATTRIBUTE_VALUE` (i.e., the username) by clicking on the attribute.
-    * For example, if a candidate has an attribute with the name `GitHub` and the value (i.e., usename) `pochitaro2025`, you will be redirected to `https://github.com/pochitaro2025`! Note the case-insensitivity.
+  * You can now visit the `https://github.com/ATTRIBUTE_VALUE` (i.e., the username) by clicking on the attribute.
+  * For example, if a candidate has an attribute with the name `GitHub` and the value (i.e., usename) `pochitaro2025`, you will be redirected to `https://github.com/pochitaro2025`! Note the case-insensitivity.
 * `link a/github=`
-    * Conversely, this will delete the mapping between `github` and `https://github.com/`.
-    * You will no longer be redirected to the GitHub page from now on.
+  * Conversely, this will delete the mapping between `github` and `https://github.com/`.
+  * You will no longer be redirected to the GitHub page from now on.
 
 <box type="tip" seamless>
 
