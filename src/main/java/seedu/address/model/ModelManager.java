@@ -164,7 +164,10 @@ public class ModelManager implements Model {
         long countNumerical = filteredPersons.stream().filter(person ->
                 person.getAttribute(attributeName).isPresent()
                         && person.getAttribute(attributeName).get().hasNumericalValue()).count();
-        if (countNumerical == (long) filteredPersons.size()) {
+
+        long countHaAttribute = filteredPersons.stream()
+                .filter(person -> person.getAttribute(attributeName).isPresent()).count();
+        if (countNumerical == countHaAttribute) {
             return Optional.empty();
         } else {
             return Optional.of(countNumerical);
