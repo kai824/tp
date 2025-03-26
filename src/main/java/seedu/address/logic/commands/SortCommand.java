@@ -12,6 +12,20 @@ import seedu.address.model.person.AttributeBasedPersonComparator;
  * Subclasses should provide the appropriate comparator and any relevant warning message.
  */
 public abstract class SortCommand extends Command {
+    protected final String attributeName;
+    protected String adjustedAttributeName;
+
+    /**
+     * Initializes an instance with the comparator based on the attribute name.
+     *
+     * @param attributeName The name of the attribute to sort the user input.
+     */
+    public SortCommand(String attributeName) {
+        requireNonNull(attributeName);
+        this.attributeName = attributeName;
+        this.adjustedAttributeName = attributeName;
+    }
+
     /**
      * Returns the Comparator to use for this sort command
      */
@@ -26,10 +40,10 @@ public abstract class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        this.adjustedAttributeName = model.findClosestAttributeName(this.attributeName).orElse(this.attributeName);
         model.sortFilteredPersonList(this.getComparator());
-
         String message = this.getWarningMessage() + String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW);
-
         return new CommandResult(message);
 
     }

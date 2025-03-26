@@ -189,7 +189,7 @@ public class ParserUtil {
      * Parses {@code Collection<String> attributes} into a {@code Set<Attribute>}.
      */
     public static Set<Attribute> parseAttributes(Collection<String> attributes,
-                                                 boolean isDuplicateAllowed) throws ParseException {
+            boolean isDuplicateAllowed) throws ParseException {
         requireNonNull(attributes);
         final Set<Attribute> attributeSet = new HashSet<>();
         final Set<String> attributeNames = new HashSet<>();

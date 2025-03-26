@@ -188,7 +188,7 @@ public class Attribute implements Comparable<Attribute> {
      * @param other The other attribute to compare with
      * @return 0 if they have the same attribute value, -1 if attribute1 has a smaller value, 1 otherwise
      */
-    public int compareToAttributeOfSameAttributeNameByDefaultValue(Attribute other) {
+    public int compareToSameNameAttributeDefault(Attribute other) {
         assert this.matchesName(other.attributeName);
         return this.attributeValue.compareTo(other.attributeValue);
     }
@@ -199,7 +199,7 @@ public class Attribute implements Comparable<Attribute> {
      * @param other The other attribute to compare with
      * @return 0 if they have the same attribute value, -1 if attribute1 has a smaller value, 1 otherwise
      */
-    public int compareToAttributeOfSameAttributeValueByNumericalValue(Attribute other) {
+    public int compareToSameNameAttributeNumeric(Attribute other) {
         assert this.matchesName(other.attributeName);
         if (!other.hasNumericalValue()) {
             return -1;

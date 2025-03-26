@@ -17,7 +17,7 @@ public class NumericalValueBasedAttributeComparator implements Comparator<Attrib
         } else if (!o1.hasNumericalValue()) {
             return 1;
         } else {
-            return o1.compareToAttributeOfSameAttributeValueByNumericalValue(o2);
+            return o1.compareToSameNameAttributeNumeric(o2);
         }
     }
 }
