@@ -7,11 +7,8 @@ import java.net.URISyntaxException;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.attribute.Attribute;
@@ -67,19 +64,7 @@ public class PersonDetailsCard extends UiPart<Region> {
                 try {
                     Desktop.getDesktop().browse(new URI(link));
                 } catch (IOException | URISyntaxException e) {
-                    // Solution below adapted from
-                    // https://stackoverflow.com/questions/45620901/javafx-copy-text-from-alert
-                    TextArea textArea = new TextArea("There was an error in opening the link: " + link);
-                    textArea.setEditable(false);
-                    textArea.setWrapText(true);
-                    GridPane gridPane = new GridPane();
-                    gridPane.setMaxWidth(Double.MAX_VALUE);
-                    gridPane.add(textArea, 0, 0);
-
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.getDialogPane().setContent(gridPane);
-                    alert.showAndWait();
+                    UiUtils.showErrorOpeningLink(link);
                 }
             });
         }
