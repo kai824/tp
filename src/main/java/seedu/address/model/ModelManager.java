@@ -121,6 +121,7 @@ public class ModelManager implements Model {
     @Override
     public void updateAlias(String attributeName, Optional<String> siteLink) {
         addressBook.updateAlias(attributeName, siteLink);
+        updateFilteredPersonList(x -> true);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
