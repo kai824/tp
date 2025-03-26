@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 
+/**
+ * Compares two attributes based on their numerical values.
+ */
 public class NumericalValueBasedAttributeComparator implements Comparator<Attribute> {
     @Override
     public int compare(Attribute o1, Attribute o2) {

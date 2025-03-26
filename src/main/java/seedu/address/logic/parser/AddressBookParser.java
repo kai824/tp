@@ -22,7 +22,6 @@ import seedu.address.logic.commands.LexSortCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.NumSortCommand;
 import seedu.address.logic.commands.ShowCommand;
-import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
