@@ -5,6 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Optional;
 
+import seedu.address.logic.parser.ParserUtil;
+
 /**
  * Represents an Attribute in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidAttribute(String)}.
@@ -41,7 +43,7 @@ public class Attribute {
         checkArgument(isValidAttribute(attributeValue), MESSAGE_CONSTRAINTS);
         this.attributeName = attributeName;
         this.attributeValue = attributeValue;
-        this.attributeNumericalValue = this.getNumericalValue(attributeName);
+        this.attributeNumericalValue = ParserUtil.parseStringValueToNumericalValue(attributeName);
         this.siteLink = Optional.empty();
     }
 
@@ -52,7 +54,7 @@ public class Attribute {
         checkArgument(isValidAttribute(attributeName), MESSAGE_CONSTRAINTS);
         checkArgument(isValidAttribute(attributeValue), MESSAGE_CONSTRAINTS);
         this.attributeName = attributeName;
-        this.attributeNumericalValue = this.getNumericalValue(attributeName);
+        this.attributeNumericalValue = ParserUtil.parseStringValueToNumericalValue(attributeName);
         this.attributeValue = attributeValue;
         this.siteLink = Optional.of(siteLink);
     }
@@ -84,22 +86,6 @@ public class Attribute {
     public boolean hasNumericalValue() {
         requireNonNull(this.attributeNumericalValue);
         return this.attributeNumericalValue.isPresent();
-    }
-
-    /**
-     * Returns the numerical value represented by the given string.
-     * If the string cannot be parsed as a double, an empty Optional is returned.
-     *
-     * @param value String to be parsed into a Double.
-     * @return Optional containing the parsed Double value, or empty if parsing fails.
-     */
-    private Optional<Double> getNumericalValue(String value) {
-        requireNonNull(value);
-        try {
-            return Optional.of(Double.parseDouble(value));
-        } catch (NumberFormatException e) {
-            return Optional.empty();
-        }
     }
 
     /**

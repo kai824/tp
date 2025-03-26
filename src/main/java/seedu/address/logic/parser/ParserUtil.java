@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -209,6 +210,22 @@ public class ParserUtil {
         }
 
         return attributeSet;
+    }
+
+    /**
+     * Returns the numerical value represented by the given string.
+     * If the string cannot be parsed as a double, an empty Optional is returned.
+     *
+     * @param value String to be parsed into a Double.
+     * @return Optional containing the parsed Double value, or empty if parsing fails.
+     */
+    public static Optional<Double> parseStringValueToNumericalValue(String value) {
+        requireNonNull(value);
+        try {
+            return Optional.of(Double.parseDouble(value));
+        } catch (NumberFormatException e) {
+            return Optional.empty();
+        }
     }
 
     /**
