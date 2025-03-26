@@ -7,17 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.AttributeSortComparator;
 
-/**
- * Sort the candidates with the provided attribute.
- * Guarantees: immutable.
- */
-public class SortCommand extends Command {
-    public static final String COMMAND_WORD = "sort";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sort the candidates with the provided attribute provided attribute name. "
-            + "Candidates lacking the specified attribute name will be placed last, preserving their original order.\n"
-            + "Parameters: ATTRIBUTE_NAME (case-insensitive)\n"
-            + "Example: " + COMMAND_WORD + " a/Graduation Year";
+public abstract class SortCommand extends Command {
     private final String attributeName;
 
     /**
@@ -30,21 +20,25 @@ public class SortCommand extends Command {
         this.attributeName = attributeName;
     }
 
+    /**
+     * Returns the Comparator to use for this sort command
+     */
+    public abstract AttributeSortComparator getComparator();
+
+    /**
+     * Returns the warning message produced by this sort command.
+     * If there is no warning, an empty String is returned.
+     */
+    public abstract String getWarningMessage();
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.sortFilteredPersonList(new AttributeSortComparator(this.attributeName));
+        model.sortFilteredPersonList(this.getComparator());
 
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW
-                ));
-    }
+        String message = this.getWarning() + String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW);
 
-    @Override
-    public boolean equals(Object other) {
-        if (other instanceof SortCommand) {
-            return this.attributeName.equals(((SortCommand) other).attributeName);
-        }
-        return false;
+        return new CommandResult(message);
+
     }
 }

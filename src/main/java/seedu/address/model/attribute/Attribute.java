@@ -24,7 +24,8 @@ public class Attribute {
         "An attribute must consist of exactly one name and one value (both non-empty), separated by =.";
 
     private final String attributeName;
-    private final String attributeValue;
+    private final String attributeValue; //default attribute value
+    private final Optional<Double> attributeNumericalValue;
     private final Optional<String> siteLink;
 
     /**
@@ -40,6 +41,7 @@ public class Attribute {
         checkArgument(isValidAttribute(attributeValue), MESSAGE_CONSTRAINTS);
         this.attributeName = attributeName;
         this.attributeValue = attributeValue;
+        this.attributeNumericalValue = this.getNumericalValue(attributeName);
         this.siteLink = Optional.empty();
     }
 
@@ -50,6 +52,7 @@ public class Attribute {
         checkArgument(isValidAttribute(attributeName), MESSAGE_CONSTRAINTS);
         checkArgument(isValidAttribute(attributeValue), MESSAGE_CONSTRAINTS);
         this.attributeName = attributeName;
+        this.attributeNumericalValue = this.getNumericalValue(attributeName);
         this.attributeValue = attributeValue;
         this.siteLink = Optional.of(siteLink);
     }
@@ -68,8 +71,35 @@ public class Attribute {
         return attributeName;
     }
 
+    /**
+     * Returns the attribute value as a string.
+     */
     public String getAttributeValue() {
         return attributeValue;
+    }
+
+    /**
+     * Checks if the attribute value can be parsed into a Double.
+     */
+    public boolean hasNumericalValue() {
+        requireNonNull(this.attributeNumericalValue);
+        return this.attributeNumericalValue.isPresent();
+    }
+
+    /**
+     * Returns the numerical value represented by the given string.
+     * If the string cannot be parsed as a double, an empty Optional is returned.
+     *
+     * @param value String to be parsed into a Double.
+     * @return Optional containing the parsed Double value, or empty if parsing fails.
+     */
+    private Optional<Double> getNumericalValue(String value) {
+        requireNonNull(value);
+        try {
+            return Optional.of(Double.parseDouble(value));
+        } catch (NumberFormatException e) {
+            return Optional.empty();
+        }
     }
 
     /**
@@ -167,14 +197,33 @@ public class Attribute {
     }
 
     /**
-     * Compare to another attributes with the same attribute name by their attribute value.
+     * Compare to another attributes with the same attribute name by their default attribute value.
      *
      * @param other The other attribute to compare with
      * @return 0 if they have the same attribute value, -1 if attribute1 has a smaller value, 1 otherwise
      */
-    public int compareToAttributeOfSameAttributeName(Attribute other) {
+    public int compareToAttributeOfSameAttributeNameByDefaultValue(Attribute other) {
         assert this.matchesName(other.attributeName);
         return this.attributeValue.compareTo(other.attributeValue);
+    }
+
+    /**
+     * Compare to another attributes with the same attribute name by their numerical attribute value.
+     *
+     * @param other The other attribute to compare with
+     * @return 0 if they have the same attribute value, -1 if attribute1 has a smaller value, 1 otherwise
+     */
+    public int compareToAttributeOfSameAttributeValueByNumericalValue(Attribute other) {
+        assert this.matchesName(other.attributeName);
+        if (!other.hasNumericalValue()) {
+            return -1;
+        } else if (!this.hasNumericalValue()) {
+            return 1;
+        } else {
+            assert this.attributeNumericalValue.isPresent();
+            assert other.attributeNumericalValue.isPresent();
+            return this.attributeNumericalValue.get().compareTo(other.attributeNumericalValue.get());
+        }
     }
 
     @Override

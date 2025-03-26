@@ -10,8 +10,12 @@ import seedu.address.model.attribute.Attribute;
  * Guarantees: immutable.
  */
 
-public class AttributeSortComparator implements Comparator<Person> {
+public class AttributeBasedPersonComparator implements Comparator<Person> {
     private final String attributeName;
+    private enum SortType {
+        LEXICOGRAPHICAL,
+        NUMERICAL
+    }
 
     /**
      * Initializes an instance with an attribute.
@@ -19,7 +23,7 @@ public class AttributeSortComparator implements Comparator<Person> {
      *
      * @param attributeName The attribute name with which the candidates will be sorted.
      */
-    public AttributeSortComparator(String attributeName) {
+    public AttributeBasedPersonComparator(String attributeName) {
         this.attributeName = attributeName;
     }
 
