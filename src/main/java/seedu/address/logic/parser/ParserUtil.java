@@ -222,9 +222,7 @@ public class ParserUtil {
      */
     public static Optional<Double> parseStringValueToNumericalValue(String value) {
         requireNonNull(value);
-        System.out.println("Parsing " + value);
         try {
-            System.out.println(Double.parseDouble(value));
             return Optional.of(Double.parseDouble(value));
         } catch (NumberFormatException e) {
             return Optional.empty();
