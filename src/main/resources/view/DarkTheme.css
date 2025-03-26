@@ -306,6 +306,33 @@
     -fx-padding: 8 1 8 1;
 }
 
+.details-big-label {
+    -fx-font-family: "Inter Semi Bold";
+    -fx-font-size: 24px;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 0 0 15px 0;
+}
+
+.details-label {
+    -fx-font-family: "Inter Semi Bold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 15px 0 5px 0;
+}
+
+.details-small-label {
+    -fx-font-family: "Inter";
+    -fx-font-size: 13px;
+    -fx-text-fill: #ffffff;
+}
+
+.details-label-faded {
+    -fx-font-family: "Inter Semi Bold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #bbbbbb;
+    -fx-padding: 15px 0 5px 0;
+}
+
 #cardPane {
     -fx-border-width: 4;
     -fx-padding: 4;
@@ -366,33 +393,6 @@
     -fx-background-color: #87386e;
 }
 
-.details-big-label {
-    -fx-font-family: "Inter Semi Bold";
-    -fx-font-size: 24px;
-    -fx-text-fill: #ffffff;
-    -fx-padding: 0 0 15px 0;
-}
-
-.details-label {
-    -fx-font-family: "Inter Semi Bold";
-    -fx-font-size: 16px;
-    -fx-text-fill: #ffffff;
-    -fx-padding: 15px 0 5px 0;
-}
-
-.details-small-label {
-    -fx-font-family: "Inter";
-    -fx-font-size: 13px;
-    -fx-text-fill: #ffffff;
-}
-
-.details-label-faded {
-    -fx-font-family: "Inter Semi Bold";
-    -fx-font-size: 16px;
-    -fx-text-fill: #bbbbbb;
-    -fx-padding: 15px 0 5px 0;
-}
-
 #attributes .label#site-attribute-list {
     -fx-background-color: #644c9f;
 }
@@ -401,8 +401,10 @@
     -fx-background-color: #644c9f;
     -fx-cursor: hand;
     -fx-underline: true;
+    -fx-text-fill: skyblue;
 }
 
 #attributes .label#site-attribute-details:hover {
     -fx-background-color: derive(#644c9f, 20%);
+    -fx-text-fill: lightskyblue;
 }
