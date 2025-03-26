@@ -215,6 +215,18 @@ Format: `undo`
 * Does not change any applied filters. If a filter was accidentally applied, you can use `list` to clear any existing filters.
 * Does not work after exiting and re-opening the app. Using `undo` on a freshly opened app will not change anything.
 
+### Navigating past executed commands: `UP_ARROW`/`DOWN_ARROW`
+
+Navigates through past command history, replacing the text in the command box with the past executed command.
+The `UP_ARROW` key shows the previous executed command while the `DOWN_ARROW` key shows the next executed command.
+`ENTER` is not required to be pressed for navigation.
+No error message will be shown if attempting to navigate beyond the first and last executed commands.
+If attempting to navigate beyond the first executed command, the first executed command will remain shown.
+If attempting to navigate beyond the last executed command, an empty string will be shown.
+Executing any valid command will reset the last executed command to the command that was just executed.
+Editing the command shown without execution will not change the previous and next executed commands.
+Navigating to previous or next executed commands will overwrite any edits to previous command and edits will not be maintained when navigating back.
+
 ### Exiting the program: `exit`
 
 Exits the program.
