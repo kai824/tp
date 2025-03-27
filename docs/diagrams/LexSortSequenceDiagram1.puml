@@ -1,0 +1,55 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+skinparam sequenceReferenceBackgroundColor white
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":LexSortCommandParser" as LexSortCommandParser LOGIC_COLOR
+participant "d:LexSortCommand" as LexSortCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("sort a/Location")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("sort a/Location")
+activate AddressBookParser
+
+create LexSortCommandParser
+AddressBookParser -> LexSortCommandParser
+activate LexSortCommandParser
+
+LexSortCommandParser --> AddressBookParser
+deactivate LexSortCommandParser
+
+AddressBookParser -> LexSortCommandParser : parse("a/Location")
+activate LexSortCommandParser
+
+create LexSortCommand
+LexSortCommandParser -> LexSortCommand
+activate LexSortCommand
+
+LexSortCommand --> LexSortCommandParser :
+deactivate LexSortCommand
+
+LexSortCommandParser --> AddressBookParser : d
+deactivate LexSortCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+LexSortCommandParser -[hidden]-> AddressBookParser
+destroy LexSortCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> LexSortCommand : execute(m)
+activate LexSortCommand
+
+ref#white over LexSortCommand : sort lexicographically
+
+LexSortCommand --> LogicManager : r
+deactivate LexSortCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
