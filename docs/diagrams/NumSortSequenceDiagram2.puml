@@ -21,14 +21,14 @@ create NumericalValueBasedAttributeComparator
 NumSortCommand -> NumericalValueBasedAttributeComparator
 activate NumericalValueBasedAttributeComparator
 
-NumericalValueBasedAttributeComparator --> NumSortCommand : n
+NumericalValueBasedAttributeComparator --> NumSortCommand
 deactivate NumericalValueBasedAttributeComparator
 
 create AttributeBasedPersonComparator
 NumSortCommand -> AttributeBasedPersonComparator: AttributeBasedPersonComparator("Graduation Year", n)
 activate AttributeBasedPersonComparator
 
-AttributeBasedPersonComparator --> NumSortCommand: c
+AttributeBasedPersonComparator --> NumSortCommand
 deactivate AttributeBasedPersonComparator
 
 NumSortCommand -> Model : sortFilteredPersonList(c)

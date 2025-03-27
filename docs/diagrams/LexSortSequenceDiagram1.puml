@@ -10,6 +10,10 @@ participant ":LexSortCommandParser" as LexSortCommandParser LOGIC_COLOR
 participant "d:LexSortCommand" as LexSortCommand LOGIC_COLOR
 end box
 
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
 [-> LogicManager : execute("sort a/Location")
 activate LogicManager
 
@@ -45,7 +49,7 @@ deactivate AddressBookParser
 LogicManager -> LexSortCommand : execute(m)
 activate LexSortCommand
 
-ref#white over LexSortCommand : sort lexicographically
+ref#white over LexSortCommand, Model : sort lexicographically
 
 LexSortCommand --> LogicManager : r
 deactivate LexSortCommand

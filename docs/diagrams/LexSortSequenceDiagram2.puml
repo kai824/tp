@@ -21,14 +21,14 @@ create ValueBasedAttributeComparator
 LexSortCommand -> ValueBasedAttributeComparator
 activate ValueBasedAttributeComparator
 
-ValueBasedAttributeComparator --> LexSortCommand : v
+ValueBasedAttributeComparator --> LexSortCommand
 deactivate ValueBasedAttributeComparator
 
 create AttributeBasedPersonComparator
 LexSortCommand -> AttributeBasedPersonComparator: AttributeBasedPersonComparator("Location", v)
 activate AttributeBasedPersonComparator
 
-AttributeBasedPersonComparator --> LexSortCommand: c
+AttributeBasedPersonComparator --> LexSortCommand
 deactivate AttributeBasedPersonComparator
 
 LexSortCommand -> Model : sortFilteredPersonList(c)
