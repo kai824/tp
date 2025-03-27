@@ -249,6 +249,17 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] sort/numerical sort feature
+_{more descriptions to be added}
+
+The following sequence diagram shows how a default sort operation "sort a/Location" goes through the `Logic` component:
+
+<puml src="diagrams/LexSortSequenceDiagram.puml" width="250"></puml>
+
+Similarly, how a numerical sort operation "sort-num a/Graduation Year" goes through the `Logic` and `Model` component is shown below:
+
+<puml src="diagrams/NumSortSequenceDiagram.puml" width="250"></puml>
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
