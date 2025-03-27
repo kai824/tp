@@ -8,7 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 
 /**
- * Manages correspondencies between attribute names and website links.
+ * Manages correspondences between attribute names and website links.
  * It supports GitHub and LinkedIn by default.
  */
 public class AliasMappingList {

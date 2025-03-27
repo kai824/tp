@@ -163,6 +163,22 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Optional<Long> numOfPersonsWithNumericalValue(String attributeName) {
+
+        long countNumerical = filteredPersons.stream().filter(person ->
+                person.getAttribute(attributeName).isPresent()
+                        && person.getAttribute(attributeName).get().hasNumericalValue()).count();
+
+        long countHaAttribute = filteredPersons.stream()
+                .filter(person -> person.getAttribute(attributeName).isPresent()).count();
+        if (countNumerical == countHaAttribute) {
+            return Optional.empty();
+        } else {
+            return Optional.of(countNumerical);
+        }
+    }
+
+    @Override
     public boolean revertLastState() {
         // Ignore previous state if no change happened since. Happens if last command doesn't change any data
         while (!previousStates.isEmpty() && previousStates.peek().equals(addressBook)) {

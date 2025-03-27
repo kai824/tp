@@ -8,6 +8,14 @@ import org.junit.jupiter.api.Test;
 
 public class AttributeTest {
     @Test
+    public void testHasNumericalValues() {
+        Attribute attribute = new Attribute("Graduation Year", "2027");
+        assert(attribute.hasNumericalValue());
+        attribute = new Attribute("Expected Salary", "$10");
+        assert(!attribute.hasNumericalValue());
+    }
+
+    @Test
     public void equals() {
         Attribute attribute = new Attribute("Graduation Year", "2027");
 
