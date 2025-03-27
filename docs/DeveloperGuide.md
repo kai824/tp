@@ -255,16 +255,18 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] sort/numerical sort feature
-_{more descriptions to be added}
+### \[New feature\] Sort/numerical sort feature
+_{more descriptions to be added}_
 
-The following sequence diagram shows how a default sort operation "sort a/Location" goes through the `Logic` component:
+The following sequence diagrams show how a default sort operation "sort a/Location" goes through the `Logic` component:
 
-<puml src="diagrams/LexSortSequenceDiagram.puml" width="250"></puml>
+<puml src="diagrams/LexSortSequenceDiagram1.puml"></puml>
+<puml src="diagrams/LexSortSequenceDiagram2.puml"></puml>
 
-Similarly, how a numerical sort operation "sort-num a/Graduation Year" goes through the `Logic` and `Model` component is shown below:
+Similarly, the process in which a numerical sort operation "sort-num a/Graduation Year" goes through the `Logic` and `Model` components is shown below:
 
-<puml src="diagrams/NumSortSequenceDiagram.puml" width="250"></puml>
+<puml src="diagrams/NumSortSequenceDiagram1.puml"></puml>
+<puml src="diagrams/NumSortSequenceDiagram2.puml"></puml>
 
 ### \[Proposed\] Data archiving
 
