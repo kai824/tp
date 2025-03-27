@@ -22,11 +22,11 @@ TalentFolio is an application for hiring managers to manage information on job c
 
 1. Copy the file to the folder you want to use as the _home folder_ for TalentFolio.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar talentfolio.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Open a command terminal, navigate into the folder you put the jar file in (e.g. using the `cd` command), and use the `java -jar talentfolio.jar` command to run the application.<br>
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. It is recommended to clear the sample data before your own personal use as the sample data will not be automatically overwritten.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. E.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all candidates.
@@ -61,7 +61,7 @@ TalentFolio is an application for hiring managers to manage information on job c
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/Excel` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…`​ after them can be used as many times as desired (including zero times).<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Excel`, `t/C++ t/Java` etc.
 
 * Parameters can be in any order.<br>
@@ -171,6 +171,8 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
+* You must specify at least one keyword.
+* You can specify more than one keyword.
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
@@ -207,7 +209,7 @@ Format: `clear`
 
 Filters the candidates based on whether they have a specific attribute or not.
 
-Format: `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…`
+Format: `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE [a/ANOTHER_ATTRIBUTE_NAME=ANOTHER_ATTRIBUTE_VALUE]…`
 
 * You must specify at least one attribute.
 * You can specify more than one attribute:
@@ -232,13 +234,14 @@ Examples:
 
 ### Sorting entries by an attribute: `sort`
 
-Sorts the current view of entries by the value of the specified attribute name in lexicographically ascending order.
+Sorts the current view of entries by the value of the specified attribute name in alphabetical (lexicographically ascending) order.
 
 Format: `sort a/ATTRIBUTE_NAME`
 
 *  Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
-* The input names and values are tolerant of typos–the app automatically corrects them.
+* The input names and values are tolerant of typos – the app automatically corrects them.
+* There is no option to specify sorting in reverse order.
 
 Example:
 * `sort a/major` sorts all entries with the "Major" attribute by lexicographical order of the attribute value of "Major".
@@ -252,9 +255,10 @@ Format: `sort-num a/ATTRIBUTE_NAME`
 * For each attribute value which can be parsed into a number, its numerical value will be stored.
 * Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
 * Among entries with the specified attribute name, if some do not have a valid numerical value, they will be placed at the back while preserving their internal order.
-  * If the above case ever happens, a warning will be displayed to show which entry on the current view is the last one with a valid numerical value.
+  * In the above scenario, a warning will be displayed to show which entry on the current view is the last one with a valid numerical value.
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
-* The input names and values are tolerant of typos–the app automatically corrects them.
+* The input names and values are tolerant of typos – the app automatically corrects them.
+* There is no option to specify sorting in descending order.
 
 Example:
 * `sort-num a/GPA` sorts all entries with the "GPA" attribute by ascending order of the numerical attribute value of "GPA".
@@ -283,6 +287,7 @@ Format: Press the up arrow (`↑`) or down arrow (`↓`) key while the command b
 * Executing any valid command will reset the last executed command to the command that was just executed.
 * Editing the command shown without execution will not change the previous and next executed commands.
 * After editing the command shown, navigating to previous or next executed commands will discard any edits done (these edits will not be maintained when navigating back).
+* Navigating past commands requires the command box to be in focus.
 
 ### Exiting the program: `exit`
 
@@ -343,3 +348,4 @@ Action     | Format, Examples
 **Filter** | `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `filter a/Major=Computer Science`
 **Undo**   | `undo`
 **Help**   | `help`
+**Navigate Past Commands** | `↑` `↓`
