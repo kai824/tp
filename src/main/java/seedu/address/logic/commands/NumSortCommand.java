@@ -24,7 +24,7 @@ public class NumSortCommand extends SortCommand {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ATTRIBUTE + "Graduation Year";
     public static final String MESSAGE_WARNING_MISSING_NUMERICALS =
-            "WARNING! Only entries up to index %1$d have valid numerical values for the specified attribute.\n";
+            "WARNING! Only entries up to index %1$d have valid numerical values for the specified attribute name.\n";
 
 
     /**
