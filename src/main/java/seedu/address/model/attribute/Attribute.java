@@ -5,6 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Optional;
 
+import seedu.address.logic.parser.ParserUtil;
+
 /**
  * Represents an Attribute in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidAttribute(String)}.
@@ -24,7 +26,8 @@ public class Attribute implements Comparable<Attribute> {
         "An attribute must consist of exactly one name and one value (both non-empty), separated by =.";
 
     private final String attributeName;
-    private final String attributeValue;
+    private final String attributeValue; //default attribute value
+    private final Optional<Double> attributeNumericalValue;
     private final Optional<String> siteLink;
 
     /**
@@ -40,6 +43,7 @@ public class Attribute implements Comparable<Attribute> {
         checkArgument(isValidAttribute(attributeValue), MESSAGE_CONSTRAINTS);
         this.attributeName = attributeName;
         this.attributeValue = attributeValue;
+        this.attributeNumericalValue = ParserUtil.parseStringValueToNumericalValue(attributeValue);
         this.siteLink = Optional.empty();
     }
 
@@ -50,6 +54,7 @@ public class Attribute implements Comparable<Attribute> {
         checkArgument(isValidAttribute(attributeName), MESSAGE_CONSTRAINTS);
         checkArgument(isValidAttribute(attributeValue), MESSAGE_CONSTRAINTS);
         this.attributeName = attributeName;
+        this.attributeNumericalValue = ParserUtil.parseStringValueToNumericalValue(attributeValue);
         this.attributeValue = attributeValue;
         this.siteLink = Optional.of(siteLink);
     }
@@ -68,8 +73,19 @@ public class Attribute implements Comparable<Attribute> {
         return attributeName;
     }
 
+    /**
+     * Returns the attribute value as a string.
+     */
     public String getAttributeValue() {
         return attributeValue;
+    }
+
+    /**
+     * Checks if the attribute value can be parsed into a Double.
+     */
+    public boolean hasNumericalValue() {
+        requireNonNull(this.attributeNumericalValue);
+        return this.attributeNumericalValue.isPresent();
     }
 
     /**
@@ -167,14 +183,33 @@ public class Attribute implements Comparable<Attribute> {
     }
 
     /**
-     * Compare to another attributes with the same attribute name by their attribute value.
+     * Compare to another attributes with the same attribute name by their default attribute value.
      *
      * @param other The other attribute to compare with
      * @return 0 if they have the same attribute value, -1 if attribute1 has a smaller value, 1 otherwise
      */
-    public int compareToAttributeOfSameAttributeName(Attribute other) {
+    public int compareToSameNameAttributeDefault(Attribute other) {
         assert this.matchesName(other.attributeName);
         return this.attributeValue.compareTo(other.attributeValue);
+    }
+
+    /**
+     * Compare to another attributes with the same attribute name by their numerical attribute value.
+     *
+     * @param other The other attribute to compare with
+     * @return 0 if they have the same attribute value, -1 if attribute1 has a smaller value, 1 otherwise
+     */
+    public int compareToSameNameAttributeNumeric(Attribute other) {
+        assert this.matchesName(other.attributeName);
+        if (!other.hasNumericalValue()) {
+            return -1;
+        } else if (!this.hasNumericalValue()) {
+            return 1;
+        } else {
+            assert this.attributeNumericalValue.isPresent();
+            assert other.attributeNumericalValue.isPresent();
+            return this.attributeNumericalValue.get().compareTo(other.attributeNumericalValue.get());
+        }
     }
 
     @Override

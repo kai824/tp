@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,18 +27,19 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     public static final String MESSAGE_TOO_MANY_ARGUMENT_FOR_ATTRIBUTE =
-        Attribute.MESSAGE_USAGE + "\n" + "Also, " + Attribute.MESSAGE_CONSTRAINTS.toLowerCase();
+            Attribute.MESSAGE_USAGE + "\n" + "Also, " + Attribute.MESSAGE_CONSTRAINTS.toLowerCase();
 
     public static final String MESSAGE_MISSING_ARGUMENT_FOR_ATTRIBUTE =
-        "Attribute names and values cannot be empty.";
+            "Attribute names and values cannot be empty.";
 
     public static final String MESSAGE_EMPTY_ARGUMENT_FOR_ATTRIBUTE =
-        "You need to enter an attribute after " + PREFIX_ATTRIBUTE + ".\n"
-            + Attribute.MESSAGE_USAGE;
+            "You need to enter an attribute after " + PREFIX_ATTRIBUTE + ".\n"
+                    + Attribute.MESSAGE_USAGE;
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -143,7 +145,7 @@ public class ParserUtil {
         assert !trimmedAttribute.isEmpty() : "The trimmed attribute should not be empty here.";
 
         if (trimmedAttribute.charAt(0) == '='
-            || trimmedAttribute.charAt(trimmedAttribute.length() - 1) == '=') {
+                || trimmedAttribute.charAt(trimmedAttribute.length() - 1) == '=') {
             throw new ParseException(MESSAGE_MISSING_ARGUMENT_FOR_ATTRIBUTE);
         }
     }
@@ -187,7 +189,7 @@ public class ParserUtil {
      * Parses {@code Collection<String> attributes} into a {@code Set<Attribute>}.
      */
     public static Set<Attribute> parseAttributes(Collection<String> attributes,
-        boolean isDuplicateAllowed) throws ParseException {
+            boolean isDuplicateAllowed) throws ParseException {
         requireNonNull(attributes);
         final Set<Attribute> attributeSet = new HashSet<>();
         final Set<String> attributeNames = new HashSet<>();
@@ -209,6 +211,22 @@ public class ParserUtil {
         }
 
         return attributeSet;
+    }
+
+    /**
+     * Returns the numerical value represented by the given string.
+     * If the string cannot be parsed as a double, an empty Optional is returned.
+     *
+     * @param value String to be parsed into a Double.
+     * @return Optional containing the parsed Double value, or empty if parsing fails.
+     */
+    public static Optional<Double> parseStringValueToNumericalValue(String value) {
+        requireNonNull(value);
+        try {
+            return Optional.of(Double.parseDouble(value));
+        } catch (NumberFormatException e) {
+            return Optional.empty();
+        }
     }
 
     /**

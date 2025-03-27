@@ -6,10 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.attribute.ValueBasedAttributeComparator;
 import seedu.address.testutil.PersonBuilder;
 
-public class AttributeSortComparatorTest {
-    private AttributeSortComparator comparator;
+public class AttributeBasedPersonComparatorTest {
+    private AttributeBasedPersonComparator defaultComparator;
     private Person person1;
     private Person person2;
     private Person person3;
@@ -18,7 +19,7 @@ public class AttributeSortComparatorTest {
     @BeforeEach
     public void setUp() {
         String attributeName = "Graduation Year";
-        comparator = new AttributeSortComparator(attributeName);
+        defaultComparator = new AttributeBasedPersonComparator(attributeName, new ValueBasedAttributeComparator());
 
         person1 = new PersonBuilder().withAttributes(attributeName, "2027").build();
         person2 = new PersonBuilder().withAttributes(attributeName, "2028").build();
@@ -28,22 +29,22 @@ public class AttributeSortComparatorTest {
 
     @Test
     public void secondPersonHasAttribute_firstPersonDoesNot_returnsPositive() {
-        assertEquals(1, comparator.compare(person3, person2));
+        assertEquals(1, defaultComparator.compare(person3, person2));
     }
 
     @Test
     public void firstPersonHasAttribute_secondPersonDoesNot_returnsNegative() {
-        assertEquals(-1, comparator.compare(person1, person4));
+        assertEquals(-1, defaultComparator.compare(person1, person4));
     }
 
     @Test
     public void compare_bothDoNotHaveAttribute_returnsZero() {
-        assertEquals(-1, comparator.compare(person3, person4)); // Matches your logic
+        assertEquals(-1, defaultComparator.compare(person3, person4)); // Matches your logic
     }
 
     @Test
     public void compare_attributesDifferent_returnsCorrectComparison() {
-        assertEquals(-1, comparator.compare(person1, person2));
-        assertEquals(1, comparator.compare(person2, person1));
+        assertEquals(-1, defaultComparator.compare(person1, person2));
+        assertEquals(1, defaultComparator.compare(person2, person1));
     }
 }

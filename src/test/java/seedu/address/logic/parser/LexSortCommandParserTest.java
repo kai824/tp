@@ -9,50 +9,51 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.LexSortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class SortCommandParserTest {
+public class LexSortCommandParserTest {
 
-    private final SortCommandParser parser = new SortCommandParser();
+    private final LexSortCommandParser parser = new LexSortCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, LexSortCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsSortCommand() {
         // no leading and trailing whitespaces
-        SortCommand expectedSortCommand =
-                new SortCommand("Graduation Year");
+        LexSortCommand expectedSortCommand =
+                new LexSortCommand("Graduation Year");
         assertParseSuccess(parser, "sort a/Graduation Year", expectedSortCommand);
         assertParseSuccess(parser, "sort a/    Graduation Year   ", expectedSortCommand);
     }
 
     @Test
     public void parse_invalidArgs_throwsExceptions() throws Exception {
-        SortCommandParser parser = new SortCommandParser();
+        LexSortCommandParser parser = new LexSortCommandParser();
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            SortCommand.MESSAGE_USAGE), () ->
-                parser.parse(SortCommand.COMMAND_WORD));
+            LexSortCommand.MESSAGE_USAGE), () ->
+                parser.parse(LexSortCommand.COMMAND_WORD));
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            SortCommand.MESSAGE_USAGE), () ->
-                parser.parse(SortCommand.COMMAND_WORD + " major"));
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            MESSAGE_CONSTRAINTS_FOR_NAME), () ->
-                parser.parse(SortCommand.COMMAND_WORD + " " + PREFIX_ATTRIBUTE.toString() + "/"));
+            LexSortCommand.MESSAGE_USAGE), () ->
+                parser.parse(LexSortCommand.COMMAND_WORD + " major"));
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             MESSAGE_CONSTRAINTS_FOR_NAME), () ->
-                parser.parse(SortCommand.COMMAND_WORD + " " + PREFIX_ATTRIBUTE.toString() + "major n/pochi"));
+                parser.parse(LexSortCommand.COMMAND_WORD + " " + PREFIX_ATTRIBUTE + "/"));
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             MESSAGE_CONSTRAINTS_FOR_NAME), () ->
-                parser.parse(SortCommand.COMMAND_WORD + " " + PREFIX_ATTRIBUTE.toString() + "\\"));
+                parser.parse(LexSortCommand.COMMAND_WORD + " " + PREFIX_ATTRIBUTE + "major n/pochi"));
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             MESSAGE_CONSTRAINTS_FOR_NAME), () ->
-                parser.parse(SortCommand.COMMAND_WORD + " " + PREFIX_ATTRIBUTE.toString() + "="));
+                parser.parse(LexSortCommand.COMMAND_WORD + " " + PREFIX_ATTRIBUTE + "\\"));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            MESSAGE_CONSTRAINTS_FOR_NAME), () ->
+                parser.parse(LexSortCommand.COMMAND_WORD + " " + PREFIX_ATTRIBUTE + "="));
         assertThrows(ParseException.class, () ->
-                parser.parse(SortCommand.COMMAND_WORD + " "
+                parser.parse(LexSortCommand.COMMAND_WORD + " "
                     + PREFIX_ATTRIBUTE.toString() + " " + PREFIX_ATTRIBUTE.toString()));
     }
 

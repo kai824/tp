@@ -121,6 +121,9 @@ public class ModelManager implements Model {
     @Override
     public void updateAlias(String attributeName, Optional<String> siteLink) {
         addressBook.updateAlias(attributeName, siteLink);
+
+        // Supplies a "different" predicate so that the GUI updates
+        updateFilteredPersonList(x -> true);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -157,6 +160,22 @@ public class ModelManager implements Model {
     @Override
     public Optional<String> findClosestAttributeValue(String target) {
         return addressBook.findClosestAttributeValue(target);
+    }
+
+    @Override
+    public Optional<Long> numOfPersonsWithNumericalValue(String attributeName) {
+
+        long countNumerical = filteredPersons.stream().filter(person ->
+                person.getAttribute(attributeName).isPresent()
+                        && person.getAttribute(attributeName).get().hasNumericalValue()).count();
+
+        long countHaAttribute = filteredPersons.stream()
+                .filter(person -> person.getAttribute(attributeName).isPresent()).count();
+        if (countNumerical == countHaAttribute) {
+            return Optional.empty();
+        } else {
+            return Optional.of(countNumerical);
+        }
     }
 
     @Override

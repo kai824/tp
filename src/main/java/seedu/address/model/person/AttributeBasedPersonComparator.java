@@ -10,8 +10,9 @@ import seedu.address.model.attribute.Attribute;
  * Guarantees: immutable.
  */
 
-public class AttributeSortComparator implements Comparator<Person> {
+public class AttributeBasedPersonComparator implements Comparator<Person> {
     private final String attributeName;
+    private final Comparator<Attribute> attributeComparator;
 
     /**
      * Initializes an instance with an attribute.
@@ -19,8 +20,9 @@ public class AttributeSortComparator implements Comparator<Person> {
      *
      * @param attributeName The attribute name with which the candidates will be sorted.
      */
-    public AttributeSortComparator(String attributeName) {
+    public AttributeBasedPersonComparator(String attributeName, Comparator<Attribute> attributeComparator) {
         this.attributeName = attributeName;
+        this.attributeComparator = attributeComparator;
     }
 
     @Override
@@ -33,6 +35,6 @@ public class AttributeSortComparator implements Comparator<Person> {
         if (o1Attribute.isEmpty()) {
             return 1;
         }
-        return o1Attribute.get().compareToAttributeOfSameAttributeName(o2Attribute.get());
+        return attributeComparator.compare(o1Attribute.get(), o2Attribute.get());
     }
 }

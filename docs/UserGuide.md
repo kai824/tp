@@ -144,7 +144,7 @@ Examples:
 
 Adds a mapping between an attribute name and a site URL. By doing so, you can visit the website by simply clicking on the attribute in the individual view of the candidate, which can be shown by clicking on them or by entering the `show` command.
 
-Format: `link [a/ATTRIBUTE_NAME=SITE_LINK]`
+Format: `link a/ATTRIBUTE_NAME=SITE_LINK`
 
 * Adds a mapping between the `ATTRIBUTE_NAME` (attribute name) and the `SITE_LINK` (site URL). This change applies to all candidates with an attribute that has the given name.
 * The attribute name is treated case-insensitively.
@@ -238,9 +238,26 @@ Format: `sort a/ATTRIBUTE_NAME`
 
 *  Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
+* The input names and values are tolerant of typos–the app automatically corrects them.
 
 Example:
 * `sort a/major` sorts all entries with the "Major" attribute by lexicographical order of the attribute value of "Major".
+
+### Sorting entries by the numerical value of an attribute: `sort-num`
+
+Sorts the current view of entries by the numeric value of the specified attribute name in ascending order.
+
+Format: `sort-num a/ATTRIBUTE_NAME`
+
+* For each attribute value which can be parsed into a number, its numerical value will be stored.
+* Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
+* Among entries with the specified attribute name, if some do not have a valid numerical value, they will be placed at the back while preserving their internal order.
+  * If the above case ever happens, a warning will be displayed to show which entry on the current view is the last one with a valid numerical value.
+* `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
+* The input names and values are tolerant of typos–the app automatically corrects them.
+
+Example:
+* `sort-num a/GPA` sorts all entries with the "GPA" attribute by ascending order of the numerical attribute value of "GPA".
 
 ### Undoing the last data change: `undo`
 
@@ -320,8 +337,9 @@ Action     | Format, Examples
 **Exit**   | `exit`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
+**Sort** | `sort a/ATTRIBUTE_NAME`<br> e.g., `sort a/Degree`
+**Numerical Sort** | `sort-num a/ATTRIBUTE_NAME`<br> e.g., `sort-num a/Expected Salary`
 **Show**   | `show INDEX` <br> e.g., `show 1`
-**Sort** | `sort a/ATTRIBUTE_NAME`<br> e.g., `sort a/Graduation Year`
 **Filter** | `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `filter a/Major=Computer Science`
 **Undo**   | `undo`
 **Help**   | `help`

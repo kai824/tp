@@ -1,6 +1,14 @@
+* {
+    -base-background: #1e1e2e;
+    -tag-background: #356b80;
+    -attribute-background: #5a458c;
+    -site-attribute-background: #773963;
+    -attribute-hyperlink: #b8e6ff;
+}
+
 .background {
-    -fx-background-color: derive(#1e1e2e, 20%);
-    background-color: derive(#1e1e2e, 20%); /* Used in the default.html file */
+    -fx-background-color: derive(-base-background, 20%);
+    background-color: derive(-base-background, 20%); /* Used in the default.html file */
 }
 
 .label {
@@ -40,9 +48,9 @@
 }
 
 .table-view {
-    -fx-base: #1e1e2e;
-    -fx-control-inner-background: #1e1e2e;
-    -fx-background-color: #1e1e2e;
+    -fx-base: -base-background;
+    -fx-control-inner-background: -base-background;
+    -fx-background-color: -base-background;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -77,20 +85,20 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1e1e2e, 20%);
+    -fx-background-color: derive(-base-background, 20%);
     -fx-border-color: transparent transparent transparent #4d4d4d;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1e1e2e, 20%);
+    -fx-background-color: derive(-base-background, 20%);
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1e1e2e, 20%);
+    -fx-background-color: derive(-base-background, 20%);
 }
 
 .list-cell {
@@ -124,17 +132,17 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1e1e2e, 20%);
+     -fx-background-color: derive(-base-background, 20%);
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1e1e2e, 20%);
-     -fx-border-color: derive(#1e1e2e, 10%);
+     -fx-background-color: derive(-base-background, 20%);
+     -fx-border-color: derive(-base-background, 10%);
      -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1e1e2e, 30%);
+    -fx-background-color: derive(-base-background, 30%);
 }
 
 .result-display {
@@ -156,8 +164,8 @@
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#1e1e2e, 30%);
-    -fx-border-color: derive(#1e1e2e, 25%);
+    -fx-background-color: derive(-base-background, 30%);
+    -fx-border-color: derive(-base-background, 25%);
     -fx-border-width: 1px;
 }
 
@@ -166,8 +174,8 @@
 }
 
 .grid-pane {
-    -fx-background-color: derive(#1e1e2e, 30%);
-    -fx-border-color: derive(#1e1e2e, 30%);
+    -fx-background-color: derive(-base-background, 30%);
+    -fx-border-color: derive(-base-background, 30%);
     -fx-border-width: 1px;
 }
 
@@ -180,11 +188,11 @@
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: derive(#1e1e2e, 30%);
+    -fx-background-color: derive(-base-background, 30%);
 }
 
 .context-menu {
-    -fx-background-color: derive(#1e1e2e, 40%);
+    -fx-background-color: derive(-base-background, 40%);
 }
 
 .context-menu .label {
@@ -192,7 +200,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1e1e2e, 10%);
+    -fx-background-color: derive(-base-background, 10%);
 }
 
 .menu-bar .label {
@@ -216,7 +224,7 @@
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: #1e1e2e;
+    -fx-background-color: -base-background;
     -fx-font-family: "Inter Semi Bold", Helvetica, Arial, sans-serif;
     -fx-font-size: 12pt;
     -fx-text-fill: #d8d8d8;
@@ -229,7 +237,7 @@
 
 .button:pressed, .button:default:hover:pressed {
   -fx-background-color: white;
-  -fx-text-fill: #1e1e2e;
+  -fx-text-fill: -base-background;
 }
 
 .button:focused {
@@ -242,7 +250,7 @@
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
-    -fx-background-color: #1e1e2e;
+    -fx-background-color: -base-background;
     -fx-text-fill: white;
 }
 
@@ -256,11 +264,11 @@
 }
 
 .dialog-pane {
-    -fx-background-color: #1e1e2e;
+    -fx-background-color: -base-background;
 }
 
 .dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #1e1e2e;
+    -fx-background-color: -base-background;
 }
 
 .dialog-pane > *.label.content {
@@ -270,7 +278,7 @@
 }
 
 .dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#1e1e2e, 25%);
+    -fx-background-color: derive(-base-background, 25%);
 }
 
 .dialog-pane:header *.header-panel *.label {
@@ -281,11 +289,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1e1e2e, 20%);
+    -fx-background-color: derive(-base-background, 20%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1e1e2e, 50%);
+    -fx-background-color: derive(-base-background, 50%);
     -fx-background-insets: 3;
 }
 
@@ -351,9 +359,9 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent derive(#1e1e2e, 20%) transparent derive(#1e1e2e, 20%);
+    -fx-background-color: transparent derive(-base-background, 20%) transparent derive(-base-background, 20%);
     -fx-background-insets: 0;
-    -fx-border-color: derive(#1e1e2e, 20%) derive(#1e1e2e, 20%) #ffffff derive(#1e1e2e, 20%);
+    -fx-border-color: derive(-base-background, 20%) derive(-base-background, 20%) #ffffff derive(-base-background, 20%);
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Inter";
@@ -366,7 +374,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: derive(#1e1e2e, 10%);
+    -fx-background-color: derive(-base-background, 10%);
     -fx-background-radius: 0;
 }
 
@@ -386,25 +394,25 @@
 }
 
 #tags .label {
-    -fx-background-color: #3e7b91;
+    -fx-background-color: -tag-background;
 }
 
 #attributes .label {
-    -fx-background-color: #87386e;
+    -fx-background-color: -attribute-background;
 }
 
 #attributes .label#site-attribute-list {
-    -fx-background-color: #644c9f;
+    -fx-background-color: -site-attribute-background;
 }
 
 #attributes .label#site-attribute-details {
-    -fx-background-color: #644c9f;
+    -fx-background-color: -site-attribute-background;
+    -fx-text-fill: -attribute-hyperlink;
     -fx-cursor: hand;
     -fx-underline: true;
-    -fx-text-fill: skyblue;
 }
 
 #attributes .label#site-attribute-details:hover {
-    -fx-background-color: derive(#644c9f, 20%);
-    -fx-text-fill: lightskyblue;
+    -fx-background-color: derive(-site-attribute-background, 20%);
+    -fx-text-fill: derive(-attribute-hyperlink, 40%);
 }

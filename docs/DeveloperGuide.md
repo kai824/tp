@@ -156,6 +156,12 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[New feature\] Filtering
+
+The following sequence diagram illustrates how the newly implemented filter command is executed.
+
+<puml src="diagrams/FilterSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `filter a/Major=CS` Command" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -249,11 +255,16 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[New feature\] Filtering
+### \[Proposed\] sort/numerical sort feature
+_{more descriptions to be added}
 
-The following sequence diagram illustrates how the newly implemented filter command is executed.
+The following sequence diagram shows how a default sort operation "sort a/Location" goes through the `Logic` component:
 
-<puml src="diagrams/FilterSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `filter a/Major=CS` Command" />
+<puml src="diagrams/LexSortSequenceDiagram.puml" width="250"></puml>
+
+Similarly, how a numerical sort operation "sort-num a/Graduation Year" goes through the `Logic` and `Model` component is shown below:
+
+<puml src="diagrams/NumSortSequenceDiagram.puml" width="250"></puml>
 
 ### \[Proposed\] Data archiving
 
