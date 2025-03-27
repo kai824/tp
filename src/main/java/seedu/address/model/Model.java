@@ -112,6 +112,14 @@ public interface Model {
     Optional<String> findClosestAttributeValue(String target);
 
     /**
+     * Returns the number of persons in the address book
+     * with a numerical value for the given {@code attributeName}.
+     * This method should only be called after a sort-num is applied to the saved list.
+     * An empty Optional will be returned if all persons have a numerical value.
+     */
+    Optional<Long> numOfPersonsWithNumericalValue(String attributeName);
+
+    /**
      * Saves the current AddressBook into the history
      */
     void saveState();
