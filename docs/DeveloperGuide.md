@@ -156,6 +156,12 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[New feature\] Filtering
+
+The following sequence diagram illustrates how the newly implemented filter command is executed.
+
+<puml src="diagrams/FilterSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `filter a/Major=CS` Command" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
