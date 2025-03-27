@@ -144,7 +144,7 @@ Examples:
 
 Adds a mapping between an attribute name and a site URL. By doing so, you can visit the website by simply clicking on the attribute in the individual view of the candidate, which can be shown by clicking on them or by entering the `show` command.
 
-Format: `link [a/ATTRIBUTE_NAME=SITE_LINK]`
+Format: `link a/ATTRIBUTE_NAME=SITE_LINK`
 
 * Adds a mapping between the `ATTRIBUTE_NAME` (attribute name) and the `SITE_LINK` (site URL). This change applies to all candidates with an attribute that has the given name.
 * The attribute name is treated case-insensitively.
