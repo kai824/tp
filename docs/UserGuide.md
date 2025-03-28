@@ -274,12 +274,12 @@ Format: `undo`
 * Does not change any applied filters. If a filter was accidentally applied, you can use `list` to clear any existing filters.
 * Does not work after exiting and re-opening the app. Using `undo` on a freshly opened app will not change anything.
 
-### Navigating past commands: `↑` `↓`
+### Navigating past commands: <kbd>↑</kbd> <kbd>↓</kbd>
 
 Navigates through command history, replacing the text in the command box with the past executed command.
 
-Format: Press the up arrow (`↑`) or down arrow (`↓`) key while the command box is selected.
-* The up arrow (`↑`) key shows the previous executed command while the down arrow (`↓`) key shows the next executed command.
+Format: Press the up arrow (<kbd>↑</kbd>) or down arrow (<kbd>↓</kbd>) key while the command box is selected.
+* The up arrow (<kbd>↑</kbd>) key shows the previous executed command while the down arrow (<kbd>↓</kbd>) key shows the next executed command.
 * `ENTER` is not required to be pressed for navigation.
 * No error message will be shown if attempting to navigate beyond the first and last executed commands.
 * If attempting to navigate beyond the first executed command, the first executed command will remain shown.
@@ -348,4 +348,4 @@ Action     | Format, Examples
 **Filter** | `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `filter a/Major=Computer Science`
 **Undo**   | `undo`
 **Help**   | `help`
-**Navigate Past Commands** | `↑` `↓`
+**Navigate Past Commands** | <kbd>↑</kbd> <kbd>↓</kbd>
