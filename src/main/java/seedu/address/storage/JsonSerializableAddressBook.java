@@ -2,13 +2,14 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -62,9 +63,11 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
-        for (JsonAdaptedAliasMapping alias : aliases) {
-            addressBook.updateAlias(alias.getAttributeName(), Optional.of(alias.getSiteLink()));
-        }
+        ObservableMap<String, String> adjustedAliases =
+            aliases.stream()
+                .collect(Collectors.toMap(alias -> alias.getAttributeName(),
+                    alias -> alias.getSiteLink(), (v1, v2) -> v1, FXCollections::observableHashMap));
+        addressBook.setAliasMappings(adjustedAliases);
         return addressBook;
     }
 

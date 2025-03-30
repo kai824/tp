@@ -29,7 +29,6 @@ public class AliasMappingList {
      */
     public void setAliases(ObservableMap<String, String> mappings) {
         this.dictionary.clear();
-        this.dictionary.putAll(DEFAULT_DICTIONARY);
         this.dictionary.putAll(mappings);
     }
 
