@@ -47,5 +47,14 @@
     "address" : "4th street",
     "tags" : [ ]
   } ],
-  "aliases": []
+  "aliases": [
+    {
+      "attributeName" : "github",
+      "siteLink" : "https://github.com/"
+    },
+    {
+      "attributeName" : "linkedin",
+      "siteLink" : "https://www.linkedin.com/in/"
+    }
+  ]
 }

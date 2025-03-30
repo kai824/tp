@@ -3,13 +3,10 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-
 /**
  * Manages a pair of attribute name and site link in a Jackson-friendly way.
  */
 public class JsonAdaptedAliasMapping {
-    private static final String MESSAGE_NULL = "%1$s cannot be null!";
     private final String attributeName;
     private final String siteLink;
 
@@ -25,23 +22,15 @@ public class JsonAdaptedAliasMapping {
 
     /**
      * Returns the raw {@code attributeName}.
-     * @throws IllegalValueException Thrown when {@code attributeName} is null.
      */
-    public String getAttributeName() throws IllegalValueException {
-        if (attributeName == null) {
-            throw new IllegalValueException(String.format(MESSAGE_NULL, "Attribute name"));
-        }
+    public String getAttributeName() {
         return attributeName;
     }
 
     /**
      * Returns the raw {@code siteLink}.
-     * @throws IllegalValueException Thrown when {@code siteLink} is null.
      */
-    public String getSiteLink() throws IllegalValueException {
-        if (siteLink == null) {
-            throw new IllegalValueException(String.format(MESSAGE_NULL, "Site link"));
-        }
+    public String getSiteLink() {
         return siteLink;
     }
 }

@@ -5,10 +5,11 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.AddressBook;
@@ -39,7 +40,9 @@ public class JsonSerializableAddressBookTest {
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
         AddressBook typicalPersonsAddressBook = new AddressBook(TypicalPersons.getTypicalAddressBook());
-        typicalPersonsAddressBook.updateAlias("Degree", Optional.of("nice degree! "));
+        ObservableMap<String, String> aliases = FXCollections.observableHashMap();
+        aliases.put("degree", "nice degree! ");
+        typicalPersonsAddressBook.setAliasMappings(aliases);
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 
