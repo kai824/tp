@@ -185,7 +185,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void saveState() {
+        public void saveState(String commandText) {
             throw new AssertionError("This method should not be called.");
         }
 

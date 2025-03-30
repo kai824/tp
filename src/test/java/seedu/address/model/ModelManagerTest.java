@@ -20,6 +20,8 @@ import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
 
+    private static final String NO_LAST_CHANGE = "No previous state found";
+
     private ModelManager modelManager = new ModelManager();
 
     @Test
@@ -93,6 +95,10 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
 
+    private void testRevertStateException() {
+        assertThrows(IllegalStateException.class, NO_LAST_CHANGE, () -> modelManager.revertLastState());
+    }
+
     /**
      * Tests ModelManager::revertLastState with ModelManager::saveState
      */
@@ -101,40 +107,49 @@ public class ModelManagerTest {
         modelManager = new ModelManager();
 
         // No history to load from
-        assertFalse(modelManager.revertLastState());
+        testRevertStateException();
 
         // No changes made, nothing to load
-        modelManager.saveState();
-        assertFalse(modelManager.revertLastState());
+        modelManager.saveState("Command 1");
+        testRevertStateException();
 
-        // Make one change, test
+        // Make one change, no additional saves after
         ReadOnlyAddressBook prevState = modelManager.getAddressBook();
-        modelManager.saveState();
+        modelManager.saveState("Command 2");
         modelManager.addPerson(ALICE);
-        modelManager.saveState();
 
-        assertTrue(modelManager.revertLastState());
+        assertEquals("Command 2", modelManager.revertLastState());
         assertEquals(prevState, modelManager.getAddressBook());
-        assertFalse(modelManager.revertLastState());
+        testRevertStateException();
+
+        // Make one change, extra irrelevant save, test
+        ReadOnlyAddressBook prevState2 = modelManager.getAddressBook();
+        modelManager.saveState("Command 2a");
+        modelManager.addPerson(ALICE);
+        modelManager.saveState("Command 2b");
+
+        assertEquals("Command 2a", modelManager.revertLastState());
+        assertEquals(prevState2, modelManager.getAddressBook());
+        testRevertStateException();
 
         // Two changes, with repeat saveState
         modelManager = new ModelManager();
         ReadOnlyAddressBook stateVersion1 = modelManager.getAddressBook();
-        modelManager.saveState();
-        modelManager.saveState();
+        modelManager.saveState("Command 3a");
+        modelManager.saveState("Command 3b");
         modelManager.addPerson(ALICE);
         ReadOnlyAddressBook stateVersion2 = modelManager.getAddressBook();
-        modelManager.saveState();
-        modelManager.saveState();
+        modelManager.saveState("Command 3c");
+        modelManager.saveState("Command 3d");
         modelManager.setPerson(ALICE, BENSON);
-        modelManager.saveState();
-        modelManager.saveState();
+        modelManager.saveState("Command 3e");
+        modelManager.saveState("Command 3f");
 
-        assertTrue(modelManager.revertLastState());
+        assertEquals("Command 3d", modelManager.revertLastState());
         assertEquals(stateVersion2, modelManager.getAddressBook());
-        assertTrue(modelManager.revertLastState());
+        assertEquals("Command 3b", modelManager.revertLastState());
         assertEquals(stateVersion1, modelManager.getAddressBook());
-        assertFalse(modelManager.revertLastState());
+        testRevertStateException();
     }
 
     @Test
