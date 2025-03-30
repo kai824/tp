@@ -22,6 +22,8 @@ import seedu.address.model.person.Person;
 
 public class UndoCommandTest {
 
+    private static final String LAST_COMMAND = "SAMPLE LAST COMMAND";
+
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -118,12 +120,12 @@ public class UndoCommandTest {
         }
 
         @Override
-        public void saveState() {
+        public void saveState(String commandText) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean revertLastState() {
+        public String revertLastState() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -135,15 +137,15 @@ public class UndoCommandTest {
 
     private class ModelStubCanRevert extends ModelStub {
         @Override
-        public boolean revertLastState() {
-            return true;
+        public String revertLastState() {
+            return LAST_COMMAND;
         }
     }
 
     private class ModelStubCannotRevert extends ModelStub {
         @Override
-        public boolean revertLastState() {
-            return false;
+        public String revertLastState() {
+            throw new IllegalStateException("Illegal state.");
         }
     }
 
@@ -155,7 +157,7 @@ public class UndoCommandTest {
         assertThrows(CommandException.class, MESSAGE_NO_LAST_CHANGE, () -> command.execute(modelCannotRevert));
 
         Model modelCanRevert = new ModelStubCanRevert();
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_UNDO_SUCCESS);
+        CommandResult expectedCommandResult = new CommandResult(String.format(MESSAGE_UNDO_SUCCESS, LAST_COMMAND));
         assertCommandSuccess(new UndoCommand(), modelCanRevert, expectedCommandResult, modelCanRevert);
     }
 }

@@ -185,12 +185,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void saveState() {
+        public void saveState(String commandText) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean revertLastState() {
+        public String revertLastState() {
             throw new AssertionError("This method should not be called.");
         }
 

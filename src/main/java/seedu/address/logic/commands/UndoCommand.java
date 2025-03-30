@@ -10,15 +10,17 @@ public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
 
-    public static final String MESSAGE_UNDO_SUCCESS = "Last data change successfully undone!";
+    public static final String MESSAGE_UNDO_SUCCESS = "Last data change command undone: %s";
 
     public static final String MESSAGE_NO_LAST_CHANGE = "There is no change to undo!";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (!model.revertLastState()) {
+        try {
+            String commandUndone = model.revertLastState();
+            return new CommandResult(String.format(MESSAGE_UNDO_SUCCESS, commandUndone));
+        } catch (IllegalStateException e) {
             throw new CommandException(MESSAGE_NO_LAST_CHANGE);
         }
-        return new CommandResult(MESSAGE_UNDO_SUCCESS);
     }
 }
