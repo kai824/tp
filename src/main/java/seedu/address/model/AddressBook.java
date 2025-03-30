@@ -158,6 +158,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         updateAliasingsForAllPersons();
     }
 
+    /**
+     * Returns a site link mapped to the given {@code attributeName}.
+     * If there is no mapping currently, an empty Optional will be returned.
+     */
+    public Optional<String> getAlias(String attributeName) {
+        return aliasMappings.getAlias(attributeName);
+    }
+
     //// attribute name level operations
 
     // Verified on LeetCode: https://leetcode.com/problems/edit-distance/submissions/1583973463.

@@ -127,6 +127,10 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    public Optional<String> getAlias(String attributeName) {
+        return addressBook.getAlias(attributeName);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -216,5 +220,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
-
 }

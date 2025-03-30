@@ -24,6 +24,16 @@ public class AliasCommand extends Command {
     public static final String MESSAGE_ACCEPT_ONE_ARGUMENT =
         "This command accepts exactly one argument, "
             + "which can be either a/ATTRIBUTE_NAME=WEB_SITE_DOMAIN_LINK or ra/ATTRIBUTE_NAME.";
+    public static final String MESSAGE_WARNING_ALREADY_EXIST =
+        "WARNING! Exactly the site link is already registered for the given attribute.";
+    public static final String MESSAGE_WARNING_ALREADY_REMOVED =
+        "WARNING! The specified attribute name did not originally have a site link.";
+    public static final String MESSAGE_WARNING_OVERWRITTEN =
+        "WARNING! The specified attribute name originally had a different site link, "
+            + "which was overwritten by this command.";
+    public static final String MESSAGE_WARNING_NO_ONE_HAS_THE_ATTRIBUTE_NAME =
+        "WARNING! No person with the given attribute name exists. "
+            + "This site link mapping will take effect in the future.";
 
     private final String attributeName;
     private final Optional<String> siteLink;
@@ -63,12 +73,33 @@ public class AliasCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        String message;
+        String message = "";
+        // Not introducint any change.
+        Optional<String> currentAlias = model.getAlias(attributeName);
+        if (currentAlias.equals(siteLink)) {
+            if (siteLink.isPresent()) {
+                message += MESSAGE_WARNING_ALREADY_EXIST + "\n";
+                message += String.format(MESSAGE_ADD_ALIAS_SUCCESS, attributeName, siteLink.get());
+            } else {
+                message += MESSAGE_WARNING_ALREADY_REMOVED + "\n";
+                message += String.format(MESSAGE_REMOVE_ALIAS_SUCCESS, attributeName);
+            }
+            return new CommandResult(message);
+        }
+        // Overwrites an existing alias mapping.
+        Optional<String> closestAttributeName = model.findClosestAttributeName(attributeName);
+        if (!closestAttributeName.isPresent() || !closestAttributeName.get().equals(attributeName.toLowerCase())) {
+            message += MESSAGE_WARNING_NO_ONE_HAS_THE_ATTRIBUTE_NAME + "\n";
+        }
+        // Actual updates.
         model.updateAlias(attributeName, siteLink);
         if (siteLink.isPresent()) {
-            message = String.format(MESSAGE_ADD_ALIAS_SUCCESS, attributeName, siteLink.get());
+            if (currentAlias.isPresent()) {
+                message += MESSAGE_WARNING_OVERWRITTEN + "\n";
+            }
+            message += String.format(MESSAGE_ADD_ALIAS_SUCCESS, attributeName, siteLink.get());
         } else {
-            message = String.format(MESSAGE_REMOVE_ALIAS_SUCCESS, attributeName);
+            message += String.format(MESSAGE_REMOVE_ALIAS_SUCCESS, attributeName);
         }
         return new CommandResult(message);
     }

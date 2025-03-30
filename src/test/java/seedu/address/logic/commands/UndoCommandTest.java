@@ -126,6 +126,11 @@ public class UndoCommandTest {
         public boolean revertLastState() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Optional<String> getAlias(String attributeName) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     private class ModelStubCanRevert extends ModelStub {
