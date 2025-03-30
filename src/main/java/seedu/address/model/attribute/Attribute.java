@@ -16,6 +16,8 @@ public class Attribute implements Comparable<Attribute> {
     public static final String PROHIBITED_CHARACTERS = "/\\=";
     public static final String MESSAGE_CONSTRAINTS = "Attribute names and values should not contain /, \\, or =.";
     public static final String MESSAGE_CONSTRAINTS_FOR_NAME = "Attribute names should not contain /, \\, or =.";
+    public static final String MESSAGE_CONSTRAINT_NON_EMPTY_FOR_NAME = "Attribute names cannot be empty.";
+    public static final String MESSAGE_CONSTRAINT_NON_EMPTY_FOR_SITE_LINK = "Web site domain links cannot be empty.";
     public static final String NO_DUPLICATES = "Duplicate attribute names with different values are not allowed!";
     public static final String CAPITALISATION_NOTE =
         "Note that attribute names that differ only in capitalisation are treated as duplicates.";
