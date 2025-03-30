@@ -265,13 +265,15 @@ Example:
 
 ### Undoing the last data change: `undo`
 
-Undoes the last data change. For instance, if you deleted the wrong entry accidentally, you can use this command to revert the data.
+Undoes the last data change. Also clears any existing filters applied.
+
+For instance, suppose a user intended to type `delete 5` but accidentally types and executes `delete 4`. They can just type `undo`, and will get the success message: `Last data change command undone: delete 4`, with the deleted entry restored as well.
 
 Format: `undo`
 * Only changes since the app was opened can be undone.
-* Changes that are undone cannot be redone.
+* Changes that are undone cannot be redone. However, you can simply re-execute the command. Previous commands can be retrieved by navigating past commands using <kbd>↑</kbd> <kbd>↓</kbd> keypresses.
 * `undo` can be used multiple times in succession to undo more changes.
-* Does not change any applied filters. If a filter was accidentally applied, you can use `list` to clear any existing filters.
+* Clears all applied filters.
 * Does not work after exiting and re-opening the app. Using `undo` on a freshly opened app will not change anything.
 
 ### Navigating past commands: <kbd>↑</kbd> <kbd>↓</kbd>
