@@ -84,6 +84,12 @@ public interface Model {
      */
     void updateAlias(String attributeName, Optional<String> siteLink);
 
+    /**
+     * Returns a site link mapped to the given {@code attributeName}.
+     * If there is no mapping currently, an empty Optional will be returned.
+     */
+    Optional<String> getAlias(String attributeName);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

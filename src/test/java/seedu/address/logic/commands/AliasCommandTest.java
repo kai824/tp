@@ -13,7 +13,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 public class AliasCommandTest {
     @Test
     void execute_removeAlias_success() throws Exception {
-        AliasCommand command = new AliasCommand("github", "");
+        AliasCommand command = AliasCommand.removeAliasCommand("github");
         Model model = new ModelManager();
         command.execute(model);
         ReadOnlyAddressBook book = model.getAddressBook();
@@ -26,7 +26,7 @@ public class AliasCommandTest {
     void execute_addAlias_success() throws Exception {
         String name1 = "k3209g09krr";
         String link1 = "https://404-not-found";
-        AliasCommand command = new AliasCommand(name1, link1);
+        AliasCommand command = AliasCommand.addAliasCommand(name1, link1);
         Model model = new ModelManager();
         command.execute(model);
         ReadOnlyAddressBook book = model.getAddressBook();
