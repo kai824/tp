@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -26,7 +27,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
-    private final Stack<AddressBook> previousStates;
+    private final Stack<Pair<AddressBook, String> > previousStates;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -183,26 +184,33 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean revertLastState() {
+    public String revertLastState() {
         // Ignore previous state if no change happened since. Happens if last command doesn't change any data
-        while (!previousStates.isEmpty() && previousStates.peek().equals(addressBook)) {
+        while (!previousStates.isEmpty() && previousStates.peek().getKey().equals(addressBook)) {
             previousStates.pop();
         }
         if (previousStates.isEmpty()) {
-            return false;
+            throw new IllegalStateException("No previous state found");
         }
-        addressBook.resetData(previousStates.pop());
-        return true;
+        Pair<AddressBook, String> currentStateWithCommand = previousStates.pop();
+
+        assert currentStateWithCommand != null;
+        assert currentStateWithCommand.getKey() != null;
+        assert currentStateWithCommand.getValue() != null;
+
+        addressBook.resetData(currentStateWithCommand.getKey());
+        return currentStateWithCommand.getValue();
     }
 
     @Override
-    public void saveState() {
-        // don't save if state has not changed
-        if (previousStates.isEmpty()) {
-            previousStates.push(new AddressBook(addressBook));
-        } else if (!previousStates.peek().equals(addressBook)) {
-            previousStates.push(new AddressBook(addressBook));
+    public void saveState(String commandText) {
+        if (!previousStates.isEmpty()) {
+            if (previousStates.peek().getKey().equals(addressBook)) {
+                // Avoid saving duplicate states. If it happens, only store it with latest commandText
+                previousStates.pop();
+            }
         }
+        previousStates.push(new Pair<>(new AddressBook(addressBook), commandText));
     }
 
     @Override

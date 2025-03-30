@@ -123,7 +123,7 @@ public class UndoCommandTest {
         }
 
         @Override
-        public boolean revertLastState() {
+        public String revertLastState() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -135,14 +135,14 @@ public class UndoCommandTest {
 
     private class ModelStubCanRevert extends ModelStub {
         @Override
-        public boolean revertLastState() {
+        public String revertLastState() {
             return true;
         }
     }
 
     private class ModelStubCannotRevert extends ModelStub {
         @Override
-        public boolean revertLastState() {
+        public String revertLastState() {
             return false;
         }
     }

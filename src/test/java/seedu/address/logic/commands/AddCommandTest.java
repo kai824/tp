@@ -190,7 +190,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean revertLastState() {
+        public String revertLastState() {
             throw new AssertionError("This method should not be called.");
         }
 

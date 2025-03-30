@@ -128,11 +128,12 @@ public interface Model {
     /**
      * Saves the current AddressBook into the history
      */
-    void saveState();
+    void saveState(String commandText);
 
     /**
      * Reverts the AddressBook to the last saved state.
+     *
      * @return A boolean of whether the AddressBook was successfully reverted
      */
-    boolean revertLastState();
+    String revertLastState();
 }
