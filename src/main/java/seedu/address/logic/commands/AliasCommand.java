@@ -25,7 +25,7 @@ public class AliasCommand extends Command {
         "This command accepts exactly one argument, "
             + "which can be either a/ATTRIBUTE_NAME=WEB_SITE_DOMAIN_LINK or ra/ATTRIBUTE_NAME.";
     public static final String MESSAGE_WARNING_ALREADY_EXIST =
-        "WARNING! Exactly the site link is already registered for the given attribute.";
+        "WARNING! Exactly the same site link is already registered for the given attribute.";
     public static final String MESSAGE_WARNING_ALREADY_REMOVED =
         "WARNING! The specified attribute name did not originally have a site link.";
     public static final String MESSAGE_WARNING_OVERWRITTEN =
@@ -74,7 +74,7 @@ public class AliasCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         String message = "";
-        // Not introducint any change.
+        // Not introducing any change.
         Optional<String> currentAlias = model.getAlias(attributeName);
         if (currentAlias.equals(siteLink)) {
             if (siteLink.isPresent()) {
