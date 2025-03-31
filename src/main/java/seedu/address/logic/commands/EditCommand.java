@@ -56,6 +56,9 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_ATTRIBUTE_DOES_NOT_EXIST = "This person does not have the attribute: %1$s";
+    public static final String MESSAGE_ATTRIBUTE_REMOVED_IMMEDIATELY =
+            "This attribute is removed immediately after adding/editing: %1$s";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -97,7 +100,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -112,6 +116,25 @@ public class EditCommand extends Command {
 
         Set<Attribute> updatedAttributes = editPersonDescriptor.getUpdateAttributes().orElse(null);
         Set<String> removedAttributes = editPersonDescriptor.getRemoveAttributes().orElse(null);
+
+        if (removedAttributes != null) {
+            for (String attrName : removedAttributes) {
+                boolean existsInPrev = prevAttributes == null ? false : prevAttributes.stream()
+                        .anyMatch(attr -> attr.getAttributeName().equals(attrName));
+
+                if (!existsInPrev) {
+                    throw new CommandException(String.format(MESSAGE_ATTRIBUTE_DOES_NOT_EXIST, attrName));
+                }
+
+                boolean existsInUpdated = updatedAttributes == null ? false : updatedAttributes.stream()
+                        .anyMatch(attr -> attr.getAttributeName().equals(attrName));
+
+                if (existsInUpdated) {
+                    throw new CommandException(String.format(MESSAGE_ATTRIBUTE_REMOVED_IMMEDIATELY, attrName));
+                }
+            }
+        }
+
         if (updatedAttributes != null) {
             for (Attribute attr: updatedAttributes) {
                 personToReturn.updateAttribute(attr);
