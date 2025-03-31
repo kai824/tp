@@ -1,9 +1,5 @@
 package seedu.address.ui;
 
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -61,11 +57,7 @@ public class PersonDetailsCard extends UiPart<Region> {
                 String link = attribute.getSiteLink().orElseThrow(() ->
                         new AssertionError("Unreachable, Optional<String> siteLink should not be empty"))
                         + attribute.getAttributeValue();
-                try {
-                    Desktop.getDesktop().browse(new URI(link));
-                } catch (IOException | URISyntaxException e) {
-                    UiUtils.showErrorOpeningLink(link);
-                }
+                UiUtils.browse(link);
             });
         }
         return label;

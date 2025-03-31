@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.awt.Desktop;
-import java.net.URI;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -50,12 +48,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleLinkClick() {
-        try {
-            Desktop.getDesktop().browse(new URI(USERGUIDE_URL));
-        } catch (Exception e) {
-            logger.warning("Error opening link: " + e.getMessage());
-            UiUtils.showErrorOpeningLink(USERGUIDE_URL);
-        }
+        UiUtils.browse(USERGUIDE_URL);
     }
 
     /**
