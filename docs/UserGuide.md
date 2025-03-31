@@ -49,48 +49,50 @@ TalentFolio is a powerful yet easy-to-use application designed for hiring manage
 Follow these simple steps to get TalentFolio up and running:
 
 1. ### Install Java (if not already installed)
-  TalentFolio requires Java `17` or later to run. Check your Java version by opening a terminal or command prompt and typing:<br>
-  `java -version`<br>
-  If java is not installed or is an older version:
-  * **Windows/Linux users:** Download and install the latest Java Development Kit (JDK) from [Oracle's website](https://www.oracle.com/java/technologies/downloads/).
-  * **Mac users:** Follow the instructions and ensure you have the precise Java Development Kit (JDK) version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+       TalentFolio requires Java `17` or later to run. Check your Java version by opening a terminal or command prompt and typing:<br>
+       `java -version`<br>
+       If java is not installed or is an older version:
+       * **Windows/Linux users:** Download and install the latest Java Development Kit (JDK) from [Oracle's website](https://www.oracle.com/java/technologies/downloads/).
+       * **Mac users:** Follow the instructions and ensure you have the precise Java Development Kit (JDK) version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 1. ### Download TalentFolio 
-  Get the latest version of TalentFolio from our [official releases page](https://github.com/AY2425S2-CS2103T-T10-1/tp/releases). Download the latest `.jar` file available.
+       Get the latest version of TalentFolio from our [official releases page](https://github.com/AY2425S2-CS2103T-T10-1/tp/releases). Download the latest `.jar` file available.
 
 1. ### Set up TalentFolio
-  Move the `.jar` file to the folder you want to use as the _home folder_ for TalentFolio. This folder will store the TalentFolio application data. We recommend choosing a convenient location that you have read, write and execute permissions for.  
+       Move the `.jar` file to the folder you want to use as the _home folder_ for TalentFolio. This folder will store the TalentFolio application data. We recommend choosing a convenient location that you have read, write and execute permissions for.  
 
 1. ### Running TalentFolio
-  Open a command terminal:
-  * **Windows users:** Press `Win + R`, type `cmd`, and hit Enter.
-  * **Mac/Linux users** Open the Terminal app.<br>
-  Navigate to the folder where you placed the `.jar` file. You can do this using the `cd` command. For example:<br>
-  `cd path/to/your/folder`<br>
-  Run the following command in the terminal to launch the application:<br>
-  `java -jar talentfolio.jar`<br>
-  After a few seconds, the TalentFolio application should open, and you should see a GUI similar to the one shown below. Note how the app contains some sample data. It is recommended to clear the sample data before your own personal use as the sample data will not be automatically overwritten.<br>
-  ![Ui](images/Ui.png)
+       Open a command terminal:
+       * **Windows users:** Press `Win + R`, type `cmd`, and hit Enter.
+       * **Mac/Linux users** Open the Terminal app.<br>
+       Navigate to the folder where you placed the `.jar` file. You can do this using the `cd` command. For example:<br>
+       `cd path/to/your/folder`<br>
+       Run the following command in the terminal to launch the application:<br>
+       `java -jar talentfolio.jar`<br>
+       After a few seconds, the TalentFolio application should open, and you should see a GUI similar to the one shown below. Note how the app contains some sample data. It is recommended to clear the sample data before your own personal use as the sample data will not be automatically overwritten.<br>
+       ![Ui](images/Ui.png)
 
 1. ### Using TalentFolio
-  Type the command in the command box and press Enter to execute it. E.g. typing **`help`** and pressing Enter will open the help window.<br>
-  Some example commands you can try:
+       Type the command in the command box and press Enter to execute it. E.g. typing **`help`** and pressing Enter will open the help window.<br>
+       Some example commands you can try:
 
-  * `list` : Lists all candidates.
+       * `list` : Lists all candidates.
 
-  * `add n/John Doe p/98765432 e/johnd@example.com` : Adds a candidate named `John Doe` to the database.
+       * `add n/John Doe p/98765432 e/johnd@example.com` : Adds a candidate named `John Doe` to the database.
 
-  * `filter a/Major=Computer Science` : Filters all candidates who major in Computer Science.
+       * `edit 1 a/GPA=3.9 ra/CAP` : Adds a GPA and removes a CAP from the 1st candidate shown in the current list.
 
-  * `sort a/Graduation Year` : Sorts candidates in ascending order of Graduation Year.
+       * `filter a/Major=Computer Science` : Filters all candidates who major in Computer Science.
 
-  * `delete 3` : Deletes the 3rd candidate shown in the current list.
+       * `sort a/Graduation Year` : Sorts candidates in ascending order of Graduation Year.
 
-  * `clear` : Deletes all candidates.
+       * `delete 3` : Deletes the 3rd candidate shown in the current list.
 
-  * `undo` : Undoes the last command.
+       * `clear` : Deletes all candidates.
 
-  * `exit` : Exits the app.
+       * `undo` : Undoes the last command.
+
+       * `exit` : Exits the app.
 
 1. ### Need more help?
   For a complete list of features and detailed instructions of each command, check out the [Features](#features) section below.<br>
