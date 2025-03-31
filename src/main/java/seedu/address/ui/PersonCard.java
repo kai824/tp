@@ -1,9 +1,12 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -50,8 +53,23 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText("\uD83D\uDCDE " + person.getPhone().value);
-        email.setText("\uD83D\uDCE7 " + person.getEmail().value);
+
+        ImageView phoneIcon = new ImageView(new Image(Objects.requireNonNull(
+                getClass().getResourceAsStream("/images/telephone-receiver.png"))));
+        phoneIcon.setFitHeight(16);
+        phoneIcon.setFitWidth(16);
+        phoneIcon.setPreserveRatio(true);
+        phone.setGraphic(phoneIcon);
+        phone.setText(person.getPhone().value);
+
+        ImageView emailIcon = new ImageView(new Image(Objects.requireNonNull(
+                getClass().getResourceAsStream("/images/email.png"))));
+        emailIcon.setFitHeight(16);
+        emailIcon.setFitWidth(16);
+        emailIcon.setPreserveRatio(true);
+        email.setGraphic(emailIcon);
+        email.setText(person.getEmail().value);
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
