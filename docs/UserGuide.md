@@ -6,46 +6,95 @@
 
 # TalentFolio User Guide
 
-TalentFolio is an application for hiring managers to manage information on job candidates. It is optimized for users who prefer a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TalentFolio lets you handle your recruitment tasks more efficiently compared to traditional GUI applications!
+TalentFolio is a powerful yet easy-to-use application designed for hiring managers to efficiently manage information on job candidates. It is optimized for users who prefer a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're a fast typist, TalentFolio can significantly speed up your hiring workflow and lets you handle your recruitment tasks much more efficiently compared to traditional GUI applications!
 
 <!-- * Table of Contents -->
+## Table of Contents
+
+- [Quick start](#quick-start)
+  - [Install Java (if not already installed)](#install-java-if-not-already-installed)
+  - [Download TalentFolio](#download-talentfolio)
+  - [Set up TalentFolio](#set-up-talentfolio)
+  - [Running TalentFolio](#running-talentfolio)
+  - [Using TalentFolio](#using-talentfolio)
+  - [Need more help?](#need-more-help)
+- [Features](#features)
+  - [Viewing help: `help`](#viewing-help--help)
+  - [Showing a person's details: `show`](#showing-a-persons-details-show)
+  - [Adding a person: `add`](#adding-a-person-add)
+  - [Listing all persons: `list`](#listing-all-persons-list)
+  - [Editing a person: `edit`](#editing-a-person-edit)
+  - [Linking an attribute name to a site URL: `link`](#linking-an-attribute-name-to-a-site-url-link)
+  - [Locating persons by name: `find`](#locating-persons-by-name-find)
+  - [Deleting a person: `delete`](#deleting-a-person-delete)
+  - [Clearing all entries: `clear`](#clearing-all-entries-clear)
+  - [Filtering candidates by attributes: `filter`](#filtering-candidates-by-attributes-filter)
+  - [Sorting entries by an attribute: `sort`](#sorting-entries-by-an-attribute-sort)
+  - [Sorting entries by the numerical value of an attribute: `sort-num`](#sorting-entries-by-the-numerical-value-of-an-attribute-sort-num)
+  - [Undoing the last data change: `undo`](#undoing-the-last-data-change-undo)
+  - [Navigating past commands: <kbd>↑</kbd> <kbd>↓</kbd>](#navigating-past-commands--)
+  - [Exiting the program: `exit`](#exiting-the-program-exit)
+  - [Saving the data](#saving-the-data)
+  - [Editing the data file](#editing-the-data-file)
+- [FAQ](#faq)
+- [Known issues](#known-issues)
+- [Command summary](#command-summary)
+
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+Follow these simple steps to get TalentFolio up and running:
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T10-1/tp/releases).
+1. ### Install Java (if not already installed)
+  TalentFolio requires Java `17` or later to run. Check your Java version by opening a terminal or command prompt and typing:<br>
+  `java -version`<br>
+  If java is not installed or is an older version:
+  * **Windows/Linux users:** Download and install the latest Java Development Kit (JDK) from [Oracle's website](https://www.oracle.com/java/technologies/downloads/).
+  * **Mac users:** Follow the instructions and ensure you have the precise Java Development Kit (JDK) version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Copy the file to the folder you want to use as the _home folder_ for TalentFolio.
+1. ### Download TalentFolio 
+  Get the latest version of TalentFolio from our [official releases page](https://github.com/AY2425S2-CS2103T-T10-1/tp/releases). Download the latest `.jar` file available.
 
-1. Open a command terminal, navigate into the folder you put the jar file in (e.g. using the `cd` command), and use the `java -jar talentfolio.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. It is recommended to clear the sample data before your own personal use as the sample data will not be automatically overwritten.<br>
-   ![Ui](images/Ui.png)
+1. ### Set up TalentFolio
+  Move the `.jar` file to the folder you want to use as the _home folder_ for TalentFolio. This folder will store the TalentFolio application data. We recommend choosing a convenient location that you have read, write and execute permissions for.  
 
-1. Type the command in the command box and press Enter to execute it. E.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+1. ### Running TalentFolio
+  Open a command terminal:
+  * **Windows users:** Press `Win + R`, type `cmd`, and hit Enter.
+  * **Mac/Linux users** Open the Terminal app.<br>
+  Navigate to the folder where you placed the `.jar` file. You can do this using the `cd` command. For example:<br>
+  `cd path/to/your/folder`<br>
+  Run the following command in the terminal to launch the application:<br>
+  `java -jar talentfolio.jar`<br>
+  After a few seconds, the TalentFolio application should open, and you should see a GUI similar to the one shown below. Note how the app contains some sample data. It is recommended to clear the sample data before your own personal use as the sample data will not be automatically overwritten.<br>
+  ![Ui](images/Ui.png)
 
-   * `list` : Lists all candidates.
+1. ### Using TalentFolio
+  Type the command in the command box and press Enter to execute it. E.g. typing **`help`** and pressing Enter will open the help window.<br>
+  Some example commands you can try:
 
-   * `add n/John Doe p/98765432 e/johnd@example.com` : Adds a candidate named `John Doe` to the database.
+  * `list` : Lists all candidates.
 
-   * `filter a/Major=Computer Science` : Filters all candidates who major in Computer Science.
+  * `add n/John Doe p/98765432 e/johnd@example.com` : Adds a candidate named `John Doe` to the database.
 
-   * `sort a/Graduation Year` : Sorts candidates in ascending order of Graduation Year.
+  * `filter a/Major=Computer Science` : Filters all candidates who major in Computer Science.
 
-   * `delete 3` : Deletes the 3rd candidate shown in the current list.
+  * `sort a/Graduation Year` : Sorts candidates in ascending order of Graduation Year.
 
-   * `clear` : Deletes all candidates.
+  * `delete 3` : Deletes the 3rd candidate shown in the current list.
 
-   * `undo` : Undoes the last command.
+  * `clear` : Deletes all candidates.
 
-   * `exit` : Exits the app.
+  * `undo` : Undoes the last command.
 
-1. Refer to the [Features](#features) below for details of each command.
+  * `exit` : Exits the app.
+
+1. ### Need more help?
+  For a complete list of features and detailed instructions of each command, check out the [Features](#features) section below.<br>
+  Enjoy using TalentFolio to streamline your hiring process!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -118,27 +167,39 @@ Format: `list`
 
 Edits an existing person in the database.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/ATTRIBUTE_NAME]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/NAME_OF_ATTRIBUTE_TO_REMOVE]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-
-For tags:
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
-
-For attributes:
-* Update of attributes must specify both the attribute name and attribute value.
-* Update of attributes will update an existing attribute if it exists, else it will add it as a new attribute.
-* Removal of attributes only requires specifying the attribute name.
-* Regardless of the order that update attribute and remove attribute parameters are provided in, all attribute updates will be processed and executed first, before attribute removal.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 *  `edit 1 a/Graduation Year=2027` Adds or edits an attribute named "Graduation Year" to the 1st person.
 *  `edit 1 ra/Graduation Year` Removes the attribute named "Graduation Year" from the 1st person.
+
+<box type="tip" seamless>
+**For tags:**
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+</box>
+
+<box type="tip" seamless>
+**For attributes:**
+* Update of attributes must specify both the attribute name and attribute value.
+* Update of attributes will update an existing attribute if it exists, else it will add it as a new attribute.
+* Removal of attributes only requires specifying the attribute name.
+* Regardless of the order that update attribute and remove attribute parameters are provided in, all attribute updates will be processed and executed first, before attribute removal.
+* Attribute name is case-insensitive but attribute value is case-sensitive for update/removal.
+* Case of attribute name will however still be retained for display.
+</box>
+
+<box type="warning" seamless>
+**Warnings:**
+* Attribute to removed must be one that currently exists, else an error will be shown.
+* Attribute to be removed cannot be one that is updated in the same command, else an error will be shown.
+</box>
 
 ### Linking an attribute name to a site URL: `link`
 
@@ -311,10 +372,6 @@ TalentFolio data is saved automatically as a JSON file `[JAR file location]/data
 If your changes to the data file makes its format invalid, TalentFolio will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause TalentFolio to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
