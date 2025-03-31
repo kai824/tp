@@ -75,7 +75,7 @@ TalentFolio is an application for hiring managers to manage information on job c
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -142,27 +142,30 @@ Examples:
 
 ### Linking an attribute name to a site URL: `link`
 
-Adds a mapping between an attribute name and a site URL. By doing so, you can visit the website by simply clicking on the attribute in the individual view of the candidate, which can be shown by clicking on them or by entering the `show` command.
+Associates an attribute name with a site URL. By doing so, you can visit the website simply by clicking on the attribute in the individual view of the candidate, which can be shown by clicking on them or by entering the `show` command.
 
-Format: `link a/ATTRIBUTE_NAME=SITE_LINK`
+Format (to add a link): `link a/ATTRIBUTE_NAME=SITE_LINK`
 
-* Adds a mapping between the `ATTRIBUTE_NAME` (attribute name) and the `SITE_LINK` (site URL). This change applies to all candidates with an attribute that has the given name.
+* Associates `ATTRIBUTE_NAME` (attribute name) with `SITE_LINK` (site URL). This change applies to all candidates with an attribute that has the given name.
 * The attribute name is treated case-insensitively.
-* To remove an existing mapping, leave the `SITE_LINK` empty.
+
+Format (to remove an existing link): `link ra/ATTRIBUTE_NAME`
+
+* Removes the association between `ATTRIBUTE_NAME` and the site it was associated with.
 
 Examples:
 * `link a/github=https://github.com/`
-  * You can now visit the `https://github.com/ATTRIBUTE_VALUE` (i.e., the username) by clicking on the attribute.
-  * For example, if a candidate has an attribute with the name `GitHub` and the value (i.e., usename) `pochitaro2025`, you will be redirected to `https://github.com/pochitaro2025`! Note the case-insensitivity.
-* `link a/github=`
+  * You can now visit `https://github.com/ATTRIBUTE_VALUE` by clicking on the attribute.
+  * For example, if a candidate has an attribute with the name `GitHub` and the value `pochitaro2025` (usually their username), you will be directed to `https://github.com/pochitaro2025`! Note that the attribute name is case-insensitive.
+* `link ra/github`
   * Conversely, this will delete the mapping between `github` and `https://github.com/`.
-  * You will no longer be redirected to the GitHub page from now on.
+  * Clicking the attribute now will have no effect.
 
 <box type="tip" seamless>
 
-**Tip:** Mappings for `github` and `linkedin` (`https://github.com/` and `https://www.linkedin.com/in/`) are added by default!
+**Tip:** Associations for `github` and `linkedin` (`https://github.com/` and `https://www.linkedin.com/in/`) are added by default!
 
-Enjoy the easy management of websites!!
+Enjoy the easy management of websites!
 </box>
 
 ### Locating persons by name: `find`
@@ -329,6 +332,7 @@ _Details coming soon ..._
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+3. **If using Linux**, clicking on links will not open them. Instead, the link will be copied to the system clipboard, and a window will appear to notify you that the link has been copied. You will have to paste the link into your browser manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
