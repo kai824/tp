@@ -39,7 +39,7 @@ class JsonAdaptedAttribute {
     }
 
     public String getAttributeName() {
-        return attributeName;
+        return attributeName.toLowerCase();
     }
 
     public String getAttributeValue() {
