@@ -192,6 +192,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            personListPanel.updateLastShown();
+
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
@@ -204,7 +206,8 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            commandResult.getPersonToShow().ifPresent(person -> personListPanel.showPerson(person));
+            commandResult.getPersonToShow().ifPresentOrElse(
+                    person -> personListPanel.showPerson(person), () -> personListPanel.showLastPerson());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

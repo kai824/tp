@@ -20,6 +20,9 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private ListView<Person> personListView;
 
+    private Person lastShownPerson;
+    private int lastShownIndex;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
@@ -27,6 +30,9 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+
+        lastShownPerson = null;
+        lastShownIndex = -1;
     }
 
     /**
@@ -56,6 +62,46 @@ public class PersonListPanel extends UiPart<Region> {
     public void showPerson(Person person) {
         personListView.scrollTo(person);
         personListView.getSelectionModel().select(person);
+
+        lastShownPerson = person;
+        lastShownIndex = personListView.getSelectionModel().getSelectedIndex();
+    }
+
+    /**
+     * Show last shown person.
+     */
+    public void showLastPerson() {
+        ObservableList<Person> list = personListView.getItems();
+        assert list != null;
+
+        if (lastShownPerson != null) {
+            if (list.contains(lastShownPerson)) {
+                showPerson(lastShownPerson);
+            } else if (lastShownIndex < list.size() && lastShownIndex >= 0) {
+                showPerson(list.get(lastShownIndex));
+            } else {
+                resetLastShown();
+            }
+        } else {
+            resetLastShown();
+        }
+    }
+
+    /**
+     * Updates data about last shown person.
+     */
+    public void updateLastShown() {
+        lastShownPerson = personListView.getSelectionModel().getSelectedItem();
+        lastShownIndex = personListView.getSelectionModel().getSelectedIndex();
+    }
+
+    /**
+     * Reset data about last shown person, and deselects any currently selected Person.
+     */
+    private void resetLastShown() {
+        lastShownPerson = null;
+        lastShownIndex = -1;
+        personListView.getSelectionModel().clearSelection();
     }
 
 }

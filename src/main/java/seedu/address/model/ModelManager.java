@@ -122,9 +122,6 @@ public class ModelManager implements Model {
     @Override
     public void updateAlias(String attributeName, Optional<String> siteLink) {
         addressBook.updateAlias(attributeName, siteLink);
-
-        // Supplies a "different" predicate so that the GUI updates
-        updateFilteredPersonList(x -> true);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -146,6 +143,9 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
+
+        // Supplies a different predicate object so that the GUI updates
+        filteredPersons.setPredicate(x -> false);
         filteredPersons.setPredicate(predicate);
     }
 
