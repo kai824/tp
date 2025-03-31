@@ -6,7 +6,7 @@
 
 # TalentFolio User Guide
 
-TalentFolio is a powerful yet easy-to-use application designed for hiring managers to efficiently manage information on job candidates. It is optimized for users who prefer a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're a fast typist, TalentFolio can significantly speed up your hiring workflow and lets you handle your recruitment tasks much more efficiently compared to traditional GUI applications!
+TalentFolio is a powerful yet easy-to-use application designed for hiring managers to efficiently manage information on job candidates. It is optimized for users who prefer a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're a fast typist, TalentFolio can significantly speed up your hiring workflow!
 
 <!-- * Table of Contents -->
 ## Table of Contents
