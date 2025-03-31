@@ -56,7 +56,7 @@ Follow these simple steps to get TalentFolio up and running:
    * **Mac users:** Follow the instructions and ensure you have the precise Java Development Kit (JDK) version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 1. ### Download TalentFolio 
-   Get the latest version of TalentFolio from our [official releases page](https://github.com/AY2425S2-CS2103T-T10-1/tp/releases). Download the latest `.jar` file available.
+   Get the latest version of TalentFolio from our [official release page](https://github.com/AY2425S2-CS2103T-T10-1/tp/releases). Download the latest `.jar` file available.
 
 1. ### Set up TalentFolio
    Move the `.jar` file to the folder you want to use as the _home folder_ for TalentFolio. This folder will store the TalentFolio application data. We recommend choosing a convenient location that you have read, write and execute permissions for.  
