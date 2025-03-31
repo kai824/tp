@@ -199,7 +199,7 @@ Examples:
 
 <box type="warning" seamless>
 **Warnings:**
-* Attribute to removed must be one that currently exists, else an error will be shown.
+* Attribute to be removed must be one that currently exists, else an error will be shown.
 * Attribute to be removed cannot be one that is updated in the same command, else an error will be shown.
 </box>
 
