@@ -61,10 +61,7 @@ public class PersonListPanel extends UiPart<Region> {
      */
     public void showPerson(Person person) {
         personListView.scrollTo(person);
-        personListView.getSelectionModel().select(person);
-
-        lastShownPerson = person;
-        lastShownIndex = personListView.getSelectionModel().getSelectedIndex();
+        selectPerson(person);
     }
 
     /**
@@ -76,9 +73,9 @@ public class PersonListPanel extends UiPart<Region> {
 
         if (lastShownPerson != null) {
             if (list.contains(lastShownPerson)) {
-                showPerson(lastShownPerson);
+                selectPerson(lastShownPerson);
             } else if (lastShownIndex < list.size() && lastShownIndex >= 0) {
-                showPerson(list.get(lastShownIndex));
+                selectPerson(list.get(lastShownIndex));
             } else {
                 resetLastShown();
             }
@@ -102,6 +99,16 @@ public class PersonListPanel extends UiPart<Region> {
         lastShownPerson = null;
         lastShownIndex = -1;
         personListView.getSelectionModel().clearSelection();
+    }
+
+    /**
+     * Selects a Person.
+     */
+    private void selectPerson(Person person) {
+        personListView.getSelectionModel().select(person);
+
+        lastShownPerson = person;
+        lastShownIndex = personListView.getSelectionModel().getSelectedIndex();
     }
 
 }
