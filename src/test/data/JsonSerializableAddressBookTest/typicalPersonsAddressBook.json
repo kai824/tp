@@ -47,7 +47,7 @@
     "address" : "4th street",
     "tags" : [ ]
   } ],
-  "aliases": [
+  "urlSettings": [
     {
       "attributeName" : "github",
       "siteLink" : "https://github.com/"
