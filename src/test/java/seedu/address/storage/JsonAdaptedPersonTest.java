@@ -101,7 +101,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidAttributes_throwsIllegalValueException() {
         List<JsonAdaptedAttribute> invalidAttributes = new ArrayList<>(VALID_ATTRIBUTES);
-        invalidAttributes.add(new JsonAdaptedAttribute(INVALID_ATTRIBUTE, "2027", null));
+        invalidAttributes.add(new JsonAdaptedAttribute(INVALID_ATTRIBUTE, "2027"));
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_TAGS, invalidAttributes);
         assertThrows(IllegalValueException.class, person::toModelType);
@@ -111,7 +111,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullSiteLink_sucessOptional() throws Exception {
         List<JsonAdaptedAttribute> nullSiteLink = new ArrayList<>(VALID_ATTRIBUTES);
         nullSiteLink.add(
-            new JsonAdaptedAttribute("hogehoge", "fugafuga", null));
+            new JsonAdaptedAttribute("hogehoge", "fugafuga"));
         JsonAdaptedPerson person =
             new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TAGS, nullSiteLink);
         Person expected = new PersonBuilder(BENSON).build();
