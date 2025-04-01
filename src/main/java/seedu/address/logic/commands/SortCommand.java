@@ -2,9 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Optional;
+
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.attribute.AutoCorrectionUtil;
 import seedu.address.model.person.AttributeBasedPersonComparator;
 
 /**
@@ -13,7 +16,7 @@ import seedu.address.model.person.AttributeBasedPersonComparator;
  */
 public abstract class SortCommand extends Command {
     protected final String attributeName;
-    protected String adjustedAttributeName;
+    protected Optional<String> adjustedAttributeName;
 
     /**
      * Initializes an instance with the comparator based on the attribute name.
@@ -23,7 +26,6 @@ public abstract class SortCommand extends Command {
     public SortCommand(String attributeName) {
         requireNonNull(attributeName);
         this.attributeName = attributeName;
-        this.adjustedAttributeName = attributeName;
     }
 
     /**
@@ -35,13 +37,21 @@ public abstract class SortCommand extends Command {
      * Returns the warning message produced by this sort command.
      * If there is no warning, an empty String is returned.
      */
-    public abstract String getWarningMessage(Model model);
+    public String getWarningMessage(Model model) {
+        Optional<String> warning =
+            AutoCorrectionUtil.warningForName(attributeName, adjustedAttributeName);
+        if (warning.isPresent()) {
+            return warning.get() + "\n";
+        } else {
+            return "";
+        }
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        this.adjustedAttributeName = model.findClosestAttributeName(this.attributeName).orElse(this.attributeName);
+        this.adjustedAttributeName = model.findClosestAttributeName(this.attributeName);
         model.sortFilteredPersonList(this.getComparator());
         String message = this.getWarningMessage(model) + Messages.MESSAGE_PERSONS_SORTED_OVERVIEW;
         return new CommandResult(message);

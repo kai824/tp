@@ -10,6 +10,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.attribute.Attribute;
+import seedu.address.model.attribute.AutoCorrectionUtil;
 import seedu.address.model.person.AttributeMatchesPredicate;
 
 /**
@@ -40,10 +41,7 @@ public class FilterCommand extends Command {
         this.wasDuplicate = wasDuplicate;
     }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
+    private void applyFilter(Model model) {
         Set<Attribute> adjustedAttribtues =
             attributes.stream()
                 .map(attribute -> new Attribute(
@@ -56,12 +54,44 @@ public class FilterCommand extends Command {
         AttributeMatchesPredicate filter = new AttributeMatchesPredicate(adjustedAttribtues);
 
         model.updateFilteredPersonList(filter);
+    }
 
-        String message = String.format(Messages.MESSAGE_PERSONS_FILTERED_OVERVIEW,
-            model.getFilteredPersonList().size());
+    private String getWarningsForName(Model model) {
+        return attributes.stream()
+            .map(attribute -> attribute.getAttributeName())
+            .map(name -> AutoCorrectionUtil.warningForName(name, model.findClosestAttributeName(name)))
+            .filter(warning -> warning.isPresent())
+            .map(warning -> warning.get())
+            .reduce("", (x, y) -> x + y + "\n");
+    }
+
+    private String getWarningsForValue(Model model) {
+        return attributes.stream()
+            .map(attribute -> attribute.getAttributeValue())
+            .map(value -> AutoCorrectionUtil.warningForValue(value, model.findClosestAttributeValue(value)))
+            .filter(warning -> warning.isPresent())
+            .map(warning -> warning.get())
+            .reduce("", (x, y) -> x + y + "\n");
+    }
+
+    private String generateMessage(Model model) {
+        String message = "";
         if (wasDuplicate) {
-            message = MESSAGE_WARNING_DUPLICATE + "\n" + message;
+            message += MESSAGE_WARNING_DUPLICATE + "\n";
         }
+        message += getWarningsForName(model);
+        message += getWarningsForValue(model);
+        message += String.format(Messages.MESSAGE_PERSONS_FILTERED_OVERVIEW, model.getFilteredPersonList().size());
+        return message;
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
+        applyFilter(model);
+
+        String message = generateMessage(model);
         return new CommandResult(message);
     }
 

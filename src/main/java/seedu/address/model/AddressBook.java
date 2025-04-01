@@ -8,11 +8,13 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.attribute.AliasMappingList;
 import seedu.address.model.attribute.Attribute;
+import seedu.address.model.attribute.AutoCorrectionUtil;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -166,67 +168,28 @@ public class AddressBook implements ReadOnlyAddressBook {
         return aliasMappings.getAlias(attributeName);
     }
 
-    //// attribute name level operations
+    //// attribute level operations
 
-    // Verified on LeetCode: https://leetcode.com/problems/edit-distance/submissions/1583973463.
-    private int editDistance(String s, String t) {
-        int n = s.length();
-        int m = t.length();
-        int[][] dp = new int[n + 1][m + 1];
-        for (int i = 0; i <= n; i++) {
-            for (int j = 0; j <= m; j++) {
-                dp[i][j] = i + j;
-                if (0 < i && dp[i - 1][j] + 1 < dp[i][j]) {
-                    dp[i][j] = dp[i - 1][j] + 1;
-                }
-                if (0 < j && dp[i][j - 1] + 1 < dp[i][j]) {
-                    dp[i][j] = dp[i][j - 1] + 1;
-                }
-                if (0 < i && 0 < j) {
-                    int updateValue = dp[i - 1][j - 1];
-                    if (s.charAt(i - 1) != t.charAt(j - 1)) {
-                        updateValue++;
-                    }
-                    if (updateValue < dp[i][j]) {
-                        dp[i][j] = updateValue;
-                    }
-                }
-            }
-        }
-        return dp[n][m];
+    private ObservableList<Attribute> getAttributes() {
+        return persons.asUnmodifiableObservableList().stream()
+            .flatMap(person -> person.getAttributes().stream())
+            .collect(Collectors.collectingAndThen(Collectors.toList(), FXCollections::observableArrayList));
     }
 
     /**
      * Returns the closest matching existing attribute name, given a {@code target} string.
      * An empty Optional will be returned if there is no name close enough.
      */
-    Optional<String> findClosestAttributeName(String target) {
-        String adjustedTarget = target.toLowerCase();
-        Optional<String> closestName =
-            persons.asUnmodifiableObservableList().stream()
-                .flatMap(person -> person.getAttributes().stream())
-                .map(attribute -> attribute.getAttributeName())
-                .reduce((name1, name2) -> (
-                    editDistance(name1, adjustedTarget) < editDistance(name2, adjustedTarget) ? name1 : name2));
-        // Set the cutoff for 'close enough' as 'no more than half of the characters need to be changed.'
-        closestName = closestName.filter(name -> editDistance(name, adjustedTarget) * 2 < adjustedTarget.length());
-        return closestName;
+    public Optional<String> findClosestAttributeName(String target) {
+        return AutoCorrectionUtil.findClosestAttributeName(getAttributes(), target);
     }
 
     /**
      * Returns the closest matching existing attribute value, given a {@code target} string.
      * An empty Optional will be returned if there is no value close enough.
      */
-    Optional<String> findClosestAttributeValue(String target) {
-        Optional<String> closestName =
-            persons.asUnmodifiableObservableList().stream()
-                .flatMap(person -> person.getAttributes().stream())
-                .map(attribute -> attribute.getAttributeName())
-                .reduce((name1, name2) -> (
-                    editDistance(name1, target) < editDistance(name2, target) ? name1 : name2));
-        // Set the cutoff for 'close enough' as 'no more than half of the characters need to be changed.'
-        closestName = closestName.filter(name -> editDistance(name, target) * 2 < target.length());
-        return closestName;
+    public Optional<String> findClosestAttributeValue(String target) {
+        return AutoCorrectionUtil.findClosestAttributeValue(getAttributes(), target);
     }
 
     //// util methods
