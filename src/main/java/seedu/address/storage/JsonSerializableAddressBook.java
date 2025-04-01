@@ -25,16 +25,16 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
-    private final List<JsonAdaptedAliasMapping> aliases = new ArrayList<>();
+    private final List<JsonAdaptedAliasMapping> urlSettings = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-            @JsonProperty("aliases") List<JsonAdaptedAliasMapping> aliases) {
+            @JsonProperty("urlSettings") List<JsonAdaptedAliasMapping> urlSettings) {
         this.persons.addAll(persons);
-        this.aliases.addAll(aliases);
+        this.urlSettings.addAll(urlSettings);
     }
 
     /**
@@ -44,7 +44,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        aliases.addAll(source.getAliases().entrySet().stream()
+        urlSettings.addAll(source.getAliases().entrySet().stream()
             .map(entry -> new JsonAdaptedAliasMapping(entry.getKey(), entry.getValue()))
             .collect(Collectors.toList()));
     }
@@ -64,7 +64,7 @@ class JsonSerializableAddressBook {
             addressBook.addPerson(person);
         }
         ObservableMap<String, String> adjustedAliases =
-            aliases.stream()
+            urlSettings.stream()
                 .collect(Collectors.toMap(alias -> alias.getAttributeName(),
                     alias -> alias.getSiteLink(), (v1, v2) -> v1, FXCollections::observableHashMap));
         addressBook.setAliasMappings(adjustedAliases);

@@ -14,7 +14,7 @@
     "tags" : [ "owesMoney", "friends" ],
     "attributes": [
       {"name": "Graduation Year", "value": "2027"},
-      {"name": "Degree", "value": "Computer Science", "link": "nice degree! "}
+      {"name": "Degree", "value": "Computer Science"}
     ]
   }, {
     "name" : "Carl Kurz",
@@ -47,7 +47,7 @@
     "address" : "4th street",
     "tags" : [ ]
   } ],
-  "aliases": [
+  "urlSettings": [
     {
       "name": "degree",
       "link": "nice degree! "
