@@ -19,7 +19,7 @@ TalentFolio is a powerful yet easy-to-use application designed for hiring manage
   - [Using TalentFolio](#using-talentfolio)
   - [Need more help?](#need-more-help)
 - [Features](#features)
-  - [Viewing help: `help`](#viewing-help--help)
+  - [Viewing help: `help`](#viewing-help-help)
   - [Showing a person's details: `show`](#showing-a-persons-details-show)
   - [Adding a person: `add`](#adding-a-person-add)
   - [Listing all persons: `list`](#listing-all-persons-list)
@@ -253,7 +253,7 @@ Examples:
 
 ### Deleting a person: `delete`
 
-Deletes the specified person from the database.
+Deletes the specified person.
 
 Format: `delete INDEX`
 
@@ -267,7 +267,7 @@ Examples:
 
 ### Clearing all entries: `clear`
 
-Clears all entries from the database.
+Clears all entries.
 
 Format: `clear`
 
@@ -276,7 +276,6 @@ Format: `clear`
 Filters the candidates based on whether they have a specific attribute or not.
 
 Format: `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE [a/ANOTHER_ATTRIBUTE_NAME=ANOTHER_ATTRIBUTE_VALUE]…`
-
 * You must specify at least one attribute.
 * You can specify more than one attribute:
   1. If you specify multiple attributes of the **SAME** name, candidates who meet **ANY** one of them will be shown.
@@ -284,17 +283,17 @@ Format: `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE [a/ANOTHER_ATTRIBUTE_NAME=ANOTH
   3. You can specify attributes of different names, with multiple values of each. In this case, the first rule will be applied first, followed by the second rule (see Examples).
   4. The order of the given attributes does not matter (see Examples).
 * `ATTRIBUTE_NAME` is matched case-insensitively, while `ATTRIBUTE_VALUE` is matched case-sensitively.
-* The input names and values are tolerant of typos–the app automatically corrects them.
+* Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it.
   * For example, `GraduatOIn year` will be corrected to `GraduatIOn year` automatically, if only `Graduation year` exists as an attribute name.
 
 Examples:
 * `filter a/Major=Computer Science a/Graduation year=2028` filters all the candidates who major in Computer Science **AND** will graduate in 2028.
 * `filter a/Major=Computer Science a/Major=Mathematics` filters all the candidates who major in Computer Science **OR** Mathematics.
 * `filter a/Major=Computer Science a/Major=Mathematics a/Graduation year=2028` filters all the candidates who major in either Computer Science **OR** Mathematics, **AND** also graduating in 2028. That is:
-  * A candidate majoring in Compute Science and graduating in 2028 will be matched.
+  * A candidate majoring in Computer Science and graduating in 2028 will be matched.
   * A candidate majoring in Mathematics and graduating in 2028 will be matched.
   * A candidate majoring in Engineering and graduating in 2028 will **NOT** be matched, since they do not meet the first condition.
-  * A candidate majoring in Compute Science and graduating in 2027 will **NOT** be matched, since they do not meet the second condition.
+  * A candidate majoring in Computer Science and graduating in 2027 will **NOT** be matched, since they do not meet the second condition.
   * Please note that, in this case, candidates who are missing any of the attributes (i.e., do not have an attribute with the name Major or Graduation year) will **NOT** be matched. For instance, a candidate with no attributes will not be matched.
   * You can also obtain the same result with `filter a/Major=Computer Science a/Graduation year=2028 a/Major=Mathematics`, because the order of the arguments does not matter.
 
@@ -306,7 +305,7 @@ Format: `sort a/ATTRIBUTE_NAME`
 
 *  Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
-* The input names and values are tolerant of typos – the app automatically corrects them.
+* Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it.
 * There is no option to specify sorting in reverse order.
 
 Example:
@@ -323,7 +322,7 @@ Format: `sort-num a/ATTRIBUTE_NAME`
 * Among entries with the specified attribute name, if some do not have a valid numerical value, they will be placed at the back while preserving their internal order.
   * In the above scenario, a warning will be displayed to show which entry on the current view is the last one with a valid numerical value.
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
-* The input names and values are tolerant of typos – the app automatically corrects them.
+* Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it.
 * There is no option to specify sorting in descending order.
 
 Example:
