@@ -346,7 +346,7 @@ Format: `undo`
 
 Examples:
 * `delete 4`, then `undo` will get the result: `Last data change command undone: delete 4`
-* `sort a/Graduation Year`, then `undo` will get the result: `Last data change command undone: sort a/Graduation Year`
+* `sort-num a/Graduation Year`, then `undo` will get the result: `Last data change command undone: sort-num a/Graduation Year`
 * Assuming the app was just opened, the following actions will get the result `There is no change to undo!`. Note that existing filters will not be cleared, as the command was not successful:
   * `show 3` then `undo`
   * `find n/Alex` then `undo`
