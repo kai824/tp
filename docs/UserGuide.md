@@ -11,34 +11,30 @@ TalentFolio is a powerful yet easy-to-use application designed for hiring manage
 <!-- * Table of Contents -->
 ## Table of Contents
 
-- [Quick start](#quick-start)
-  - [Install Java (if not already installed)](#install-java-if-not-already-installed)
-  - [Download TalentFolio](#download-talentfolio)
-  - [Set up TalentFolio](#set-up-talentfolio)
-  - [Running TalentFolio](#running-talentfolio)
-  - [Using TalentFolio](#using-talentfolio)
-  - [Need more help?](#need-more-help)
-- [Features](#features)
-  - [Viewing help: `help`](#viewing-help-help)
-  - [Showing a person's details: `show`](#showing-a-persons-details-show)
-  - [Adding a person: `add`](#adding-a-person-add)
-  - [Listing all persons: `list`](#listing-all-persons-list)
-  - [Editing a person: `edit`](#editing-a-person-edit)
-  - [Linking an attribute name to a site URL: `link`](#linking-an-attribute-name-to-a-site-url-link)
-  - [Locating persons by name: `find`](#locating-persons-by-name-find)
-  - [Deleting a person: `delete`](#deleting-a-person-delete)
-  - [Clearing all entries: `clear`](#clearing-all-entries-clear)
-  - [Filtering candidates by attributes: `filter`](#filtering-candidates-by-attributes-filter)
-  - [Sorting entries by an attribute: `sort`](#sorting-entries-by-an-attribute-sort)
-  - [Sorting entries by the numerical value of an attribute: `sort-num`](#sorting-entries-by-the-numerical-value-of-an-attribute-sort-num)
-  - [Undoing the last data change: `undo`](#undoing-the-last-data-change-undo)
-  - [Navigating past commands: <kbd>↑</kbd> <kbd>↓</kbd>](#navigating-past-commands--)
-  - [Exiting the program: `exit`](#exiting-the-program-exit)
-  - [Saving the data](#saving-the-data)
-  - [Editing the data file](#editing-the-data-file)
-- [FAQ](#faq)
-- [Known issues](#known-issues)
-- [Command summary](#command-summary)
+- [TalentFolio User Guide](#talentfolio-user-guide)
+  - [Table of Contents](#table-of-contents)
+  - [Quick start](#quick-start)
+  - [Features](#features)
+    - [Viewing help: `help`](#viewing-help-help)
+    - [Showing a person's details: `show`](#showing-a-persons-details-show)
+    - [Adding a person: `add`](#adding-a-person-add)
+    - [Listing all persons: `list`](#listing-all-persons-list)
+    - [Editing a person: `edit`](#editing-a-person-edit)
+    - [Linking an attribute name to a site URL: `link`](#linking-an-attribute-name-to-a-site-url-link)
+    - [Locating persons by name: `find`](#locating-persons-by-name-find)
+    - [Deleting a person: `delete`](#deleting-a-person-delete)
+    - [Clearing all entries: `clear`](#clearing-all-entries-clear)
+    - [Filtering candidates by attributes: `filter`](#filtering-candidates-by-attributes-filter)
+    - [Sorting entries by an attribute: `sort`](#sorting-entries-by-an-attribute-sort)
+    - [Sorting entries by the numerical value of an attribute: `sort-num`](#sorting-entries-by-the-numerical-value-of-an-attribute-sort-num)
+    - [Undoing the last data change: `undo`](#undoing-the-last-data-change-undo)
+    - [Navigating past commands: ↑ ↓](#navigating-past-commands--)
+    - [Exiting the program: `exit`](#exiting-the-program-exit)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file)
+  - [FAQ](#faq)
+  - [Known issues](#known-issues)
+  - [Command summary](#command-summary)
 
 <page-nav-print />
 
@@ -398,18 +394,18 @@ Furthermore, certain edits can cause TalentFolio to behave in unexpected ways (e
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Help**   | `help`
+**Show**   | `show INDEX` <br> e.g., `show 1`
 **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/C++ t/Java a/Major=Data Science`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**List**   | `list`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/ATTRIBUTE_NAME]…` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Link**   | `link a/ATTRIBUTE_NAME=SITE_LINK`
-**Exit**   | `exit`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Clear**  | `clear`
+**Filter** | `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `filter a/Major=Computer Science`
 **Sort** | `sort a/ATTRIBUTE_NAME`<br> e.g., `sort a/Degree`
 **Numerical Sort** | `sort-num a/ATTRIBUTE_NAME`<br> e.g., `sort-num a/Expected Salary`
-**Show**   | `show INDEX` <br> e.g., `show 1`
-**Filter** | `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `filter a/Major=Computer Science`
 **Undo**   | `undo`
-**Help**   | `help`
 **Navigate Past Commands** | <kbd>↑</kbd> <kbd>↓</kbd>
+**Exit**   | `exit`
