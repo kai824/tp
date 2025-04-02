@@ -112,7 +112,7 @@ Follow these simple steps to get TalentFolio up and running:
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/Excel` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used as many times as desired (including zero times).<br>
+* Items with `…`​ after them can be used as many times as desired–if the items are optional, 0 or more times; otherwise, 1 or more times. <br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Excel`, `t/C++ t/Java` etc.
 
 * Parameters can be in any order.<br>
@@ -242,7 +242,7 @@ Enjoy the easy management of websites!
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]…`
 
 * You must specify at least one keyword.
 * You can specify more than one keyword.
@@ -282,7 +282,7 @@ Format: `clear`
 
 Filters the candidates based on whether they have a specific attribute or not.
 
-Format: `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE [a/ANOTHER_ATTRIBUTE_NAME=ANOTHER_ATTRIBUTE_VALUE]…`
+Format: `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE…`
 * You must specify at least one attribute.
 * You can specify more than one attribute:
   1. If you specify multiple attributes of the **SAME** name, candidates who meet **ANY** one of them will be shown.
@@ -416,18 +416,18 @@ Furthermore, certain edits can cause TalentFolio to behave in unexpected ways (e
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Help**   | `help`
+**Show**   | `show INDEX` <br> e.g., `show 1`
 **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/C++ t/Java a/Major=Data Science and Analytics`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**List**   | `list`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/ATTRIBUTE_NAME]…` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Link**   | `link a/ATTRIBUTE_NAME=SITE_LINK`
-**Exit**   | `exit`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
+**Find**   | `find KEYWORD [MORE_KEYWORDS]…`<br> e.g., `find James Jake`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Clear**  | `clear`
+**Filter** | `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE…` <br> e.g., `filter a/Major=Computer Science`
 **Sort** | `sort a/ATTRIBUTE_NAME`<br> e.g., `sort a/Degree`
 **Numerical Sort** | `sort-num a/ATTRIBUTE_NAME`<br> e.g., `sort-num a/Expected Salary`
-**Show**   | `show INDEX` <br> e.g., `show 1`
-**Filter** | `filter [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `filter a/Major=Computer Science`
 **Undo**   | `undo`
-**Help**   | `help`
 **Navigate Past Commands** | <kbd>↑</kbd> <kbd>↓</kbd>
+**Exit**   | `exit`
