@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 
 /**
  * Provides utility methods related to the auto-correction of attribute names/values.
@@ -58,14 +59,18 @@ public class AutoCorrectionUtil {
         return closestName;
     }
 
+    private static Stream<Attribute> getAttributesFromPersons(ObservableList<Person> persons) {
+        return persons.stream().flatMap(person -> person.getAttributes().stream());
+    }
+
     /**
      * Returns the closest matching existing attribute name, given a {@code target} string.
      * An empty {@code Optional} will be returned if there is no name close enough.
      */
     public static Optional<String> findMostCloseEnoughAttributeName(
-        ObservableList<Attribute> attributes, String target) {
+        ObservableList<Person> persons, String target) {
         String adjustedTarget = target.toLowerCase();
-        Stream<String> attributeNames = attributes.stream().map(Attribute::getAttributeName);
+        Stream<String> attributeNames = getAttributesFromPersons(persons).map(Attribute::getAttributeName);
         return findMostCloseEnoughName(attributeNames, adjustedTarget);
     }
 
@@ -74,8 +79,8 @@ public class AutoCorrectionUtil {
      * An empty {@code Optional} will be returned if there is no value close enough.
      */
     public static Optional<String> findMostCloseEnoughAttributeValue(
-        ObservableList<Attribute> attributes, String target) {
-        Stream<String> attributeValues = attributes.stream().map(Attribute::getAttributeValue);
+        ObservableList<Person> persons, String target) {
+        Stream<String> attributeValues = getAttributesFromPersons(persons).map(Attribute::getAttributeValue);
         return findMostCloseEnoughName(attributeValues, target);
     }
 
