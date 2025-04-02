@@ -41,10 +41,10 @@ public abstract class SortCommand extends Command {
      * If there is no warning, an empty String is returned.
      */
     public String getWarningMessage(Model model) {
-        Optional<String> missing_attribute_warning =
+        Optional<String> missingAttributeWarning =
             AutoCorrectionUtil.warningForName(attributeName, adjustedAttributeName);
-        if (missing_attribute_warning.isPresent()) { //No entry has the specified attribute name
-            return missing_attribute_warning.get() + "\n";
+        if (missingAttributeWarning.isPresent()) { //No entry has the specified attribute name
+            return missingAttributeWarning.get() + "\n";
         }
         Optional<Long> count = model.numOfPersonsWithAttribute(this.adjustedAttributeName.orElse(attributeName));
         return count.map(val -> String.format(MESSAGE_WARNING_MISSING_ATTRIBUTE, val)).orElse("");
