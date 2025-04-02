@@ -242,20 +242,21 @@ Enjoy the easy management of websites!
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]…`
+Format: `find KEYWORD…`
 
 * You must specify at least one keyword.
 * You can specify more than one keyword.
 * The search is case-insensitive. For example, `hans` will match `Hans`.
 * The order of the keywords does not matter. For example, `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
-* Only full words will be matched. For example, `Han` will not match `Hans`.
+* Words containing the keyword as a substring will be matched. For example, `Han` will match `Hans`.
+  * Note that the substring must be continuous. For example, `Has` will not match `Hans`.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   For example, `Hans Bo` will match `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` matches any person with `John` as a full word in their name.
-* `find alex david` matches any person with `alex` **OR** `david` as a full word in their name.<br>
+* `find John` matches any person with `John` as a substring in their name.
+* `find alex david` matches any person with `alex` **OR** `david` as a substring in their name.<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person: `delete`
@@ -422,7 +423,7 @@ Action     | Format, Examples
 **List**   | `list`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/ATTRIBUTE_NAME]…` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Link**   | `link a/ATTRIBUTE_NAME=SITE_LINK`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]…`<br> e.g., `find James Jake`
+**Find**   | `find KEYWORD…`<br> e.g., `find James Jake`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Clear**  | `clear`
 **Filter** | `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE…` <br> e.g., `filter a/Major=Computer Science`
