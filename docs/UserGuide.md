@@ -310,7 +310,7 @@ Sorts the current view of entries by the value of the specified attribute name i
 
 Format: `sort a/ATTRIBUTE_NAME`
 
-*  Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
+* Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
   * In the above scenario, a warning will indicate the last entry in the current view that contains the specified attribute name, if any; otherwise, it will display a warning that the specified attribute is missing.
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
 * Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it.
