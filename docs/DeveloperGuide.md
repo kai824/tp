@@ -274,7 +274,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a candidate with name, phone number, email, optional tags, and optional attributes.
+1. User requests to add a candidate with the specified details.
 2. System verifies that the input values are valid.
 3. System adds the candidate.
 4. System displays confirmation message.
@@ -285,19 +285,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 2a. Name is invalid.
 
-   * 2a1. System displays an error: “Error: {candidate name} is not a valid name.”
+   * 2a1. System displays an error.
 
      Use case ends.
 
 * 2b. Email is invalid.
 
-   * 2b1. System displays an error: “Error: {candidate email} is not a valid email.”
+   * 2b1. System displays an error.
 
      Use case ends.
 
 * 2c. Required parameters are missing.
 
-   * 2c1. System displays an error: “Error: The command format is: add n/{candidate name} p/{phone number} e/{email} [t/{tag}]… [a/{attribute}]…”
+   * 2c1. System displays an error.
 
      Use case ends.
 
@@ -320,7 +320,7 @@ Preconditions: The current list of candidates is not empty.
 **Extensions**
 * 2a. Index is invalid.
 
-    * 2a1. System displays an error: “Error: The index {index} is invalid.”
+    * 2a1. System displays an error.
 
       Use case ends.
 
