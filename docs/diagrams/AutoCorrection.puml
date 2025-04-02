@@ -37,6 +37,6 @@ deactivate Util
 Model <-- Book : "Major"
 deactivate Book
 
-deactivate Model 
+deactivate Model
 
 @enduml
