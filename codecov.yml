@@ -9,5 +9,6 @@ coverage:
         enabled: off
 
 ignore:
+  - "src/main/java/seedu/address/ui/*"
   - "src/main/java/seedu/address/ui/**/*"
   - "src/main/java/seedu/address/MainApp.java"
