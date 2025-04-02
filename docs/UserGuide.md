@@ -311,6 +311,7 @@ Sorts the current view of entries by the value of the specified attribute name i
 Format: `sort a/ATTRIBUTE_NAME`
 
 *  Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
+  * In the above scenario, a warning will indicate the last entry in the current view that contains the specified attribute name, if any; otherwise, it will display a warning that the specified attribute is missing.
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
 * Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it.
 * There is no option to specify sorting in reverse order.
@@ -326,8 +327,9 @@ Format: `sort-num a/ATTRIBUTE_NAME`
 
 * For each attribute value which can be parsed into a number, its numerical value will be stored.
 * Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
-* Among entries with the specified attribute name, if some do not have a valid numerical value, they will be placed at the back while preserving their internal order.
-  * In the above scenario, a warning will be displayed to show which entry on the current view is the last one with a valid numerical value.
+  * In the above scenario, a warning will indicate the last entry in the current view that has the specified attribute, if any; otherwise, it will display a warning that the specified attribute is missing.
+* If there is at least one entry with the specified attribute name and some of these entries lack a valid numerical value, those entries will be placed at the back while preserving their internal order.
+  * In the above scenario, a warning will indicate the last entry in the current view that contains a valid numerical value, if any; otherwise, it will display a warning that numerical values are completely missing.
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
 * Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it.
 * There is no option to specify sorting in descending order.
