@@ -169,17 +169,33 @@ public class ModelManager implements Model {
 
     @Override
     public Optional<Long> numOfPersonsWithNumericalValue(String attributeName) {
+        long countAttribute = filteredPersons.stream()
+            .filter(person -> person.getAttribute(attributeName).isPresent()).count();
+
+        if (countAttribute == 0) {
+            return Optional.empty(); //Missing attribute warning should be triggered instead.
+        }
 
         long countNumerical = filteredPersons.stream().filter(person ->
                 person.getAttribute(attributeName).isPresent()
                         && person.getAttribute(attributeName).get().hasNumericalValue()).count();
 
-        long countHaAttribute = filteredPersons.stream()
-                .filter(person -> person.getAttribute(attributeName).isPresent()).count();
-        if (countNumerical == countHaAttribute) {
+        if (countNumerical == countAttribute) {
             return Optional.empty();
         } else {
             return Optional.of(countNumerical);
+        }
+    }
+
+    @Override
+    public Optional<Long> numOfPersonsWithAttribute(String attributeName) {
+        long countAttribute = filteredPersons.stream().filter(person ->
+                person.getAttribute(attributeName).isPresent()).count();
+
+        if (countAttribute == filteredPersons.size()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(countAttribute);
         }
     }
 

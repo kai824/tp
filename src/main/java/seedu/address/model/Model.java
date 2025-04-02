@@ -126,6 +126,13 @@ public interface Model {
     Optional<Long> numOfPersonsWithNumericalValue(String attributeName);
 
     /**
+     * Returns the number of persons in the address book with the attribute {@code attributeName}.
+     * This method should only be called after a sort or sort-num operation is applied to the saved list.
+     * An empty Optional will be returned if all persons have the specified attribute.
+     */
+    Optional<Long> numOfPersonsWithAttribute(String attributeName);
+
+    /**
      * Saves the current AddressBook into the history
      */
     void saveState(String commandText);
