@@ -11,30 +11,34 @@ TalentFolio is a powerful yet easy-to-use application designed for hiring manage
 <!-- * Table of Contents -->
 ## Table of Contents
 
-- [TalentFolio User Guide](#talentfolio-user-guide)
-  - [Table of Contents](#table-of-contents)
-  - [Quick start](#quick-start)
-  - [Features](#features)
-    - [Viewing help: `help`](#viewing-help-help)
-    - [Showing a person's details: `show`](#showing-a-persons-details-show)
-    - [Adding a person: `add`](#adding-a-person-add)
-    - [Listing all persons: `list`](#listing-all-persons-list)
-    - [Editing a person: `edit`](#editing-a-person-edit)
-    - [Linking an attribute name to a site URL: `link`](#linking-an-attribute-name-to-a-site-url-link)
-    - [Locating persons by name: `find`](#locating-persons-by-name-find)
-    - [Deleting a person: `delete`](#deleting-a-person-delete)
-    - [Clearing all entries: `clear`](#clearing-all-entries-clear)
-    - [Filtering candidates by attributes: `filter`](#filtering-candidates-by-attributes-filter)
-    - [Sorting entries by an attribute: `sort`](#sorting-entries-by-an-attribute-sort)
-    - [Sorting entries by the numerical value of an attribute: `sort-num`](#sorting-entries-by-the-numerical-value-of-an-attribute-sort-num)
-    - [Undoing the last data change: `undo`](#undoing-the-last-data-change-undo)
-    - [Navigating past commands: ↑ ↓](#navigating-past-commands--)
-    - [Exiting the program: `exit`](#exiting-the-program-exit)
-    - [Saving the data](#saving-the-data)
-    - [Editing the data file](#editing-the-data-file)
-  - [FAQ](#faq)
-  - [Known issues](#known-issues)
-  - [Command summary](#command-summary)
+- [Quick start](#quick-start)
+  - [Install Java (if not already installed)](#install-java-if-not-already-installed)
+  - [Download TalentFolio](#download-talentfolio)
+  - [Set up TalentFolio](#set-up-talentfolio)
+  - [Running TalentFolio](#running-talentfolio)
+  - [Using TalentFolio](#using-talentfolio)
+  - [Need more help?](#need-more-help)
+- [Features](#features)
+  - [Viewing help: `help`](#viewing-help-help)
+  - [Showing a person's details: `show`](#showing-a-persons-details-show)
+  - [Adding a person: `add`](#adding-a-person-add)
+  - [Listing all persons: `list`](#listing-all-persons-list)
+  - [Editing a person: `edit`](#editing-a-person-edit)
+  - [Linking an attribute name to a site URL: `link`](#linking-an-attribute-name-to-a-website-link)
+  - [Locating persons by name: `find`](#locating-persons-by-name-find)
+  - [Deleting a person: `delete`](#deleting-a-person-delete)
+  - [Clearing all entries: `clear`](#clearing-all-entries-clear)
+  - [Filtering candidates by attributes: `filter`](#filtering-candidates-by-attributes-filter)
+  - [Sorting entries by an attribute: `sort`](#sorting-entries-by-an-attribute-sort)
+  - [Sorting entries by the numerical value of an attribute: `sort-num`](#sorting-entries-by-the-numerical-value-of-an-attribute-sort-num)
+  - [Undoing the last data change: `undo`](#undoing-the-last-data-change-undo)
+  - [Navigating past commands: <kbd>↑</kbd> <kbd>↓</kbd>](#navigating-past-commands)
+  - [Exiting the program: `exit`](#exiting-the-program-exit)
+  - [Saving the data](#saving-the-data)
+  - [Editing the data file](#editing-the-data-file)
+- [FAQ](#faq)
+- [Known issues](#known-issues)
+- [Command summary](#command-summary)
 
 <page-nav-print />
 
@@ -51,13 +55,13 @@ Follow these simple steps to get TalentFolio up and running:
    * **Windows/Linux users:** Download and install the latest Java Development Kit (JDK) from [Oracle's website](https://www.oracle.com/java/technologies/downloads/).
    * **Mac users:** Follow the instructions and ensure you have the precise Java Development Kit (JDK) version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. ### Download TalentFolio 
+2. ### Download TalentFolio 
    Get the latest version of TalentFolio from our [official release page](https://github.com/AY2425S2-CS2103T-T10-1/tp/releases). Download the latest `.jar` file available.
 
-1. ### Set up TalentFolio
+3. ### Set up TalentFolio
    Move the `.jar` file to the folder you want to use as the _home folder_ for TalentFolio. This folder will store the TalentFolio application data. We recommend choosing a convenient location that you have read, write and execute permissions for.  
 
-1. ### Running TalentFolio
+4. ### Running TalentFolio
    Open a command terminal:
    * **Windows users:** Press `Win + R`, type `cmd`, and hit Enter.
    * **Mac/Linux users** Open the Terminal app.<br>
@@ -68,7 +72,7 @@ Follow these simple steps to get TalentFolio up and running:
    After a few seconds, the TalentFolio application should open, and you should see a GUI similar to the one shown below. Note how the app contains some sample data. It is recommended to clear the sample data before your own personal use as the sample data will not be automatically overwritten.<br>
    ![Ui](images/Ui.png)
 
-1. ### Using TalentFolio
+5. ### Using TalentFolio
    Type the command in the command box and press Enter to execute it. E.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
@@ -90,7 +94,7 @@ Follow these simple steps to get TalentFolio up and running:
 
    * `exit` : Exits the app.
 
-1. ### Need more help?
+6. ### Need more help?
    For a complete list of features and detailed instructions of each command, check out the [Features](#features) section below.<br>
    Enjoy using TalentFolio to streamline your hiring process!
 
@@ -144,16 +148,24 @@ Example:
 
 Adds a person to the database.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…`
+
+Examples:
+* `add n/John Doe p/98765432 e/johnd@example.com` Adds a person named `John Doe` with phone number `98765432` and email address `johnd@example.com`.
+* `add n/Betsy Crowe t/C++ e/betsycrowe@example.com p/1234567 t/Java a/Major=Data Science and Analytics` Adds a person named `Betsy Crowe` with phone number `1234567`, email address `betsycrowe@example.com`, tags `C++` and `Java`, and an attribute named `Major` with the value `Data Science and Analytics`.
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags, and any number of attributes (including 0)
+**Tip:** A person can have any number of tags and attributes (including 0).
 </box>
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com`
-* `add n/Betsy Crowe t/C++ e/betsycrowe@example.com p/1234567 t/Java a/Major=Data Science`
+<box type="info" seamless>
+
+**More information on attributes:**
+* Attribute names are unique. A person cannot have multiple attributes with the same name.
+* Attribute names are case-aware, but case-insensitive. For example, `Major` is treated the same as `major`. The case you specify is the case that will be shown.
+* Attribute values are case-sensitive.
+</box>
 
 ### Listing all persons: `list`
 
@@ -165,60 +177,59 @@ Format: `list`
 
 Edits an existing person in the database.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/NAME_OF_ATTRIBUTE_TO_REMOVE]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/NAME_OF_ATTRIBUTE_TO_REMOVE]…`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 1 a/Graduation Year=2027` Adds or edits an attribute named "Graduation Year" to the 1st person.
-*  `edit 1 ra/Graduation Year` Removes the attribute named "Graduation Year" from the 1st person.
+*  `edit 1 a/Graduation Year=2027` Adds or edits an attribute named `Graduation Year` to the 1st person.
+*  `edit 1 ra/Graduation Year` Removes the attribute named `Graduation Year` from the 1st person.
 
-<box type="tip" seamless>
+<box type="info" seamless>
+
 **For tags:**
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed, i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 </box>
 
-<box type="tip" seamless>
+<box type="info" seamless>
+
 **For attributes:**
-* Update of attributes must specify both the attribute name and attribute value.
-* Update of attributes will update an existing attribute if it exists, else it will add it as a new attribute.
-* Removal of attributes only requires specifying the attribute name.
-* Regardless of the order that update attribute and remove attribute parameters are provided in, all attribute updates will be processed and executed first, before attribute removal.
-* Attribute name is case-insensitive but attribute value is case-sensitive for update/removal.
-* Case of attribute name will however still be retained for display.
+* Updating an attribute requires you to specify both the attribute name and attribute value.
+* If the attribute name already exists for this person, the corresponding attribute value will be updated. Otherwise, the attribute name and attribute value will be added to this person as a new attribute.
+* Removing the attribute only requires you to specify the attribute name.
+  * This must be an existing attribute.
+  * You cannot remove an attribute that will be updated in the same command. For example, `edit 1 a/Major=Physics ra/Major` is not allowed.
 </box>
 
-<box type="warning" seamless>
-**Warnings:**
-* Attribute to be removed must be one that currently exists, else an error will be shown.
-* Attribute to be removed cannot be one that is updated in the same command, else an error will be shown.
-</box>
+### Linking an attribute name to a website: `link`
 
-### Linking an attribute name to a site URL: `link`
-
-Associates an attribute name with a site URL. By doing so, you can visit the website simply by clicking on the attribute in the individual view of the candidate, which can be shown by clicking on them or by entering the `show` command.
+Associates an attribute name with a website URL. This means that you can visit the website by clicking on the attribute in the person's detailed view (which can be shown by clicking on them or by using the [`show`](#showing-a-persons-details-show) command).
 
 Format (to add a link): `link a/ATTRIBUTE_NAME=SITE_LINK`
 
-* Associates `ATTRIBUTE_NAME` (attribute name) with `SITE_LINK` (site URL). This change applies to all candidates with an attribute that has the given name.
-* The attribute name is treated case-insensitively.
+* Associates `ATTRIBUTE_NAME` with `SITE_LINK`. This change applies to all persons that have an attribute with this name. Attributes with this name that are added in the future will also be linked to this site URL.
 
 Format (to remove an existing link): `link ra/ATTRIBUTE_NAME`
 
-* Removes the association between `ATTRIBUTE_NAME` and the site it was associated with.
+* Removes the association between `ATTRIBUTE_NAME` and the website it was associated with.
 
 Examples:
 * `link a/github=https://github.com/`
   * You can now visit `https://github.com/ATTRIBUTE_VALUE` by clicking on the attribute.
-  * For example, if a candidate has an attribute with the name `GitHub` and the value `pochitaro2025` (usually their username), you will be directed to `https://github.com/pochitaro2025`! Note that the attribute name is case-insensitive.
+  * For example, if a person has an attribute with the name `GitHub` and the value `pochitaro2025` (usually their username), you will be directed to `https://github.com/pochitaro2025`!
 * `link ra/github`
-  * Conversely, this will delete the mapping between `github` and `https://github.com/`.
+  * This will delete the association between `github` and `https://github.com/`.
   * Clicking the attribute now will have no effect.
+
+<box type="info" seamless>
+
+Attribute names are case-insensitive. `link a/github=https://github.com/` has the same effect as `link a/GitHub=https://github.com/`.
+</box>
 
 <box type="tip" seamless>
 
@@ -235,16 +246,16 @@ Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 * You must specify at least one keyword.
 * You can specify more than one keyword.
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. For example, `hans` will match `Hans`.
+* The order of the keywords does not matter. For example, `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Only full words will be matched. For example, `Han` will not match `Hans`.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  For example, `Hans Bo` will match `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find John` matches any person with `John` as a full word in their name.
+* `find alex david` matches any person with `alex` **OR** `david` as a full word in their name.<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person: `delete`
@@ -305,7 +316,7 @@ Format: `sort a/ATTRIBUTE_NAME`
 * There is no option to specify sorting in reverse order.
 
 Example:
-* `sort a/major` sorts all entries with the "Major" attribute by lexicographical order of the attribute value of "Major".
+* `sort a/major` sorts all entries with the `Major` attribute by lexicographical order of the attribute value of `Major`.
 
 ### Sorting entries by the numerical value of an attribute: `sort-num`
 
@@ -322,20 +333,31 @@ Format: `sort-num a/ATTRIBUTE_NAME`
 * There is no option to specify sorting in descending order.
 
 Example:
-* `sort-num a/GPA` sorts all entries with the "GPA" attribute by ascending order of the numerical attribute value of "GPA".
+* `sort-num a/GPA` sorts all entries with the `GPA` attribute by ascending order of the numerical attribute value of `GPA`.
 
 ### Undoing the last data change: `undo`
 
 Undoes the last data change. Also clears any existing filters applied.
 
-For instance, suppose a user intended to type `delete 5` but accidentally types and executes `delete 4`. They can just type `undo`, and will get the success message: `Last data change command undone: delete 4`, with the deleted entry restored as well.
+For instance, suppose a user intended to type `delete 5` but accidentally types and executes `delete 4`. They can just type `undo` to restore the deleted entry.
+
+Note that commands that do not change the underlying data will be skipped -- such as `filter`, `find` and `show`.
 
 Format: `undo`
 * Only changes since the app was opened can be undone.
-* Changes that are undone cannot be redone. However, you can simply re-execute the command. Previous commands can be retrieved by navigating past commands using <kbd>↑</kbd> <kbd>↓</kbd> keypresses.
+* Changes that are undone cannot be redone. However, you can simply re-execute the command. Previous commands can be retrieved by navigating past commands using <kbd>↑</kbd> <kbd>↓</kbd> key-presses.
 * `undo` can be used multiple times in succession to undo more changes.
 * Clears all applied filters.
 * Does not work after exiting and re-opening the app. Using `undo` on a freshly opened app will not change anything.
+
+Examples:
+* `delete 4`, then `undo` will get the result: `Last data change command undone: delete 4`
+* `sort-num a/Graduation Year`, then `undo` will get the result: `Last data change command undone: sort-num a/Graduation Year`
+* Assuming the app was just opened, the following actions will get the result `There is no change to undo!`. Note that existing filters will not be cleared, as the command was not successful:
+  * `show 3` then `undo`
+  * `find n/Alex` then `undo`
+  * `filter a/Graduation Year=2025` then `undo`
+* `delete 4`, then `filter a/Graduation Year=2025`, then `undo` will skip over the filtering. It will undo `delete 4` and clear the filter
 
 ### Navigating past commands: <kbd>↑</kbd> <kbd>↓</kbd>
 
@@ -396,7 +418,7 @@ Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Help**   | `help`
 **Show**   | `show INDEX` <br> e.g., `show 1`
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/C++ t/Java a/Major=Data Science`
+**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/C++ t/Java a/Major=Data Science and Analytics`
 **List**   | `list`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/ATTRIBUTE_NAME]…` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Link**   | `link a/ATTRIBUTE_NAME=SITE_LINK`

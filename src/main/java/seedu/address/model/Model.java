@@ -109,13 +109,13 @@ public interface Model {
      * Returns the closest matching existing attribute name, given a {@code target} string.
      * An empty Optional will be returned if there is no name close enough.
      */
-    Optional<String> findClosestAttributeName(String target);
+    Optional<String> findMostCloseEnoughAttributeName(String target);
 
     /**
      * Returns the closest matching existing attribute value, given a {@code target} string.
      * An empty Optional will be returned if there is no value close enough.
      */
-    Optional<String> findClosestAttributeValue(String target);
+    Optional<String> findMostCloseEnoughAttributeValue(String target);
 
     /**
      * Returns the number of persons in the address book
