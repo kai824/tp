@@ -332,14 +332,25 @@ Example:
 
 Undoes the last data change. Also clears any existing filters applied.
 
-For instance, suppose a user intended to type `delete 5` but accidentally types and executes `delete 4`. They can just type `undo`, and will get the success message: `Last data change command undone: delete 4`, with the deleted entry restored as well.
+For instance, suppose a user intended to type `delete 5` but accidentally types and executes `delete 4`. They can just type `undo` to restore the deleted entry.
+
+Note that commands that do not change the underlying data will be skipped -- such as `filter`, `find` and `show`.
 
 Format: `undo`
 * Only changes since the app was opened can be undone.
-* Changes that are undone cannot be redone. However, you can simply re-execute the command. Previous commands can be retrieved by navigating past commands using <kbd>↑</kbd> <kbd>↓</kbd> keypresses.
+* Changes that are undone cannot be redone. However, you can simply re-execute the command. Previous commands can be retrieved by navigating past commands using <kbd>↑</kbd> <kbd>↓</kbd> key-presses.
 * `undo` can be used multiple times in succession to undo more changes.
 * Clears all applied filters.
 * Does not work after exiting and re-opening the app. Using `undo` on a freshly opened app will not change anything.
+
+Examples:
+* `delete 4`, then `undo` will get the result: `Last data change command undone: delete 4`
+* `sort-num a/Graduation Year`, then `undo` will get the result: `Last data change command undone: sort-num a/Graduation Year`
+* Assuming the app was just opened, the following actions will get the result `There is no change to undo!`. Note that existing filters will not be cleared, as the command was not successful:
+  * `show 3` then `undo`
+  * `find n/Alex` then `undo`
+  * `filter a/Graduation Year=2025` then `undo`
+* `delete 4`, then `filter a/Graduation Year=2025`, then `undo` will skip over the filtering. It will undo `delete 4` and clear the filter
 
 ### Navigating past commands: <kbd>↑</kbd> <kbd>↓</kbd>
 
