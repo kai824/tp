@@ -51,7 +51,7 @@ public abstract class SortCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        this.adjustedAttributeName = model.findClosestAttributeName(this.attributeName);
+        this.adjustedAttributeName = model.findMostCloseEnoughAttributeName(this.attributeName);
         model.sortFilteredPersonList(this.getComparator());
         String message = this.getWarningMessage(model) + Messages.MESSAGE_PERSONS_SORTED_OVERVIEW;
         return new CommandResult(message);

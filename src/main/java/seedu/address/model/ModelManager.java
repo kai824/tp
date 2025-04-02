@@ -158,13 +158,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Optional<String> findClosestAttributeName(String target) {
-        return addressBook.findClosestAttributeName(target);
+    public Optional<String> findMostCloseEnoughAttributeName(String target) {
+        return addressBook.findMostCloseEnoughAttributeName(target);
     }
 
     @Override
-    public Optional<String> findClosestAttributeValue(String target) {
-        return addressBook.findClosestAttributeValue(target);
+    public Optional<String> findMostCloseEnoughAttributeValue(String target) {
+        return addressBook.findMostCloseEnoughAttributeValue(target);
     }
 
     @Override

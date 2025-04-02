@@ -25,6 +25,7 @@ public class AutoCorrectionUtil {
         int n = s.length();
         int m = t.length();
         int[][] dp = new int[n + 1][m + 1];
+        // dp[i][j] holds the edit distance between s[1:i] and t[1:j].
         for (int i = 0; i <= n; i++) {
             for (int j = 0; j <= m; j++) {
                 dp[i][j] = i + j;
@@ -48,7 +49,7 @@ public class AutoCorrectionUtil {
         return dp[n][m];
     }
 
-    private static Optional<String> findClosestName(Stream<String> names, String target) {
+    private static Optional<String> findMostCloseEnoughName(Stream<String> names, String target) {
         Optional<String> closestName =
                 names.reduce((name1, name2) -> (
                     editDistance(name1, target) < editDistance(name2, target) ? name1 : name2));
@@ -61,19 +62,21 @@ public class AutoCorrectionUtil {
      * Returns the closest matching existing attribute name, given a {@code target} string.
      * An empty {@code Optional} will be returned if there is no name close enough.
      */
-    public static Optional<String> findClosestAttributeName(ObservableList<Attribute> attributes, String target) {
+    public static Optional<String> findMostCloseEnoughAttributeName(
+        ObservableList<Attribute> attributes, String target) {
         String adjustedTarget = target.toLowerCase();
         Stream<String> attributeNames = attributes.stream().map(Attribute::getAttributeName);
-        return findClosestName(attributeNames, adjustedTarget);
+        return findMostCloseEnoughName(attributeNames, adjustedTarget);
     }
 
     /**
      * Returns the closest matching existing attribute value, given a {@code target} string.
      * An empty {@code Optional} will be returned if there is no value close enough.
      */
-    public static Optional<String> findClosestAttributeValue(ObservableList<Attribute> attributes, String target) {
+    public static Optional<String> findMostCloseEnoughAttributeValue(
+        ObservableList<Attribute> attributes, String target) {
         Stream<String> attributeValues = attributes.stream().map(Attribute::getAttributeValue);
-        return findClosestName(attributeValues, target);
+        return findMostCloseEnoughName(attributeValues, target);
     }
 
     /**

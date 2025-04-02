@@ -180,16 +180,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Returns the closest matching existing attribute name, given a {@code target} string.
      * An empty Optional will be returned if there is no name close enough.
      */
-    public Optional<String> findClosestAttributeName(String target) {
-        return AutoCorrectionUtil.findClosestAttributeName(getAttributes(), target);
+    public Optional<String> findMostCloseEnoughAttributeName(String target) {
+        return AutoCorrectionUtil.findMostCloseEnoughAttributeName(getAttributes(), target);
     }
 
     /**
      * Returns the closest matching existing attribute value, given a {@code target} string.
      * An empty Optional will be returned if there is no value close enough.
      */
-    public Optional<String> findClosestAttributeValue(String target) {
-        return AutoCorrectionUtil.findClosestAttributeValue(getAttributes(), target);
+    public Optional<String> findMostCloseEnoughAttributeValue(String target) {
+        return AutoCorrectionUtil.findMostCloseEnoughAttributeValue(getAttributes(), target);
     }
 
     //// util methods
