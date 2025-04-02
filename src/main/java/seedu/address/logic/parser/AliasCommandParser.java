@@ -40,7 +40,7 @@ public class AliasCommandParser implements Parser<AliasCommand> {
         Matcher matcher = Pattern.compile("^([^=]+)=(.*)$").matcher(arg);
 
         if (!matcher.find()) {
-            throw new ParseException(AliasCommand.MESSAGE_USAGE);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
         }
 
         String attributeName = matcher.group(1).trim();
