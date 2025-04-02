@@ -196,17 +196,9 @@ The following sequence diagrams show how a default sort operation "sort a/Locati
 <puml src="diagrams/LexSortSequenceDiagram1.puml"></puml>
 <puml src="diagrams/LexSortSequenceDiagram2.puml"></puml>
 
-Similarly, the process in which a numerical sort operation "sort-num a/Graduation Year" goes through the `Logic` and `Model` components is shown below:
+The process of a numerical sort operation "sort-num a/Graduation Year" is similar to the above, except for the actual sorting process:
 
-<puml src="diagrams/NumSortSequenceDiagram1.puml"></puml>
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `NumSortCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-<puml src="diagrams/NumSortSequenceDiagram2.puml"></puml>
+<puml src="diagrams/NumSortSequenceDiagram.puml"></puml>
 
 --------------------------------------------------------------------------------------------------------------------
 
