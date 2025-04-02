@@ -174,7 +174,7 @@ The following sequence diagram illustrates how the method works at the low-level
 
 To autocorrect the attribute name `Mayor`, the Model goes through the following process:
 
-<puml src="diagrams/AutoCorrection.puml" alt="filter a/Mayor=CS" />
+<puml src="diagrams/AutoCorrection.puml" alt="Autocorrection of 'Mayor'" />
 
 The attribute value `CS` will be autocorrected in a similar way.
 
