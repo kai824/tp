@@ -50,7 +50,7 @@ public class FilterCommandTest {
         FilterCommand yearMajor = new FilterCommand(Set.of(year1, major1), false);
 
         assertEquals(year.execute(zeroPerson), year.execute(zeroPerson));
-        assertEquals(year.execute(zeroPerson), yearMajor.execute(zeroPerson));
+        assertNotEquals(year.execute(zeroPerson), yearMajor.execute(zeroPerson));
         assertNotEquals(year.execute(onePerson), year.execute(twoPersons));
         CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_PERSONS_FILTERED_OVERVIEW, 1));
         assertEquals(year.execute(twoPersons), expectedResult);
@@ -60,7 +60,7 @@ public class FilterCommandTest {
         yearMajor = new FilterCommand(Set.of(year1, major1), true);
 
         assertEquals(year.execute(zeroPerson), year.execute(zeroPerson));
-        assertEquals(year.execute(zeroPerson), yearMajor.execute(zeroPerson));
+        assertNotEquals(year.execute(zeroPerson), yearMajor.execute(zeroPerson));
         assertNotEquals(year.execute(onePerson), year.execute(twoPersons));
         expectedResult = new CommandResult(String.format(
             FilterCommand.MESSAGE_WARNING_DUPLICATE + "\n" + Messages.MESSAGE_PERSONS_FILTERED_OVERVIEW, 1));

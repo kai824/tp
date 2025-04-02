@@ -43,8 +43,9 @@ public class NumSortCommand extends SortCommand {
 
     @Override
     public String getWarningMessage(Model model) {
-        Optional<Long> count = model.numOfPersonsWithNumericalValue(this.adjustedAttributeName);
-        return count.map(val -> String.format(MESSAGE_WARNING_MISSING_NUMERICALS, val)).orElse("");
+        Optional<Long> count = model.numOfPersonsWithNumericalValue(this.adjustedAttributeName.orElse(attributeName));
+        return super.getWarningMessage(model)
+            + count.map(val -> String.format(MESSAGE_WARNING_MISSING_NUMERICALS, val)).orElse("");
     }
 
     @Override

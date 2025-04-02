@@ -33,12 +33,13 @@ public class LexSortCommand extends SortCommand {
 
     @Override
     public AttributeBasedPersonComparator getComparator() {
-        return new AttributeBasedPersonComparator(this.adjustedAttributeName, new ValueBasedAttributeComparator());
+        return new AttributeBasedPersonComparator(
+            this.adjustedAttributeName.orElse(attributeName), new ValueBasedAttributeComparator());
     }
 
     @Override
     public String getWarningMessage(Model model) {
-        return "";
+        return super.getWarningMessage(model);
     }
 
     @Override
