@@ -102,7 +102,7 @@ Follow these simple steps to get TalentFolio up and running:
 
 ## Features
 
-<box type="info" seamless>
+<box type="info">
 
 **Notes about the command format:**<br>
 
@@ -154,12 +154,12 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com` Adds a person named `John Doe` with phone number `98765432` and email address `johnd@example.com`.
 * `add n/Betsy Crowe t/C++ e/betsycrowe@example.com p/1234567 t/Java a/Major=Data Science and Analytics` Adds a person named `Betsy Crowe` with phone number `1234567`, email address `betsycrowe@example.com`, tags `C++` and `Java`, and an attribute named `Major` with the value `Data Science and Analytics`.
 
-<box type="tip" seamless>
+<box type="tip">
 
 **Tip:** A person can have any number of tags and attributes (including 0).
 </box>
 
-<box type="info" seamless>
+<box type="info">
 
 **More information on attributes:**
 * Attribute names are unique. A person cannot have multiple attributes with the same name.
@@ -189,14 +189,14 @@ Examples:
 *  `edit 1 a/Graduation Year=2027` Adds or edits an attribute named `Graduation Year` to the 1st person.
 *  `edit 1 ra/Graduation Year` Removes the attribute named `Graduation Year` from the 1st person.
 
-<box type="info" seamless>
+<box type="info">
 
 **For tags:**
 * When editing tags, the existing tags of the person will be removed, i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 </box>
 
-<box type="info" seamless>
+<box type="info">
 
 **For attributes:**
 * Updating an attribute requires you to specify both the attribute name and attribute value.
@@ -226,12 +226,12 @@ Examples:
   * This will delete the association between `github` and `https://github.com/`.
   * Clicking the attribute now will have no effect.
 
-<box type="info" seamless>
+<box type="info">
 
 Attribute names are case-insensitive. `link a/github=https://github.com/` has the same effect as `link a/GitHub=https://github.com/`.
 </box>
 
-<box type="tip" seamless>
+<box type="tip">
 
 **Tip:** Associations for `github` and `linkedin` (`https://github.com/` and `https://www.linkedin.com/in/`) are added by default!
 
@@ -391,7 +391,7 @@ TalentFolio data is saved in the hard disk automatically after any command that 
 
 TalentFolio data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<box type="warning" seamless>
+<box type="warning">
 
 **Caution:**
 If your changes to the data file makes its format invalid, TalentFolio will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>

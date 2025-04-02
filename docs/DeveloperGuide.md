@@ -126,7 +126,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<box type="info" seamless>
+<box type="info">
 
 **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -170,7 +170,7 @@ The undo mechanism is implemented inside `Model`. `Model` now implements the fol
 
 `Model` stores a `Stack` of `AddressBook`-s. To save the current address book, it creates a copy of the current address book, but copies the `Person` object by reference. This feature therefore requires that `Person` is not modified in-place when editing, but instead re-constructed.
 
-<box type="info" seamless>
+<box type="info">
 
 To prevent the case where an `UndoCommand` does not change the address book, `Model#saveState()` enforces that duplicate address books will not be saved. `Model#revertLastState()` enforces that it will not revert to an `AddressBook` which is equal to the current `AddressBook`, using the Java `Object#equals()` method.
 
@@ -200,7 +200,7 @@ Similarly, the process in which a numerical sort operation "sort-num a/Graduatio
 
 <puml src="diagrams/NumSortSequenceDiagram1.puml"></puml>
 
-<box type="info" seamless>
+<box type="info">
 
 **Note:** The lifeline for `NumSortCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -354,7 +354,7 @@ Preconditions: The current list of candidates is not empty.
 
 Given below are instructions to test the app manually.
 
-<box type="info" seamless>
+<box type="info">
 
 **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
