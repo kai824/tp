@@ -8,10 +8,10 @@ public class NumericalValueBasedAttributeComparatorTest {
     @Test
     public void testCompare() {
         NumericalValueBasedAttributeComparator comparator = new NumericalValueBasedAttributeComparator();
-        Attribute attribute1 = new Attribute("Degree", "Computer Science");
-        Attribute attribute2 = new Attribute("Degree", "42");
-        Attribute attribute3 = new Attribute("Degree", "0.25");
-        Attribute attribute4 = new Attribute("Degree", "Mathematics");
+        Attribute attribute1 = new Attribute("Major", "Computer Science");
+        Attribute attribute2 = new Attribute("Major", "42");
+        Attribute attribute3 = new Attribute("Major", "0.25");
+        Attribute attribute4 = new Attribute("Major", "Mathematics");
         assert(comparator.compare(attribute2, attribute3) > 0);
         assert(comparator.compare(attribute1, attribute2) > 0);
         assert(comparator.compare(attribute2, attribute1) < 0);

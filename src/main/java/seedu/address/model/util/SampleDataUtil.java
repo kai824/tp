@@ -22,26 +22,26 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 getTagSet("R", "Python", "Tableau"),
-                getAttributeSet("Graduation Year", "2028", "Degree", "Data Science and Analytics",
+                getAttributeSet("Graduation Year", "2028", "Major", "Data Science and Analytics",
                         "GitHub", "example-alexyeoh", "LinkedIn", "example-alexyeoh")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 getTagSet("Java", "C++"),
-                getAttributeSet("Degree", "Computer Science", "GitHub", "example-berniceyu")),
+                getAttributeSet("Major", "Computer Science", "GitHub", "example-berniceyu")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 getTagSet("JavaScript", "React", "AngularJS"),
-                getAttributeSet("Graduation Year", "2027", "Degree", "Computer Science",
+                getAttributeSet("Graduation Year", "2027", "Major", "Computer Science",
                         "GitHub", "example-charlotteoliveiro", "LinkedIn", "example-charlotteoliveiro")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 getTagSet("Excel"),
-                getAttributeSet("Graduation Year", "2027", "Degree", "Business Administration",
+                getAttributeSet("Graduation Year", "2027", "Major", "Business Administration",
                         "LinkedIn", "example-davidli")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 getTagSet("Supply chain"),
-                getAttributeSet("Graduation Year", "2026", "Degree", "Business Administration",
+                getAttributeSet("Graduation Year", "2026", "Major", "Business Administration",
                         "LinkedIn", "example-irfanibrahim")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 getTagSet("BSL2", "Cell culture"),
-                getAttributeSet("Degree", "Life Sciences", "LinkedIn", "example-roybalakrishnan"))
+                getAttributeSet("Major", "Life Sciences", "LinkedIn", "example-roybalakrishnan"))
         };
     }
 

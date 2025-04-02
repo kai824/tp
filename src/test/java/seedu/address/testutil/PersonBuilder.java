@@ -86,8 +86,8 @@ public class PersonBuilder {
      * <p>
      * For each attribute specified, two Strings should be provided (name and value).
      * <p>
-     * E.g. To add the attributes "Graduation Year: 2027" and "Degree: Computer Science", use
-     * {@code withAttributes("Graduation Year", "2027", "Degree", "Computer Science")}.
+     * E.g. To add the attributes "Graduation Year: 2027" and "Major: Computer Science", use
+     * {@code withAttributes("Graduation Year", "2027", "Major", "Computer Science")}.
      */
     public PersonBuilder withAttributes(String... attributes) {
         this.attributes = SampleDataUtil.getAttributeSet(attributes);

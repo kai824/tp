@@ -41,7 +41,7 @@ public class JsonSerializableAddressBookTest {
         AddressBook addressBookFromFile = dataFromFile.toModelType();
         AddressBook typicalPersonsAddressBook = new AddressBook(TypicalPersons.getTypicalAddressBook());
         ObservableMap<String, String> aliases = FXCollections.observableHashMap();
-        aliases.put("degree", "nice degree! ");
+        aliases.put("major", "nice major! ");
         typicalPersonsAddressBook.setAliasMappings(aliases);
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
