@@ -268,7 +268,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `TalentFolio` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `TalentFolio` and the **Actor** is the `user`, unless specified otherwise)
 
 **UC01 - Add a candidate**
 
@@ -283,21 +283,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-* 2a. Name is invalid.
+* 2a. System detects invalid inputs.
 
    * 2a1. System displays an error.
-
-     Use case ends.
-
-* 2b. Email is invalid.
-
-   * 2b1. System displays an error.
-
-     Use case ends.
-
-* 2c. Required parameters are missing.
-
-   * 2c1. System displays an error.
 
      Use case ends.
 
@@ -309,7 +297,7 @@ Preconditions: The current list of candidates is not empty.
 
 **MSS**
 
-1. User requests to delete a candidate by specifying their index in the current view.
+1. User requests to delete a candidate by specifying their index.
 2. System verifies that the index is valid.
 3. System deletes the candidate.
 4. System displays confirmation message.
@@ -318,9 +306,83 @@ Preconditions: The current list of candidates is not empty.
    Use case ends.
 
 **Extensions**
-* 2a. Index is invalid.
+* 2a. System detects an invalid index.
 
     * 2a1. System displays an error.
+
+      Use case ends.
+
+---
+
+**UC03 - View previous commands**
+
+**MSS**
+
+1. User requests for the previous executed command.
+2. System shows the user the previous executed command.
+
+   Steps 1-2 are repeated as many times as the user desires.
+
+   Use case ends.
+
+**Extensions**
+* 1a. System detects no previous command.
+
+    * 1a1. No change occurs.
+
+      Use case ends.
+
+---
+
+**UC04 - View next commands**
+
+Precondition: User must be viewing previous commands.
+
+**MSS**
+
+1. User requests for the next executed command.
+2. System shows the user the next executed command.
+
+   Steps 1-2 are repeated as many times as the user desires.
+
+   Use case ends.
+
+**Extensions**
+* 1a. System detects no next command.
+
+    * 1a1. No change occurs.
+
+      Use case ends.
+
+---
+
+**UC05 - Navigate command history**
+
+**MSS**
+
+1. User !!views previous commands (UC03)!!.
+2. User !!views next commands (UC04)!!.
+
+   Steps 1-2 are repeated as many times as the user desires.
+
+   Use case ends.
+
+---
+
+**UC06 - Execute past command**
+
+**MSS**
+
+1. User !!navigates command history (UC05)!!.
+2. User selects a command to execute.
+3. System executes the command.
+
+   Use case ends.
+
+**Extensions**
+* 3a. System encountered an error while executing the command.
+
+    * 3a1. System displays an error.
 
       Use case ends.
 
