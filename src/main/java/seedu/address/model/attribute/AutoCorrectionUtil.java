@@ -50,7 +50,7 @@ public class AutoCorrectionUtil {
         return dp[n][m];
     }
 
-    private static Optional<String> findMostCloseEnoughName(Stream<String> names, String target) {
+    private static Optional<String> autocorrectName(Stream<String> names, String target) {
         Optional<String> closestName =
                 names.reduce((name1, name2) -> (
                     editDistance(name1, target) < editDistance(name2, target) ? name1 : name2));
@@ -67,21 +67,21 @@ public class AutoCorrectionUtil {
      * Returns the closest matching existing attribute name, given a {@code target} string.
      * An empty {@code Optional} will be returned if there is no name close enough.
      */
-    public static Optional<String> findMostCloseEnoughAttributeName(
+    public static Optional<String> autocorrectAttributeName(
         ObservableList<Person> persons, String target) {
         String adjustedTarget = target.toLowerCase();
         Stream<String> attributeNames = getAttributesFromPersons(persons).map(Attribute::getAttributeName);
-        return findMostCloseEnoughName(attributeNames, adjustedTarget);
+        return autocorrectName(attributeNames, adjustedTarget);
     }
 
     /**
      * Returns the closest matching existing attribute value, given a {@code target} string.
      * An empty {@code Optional} will be returned if there is no value close enough.
      */
-    public static Optional<String> findMostCloseEnoughAttributeValue(
+    public static Optional<String> autocorrectAttributeValue(
         ObservableList<Person> persons, String target) {
         Stream<String> attributeValues = getAttributesFromPersons(persons).map(Attribute::getAttributeValue);
-        return findMostCloseEnoughName(attributeValues, target);
+        return autocorrectName(attributeValues, target);
     }
 
     /**

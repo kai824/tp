@@ -87,7 +87,7 @@ public class AliasCommand extends Command {
             return new CommandResult(message);
         }
         // Overwrites an existing alias mapping.
-        Optional<String> closestAttributeName = model.findMostCloseEnoughAttributeName(attributeName);
+        Optional<String> closestAttributeName = model.autocorrectAttributeName(attributeName);
         if (!closestAttributeName.isPresent() || !closestAttributeName.get().equals(attributeName.toLowerCase())) {
             message += MESSAGE_WARNING_NO_ONE_HAS_THE_ATTRIBUTE_NAME + "\n";
         }
