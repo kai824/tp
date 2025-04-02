@@ -112,7 +112,7 @@ Follow these simple steps to get TalentFolio up and running:
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/Excel` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used as many times as desired. If the items are optional, it can even be 0 times. <br>
+* Items with `…`​ after them can be used as many times as desired–if the items are optional, 0 or more times; otherwise, 1 or more times. <br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Excel`, `t/C++ t/Java` etc.
 
 * Parameters can be in any order.<br>
@@ -242,7 +242,7 @@ Enjoy the easy management of websites!
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]...`
+Format: `find KEYWORD [MORE_KEYWORDS]…`
 
 * You must specify at least one keyword.
 * You can specify more than one keyword.
