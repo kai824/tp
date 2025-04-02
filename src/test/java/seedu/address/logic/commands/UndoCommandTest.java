@@ -120,6 +120,11 @@ public class UndoCommandTest {
         }
 
         @Override
+        public Optional<Long> numOfPersonsWithAttribute(String attributeName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void saveState(String commandText) {
             throw new AssertionError("This method should not be called.");
         }

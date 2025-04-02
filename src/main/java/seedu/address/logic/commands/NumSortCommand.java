@@ -23,8 +23,10 @@ public class NumSortCommand extends SortCommand {
             + "Parameters: ATTRIBUTE_NAME (case-insensitive)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ATTRIBUTE + "Graduation Year";
-    public static final String MESSAGE_WARNING_MISSING_NUMERICALS =
+    public static final String MESSAGE_WARNING_PARTIALLY_MISSING_NUMERICALS =
             "WARNING! Only entries up to index %1$d have valid numerical values for the specified attribute name.\n";
+    public static final String MESSAGE_WARNING_MISSING_NUMERICALS =
+            "WARNING! No entries have valid numerical values for the specified attribute name.\n";
 
 
     /**
@@ -44,8 +46,15 @@ public class NumSortCommand extends SortCommand {
     @Override
     public String getWarningMessage(Model model) {
         Optional<Long> count = model.numOfPersonsWithNumericalValue(this.adjustedAttributeName.orElse(attributeName));
-        return super.getWarningMessage(model)
-            + count.map(val -> String.format(MESSAGE_WARNING_MISSING_NUMERICALS, val)).orElse("");
+        String warning = super.getWarningMessage(model);
+        if (count.isPresent()) {
+            if (count.get() == 0) {
+                warning += MESSAGE_WARNING_MISSING_NUMERICALS;
+            } else {
+                warning += String.format(MESSAGE_WARNING_PARTIALLY_MISSING_NUMERICALS, count.get());
+            }
+        }
+        return warning;
     }
 
     @Override
