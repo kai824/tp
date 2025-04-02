@@ -169,10 +169,10 @@ public class ModelManager implements Model {
 
     @Override
     public Optional<Long> numOfPersonsWithNumericalValue(String attributeName) {
-        long countHaAttribute = filteredPersons.stream()
+        long countAttribute = filteredPersons.stream()
             .filter(person -> person.getAttribute(attributeName).isPresent()).count();
 
-        if (countHaAttribute == 0) {
+        if (countAttribute == 0) {
             return Optional.empty(); //Missing attribute warning should be triggered instead.
         }
 
@@ -180,7 +180,7 @@ public class ModelManager implements Model {
                 person.getAttribute(attributeName).isPresent()
                         && person.getAttribute(attributeName).get().hasNumericalValue()).count();
 
-        if (countNumerical == countHaAttribute) {
+        if (countNumerical == countAttribute) {
             return Optional.empty();
         } else {
             return Optional.of(countNumerical);
