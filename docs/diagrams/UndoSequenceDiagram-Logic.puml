@@ -8,7 +8,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":Stack<Pair<AddressBook, String> >" as Stack MODEL_COLOR
+participant ":Stack<Pair<AddressBook, String>>" as Stack MODEL_COLOR
 participant ":AddressBook" as AB MODEL_COLOR
 end box
 

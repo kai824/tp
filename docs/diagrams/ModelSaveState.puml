@@ -4,7 +4,7 @@ skinparam ArrowFontStyle plain
 
 box Model MODEL_COLOR_T1
 participant ":Model" as MM MODEL_COLOR
-participant "previousStates: Stack<Pair<AddressBook, String> >" as Stack MODEL_COLOR
+participant "previousStates: Stack<Pair<AddressBook, String>>" as Stack MODEL_COLOR
 end box
 
 [-> MM : saveState(commandText)
