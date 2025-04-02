@@ -18,7 +18,7 @@ public class AliasCommand extends Command {
             + "Example: " + COMMAND_WORD + " a/GitHub=https://github.com/\n"
             + "To remove the correspondency, use '" + COMMAND_WORD + " ra/ATTRIBUTE_NAME' instead.";
     public static final String MESSAGE_ADD_ALIAS_SUCCESS =
-        "Added the site link: the site domain'%2$s' is now associated with '%1$s'";
+        "Added the site link: the site domain '%2$s' is now associated with '%1$s'";
     public static final String MESSAGE_REMOVE_ALIAS_SUCCESS =
         "Removed the site link: currently no site link is associated with '%1$s'";
     public static final String MESSAGE_ACCEPT_ONE_ARGUMENT =
