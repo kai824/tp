@@ -13,7 +13,8 @@ pageNav: 3
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+* Libraries used: [Checkstyle](https://github.com/checkstyle/checkstyle), [Jackson](https://github.com/FasterXML/jackson), [Jacoco](https://github.com/jacoco/jacoco), [JavaFX](https://openjfx.io/), [JUnit](https://github.com/junit-team/junit5), [Shadow](https://github.com/GradleUp/shadow)
+* References used: [SE-EDU initiative](https://se-education.org/), [AB3](https://github.com/se-edu/addressbook-level3)
 
 --------------------------------------------------------------------------------------------------------------------
 
