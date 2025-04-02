@@ -14,7 +14,7 @@
     "tags" : [ "owesMoney", "friends" ],
     "attributes": [
       {"name": "Graduation Year", "value": "2027"},
-      {"name": "Degree", "value": "Computer Science"}
+      {"name": "Major", "value": "Computer Science"}
     ]
   }, {
     "name" : "Carl Kurz",
