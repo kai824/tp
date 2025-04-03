@@ -40,6 +40,7 @@ public class NameTest {
         assertTrue(Name.isValidName("Nagaratnam s/o Suppiah")); // names with s/o
         assertTrue(Name.isValidName("Nagaratnam d/o Suppiah")); // names with d/o
         assertTrue(Name.isValidName("Tan Cheng Bok @ Adrian Tan")); // names with @
+        assertTrue(Name.isValidName("Tan Ah-Kau")); // names with -
     }
 
     @Test
