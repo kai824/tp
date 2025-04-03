@@ -25,9 +25,12 @@ public class UiUtils {
      * @param link The link to open.
      */
     public static void browse(String link) {
+        logger.info(String.format("Attempting to browse (%s).", link));
         if (Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            logger.info("Desktop::browse is supported.");
             try {
                 Desktop.getDesktop().browse(new URI(link));
+                logger.info(String.format("Link (%s) has successfully opened.", link));
             } catch (Exception e) { // many possible exceptions here, so catch-all is used
                 logger.info(String.format("Copying the link (%s) as it failed to open.", link));
                 copyLinkAndShowDialog(link);
