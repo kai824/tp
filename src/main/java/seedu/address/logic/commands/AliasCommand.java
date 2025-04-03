@@ -73,6 +73,7 @@ public class AliasCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
         String message = "";
         // Not introducing any change.
         Optional<String> currentAlias = model.getAlias(attributeName);

@@ -1,11 +1,15 @@
 package seedu.address.model.attribute;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * Manages correspondences between attribute names and website links.
@@ -18,6 +22,8 @@ public class AliasMappingList {
         Map.of("github", "https://github.com/",
         "linkedin", "https://www.linkedin.com/in/");
 
+    private static final Logger logger = LogsCenter.getLogger(AliasMappingList.class);
+
     private Map<String, String> dictionary = new HashMap<>(DEFAULT_DICTIONARY);
     private ObservableMap<String, String> unmodifiableDictionary =
         FXCollections.unmodifiableObservableMap(FXCollections.observableMap(dictionary));
@@ -26,8 +32,11 @@ public class AliasMappingList {
 
     /**
      * Replaces the alias mappings with the given {@code mappings}.
+     * The keys (i.e., attribute names) must be in lowercase.
      */
     public void setAliases(ObservableMap<String, String> mappings) {
+        requireNonNull(mappings);
+        assert mappings.keySet().stream().allMatch(name -> name.equals(name.toLowerCase()));
         this.dictionary.clear();
         this.dictionary.putAll(mappings);
     }
@@ -42,9 +51,14 @@ public class AliasMappingList {
      *     To remove the current mapping, set it empty.
      */
     public void updateAlias(String attributeName, Optional<String> siteLink) {
+        requireNonNull(attributeName);
+        requireNonNull(siteLink);
         if (siteLink.isPresent()) {
+            requireNonNull(siteLink.get());
+            logger.fine("Successfully set a website link `" + siteLink.get() + "` associated with " + attributeName);
             dictionary.put(attributeName.toLowerCase(), siteLink.get());
         } else {
+            logger.fine("Successfully removed a website link associated with " + attributeName);
             dictionary.remove(attributeName.toLowerCase());
         }
     }
@@ -56,6 +70,7 @@ public class AliasMappingList {
      *     Otherwise, an empty instance will be returned.
      */
     public Optional<String> getAlias(String attributeName) {
+        requireNonNull(attributeName);
         if (dictionary.containsKey(attributeName.toLowerCase())) {
             return Optional.of(dictionary.get(attributeName.toLowerCase()));
         }

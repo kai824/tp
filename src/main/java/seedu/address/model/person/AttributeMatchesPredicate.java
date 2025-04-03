@@ -9,7 +9,7 @@ import seedu.address.model.attribute.Attribute;
 
 /**
  * Tests if a Person has all of the designated attributes.
- * Guarantees: immutable.
+ * Guarantee: immutable.
  */
 public class AttributeMatchesPredicate implements Predicate<Person> {
     private final long numOfDistinctAttributeNames;

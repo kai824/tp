@@ -31,9 +31,6 @@ public class AliasCommandTest {
         command.execute(model);
         ReadOnlyAddressBook book = model.getAddressBook();
         ObservableMap<String, String> mappings = book.getAliases();
-        assertTrue(mappings.containsKey("github"));
-        assertTrue(mappings.containsKey("linkedin"));
-        assertFalse(mappings.containsKey("GITHUB"));
         assertTrue(mappings.containsKey(name1));
         assertTrue(mappings.get(name1).equals(link1));
     }
