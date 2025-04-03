@@ -26,7 +26,7 @@ public class LexSortCommandParserTest {
     public void parse_validArgs_returnsSortCommand() {
         // no leading and trailing whitespaces
         LexSortCommand expectedSortCommand =
-                new LexSortCommand("Graduation Year");
+                new LexSortCommand("Graduation Year", true);
         assertParseSuccess(parser, "sort a/Graduation Year", expectedSortCommand);
         assertParseSuccess(parser, "sort a/    Graduation Year   ", expectedSortCommand);
     }

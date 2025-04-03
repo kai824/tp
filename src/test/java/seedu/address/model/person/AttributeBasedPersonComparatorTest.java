@@ -19,7 +19,7 @@ public class AttributeBasedPersonComparatorTest {
     @BeforeEach
     public void setUp() {
         String attributeName = "Graduation Year";
-        defaultComparator = new AttributeBasedPersonComparator(attributeName, new ValueBasedAttributeComparator());
+        defaultComparator = new AttributeBasedPersonComparator(attributeName, new ValueBasedAttributeComparator(true));
 
         person1 = new PersonBuilder().withAttributes(attributeName, "2027").build();
         person2 = new PersonBuilder().withAttributes(attributeName, "2028").build();

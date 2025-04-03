@@ -20,31 +20,33 @@ public abstract class SortCommand extends Command {
 
     protected final String attributeName;
     protected Optional<String> adjustedAttributeName;
+    private boolean isAscending;
 
     /**
      * Initializes an instance with the comparator based on the attribute name.
      *
      * @param attributeName The name of the attribute to sort the user input.
      */
-    public SortCommand(String attributeName) {
+    public SortCommand(String attributeName, boolean isAscending) {
         requireNonNull(attributeName);
         this.attributeName = attributeName;
+        this.isAscending = isAscending;
     }
 
     /**
-     * Returns the Comparator to use for this sort command
+     * Returns the Comparator to use for this sort command, assuming ascending order
      */
-    public abstract AttributeBasedPersonComparator getComparator();
+    public abstract AttributeBasedPersonComparator getComparator(boolean isDescending);
 
     /**
      * Returns the warning message produced by this sort command.
      * If there is no warning, an empty String is returned.
      */
     public String getWarningMessage(Model model) {
-        Optional<String> missing_attribute_warning =
+        Optional<String> missingAttributeWarning =
             AutoCorrectionUtil.warningForName(attributeName, adjustedAttributeName);
-        if (missing_attribute_warning.isPresent()) { //No entry has the specified attribute name
-            return missing_attribute_warning.get() + "\n";
+        if (missingAttributeWarning.isPresent()) { //No entry has the specified attribute name
+            return missingAttributeWarning.get() + "\n";
         }
         Optional<Long> count = model.numOfPersonsWithAttribute(this.adjustedAttributeName.orElse(attributeName));
         return count.map(val -> String.format(MESSAGE_WARNING_MISSING_ATTRIBUTE, val)).orElse("");
@@ -55,7 +57,7 @@ public abstract class SortCommand extends Command {
         requireNonNull(model);
 
         this.adjustedAttributeName = model.findMostCloseEnoughAttributeName(this.attributeName);
-        model.sortFilteredPersonList(this.getComparator());
+        model.sortFilteredPersonList(this.getComparator(this.isAscending));
         String message = this.getWarningMessage(model) + Messages.MESSAGE_PERSONS_SORTED_OVERVIEW;
         return new CommandResult(message);
 

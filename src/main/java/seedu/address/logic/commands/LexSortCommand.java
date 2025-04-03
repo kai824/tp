@@ -27,14 +27,14 @@ public class LexSortCommand extends SortCommand {
      *
      * @param attributeName The name of the attribute to sort the user input.
      */
-    public LexSortCommand(String attributeName) {
-        super(attributeName);
+    public LexSortCommand(String attributeName, boolean isAscending) {
+        super(attributeName, isAscending);
     }
 
     @Override
-    public AttributeBasedPersonComparator getComparator() {
+    public AttributeBasedPersonComparator getComparator(boolean isAscending) {
         return new AttributeBasedPersonComparator(
-            this.adjustedAttributeName.orElse(attributeName), new ValueBasedAttributeComparator());
+            this.adjustedAttributeName.orElse(attributeName), new ValueBasedAttributeComparator(isAscending));
     }
 
     @Override

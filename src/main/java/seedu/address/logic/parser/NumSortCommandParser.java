@@ -7,7 +7,7 @@ import seedu.address.logic.commands.NumSortCommand;
  */
 public class NumSortCommandParser extends SortCommandParser {
     @Override
-    public NumSortCommand createSortCommand(String attribute) {
-        return new NumSortCommand(attribute);
+    public NumSortCommand createSortCommand(String attribute, boolean isAscending) {
+        return new NumSortCommand(attribute, isAscending);
     }
 }
