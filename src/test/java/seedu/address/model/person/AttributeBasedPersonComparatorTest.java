@@ -10,7 +10,8 @@ import seedu.address.model.attribute.ValueBasedAttributeComparator;
 import seedu.address.testutil.PersonBuilder;
 
 public class AttributeBasedPersonComparatorTest {
-    private AttributeBasedPersonComparator defaultComparator;
+    private AttributeBasedPersonComparator ascendingComparator;
+    private AttributeBasedPersonComparator descendingComparator;
     private Person person1;
     private Person person2;
     private Person person3;
@@ -19,7 +20,10 @@ public class AttributeBasedPersonComparatorTest {
     @BeforeEach
     public void setUp() {
         String attributeName = "Graduation Year";
-        defaultComparator = new AttributeBasedPersonComparator(attributeName, new ValueBasedAttributeComparator(true));
+        ascendingComparator = new AttributeBasedPersonComparator(attributeName,
+                new ValueBasedAttributeComparator(true));
+        descendingComparator = new AttributeBasedPersonComparator(attributeName,
+                new ValueBasedAttributeComparator(false));
 
         person1 = new PersonBuilder().withAttributes(attributeName, "2027").build();
         person2 = new PersonBuilder().withAttributes(attributeName, "2028").build();
@@ -29,22 +33,27 @@ public class AttributeBasedPersonComparatorTest {
 
     @Test
     public void secondPersonHasAttribute_firstPersonDoesNot_returnsPositive() {
-        assertEquals(1, defaultComparator.compare(person3, person2));
+        assertEquals(1, ascendingComparator.compare(person3, person2));
+        assertEquals(1, descendingComparator.compare(person3, person2));
     }
 
     @Test
     public void firstPersonHasAttribute_secondPersonDoesNot_returnsNegative() {
-        assertEquals(-1, defaultComparator.compare(person1, person4));
+        assertEquals(-1, ascendingComparator.compare(person1, person4));
+        assertEquals(-1, descendingComparator.compare(person1, person4));
     }
 
     @Test
-    public void compare_bothDoNotHaveAttribute_returnsZero() {
-        assertEquals(-1, defaultComparator.compare(person3, person4)); // Matches your logic
+    public void compare_bothDoNotHaveAttribute_returnsNegative() {
+        assertEquals(-1, ascendingComparator.compare(person3, person4));
+        assertEquals(-1, descendingComparator.compare(person3, person4));
     }
 
     @Test
     public void compare_attributesDifferent_returnsCorrectComparison() {
-        assertEquals(-1, defaultComparator.compare(person1, person2));
-        assertEquals(1, defaultComparator.compare(person2, person1));
+        assertEquals(-1, ascendingComparator.compare(person1, person2));
+        assertEquals(1, ascendingComparator.compare(person2, person1));
+        assertEquals(1, descendingComparator.compare(person1, person2));
+        assertEquals(-1, descendingComparator.compare(person2, person1));
     }
 }
