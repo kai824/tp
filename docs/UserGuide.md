@@ -340,8 +340,7 @@ Format: `sort a/ATTRIBUTE_NAME [o/ORDER]`
 Example:
 * `sort a/major` sorts entries in ascending order according to their `Major` alphabetically.
   * Entries without `Major` as an attribute will be sorted to the end of the list.
-* `sort a/location` sorts entries in descending order according to their `Location` alphabetically.
-  * Entries without `Location` as an attribute will be sorted to the end of the list.
+* `sort a/location o/desc` sorts entries in descending order according to their `Location` alphabetically.
 
 ### Sorting entries by the numerical value of an attribute: `sort-num`
 
@@ -361,6 +360,7 @@ Format: `sort-num a/ATTRIBUTE_NAME [o/ORDER]`
 
 Example:
 * `sort-num a/expected salary` sorts entries numerically (in ascending order) according to their `Expected Salary`.
+  * Entries without a numerical value for `Expected Salary` will be placed at the end of the list, with those having `Expected Salary` as an attribute but lacking a valid numerical value appearing first.
 * `sort-num a/GPA o/desc` sorts entries numerically (in descending order) according to their `GPA`.
 
 ### Undoing the last data change: `undo`
