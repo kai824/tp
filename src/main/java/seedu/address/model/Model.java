@@ -138,9 +138,9 @@ public interface Model {
     void saveState(String commandText);
 
     /**
-     * Reverts the AddressBook to the last saved state.
+     * Reverts the AddressBook to the last saved state. Throws IllegalStateException if no previous state.
      *
-     * @return A boolean of whether the AddressBook was successfully reverted
+     * @return String associated to data change that was successfully reverted.
      */
     String revertLastState();
 }
