@@ -21,17 +21,17 @@ activate Model
 
 ref#white over Model, Util : Autocorrect the attribute name "Mayor"
 
-FilterCommand <-- Model : "Major"
+FilterCommand <-- Model : ["major"]
 deactivate Model
 
 FilterCommand -> Model : autocorrectAttributeValue("CS")
 activate Model
 
-FilterCommand <-- Model : "CS"
+FilterCommand <-- Model : ["CS"]
 deactivate Model
 
 create Predicate
-FilterCommand -> Predicate : Predicate(Set.of(new Attribute("Major", "CS")))
+FilterCommand -> Predicate : Predicate(Set.of(new Attribute("major", "CS")))
 activate Predicate
 
 FilterCommand <-- Predicate : p
@@ -43,13 +43,13 @@ activate Model
 Model <-- FilterCommand
 deactivate Model
 
-FilterCommand -> Util : getWarningForName("Mayor", "Major")
+FilterCommand -> Util : getWarningForName("Mayor", ["major"])
 activate Util
 
 FilterCommand <-- Util : Warning message about the autocorrection
 deactivate Util
 
-FilterCommand -> Util : getWarningForValue("CS", "CS")
+FilterCommand -> Util : getWarningForValue("CS", ["CS"])
 activate Util
 
 FilterCommand <-- Util : No warning message

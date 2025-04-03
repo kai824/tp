@@ -179,9 +179,11 @@ To autocorrect the attribute name `Mayor`, the Model goes through the following 
 
 <puml src="diagrams/AutoCorrection.puml" alt="Autocorrection of 'Mayor'" />
 
-The attribute value `CS` will be autocorrected in a similar way.
+The attribute value `CS` will be autocorrected in a similar way. The only difference lies in case-sensitivity: attribute names are converted to lowercase internally, while attribute values remain unchanged (as per the behavior of `Attribute::getAttributeName/Value`).
 
-Alternatively, if there is no attribute name/value close enough to `Mayor`/`CS`, nothing will be returned from `autocorrectAttributeName/Value`; this is why their return value is `Optional`.
+Alternatively, if there is no attribute name/value close enough to `Mayor`/`CS`, nothing will be returned from `autocorrectAttributeName/Value`; this is why their return value is `Optional<String>`.
+
+The second parameter for `getWarningForName/Value` (i.e., `corecctedName/Value`) is also `Optional<String>`, meaning the method can also generate a warning message that no candidate has the input attribute name/value. The recommended usage is to pass the return value of `autocorrectAttributeName/Value` directly as this second parameter.
 
 If there are multiple attributes given to the filter command, each attribute will go through the same process as above. Specifically, the command
 
