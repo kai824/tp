@@ -14,7 +14,8 @@ import seedu.address.logic.parser.ParserUtil;
  */
 public class Attribute implements Comparable<Attribute> {
     public static final String PROHIBITED_CHARACTERS = "/\\=";
-    public static final String MESSAGE_CONSTRAINTS = "Attribute names and values should not contain /, \\, or =.";
+    public static final String MESSAGE_CONSTRAINTS = "Attribute names and values should not contain /, \\, or =. "
+            + "Attribute names and values should not be longer than 50 characters.";
     public static final String MESSAGE_CONSTRAINTS_FOR_NAME = "Attribute names should not contain /, \\, or =.";
     public static final String MESSAGE_CONSTRAINT_NON_EMPTY_FOR_NAME = "Attribute names cannot be empty.";
     public static final String MESSAGE_CONSTRAINT_NON_EMPTY_FOR_SITE_LINK = "Website domain links cannot be empty.";
@@ -24,6 +25,7 @@ public class Attribute implements Comparable<Attribute> {
     public static final String NO_DUPLICATES_CASE_INSENSITIVITY = "Duplicate attribute names are not allowed!\n"
             + CAPITALISATION_NOTE;
     public static final String VALIDATION_REGEX = "[^\\\\/=]+";
+    public static final int VALIDATION_LENGTH = 50;
     public static final String MESSAGE_USAGE =
         "An attribute must consist of exactly one name and one value (both non-empty), separated by =.";
 
@@ -163,7 +165,7 @@ public class Attribute implements Comparable<Attribute> {
      * Returns true if a given string is a valid attribute name or value.
      */
     public static boolean isValidAttribute(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= VALIDATION_LENGTH;
     }
 
     @Override
