@@ -169,8 +169,8 @@ First, `FilterCommandParser` parses a set of attributes (i.e., the pair of `Mayo
 Next, `FilterCommand::execute(m)` is called. The method consists of three steps:
 
 1. autocorrection of `Mayor` and `CS`,
-1. creation and application of filtering predicate, and
-1. generation of warning messages.
+2. creation and application of filtering predicate, and
+3. generation of warning messages.
 
 The following sequence diagram illustrates how the method works at the low-level:
 
