@@ -66,7 +66,7 @@ Navigate to the folder where you placed the `.jar` file. You can do this using t
 `cd path/to/your/folder`<br>
 Run the following command in the terminal to launch the application:<br>
 `java -jar talentfolio.jar`<br>
-After a few seconds, the TalentFolio application should open, and you should see a GUI similar to the one shown below. Note how the app contains some sample data. It is recommended to clear the sample data before your own personal use as the sample data will not be automatically overwritten.<br><br>
+After a few seconds, the TalentFolio application should open, and you should see a GUI similar to the one shown below. Note that the app contains some sample data. It is recommended to clear the sample data before your own personal use as it will not be automatically overwritten.<br>
 
 <pic src="images/Ui.png" alt="GUI">
 TalentFolio's graphical user interface
