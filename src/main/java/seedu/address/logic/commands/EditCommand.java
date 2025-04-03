@@ -141,8 +141,8 @@ public class EditCommand extends Command {
             }
         }
         if (removedAttributes != null) {
-            for (String attrName: removedAttributes) {
-                personToReturn.removeAttributeByName(attrName);
+            for (String attributeName: removedAttributes) {
+                personToReturn.removeAttributeByName(attributeName);
             }
         }
 
