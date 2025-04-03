@@ -19,8 +19,6 @@ activate LexSortCommand
 LexSortCommand -> Model : autocorrectAttributeName("Locaton")
 activate Model
 
-ref#white over Model, Util : Autocorrect the attribute name "Locaton"
-
 LexSortCommand <-- Model : ["location"]
 deactivate Model
 

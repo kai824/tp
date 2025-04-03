@@ -24,7 +24,7 @@ ValueBasedAttributeComparator --> LexSortCommand
 deactivate ValueBasedAttributeComparator
 
 create AttributeBasedPersonComparator
-LexSortCommand -> AttributeBasedPersonComparator: AttributeBasedPersonComparator("Location", v)
+LexSortCommand -> AttributeBasedPersonComparator: AttributeBasedPersonComparator("location", v)
 activate AttributeBasedPersonComparator
 
 AttributeBasedPersonComparator --> LexSortCommand
