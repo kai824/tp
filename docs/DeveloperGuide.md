@@ -189,8 +189,8 @@ The second parameter for `getWarningForName/Value` (i.e., `corecctedName/Value`)
 If there are multiple attributes given to the filter command, each attribute will go through the same process as above. Specifically, the command
 
 1. first autocorrects all the attributes,
-1. followed by the creation of predicate with the corrected attributes, and
-1. obtains warning messages for the entire attribute name/values.
+2. followed by the creation of predicate with the corrected attributes, and
+3. obtains warning messages for the entire attribute name/values.
 
 Please also note that, in the actual implementation, the command repeats the autocorrection process during the acquisition of warning messages. This is for the sake of simplicity of code.
 
@@ -222,14 +222,24 @@ It is noteworthy that although `saveState()` is called before `UndoCommand` gets
 
 ### Sort/numerical sort feature
 
-Sorting is currently done via custom comparators.
+Sorting is currently done via custom comparators. Due to the similarity between the two sort commands, we have two classes that inherit from an abstract class `SortCommand`: `LexSortCommand` for the default alphabetical sort, and `NumSortCommand` for numerical sort.
 
-The following sequence diagrams show how a default sort operation "sort a/Location" goes through the `Logic` component:
+First, `LexSortCommandParser`/`numSortCommandParser` parses an attribute name and an optional field order parameter, creating a new instance of `LexSortCommand`/`NumSortCommand`. The procedure is almost the same as shown in the [logic component section](#Logic-component). The instance is initialized with the attribute name and a boolean variable `isAscending`, which is set to `true` or `false` depending on the user input. 
+
+Next, `SortCommand::execute(m)` is called. The method consists of three steps:
+
+1. autocorrection of the attribute name,
+2. creation and application of sort comparators, and
+3. generation of warning messages.
+
+Note that autocorrection in Step 1 uses the same implementation as the one mentioned in the [filtering section](#filtering).
+
+The following sequence diagrams show how a default sort operation "sort a/Location o/ascending" is executed:
 
 <puml src="diagrams/LexSortSequenceDiagram1.puml"></puml>
 <puml src="diagrams/LexSortSequenceDiagram2.puml"></puml>
 
-The process of a numerical sort operation "sort-num a/Graduation Year" is similar to the above, except for the actual sorting process:
+The process of a numerical sort operation "sort-num a/GPA o/descending" is similar to the above, except for comparator used (refer to the diagram below) and an extra call to `Model::numOfPersonsWithNumericalValue` when generating the warning message.
 
 <puml src="diagrams/NumSortSequenceDiagram.puml"></puml>
 
