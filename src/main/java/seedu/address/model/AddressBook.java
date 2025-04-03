@@ -8,7 +8,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.address.commons.util.ToStringBuilder;
@@ -170,26 +169,20 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// attribute level operations
 
-    private ObservableList<Attribute> getAttributes() {
-        return persons.asUnmodifiableObservableList().stream()
-            .flatMap(person -> person.getAttributes().stream())
-            .collect(Collectors.collectingAndThen(Collectors.toList(), FXCollections::observableArrayList));
-    }
-
     /**
-     * Returns the closest matching existing attribute name, given a {@code target} string.
+     * Returns the closest matching existing (i.e., the autocorrected) attribute name, given a {@code target} string.
      * An empty Optional will be returned if there is no name close enough.
      */
-    public Optional<String> findMostCloseEnoughAttributeName(String target) {
-        return AutoCorrectionUtil.findMostCloseEnoughAttributeName(getAttributes(), target);
+    public Optional<String> autocorrectAttributeName(String target) {
+        return AutoCorrectionUtil.autocorrectAttributeName(getPersonList(), target);
     }
 
     /**
      * Returns the closest matching existing attribute value, given a {@code target} string.
      * An empty Optional will be returned if there is no value close enough.
      */
-    public Optional<String> findMostCloseEnoughAttributeValue(String target) {
-        return AutoCorrectionUtil.findMostCloseEnoughAttributeValue(getAttributes(), target);
+    public Optional<String> autocorrectAttributeValue(String target) {
+        return AutoCorrectionUtil.autocorrectAttributeValue(getPersonList(), target);
     }
 
     //// util methods

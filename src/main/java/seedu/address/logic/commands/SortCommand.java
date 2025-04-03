@@ -44,7 +44,7 @@ public abstract class SortCommand extends Command {
      */
     public String getWarningMessage(Model model) {
         Optional<String> missingAttributeWarning =
-            AutoCorrectionUtil.warningForName(attributeName, adjustedAttributeName);
+            AutoCorrectionUtil.getWarningForName(attributeName, adjustedAttributeName);
         if (missingAttributeWarning.isPresent()) { //No entry has the specified attribute name
             return missingAttributeWarning.get() + "\n";
         }
@@ -56,7 +56,7 @@ public abstract class SortCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        this.adjustedAttributeName = model.findMostCloseEnoughAttributeName(this.attributeName);
+        this.adjustedAttributeName = model.autocorrectAttributeName(this.attributeName);
         model.sortFilteredPersonList(this.getComparator(this.isAscending));
         String message = this.getWarningMessage(model);
         if (this.isAscending) {
