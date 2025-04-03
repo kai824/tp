@@ -1,9 +1,7 @@
 package seedu.address.ui;
 
 import java.awt.Desktop;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 import javafx.scene.control.Alert;
@@ -27,15 +25,18 @@ public class UiUtils {
      * @param link The link to open.
      */
     public static void browse(String link) {
-        if (Desktop.isDesktopSupported()) {
+        logger.info(String.format("Attempting to browse (%s).", link));
+        if (Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            logger.info("Desktop::browse is supported.");
             try {
                 Desktop.getDesktop().browse(new URI(link));
-            } catch (IOException | URISyntaxException | UnsupportedOperationException e) {
-                logger.fine(String.format("Copying the link (%s) as it failed to open.", link));
+                logger.info(String.format("Link (%s) has successfully opened.", link));
+            } catch (Exception e) { // many possible exceptions here, so catch-all is used
+                logger.info(String.format("Copying the link (%s) as it failed to open.", link));
                 copyLinkAndShowDialog(link);
             }
         } else {
-            logger.fine(String.format("Copying the link (%s) as java.awt.Desktop is not supported.", link));
+            logger.info(String.format("Copying the link (%s) as Desktop::browse is not supported.", link));
             copyLinkAndShowDialog(link);
         }
     }
