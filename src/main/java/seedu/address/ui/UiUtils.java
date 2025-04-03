@@ -4,8 +4,6 @@ import java.awt.Desktop;
 import java.net.URI;
 import java.util.logging.Logger;
 
-import com.sun.javafx.PlatformUtil;
-
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.input.Clipboard;
@@ -31,8 +29,8 @@ public class UiUtils {
 
         // Certain Linux/Unix distributions freeze when Desktop::browse is called, even though
         // they return true for Desktop::isSupported(Desktop.Action.BROWSE)
-        if (Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)
-                && !PlatformUtil.isLinux() && !PlatformUtil.isUnix()) {
+        // Therefore, we require the OS to be Mac or Windows before attempt to use Desktop::browse
+        if (Desktop.getDesktop().isSupported(Desktop.Action.BROWSE) && isMacOrWindows()) {
             logger.info("Browsing is supported.");
 
             try {
@@ -49,20 +47,33 @@ public class UiUtils {
     }
 
     /**
+     * Checks if the user's operating system is Mac or Windows.
+     *
+     * @return {@code true} if the operating system is Mac or Windows, {@code false} otherwise;
+     */
+    private static boolean isMacOrWindows() {
+        String osName = System.getProperty("os.name").toLowerCase();
+        return osName.contains("mac") || osName.contains("win");
+    }
+
+    /**
      * Copies the link and displays a dialog indicating that the link has been copied to the system clipboard.
      *
      * @param link The link to copy.
      */
     private static void copyLinkAndShowDialog(String link) {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent url = new ClipboardContent();
-        url.putString(link);
-        clipboard.setContent(url);
+        copyText(link);
+        showInformationDialog("Link copied", "The link has been copied to your clipboard.");
+    }
 
+    /**
+     * Shows an information dialog with the provided title and message.
+     */
+    public static void showInformationDialog(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
-        alert.setHeaderText("Link copied");
-        alert.setContentText("The link has been copied to your clipboard.");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
 
         // Solution below adapted from
         // https://stackoverflow.com/questions/27976345/how-do-you-set-the-icon-of-a-dialog-control-java-fx-java-8
@@ -70,5 +81,15 @@ public class UiUtils {
         stage.getIcons().add(new Image("/images/address_book_32.png"));
 
         alert.showAndWait();
+    }
+
+    /**
+     * Copies the provided text to the system clipboard.
+     */
+    public static void copyText(String text) {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent clipboardContent = new ClipboardContent();
+        clipboardContent.putString(text);
+        clipboard.setContent(clipboardContent);
     }
 }
