@@ -230,9 +230,9 @@ Next, `SortCommand::execute(m)` is called. The method consists of three steps:
 
 1. autocorrection of the attribute name,
 1. creation and application of sort comparators, and
-1. generation of warning messages.
+1. generation of warning messages from autocorrection and missing attribute/numerical value.
 
-Note that autocorrection in Step 1 uses the same implementation as the one mentioned in the [filtering section](#filtering).
+Note that autocorrection in Step 1 and the generation of warnings about autocorrection in Step 3 use the same implementation uses the same implementation as the one mentioned in the [filtering section](#filtering).
 
 The following sequence diagrams show how a default sort operation "sort a/Location o/ascending" is executed:
 
