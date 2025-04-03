@@ -416,3 +416,8 @@
     -fx-background-color: derive(-site-attribute-background, 20%);
     -fx-text-fill: derive(-attribute-hyperlink, 40%);
 }
+
+#copyable-label {
+    -fx-cursor: hand;
+    -fx-underline: true;
+}
