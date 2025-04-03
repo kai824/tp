@@ -1,10 +1,10 @@
 package seedu.address.ui;
 
 import java.awt.Desktop;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.logging.Logger;
+
+import com.sun.javafx.PlatformUtil;
 
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
@@ -21,21 +21,29 @@ public class UiUtils {
 
     /**
      * Opens the link in the user's default browser.
-     * If the link could not be opened (most likely because the user is on Linux), it is copied instead
+     * If the link could not be opened (most likely because the user is on Linux/Unix), it is copied instead
      * and a dialog opens to notify the user that the link has been copied.
      *
      * @param link The link to open.
      */
     public static void browse(String link) {
-        if (Desktop.isDesktopSupported()) {
+        logger.info(String.format("Attempting to browse (%s).", link));
+
+        // Certain Linux/Unix distributions freeze when Desktop::browse is called, even though
+        // they return true for Desktop::isSupported(Desktop.Action.BROWSE)
+        if (Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)
+                && !PlatformUtil.isLinux() && !PlatformUtil.isUnix()) {
+            logger.info("Browsing is supported.");
+
             try {
                 Desktop.getDesktop().browse(new URI(link));
-            } catch (IOException | URISyntaxException | UnsupportedOperationException e) {
-                logger.fine(String.format("Copying the link (%s) as it failed to open.", link));
+                logger.info(String.format("Link (%s) has successfully opened.", link));
+            } catch (Exception e) { // many possible exceptions here, so catch-all is used
+                logger.info(String.format("Copying the link (%s) as it failed to open.", link));
                 copyLinkAndShowDialog(link);
             }
         } else {
-            logger.fine(String.format("Copying the link (%s) as java.awt.Desktop is not supported.", link));
+            logger.info(String.format("Copying the link (%s) as browsing is not supported.", link));
             copyLinkAndShowDialog(link);
         }
     }
