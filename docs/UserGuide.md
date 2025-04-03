@@ -441,6 +441,18 @@ If your changes to the data file makes its format invalid, TalentFolio will disc
 Furthermore, certain edits can cause TalentFolio to behave in unexpected ways (for example, if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
+<box type="info">
+
+Here are some tips on website linking. You can manually modify the correspondence between attribute names and site links by updating the `urlSettings` section in `addressbook.json`.
+
+* Unlike the usual `link` command, you can leave the site link empty (i.e., `""`). This allows you to copy the raw attribute value!
+
+* If you add multiple linkings with the same attribute name, the site link appearing the first will be used–note that attribute names are case-insensitive.
+
+* Be careful: if the attribute name is empty of invalid (i.e., containing `/`, `\`, or `=`), the app will clear all data!
+
+</box>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
