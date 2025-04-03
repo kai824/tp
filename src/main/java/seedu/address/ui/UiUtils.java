@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 
 import com.sun.javafx.PlatformUtil;
 
-import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.input.Clipboard;
