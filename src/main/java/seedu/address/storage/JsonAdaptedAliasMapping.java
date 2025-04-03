@@ -3,6 +3,9 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.attribute.Attribute;
+
 /**
  * Manages a pair of attribute name and site link in a Jackson-friendly way.
  */
@@ -23,7 +26,10 @@ public class JsonAdaptedAliasMapping {
     /**
      * Returns the raw {@code attributeName}.
      */
-    public String getAttributeName() {
+    public String getAttributeName() throws IllegalValueException {
+        if (!Attribute.isValidAttribute(attributeName)) {
+            throw new IllegalValueException(Attribute.MESSAGE_CONSTRAINTS);
+        }
         return attributeName.toLowerCase();
     }
 

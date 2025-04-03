@@ -63,10 +63,10 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
-        ObservableMap<String, String> adjustedAliases =
-            urlSettings.stream()
-                .collect(Collectors.toMap(alias -> alias.getAttributeName(),
-                    alias -> alias.getSiteLink(), (v1, v2) -> v1, FXCollections::observableHashMap));
+        ObservableMap<String, String> adjustedAliases = FXCollections.observableHashMap();
+        for (JsonAdaptedAliasMapping alias : urlSettings) {
+            adjustedAliases.putIfAbsent(alias.getAttributeName(), alias.getSiteLink());
+        }
         addressBook.setAliasMappings(adjustedAliases);
         return addressBook;
     }
