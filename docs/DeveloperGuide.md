@@ -189,8 +189,8 @@ The second parameter for `getWarningForName/Value` (i.e., `corecctedName/Value`)
 If there are multiple attributes given to the filter command, each attribute will go through the same process as above. Specifically, the command
 
 1. first autocorrects all the attributes,
-2. followed by the creation of predicate with the corrected attributes, and
-3. obtains warning messages for the entire attribute name/values.
+1. followed by the creation and application of predicate with the corrected attributes, and
+1. obtains warning messages for the entire attribute name/values.
 
 Please also note that, in the actual implementation, the command repeats the autocorrection process during the acquisition of warning messages. This is for the sake of simplicity of code.
 
@@ -229,8 +229,8 @@ First, `LexSortCommandParser`/`numSortCommandParser` parses an attribute name an
 Next, `SortCommand::execute(m)` is called. The method consists of three steps:
 
 1. autocorrection of the attribute name,
-2. creation and application of sort comparators, and
-3. generation of warning messages.
+1. creation and application of sort comparators, and
+1. generation of warning messages.
 
 Note that autocorrection in Step 1 uses the same implementation as the one mentioned in the [filtering section](#filtering).
 
