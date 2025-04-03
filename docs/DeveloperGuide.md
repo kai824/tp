@@ -163,7 +163,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The following describes how the filter command `filter a/Mayor=CS` is executed.
 
-First, `FilterCommandParser` parses a set of attributes (i.e., the pair of `Mayor` and `CS`), creating a new instance of `FilterCommand`. The procedure is almost the same as shown in the [logic component section](#Logic-omponent). `FilterCommand` is initialized with the attribute(s) and `wasDuplicate`, set `true` when there is a duplicate in input attributes. This boolean parameter is later used to generate a warning message about the duplicate. In this case, this parameter is set `false`.
+First, `FilterCommandParser` parses a set of attributes (i.e., the pair of `Mayor` and `CS`), creating a new instance of `FilterCommand`. The procedure is almost the same as shown in the [logic component section](#Logic-component). `FilterCommand` is initialized with the attribute(s) and `wasDuplicate`, set `true` when there is a duplicate in input attributes. This boolean parameter is later used to generate a warning message about the duplicate. In this case, this parameter is set `false`.
 
 Next, `FilterCommand::execute(m)` is called. The method consists of three steps:
 
