@@ -37,6 +37,7 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** (consisting of classes [`Main`](https://github.com/AY2425S2-CS2103T-T10-1/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2425S2-CS2103T-T10-1/tp/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -111,10 +112,12 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
+
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/AY2425S2-CS2103T-T10-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
@@ -159,9 +162,37 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Filtering
 
-The following sequence diagram illustrates how the newly implemented filter command is executed.
+The following describes how the filter command `filter a/Mayor=CS` is executed.
 
-<puml src="diagrams/FilterSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `filter a/Major=CS` Command" />
+First, `FilterCommandParser` parses a set of attributes (i.e., the pair of `Mayor` and `CS`), creating a new instance of `FilterCommand`. The procedure is almost the same as shown in the [logic component section](#Logic-component). `FilterCommand` is initialized with the attribute(s) and `wasDuplicate`, set `true` when there is a duplicate in input attributes. This boolean parameter is later used to generate a warning message about the duplicate. In this case, this parameter is set `false`.
+
+Next, `FilterCommand::execute(m)` is called. The method consists of three steps:
+
+1. autocorrection of `Mayor` and `CS`,
+1. creation and application of filtering predicate, and
+1. generation of warning messages.
+
+The following sequence diagram illustrates how the method works at the low-level:
+
+<puml src="diagrams/FilterSequenceDiagram.puml" alt="filter a/Mayor=CS" />
+
+To autocorrect the attribute name `Mayor`, the Model goes through the following process:
+
+<puml src="diagrams/AutoCorrection.puml" alt="Autocorrection of 'Mayor'" />
+
+The attribute value `CS` will be autocorrected in a similar way. The only difference lies in case-sensitivity: attribute names are converted to lowercase internally, while attribute values remain unchanged (as per the behavior of `Attribute::getAttributeName/Value`).
+
+Alternatively, if there is no attribute name/value close enough to `Mayor`/`CS`, nothing will be returned from `autocorrectAttributeName/Value`; this is why their return value is `Optional<String>`.
+
+The second parameter for `getWarningForName/Value` (i.e., `corecctedName/Value`) is also `Optional<String>`, meaning the method can also generate a warning message that no candidate has the input attribute name/value. The recommended usage is to pass the return value of `autocorrectAttributeName/Value` directly as this second parameter.
+
+If there are multiple attributes given to the filter command, each attribute will go through the same process as above. Specifically, the command
+
+1. first autocorrects all the attributes,
+1. followed by the creation of predicate with the corrected attributes, and
+1. obtains warning messages for the entire attribute name/values.
+
+Please also note that, in the actual implementation, the command repeats the autocorrection process during the acquisition of warning messages. This is for the sake of simplicity of code.
 
 ### Undo feature
 
@@ -190,6 +221,7 @@ The following sequence diagram illustrates how `UndoCommand#execute()` is implem
 It is noteworthy that although `saveState()` is called before `UndoCommand` gets executed, the undoing still works as `revertLastState()` ensures it will revert to a different `AddressBook`.
 
 ### Sort/numerical sort feature
+
 Sorting is currently done via custom comparators.
 
 The following sequence diagrams show how a default sort operation "sort a/Location" goes through the `Logic` component:
@@ -197,17 +229,9 @@ The following sequence diagrams show how a default sort operation "sort a/Locati
 <puml src="diagrams/LexSortSequenceDiagram1.puml"></puml>
 <puml src="diagrams/LexSortSequenceDiagram2.puml"></puml>
 
-Similarly, the process in which a numerical sort operation "sort-num a/Graduation Year" goes through the `Logic` and `Model` components is shown below:
+The process of a numerical sort operation "sort-num a/Graduation Year" is similar to the above, except for the actual sorting process:
 
-<puml src="diagrams/NumSortSequenceDiagram1.puml"></puml>
-
-<box type="info">
-
-**Note:** The lifeline for `NumSortCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-<puml src="diagrams/NumSortSequenceDiagram2.puml"></puml>
+<puml src="diagrams/NumSortSequenceDiagram.puml"></puml>
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -12,4 +12,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_ATTRIBUTE = new Prefix("a/");
     public static final Prefix PREFIX_REMOVE_ATTRIBUTE = new Prefix("ra/");
+    public static final Prefix PREFIX_ORDER = new Prefix("o/");
 }
