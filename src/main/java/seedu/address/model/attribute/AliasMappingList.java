@@ -1,5 +1,7 @@
 package seedu.address.model.attribute;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -26,8 +28,11 @@ public class AliasMappingList {
 
     /**
      * Replaces the alias mappings with the given {@code mappings}.
+     * The keys (i.e., attribute names) must be in lowercase.
      */
     public void setAliases(ObservableMap<String, String> mappings) {
+        requireNonNull(mappings);
+        assert mappings.keySet().stream().allMatch(name -> name.equals(name.toLowerCase()));
         this.dictionary.clear();
         this.dictionary.putAll(mappings);
     }
@@ -42,7 +47,10 @@ public class AliasMappingList {
      *     To remove the current mapping, set it empty.
      */
     public void updateAlias(String attributeName, Optional<String> siteLink) {
+        requireNonNull(attributeName);
+        requireNonNull(siteLink);
         if (siteLink.isPresent()) {
+            requireNonNull(siteLink.get());
             dictionary.put(attributeName.toLowerCase(), siteLink.get());
         } else {
             dictionary.remove(attributeName.toLowerCase());
@@ -56,6 +64,7 @@ public class AliasMappingList {
      *     Otherwise, an empty instance will be returned.
      */
     public Optional<String> getAlias(String attributeName) {
+        requireNonNull(attributeName);
         if (dictionary.containsKey(attributeName.toLowerCase())) {
             return Optional.of(dictionary.get(attributeName.toLowerCase()));
         }

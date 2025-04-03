@@ -24,7 +24,7 @@ public class JsonAdaptedAliasMapping {
      * Returns the raw {@code attributeName}.
      */
     public String getAttributeName() {
-        return attributeName;
+        return attributeName.toLowerCase();
     }
 
     /**
