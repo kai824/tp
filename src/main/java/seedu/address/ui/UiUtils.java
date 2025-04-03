@@ -27,15 +27,15 @@ public class UiUtils {
      * @param link The link to open.
      */
     public static void browse(String link) {
-        if (Desktop.isDesktopSupported()) {
+        if (Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             try {
                 Desktop.getDesktop().browse(new URI(link));
-            } catch (IOException | URISyntaxException | UnsupportedOperationException e) {
-                logger.fine(String.format("Copying the link (%s) as it failed to open.", link));
+            } catch (Exception e) { // many possible exceptions here, so catch-all is used
+                logger.info(String.format("Copying the link (%s) as it failed to open.", link));
                 copyLinkAndShowDialog(link);
             }
         } else {
-            logger.fine(String.format("Copying the link (%s) as java.awt.Desktop is not supported.", link));
+            logger.info(String.format("Copying the link (%s) as Desktop::browse is not supported.", link));
             copyLinkAndShowDialog(link);
         }
     }
