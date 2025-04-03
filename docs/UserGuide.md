@@ -313,29 +313,29 @@ Additional notes on warning messages:
 * Attribute names are tolerant of typos. If no attribute is matched due to a minor typo, the app corrects it with a warning message.
   * For example, `GraduatOIn year` will be corrected to `GraduatIOn year` automatically, if only `Graduation year` exists as an attribute name.
 * If there is no candidate having the specified attribute name/value, warning messages will also be shown.
-  * Note that the check is done independently between name and value. For example, if there are exactly two attributes `Major=Engineering` and `Graduation year=2028`, no warning will be shown by an input `Major=2028`.
+  * Note that the check is done independently between name and value. For example, if there are exactly two attributes `Major=Engineering` and `Graduation year=2027`, no warning will be shown by an input `Major=2027`.
 
 </box>
 
 Examples:
 | Command | Filtered condition |
 | ------- | ------- |
-| `filter a/Major=Computer Science a/Graduation year=2028` | major in Computer Science **AND** will graduate in 2028 |
+| `filter a/Major=Computer Science a/Graduation year=2027` | major in Computer Science **AND** will graduate in 2027 |
 | `filter a/Major=Computer Science a/Major=Mathematics` | major in Computer Science **OR** Mathematics. |
-| `filter a/Major=Computer Science a/Major=Mathematics a/Graduation year=2028` | major in either Computer Science **OR** Mathematics, **AND** also graduating in 2028 | 
+| `filter a/Major=Computer Science a/Major=Mathematics a/Graduation year=2027` | major in either Computer Science **OR** Mathematics, **AND** also graduating in 2027 | 
 
 For the last command example,
 
 | Major | Graduation Year | Matched? | Reason (if not matched) |
-| ------- | ------- | ------- | ------- |
-| Computer Science | 2028 | Yes | |
-| Mathematics | 2028 | Yes | |
-| Engineering | 2028 | No | do not meet the first condition |
-| Computer Science | 2027 | No | do not meet the second condition |
-| (no info) | 2028 | No | missing (= do not meet) the first condition |
+| ------- |-----------| ------- | ------- |
+| Computer Science | 2027 | Yes | |
+| Mathematics | 2027 | Yes | |
+| Engineering | 2027 | No | do not meet the first condition |
+| Computer Science | 2026 | No | do not meet the second condition |
+| (no info) | 2027 | No | missing (= do not meet) the first condition |
 | Computer Science | (no info) | No | missing (= do not meet) the second condition |
 
-You can also obtain the same result with `filter a/Major=Computer Science a/Graduation year=2028 a/Major=Mathematics`, because the order of the arguments does not matter.
+You can also obtain the same result with `filter a/Major=Computer Science a/Graduation year=2027 a/Major=Mathematics`, because the order of the arguments does not matter.
 
 <pic src="images/filterMixedResult.png" alt="Filter results">
 
