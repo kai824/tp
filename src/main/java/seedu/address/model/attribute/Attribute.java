@@ -190,9 +190,14 @@ public class Attribute implements Comparable<Attribute> {
      * @param other The other attribute to compare with
      * @return 0 if they have the same attribute value, -1 if attribute1 has a smaller value, 1 otherwise
      */
-    public int compareToSameNameAttributeDefault(Attribute other) {
+    public int compareToSameNameAttributeDefault(Attribute other, boolean isAscending) {
         assert this.matchesName(other.attributeName);
-        return this.attributeValue.compareTo(other.attributeValue);
+        if (isAscending) {
+            return this.attributeValue.compareTo(other.attributeValue);
+        } else {
+            return -this.attributeValue.compareTo(other.attributeValue);
+        }
+
     }
 
     /**
@@ -201,7 +206,7 @@ public class Attribute implements Comparable<Attribute> {
      * @param other The other attribute to compare with
      * @return 0 if they have the same attribute value, -1 if attribute1 has a smaller value, 1 otherwise
      */
-    public int compareToSameNameAttributeNumeric(Attribute other) {
+    public int compareToSameNameAttributeNumeric(Attribute other, boolean isAscending) {
         assert this.matchesName(other.attributeName);
         if (!other.hasNumericalValue()) {
             return -1;
@@ -210,7 +215,12 @@ public class Attribute implements Comparable<Attribute> {
         } else {
             assert this.attributeNumericalValue.isPresent();
             assert other.attributeNumericalValue.isPresent();
-            return this.attributeNumericalValue.get().compareTo(other.attributeNumericalValue.get());
+            if (isAscending) {
+                return this.attributeNumericalValue.get().compareTo(other.attributeNumericalValue.get());
+            } else {
+                return -this.attributeNumericalValue.get().compareTo(other.attributeNumericalValue.get());
+            }
+
         }
     }
 

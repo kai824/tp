@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class ValueBasedAttributeComparatorTest {
     @Test
     public void testCompare() {
-        ValueBasedAttributeComparator comparator = new ValueBasedAttributeComparator();
+        ValueBasedAttributeComparator comparator = new ValueBasedAttributeComparator(true);
         Attribute attribute1 = new Attribute("Major", "Computer Science");
         Attribute attribute2 = new Attribute("Major", "Mathematics");
         Attribute attribute3 = new Attribute("Major", "Computer Science");
