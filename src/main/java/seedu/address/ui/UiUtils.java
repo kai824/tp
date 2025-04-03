@@ -1,9 +1,7 @@
 package seedu.address.ui;
 
 import java.awt.Desktop;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 import javafx.scene.control.Alert;
