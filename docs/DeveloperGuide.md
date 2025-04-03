@@ -13,7 +13,8 @@ pageNav: 3
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+* Libraries used: [Checkstyle](https://github.com/checkstyle/checkstyle), [Jackson](https://github.com/FasterXML/jackson), [Jacoco](https://github.com/jacoco/jacoco), [JavaFX](https://openjfx.io/), [JUnit](https://github.com/junit-team/junit5), [Shadow](https://github.com/GradleUp/shadow)
+* References used: [SE-EDU initiative](https://se-education.org/), [AB3](https://github.com/se-edu/addressbook-level3)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -126,7 +127,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<box type="info" seamless>
+<box type="info">
 
 **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -170,7 +171,7 @@ The undo mechanism is implemented inside `Model`. `Model` now implements the fol
 
 `Model` stores a `Stack` of `AddressBook`-s. To save the current address book, it creates a copy of the current address book, but copies the `Person` object by reference. This feature therefore requires that `Person` is not modified in-place when editing, but instead re-constructed.
 
-<box type="info" seamless>
+<box type="info">
 
 To prevent the case where an `UndoCommand` does not change the address book, `Model#saveState()` enforces that duplicate address books will not be saved. `Model#revertLastState()` enforces that it will not revert to an `AddressBook` which is equal to the current `AddressBook`, using the Java `Object#equals()` method.
 
@@ -200,7 +201,7 @@ Similarly, the process in which a numerical sort operation "sort-num a/Graduatio
 
 <puml src="diagrams/NumSortSequenceDiagram1.puml"></puml>
 
-<box type="info" seamless>
+<box type="info">
 
 **Note:** The lifeline for `NumSortCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -226,104 +227,181 @@ Similarly, the process in which a numerical sort operation "sort-num a/Graduatio
 
 **Target user profile**:
 
-* is a hiring manager
-* has a need to manage a significant number of applicants
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Is a hiring manager
+* Has a need to manage a significant number of candidates
+* Prefers desktop apps over other forms of software
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
-**Value proposition**: provides fast access to applicants and their socials, while allowing them to quickly filter applicants
+**Value proposition**: Provides fast access to candidates and their socials, while allowing the user to quickly filter candidates.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see a user guide             | I can learn how to use the program                                     |
-| `* * *`  | user managing a number of candidates       | sort candidates by some value (graduation years, discipline, etc.)| I can access to the relevant candidates easily                         |
-| `* * *`  | user managing a number of candidates       | also filter the candidates   | I can access to the relevant candidates easily                         |
-| `* *`    | careless user                              | undo my most recent command  | accidental changes I make can be reverted easily                       |
-| `* *`    | careless user                              | get back my most recent command| I don't have to retype my previous command should there be typoes      |
-| `* *`    | user who is managing information of high privacy concerns| ensure that the system is safe enough (i.e., no significant risk of data leakage)| I can protect candidates privacy well                                  |
-| `* *`    | user who needs to frequently filter out appliactants in some domain-specific aspects| add tag feature and relevant filter| so that users can organise data in more customised way                 |
-| `* *`    | existing user but I forgot about available commands| make list of all commands and their syntax easily assessible| I can check against the list                                           |
-| `* *`    | meticulous user                            | edit a contact's information | I can keep my address book up to date                                  |
-| `* *`    | user required to share the information on candidates with others| pick up candidates and print out their information, in an organized way| I can present the candidates to others                                 |
-| `* *`    | user interviewing the candidates           | relate the date of interview to the candidates| I can organize my schedule easily                                      |
-| `* *`    | user managing candidates across different positions| tag candidates               | I can easily categorize them                                           |
-| `* *`    | forgetful user                             | see my most recent commands  | I can be reminded of what changes I just made                          |
-| `* *`    | creative user                              | assign custom tags to contacts| categorize them in a way that is most sensible to me                   |
-| `*`      | user changing their computer               | import my data               | I can transfer data over from my old computer                          |
-| `*`      | user who is familiar with regular expression| use regular expression when search for certain keywords among applicants| more efficient search can be done                                      |
-| `*`      | user changing their computer               | export my data               | I can transfer it over to the new computer                             |
-| `*`      | use who needs to collaborate with others   | synchronise my database with others| we can stay on the same page                                           |
-| `*`      | frequent user                              | create snippets for commands | I can enter frequently-used commands more quickly                      |
-| `*`      | recruiter who needs to regularly remove some candidate from the address book at the end of each recruit season| have built-in script to automatically delete irrelevant candidates (i.e., those who meet certain conditions)| I don't have to manually do deletions routinely                        |
-| `*`      | careless user                              | have my command autocorrected| I don't need to fix my typos                                           |
-| `*`      | busy user                                  | have my command predicted and auto-filled| I can save time typing commands in full                                |
-| `*`      | event organiser                            | quickly find people who live near to a certain location|                                                                        |
-| `*`      | user with limited PC resource              | delete candidates easily     | I can free up the memory resource                                      |
-
-*{More to be added}*
+| Priority | As a …                                                                                  | I want to …                                                                                                   | So that I can…​                                                  |
+|----------|-----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| `* * *`  | new user                                                                                | see a user guide                                                                                              | I can learn how to use the program                               |
+| `* * *`  | user                                                                                    | add a candidate                                                                                               | store their information in the address book                      |
+| `* * *`  | user                                                                                    | delete a person                                                                                               | remove candidates that are no longer under consideration         |
+| `* * *`  | user                                                                                    | find a candidate by name                                                                                      | conveniently retrieve a candidate's information                  |
+| `* * *`  | user managing a number of candidates                                                    | sort candidates by some value (graduation years, discipline, etc.)                                            | I can view relevant candidates easily                            |
+| `* * *`  | user managing a number of candidates                                                    | filter candidates by some value (graduation years, discipline, etc.)                                          | I can view relevant candidates easily                            |
+| `* *`    | user who is managing information of high privacy concerns                               | ensure that the system is safe enough (i.e., no significant risk of data leakage)                             | I can protect candidates' privacy well                           |
+| `* *`    | existing user who forgets about the available commands                                  | view a list of all commands and their syntax easily                                                           | I can check against the list                                     |
+| `* *`    | meticulous user                                                                         | edit a candidate's information                                                                                | I can keep my address book up to date                            |
+| `* *`    | user required to share the information on candidates with others                        | select candidates and print out their information, in an organized way                                        | I can present the candidates to others                           |
+| `* *`    | user interviewing the candidates                                                        | relate the date of interview to the candidates                                                                | I can organize my schedule easily                                |
+| `* *`    | user managing candidates across different positions                                     | tag candidates                                                                                                | I can easily categorize them                                     |
+| `* *`    | forgetful user                                                                          | see my most recent commands                                                                                   | I can be reminded of what changes I just made                    |
+| `* *`    | careless user                                                                           | get back my most recent command                                                                               | I don't have to retype my previous command should there be typos |
+| `* *`    | careless user                                                                           | undo my most recent command                                                                                   | accidental changes I make can be reverted easily                 |
+| `*`      | user changing their computer                                                            | import my data                                                                                                | I can transfer data over from my old computer                    |
+| `*`      | user changing their computer                                                            | export my data                                                                                                | I can transfer it over to the new computer                       |
+| `*`      | user who is familiar with regular expressions                                           | use regular expressions when searching for certain keywords among candidates                                  | more customized searches can be done                             |
+| `*`      | use who needs to collaborate with others                                                | synchronize my database with others                                                                           | we can stay on the same page                                     |
+| `*`      | frequent user                                                                           | create snippets for commands                                                                                  | I can enter frequently-used commands more quickly                |
+| `*`      | recruiter who needs to regularly delete candidates at the end of each recruiting season | have built-in scripts to automatically delete irrelevant candidates (i.e., those who meet certain conditions) | I don't have to manually perform deletions routinely             |
+| `*`      | careless user                                                                           | have my command autocorrected                                                                                 | I don't need to fix my typos                                     |
+| `*`      | busy user                                                                               | have my command predicted and auto-filled                                                                     | I can save time typing commands in full                          |
+| `*`      | event organizer                                                                         | quickly find people who live near to a certain location                                                       | I can choose suitable candidates to invite to an event           |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `TalentFolio` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `TalentFolio` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use Case: Add a candidate**
+**UC01 - Add a candidate**
 
 **MSS**
 
-1. User requests to add a candidate with name, phone number, email, address, and optional tags.
+1. User requests to add a candidate with the specified details.
 2. System verifies that the input values are valid.
 3. System adds the candidate.
 4. System displays confirmation message.
-5. GUI updates to show the new candidate.
+5. System updates the displayed list to include the new candidate.
 
    Use case ends.
 
 **Extensions**
-* 2a. Name is invalid.
+* 2a. System detects invalid inputs.
 
-   * 2a1. System displays an error: “Error: {candidate name} is not a valid name.”
-
-     Use case ends.
-
-* 2b. Email is invalid.
-
-   * 2b1. System displays an error: “Error: {candidate email} is not a valid email.”
+   * 2a1. System displays an error.
 
      Use case ends.
 
-* 2c. Required parameters are missing.
+---
 
-   * 2c1. System displays an error: “Error: The command format is add n/{candidate name} p/{phone number} e/{email} [t/{tag}].”
+**UC02 - Delete a candidate**
 
-     Use case ends.
+Preconditions: The current list of candidates is not empty.
 
-*{More to be added}*
+**MSS**
+
+1. User requests to delete a candidate by specifying their index.
+2. System verifies that the index is valid.
+3. System deletes the candidate.
+4. System displays confirmation message.
+5. System removes the candidate from the displayed list.
+
+   Use case ends.
+
+**Extensions**
+* 2a. System detects an invalid index.
+
+    * 2a1. System displays an error.
+
+      Use case ends.
+
+---
+
+**UC03 - View previous commands**
+
+**MSS**
+
+1. User requests for the previous executed command.
+2. System shows the user the previous executed command.
+
+   Steps 1-2 are repeated as many times as the user desires.
+
+   Use case ends.
+
+**Extensions**
+* 1a. System detects no previous command.
+
+    * 1a1. No change occurs.
+
+      Use case ends.
+
+---
+
+**UC04 - View next commands**
+
+Precondition: User must be viewing previous commands.
+
+**MSS**
+
+1. User requests for the next executed command.
+2. System shows the user the next executed command.
+
+   Steps 1-2 are repeated as many times as the user desires.
+
+   Use case ends.
+
+**Extensions**
+* 1a. System detects no next command.
+
+    * 1a1. No change occurs.
+
+      Use case ends.
+
+---
+
+**UC05 - Navigate command history**
+
+**MSS**
+
+1. User !!views previous commands (UC03)!!.
+2. User !!views next commands (UC04)!!.
+
+   Steps 1-2 are repeated as many times as the user desires.
+
+   Use case ends.
+
+---
+
+**UC06 - Execute past command**
+
+**MSS**
+
+1. User !!navigates command history (UC05)!!.
+2. User selects a command to execute.
+3. System executes the command.
+
+   Use case ends.
+
+**Extensions**
+* 3a. System encountered an error while executing the command.
+
+    * 3a1. System displays an error.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Logs must be automatically generated.
-5.  Any information related to candidates must remain confidential in the logs.
-6.  Logs must be identical across different operating systems to enable sharing between the same app on different OS platforms.
-7.  The UI has to be clear enough for the user to find the necessary information at a glance.
-8.  The app design should offer flexibility in the tag feature to accommodate unforeseen criteria in the future.
-9.  Copy and paste should be supported in text fields, allowing the user to enter information without typing manually.
-10. The app has to respond within one second.
-
+1. Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+2. Should be able to hold up to 1000 persons without any noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster by using commands as compared to using the mouse.
+4. Logs must be automatically generated.
+5. Logs must be identical across different operating systems to enable sharing between the same app on different OS platforms.
+6. Copy and paste should be supported in text fields, allowing the user to enter information without typing manually.
+7. The app has to respond within one second.
 
 ### Glossary
 
 * **Attribute**: A key-value pair associated with a candidate.
   * For example, `Graduation Year: 2027` is an attribute, where the **attribute name** is `Graduation Year` and the **attribute value** is `2027`.
-* **Candidate**: Any contact in the address book.
+* **Candidate**: Any person in the address book. May be used interchangeably with the term "person".
 * **Command**: A string of text that the user enters via the command line.
 * **Duplicate**: A string that matches another string exactly, ignoring case.
 * **Mainstream OS**: Windows, Linux, Unix, macOS.
@@ -331,7 +409,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * `{local-part}` contains only alphanumeric characters and the special characters `+_.-`, and cannot start or end with a special character.
   * `{domain}` consists of _domain labels_ separated by periods (`.`), where the last domain label is at least 2 characters long.
   * Each _domain label_ contains only alphanumeric characters and hyphens (`-`), and cannot start or end with a hyphen.
-* **Valid name**: Any sequence of whitespace and/or alphabetical characters.
+* **Valid name**: Any sequence containing only whitespace, alphabetical characters, and the special characters `/@`. `/` should only be used in the phrase `s/o` or `d/o`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -339,7 +417,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<box type="info" seamless>
+<box type="info">
 
 **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -352,7 +430,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample candidates. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -370,7 +448,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First candidate is deleted from the list. Details of the deleted candidate shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
