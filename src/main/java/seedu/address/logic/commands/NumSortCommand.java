@@ -34,13 +34,14 @@ public class NumSortCommand extends SortCommand {
      *
      * @param attributeName The name of the attribute to sort the user input.
      */
-    public NumSortCommand(String attributeName) {
-        super(attributeName);
+    public NumSortCommand(String attributeName, boolean isAscending) {
+        super(attributeName, isAscending);
     }
 
     @Override
-    public AttributeBasedPersonComparator getComparator() {
-        return new AttributeBasedPersonComparator(this.attributeName, new NumericalValueBasedAttributeComparator());
+    public AttributeBasedPersonComparator getComparator(boolean isAscending) {
+        return new AttributeBasedPersonComparator(this.attributeName,
+                new NumericalValueBasedAttributeComparator(isAscending));
     }
 
     @Override

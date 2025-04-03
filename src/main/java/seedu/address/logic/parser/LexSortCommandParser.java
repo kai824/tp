@@ -8,7 +8,7 @@ import seedu.address.logic.commands.SortCommand;
  */
 public class LexSortCommandParser extends SortCommandParser {
     @Override
-    public SortCommand createSortCommand(String attribute) {
-        return new LexSortCommand(attribute);
+    public SortCommand createSortCommand(String attribute, boolean isAscending) {
+        return new LexSortCommand(attribute, isAscending);
     }
 }
