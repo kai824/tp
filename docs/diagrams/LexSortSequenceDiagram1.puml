@@ -34,7 +34,7 @@ deactivate Model
 
 LexSortCommand -> LexSortCommand ++ : getWarningMessages(m)
 
-LexSortCommand -> Util : getWarningForName("locaton", "location")
+LexSortCommand -> Util : getWarningForName("locaton", ["location"])
 activate Util
 
 Util --> LexSortCommand
