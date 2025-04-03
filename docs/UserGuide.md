@@ -340,6 +340,7 @@ You can also obtain the same result with `filter a/Major=Computer Science a/Grad
 <pic src="images/filterMixedResult.png" alt="Filter results">
 
 Results after typing `filter a/Major=Computer Science`<br/>`a/Major=Mathematics a/Graduation year=2027`
+</pic>
 
 ### Sorting entries by an attribute: `sort`
 
