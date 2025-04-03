@@ -306,7 +306,7 @@ Format: `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE…`
   1. The order of input attributes does not matter (see Examples).
 * `ATTRIBUTE_NAME` is matched case-insensitively, while `ATTRIBUTE_VALUE` is matched case-sensitively.
 
-<box type="info" seamless>
+<box type="info">
 
 Additional notes on warning messages:
 
