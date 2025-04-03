@@ -7,6 +7,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,6 +37,8 @@ public class ParserUtil {
     public static final String MESSAGE_EMPTY_ARGUMENT_FOR_ATTRIBUTE =
             "You need to enter an attribute after " + PREFIX_ATTRIBUTE + ".\n"
                     + Attribute.MESSAGE_USAGE;
+
+    private static final Logger logger = Logger.getLogger("ParserUtil");
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -222,8 +226,12 @@ public class ParserUtil {
      */
     public static Optional<Double> parseStringValueToNumericalValue(String value) {
         requireNonNull(value);
+
         try {
-            return Optional.of(Double.parseDouble(value));
+            logger.log(Level.INFO, "going to start parsing a string to a number");
+            Optional<Double> numericalValue = Optional.of(Double.parseDouble(value));
+            logger.log(Level.INFO, "going to start parsing a string to a number");
+            return numericalValue;
         } catch (NumberFormatException e) {
             return Optional.empty();
         }

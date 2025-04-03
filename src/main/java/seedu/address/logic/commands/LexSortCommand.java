@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 
 import seedu.address.model.Model;
@@ -40,14 +39,5 @@ public class LexSortCommand extends SortCommand {
     @Override
     public String getWarningMessage(Model model) {
         return super.getWarningMessage(model);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        requireNonNull(other);
-        if (other instanceof LexSortCommand) {
-            return this.attributeName.equals(((LexSortCommand) other).attributeName);
-        }
-        return false;
     }
 }

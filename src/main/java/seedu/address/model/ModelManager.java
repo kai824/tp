@@ -172,10 +172,6 @@ public class ModelManager implements Model {
         long countAttribute = filteredPersons.stream()
             .filter(person -> person.getAttribute(attributeName).isPresent()).count();
 
-        if (countAttribute == 0) {
-            return Optional.empty(); //Missing attribute warning should be triggered instead.
-        }
-
         long countNumerical = filteredPersons.stream().filter(person ->
                 person.getAttribute(attributeName).isPresent()
                         && person.getAttribute(attributeName).get().hasNumericalValue()).count();

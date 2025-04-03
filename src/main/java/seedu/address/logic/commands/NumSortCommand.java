@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 
 import java.util.Optional;
@@ -56,14 +55,5 @@ public class NumSortCommand extends SortCommand {
             }
         }
         return warning;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        requireNonNull(other);
-        if (other instanceof NumSortCommand) {
-            return this.attributeName.equals(((NumSortCommand) other).attributeName);
-        }
-        return false;
     }
 }
