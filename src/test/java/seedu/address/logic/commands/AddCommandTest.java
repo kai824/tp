@@ -170,12 +170,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Optional<String> findMostCloseEnoughAttributeName(String target) {
+        public Optional<String> autocorrectAttributeName(String target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public Optional<String> findMostCloseEnoughAttributeValue(String target) {
+        public Optional<String> autocorrectAttributeValue(String target) {
             throw new AssertionError("This method should not be called.");
         }
 

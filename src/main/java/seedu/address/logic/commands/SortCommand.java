@@ -20,21 +20,23 @@ public abstract class SortCommand extends Command {
 
     protected final String attributeName;
     protected Optional<String> adjustedAttributeName;
+    private boolean isAscending;
 
     /**
      * Initializes an instance with the comparator based on the attribute name.
      *
      * @param attributeName The name of the attribute to sort the user input.
      */
-    public SortCommand(String attributeName) {
+    public SortCommand(String attributeName, boolean isAscending) {
         requireNonNull(attributeName);
         this.attributeName = attributeName;
+        this.isAscending = isAscending;
     }
 
     /**
-     * Returns the Comparator to use for this sort command
+     * Returns the Comparator to use for this sort command, assuming ascending order
      */
-    public abstract AttributeBasedPersonComparator getComparator();
+    public abstract AttributeBasedPersonComparator getComparator(boolean isDescending);
 
     /**
      * Returns the warning message produced by this sort command.
@@ -42,7 +44,7 @@ public abstract class SortCommand extends Command {
      */
     public String getWarningMessage(Model model) {
         Optional<String> missingAttributeWarning =
-            AutoCorrectionUtil.warningForName(attributeName, adjustedAttributeName);
+            AutoCorrectionUtil.getWarningForName(attributeName, adjustedAttributeName);
         if (missingAttributeWarning.isPresent()) { //No entry has the specified attribute name
             return missingAttributeWarning.get() + "\n";
         }
@@ -54,9 +56,15 @@ public abstract class SortCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        this.adjustedAttributeName = model.findMostCloseEnoughAttributeName(this.attributeName);
-        model.sortFilteredPersonList(this.getComparator());
-        String message = this.getWarningMessage(model) + Messages.MESSAGE_PERSONS_SORTED_OVERVIEW;
+        this.adjustedAttributeName = model.autocorrectAttributeName(this.attributeName);
+        model.sortFilteredPersonList(this.getComparator(this.isAscending));
+        String message = this.getWarningMessage(model);
+        if (this.isAscending) {
+            message += String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, "ascending");
+        }
+        else {
+            message += String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, "descending");
+        }
         return new CommandResult(message);
 
     }

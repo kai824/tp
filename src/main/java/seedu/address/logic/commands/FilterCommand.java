@@ -45,9 +45,9 @@ public class FilterCommand extends Command {
         Set<Attribute> adjustedAttribtues =
             attributes.stream()
                 .map(attribute -> new Attribute(
-                    model.findMostCloseEnoughAttributeName(attribute.getAttributeName())
+                    model.autocorrectAttributeName(attribute.getAttributeName())
                         .orElse(attribute.getAttributeName()),
-                        model.findMostCloseEnoughAttributeValue(attribute.getAttributeValue())
+                        model.autocorrectAttributeValue(attribute.getAttributeValue())
                             .orElse(attribute.getAttributeValue())))
                             .collect(Collectors.toSet());
 
@@ -59,7 +59,7 @@ public class FilterCommand extends Command {
     private String getWarningsForName(Model model) {
         return attributes.stream()
             .map(attribute -> attribute.getAttributeName())
-            .map(name -> AutoCorrectionUtil.warningForName(name, model.findMostCloseEnoughAttributeName(name)))
+            .map(name -> AutoCorrectionUtil.getWarningForName(name, model.autocorrectAttributeName(name)))
             .filter(warning -> warning.isPresent())
             .map(warning -> warning.get())
             .reduce("", (x, y) -> x + y + "\n");
@@ -68,7 +68,7 @@ public class FilterCommand extends Command {
     private String getWarningsForValue(Model model) {
         return attributes.stream()
             .map(attribute -> attribute.getAttributeValue())
-            .map(value -> AutoCorrectionUtil.warningForValue(value, model.findMostCloseEnoughAttributeValue(value)))
+            .map(value -> AutoCorrectionUtil.getWarningForValue(value, model.autocorrectAttributeValue(value)))
             .filter(warning -> warning.isPresent())
             .map(warning -> warning.get())
             .reduce("", (x, y) -> x + y + "\n");
