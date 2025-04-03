@@ -40,7 +40,9 @@ public class PersonDetailsCard extends UiPart<Region> {
         this.person = person;
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
+        makeLabelCopyable(phone, "Phone number");
         email.setText(person.getEmail().value);
+        makeLabelCopyable(email, "Email");
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -62,5 +64,18 @@ public class PersonDetailsCard extends UiPart<Region> {
             });
         }
         return label;
+    }
+
+    /**
+     * Makes the {@code Label} clickable. Clicking on it copies its text.
+     *
+     * @param type The type of text that is copied. This affects the message in the alert box.
+     */
+    private void makeLabelCopyable(Label label, String type) {
+        label.setOnMouseClicked(event -> {
+            UiUtils.copyText(label.getText());
+            UiUtils.showInformationDialog(type + " copied", type + " has been copied to your clipboard.");
+        });
+        label.setId("copyable-label");
     }
 }
