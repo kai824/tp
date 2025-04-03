@@ -463,7 +463,13 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Checking for the default setting of site link
+
+   1. Delete `data/addressbook.json` and re-open the app.<br>
+      Expected: Attributes with the name `github` or `linkedin` have a different color (red-purple) from other attributes (blue-purple).
+   
+   1. Run a `show` command and click some `github` and `linkedin` attributes.<br>
+      Expected: They open (or copy) the link to the correctly associated website.
 
 ### Deleting a person
 
@@ -480,12 +486,43 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting a person under an effect of filtering
+
+   1. Prerequisites: Some filtering or finding command is applied.
+
+      1. Test case: `delete 1`<br>
+         Expected: First candidate in the filtered list (not the original, entire list) is deleted. The filtering is cleared.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Try the following test cases one by one. <br>
+      Expected (common in all cases): The app does not load the broken JSON file and clears all the stored information–the candidate list will be empty, and the default site link setting for `github` and `linkedin` take effect.
 
-1. _{ more test cases …​ }_
+      * Test case: duplicated name–change the two candidates' name to `pochi`.
+
+      * Test case: Non-numerical phone number–change a phone number to `1234-5678`.
+
+      * Test case: Invalid email–change an email address to `pochi2gmail.com`.
+
+      * Test case: Empty tag name–change the a tag to an empty string (`""`).
+
+      * Test case: Missing attribute name/value in `attributes`–delete either an attribute name or value, while keeping the other.
+
+      * Test case: Missing attribute name/site link in `urlSettings`–delete either an attribute name or site link, while keeping the other.
+
+      * Test case: Invalid attribute name/value in `attributes` and `urlSettings`–change an attribute name/value to include `/`, `\`, or `=`.
+
+      * Test case: Empty attribute name/value in `attributes` and `urlSettings`–change an attribute name/value to an empty string (`""`).
+
+1. Triggering corner cases for `urlSettings`
+
+   1. Test case: capital `attributeName`–change an attribute name to `GITHUB`.
+      Expected: The app works, associating the site link with `github`.
+
+   1. Test case: empty `site link`–change a site link to an empty string (`""`).
+      Expected: The app works, allowing the user to copy the raw attribute value.
+
+   1. Test case: duplicated `attributeName`–change two attribute names to `linkedin`.
+      Expected: The app works, taking the site link appearing first.
