@@ -301,28 +301,45 @@ Format: `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE…`
 * You must specify at least one attribute.
 * You can specify more than one attribute:
   1. If you specify multiple attributes of the **SAME** name, candidates who meet **ANY** one of them will be shown.
-  2. If you specify multiple attributes of **DIFFERENT** names, candidates who meet **ALL** of them will be shown.
-  3. You can specify attributes of different names, with multiple values of each. In this case, the first rule will be applied first, followed by the second rule (see Examples).
-  4. The order of the given attributes does not matter (see Examples).
+  1. If you specify multiple attributes of **DIFFERENT** names, candidates who meet **ALL** of them will be shown.
+  1. You can specify attributes of different names, with multiple values of each. In this case, the 1st rule will be applied first, followed by the 2nd rule (see Examples).
+  1. The order of input attributes does not matter (see Examples).
 * `ATTRIBUTE_NAME` is matched case-insensitively, while `ATTRIBUTE_VALUE` is matched case-sensitively.
-* Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it.
+
+<box type="info">
+
+Additional notes on warning messages:
+
+* Attribute names are tolerant of typos. If no attribute is matched due to a minor typo, the app corrects it with a warning message.
   * For example, `GraduatOIn year` will be corrected to `GraduatIOn year` automatically, if only `Graduation year` exists as an attribute name.
+* If there is no candidate having the specified attribute name/value, warning messages will also be shown.
+  * Note that the check is done independently between name and value. For example, if there are exactly two attributes `Major=Engineering` and `Graduation year=2028`, no warning will be shown by an input `Major=2028`.
+
+</box>
 
 Examples:
-* `filter a/Major=Computer Science a/Graduation year=2027` filters all the candidates who major in Computer Science **AND** will graduate in 2027.
-* `filter a/Major=Computer Science a/Major=Mathematics` filters all the candidates who major in Computer Science **OR** Mathematics.
-* `filter a/Major=Computer Science a/Major=Mathematics a/Graduation year=2027` filters all the candidates who major in either Computer Science **OR** Mathematics, **AND** also graduating in 2027. That is:
-  * A candidate majoring in Computer Science and graduating in 2027 will be matched.
-  * A candidate majoring in Mathematics and graduating in 2027 will be matched.
-  * A candidate majoring in Engineering and graduating in 2027 will **NOT** be matched, since they do not meet the first condition.
-  * A candidate majoring in Computer Science and graduating in 2027 will **NOT** be matched, since they do not meet the second condition.
-  * Candidates who are missing any of the attributes (i.e. do not have an attribute with the name Major or Graduation year) will **NOT** be matched. For instance, a candidate with no attributes will not be matched.
-  * You can also obtain the same result with `filter a/Major=Computer Science a/Graduation year=2027 a/Major=Mathematics`, because the order of the arguments does not matter.
+| Command | Filtered condition |
+| ------- | ------- |
+| `filter a/Major=Computer Science a/Graduation year=2028` | major in Computer Science **AND** will graduate in 2028 |
+| `filter a/Major=Computer Science a/Major=Mathematics` | major in Computer Science **OR** Mathematics. |
+| `filter a/Major=Computer Science a/Major=Mathematics a/Graduation year=2028` | major in either Computer Science **OR** Mathematics, **AND** also graduating in 2028 | 
+
+For the last command example,
+
+| Major | Graduation Year | Matched? | Reason (if not matched) |
+| ------- | ------- | ------- | ------- |
+| Computer Science | 2028 | Yes | |
+| Mathematics | 2028 | Yes | |
+| Engineering | 2028 | No | do not meet the first condition |
+| Computer Science | 2027 | No | do not meet the second condition |
+| (no info) | 2028 | No | missing (= do not meet) the first condition |
+| Computer Science | (no info) | No | missing (= do not meet) the second condition |
+
+You can also obtain the same result with `filter a/Major=Computer Science a/Graduation year=2028 a/Major=Mathematics`, because the order of the arguments does not matter.
 
 <pic src="images/filterMixedResult.png" alt="Filter results">
 
 Results after typing `filter a/Major=Computer Science`<br/>`a/Major=Mathematics a/Graduation year=2027`
-</pic>
 
 ### Sorting entries by an attribute: `sort`
 
@@ -333,7 +350,7 @@ Format: `sort a/ATTRIBUTE_NAME`
 * Entries without the specified attribute will be placed at the back while preserving their relative order.
   * In this case, a warning will indicate the last entry in the current view that contains the specified attribute name, if any; otherwise, it will display a warning that the specified attribute is missing.
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
-* Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it.
+* Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it with a warning message.
 * There is no option to specify sorting in reverse order.
 
 Example:
