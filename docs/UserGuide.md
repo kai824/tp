@@ -84,7 +84,7 @@ Follow these simple steps to get TalentFolio up and running:
 
    * `filter a/Major=Computer Science` : Filters all candidates who major in Computer Science.
 
-   * `sort a/Graduation Year` : Sorts candidates in ascending order of Graduation Year.
+   * `sort a/Graduation Year` : Sorts candidates in alphabetically ascending order of Graduation Year.
 
    * `delete 3` : Deletes the 3rd candidate shown in the current list.
 
@@ -307,24 +307,25 @@ Examples:
 
 ### Sorting entries by an attribute: `sort`
 
-Sorts the current view of entries by the value of the specified attribute name in alphabetical order.
+Sorts the current view of entries by the value of the specified attribute name in alphabetically ascending or descending order.
 
-Format: `sort a/ATTRIBUTE_NAME`
-
+Format: `sort a/ATTRIBUTE_NAME [o/ORDER]`
 * Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
   * In the above scenario, a warning will indicate the last entry in the current view that contains the specified attribute name, if any; otherwise, it will display a warning that the specified attribute is missing.
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
+* If no `ORDER` is specified, entries will be sorted in ascending order by default. Otherwise, the first character of the user input (case-insensitive) will determine the order: if it starts with 'a', entries will be sorted in ascending order; if it starts with 'd', they will be sorted in descending order.  
 * Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it.
 * There is no option to specify sorting in reverse order.
 
 Example:
-* `sort a/major` sorts all entries with the `Major` attribute by lexicographical order of the attribute value of `Major`.
+* `sort a/major` sorts all entries with the `Major` attribute by alphabetically ascending order of the attribute value of `Major`.
+* `sort a/location` sorts all entries with the `location` attribute by alphabetically descending order of the attribute value of `Location`.
 
 ### Sorting entries by the numerical value of an attribute: `sort-num`
 
-Sorts the current view of entries by the numeric value of the specified attribute name in ascending order.
+Sorts the current view of entries by the numeric value of the specified attribute name in ascending or descending order.
 
-Format: `sort-num a/ATTRIBUTE_NAME`
+Format: `sort-num a/ATTRIBUTE_NAME [o/ORDER]`
 
 * For each attribute value which can be parsed into a number, its numerical value will be stored.
 * Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
@@ -332,11 +333,13 @@ Format: `sort-num a/ATTRIBUTE_NAME`
 * If there is at least one entry with the specified attribute name and some of these entries lack a valid numerical value, those entries will be placed at the back while preserving their internal order.
   * In the above scenario, a warning will indicate the last entry in the current view that contains a valid numerical value, if any; otherwise, it will display a warning that numerical values are completely missing.
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
+* If no `ORDER` is specified, entries will be sorted in ascending order by default. Otherwise, the first character of the user input (case-insensitive) will determine the order: if it starts with 'a', entries will be sorted in ascending order; if it starts with 'd', they will be sorted in descending order.
 * Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it.
 * There is no option to specify sorting in descending order.
 
 Example:
-* `sort-num a/GPA` sorts all entries with the `GPA` attribute by ascending order of the numerical attribute value of `GPA`.
+* `sort-num a/expected salary` sorts all entries with the `Expected Salary` attribute by ascending order of the numerical attribute value of `Expected Salary`.
+* `sort-num a/GPA o/desc` sorts all entries with the `GPA` attribute by descending order of the numerical attribute value of `GPA`.
 
 ### Undoing the last data change: `undo`
 
@@ -429,8 +432,8 @@ Action     | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Clear**  | `clear`
 **Filter** | `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE…` <br> e.g., `filter a/Major=Computer Science`
-**Sort** | `sort a/ATTRIBUTE_NAME`<br> e.g., `sort a/Degree`
-**Numerical Sort** | `sort-num a/ATTRIBUTE_NAME`<br> e.g., `sort-num a/Expected Salary`
+**Sort** | `sort a/ATTRIBUTE_NAME [o/ORDER]`<br> e.g., `sort a/Degree o/ascendindg`
+**Numerical Sort** | `sort-num a/ATTRIBUTE_NAME [o/ORDER]`<br> e.g., `sort-num a/GPA o/descending`
 **Undo**   | `undo`
 **Navigate Past Commands** | <kbd>↑</kbd> <kbd>↓</kbd>
 **Exit**   | `exit`
