@@ -213,6 +213,13 @@ Examples:
   * You cannot remove an attribute that will be updated in the same command. For example, `edit 1 a/Major=Physics ra/Major` is not allowed.
 </box>
 
+<box type="info">
+
+**Filters:**
+* After editing a person, they may no longer pass the existing filtering criteria. Hence, to ensure the person is still shown in the UI, filters are cleared after a person is edited.
+
+</box>
+
 ### Linking an attribute name to a website: `link`
 
 Associates an attribute name with a website URL. This means that you can visit the website by clicking on the attribute in the person's detailed view (which can be shown by clicking on them or by using the [`show`](#showing-a-persons-details-show) command).
