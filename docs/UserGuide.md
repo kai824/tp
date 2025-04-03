@@ -454,7 +454,7 @@ Action     | Format, Examples
 **Delete** | `delete INDEX`<br> Example: `delete 3`
 **Clear**  | `clear`
 **Filter** | `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE…` <br> Example: `filter a/Major=Computer Science`
-**Sort** | `sort a/ATTRIBUTE_NAME [o/ORDER]`<br> Example: `sort a/Degree o/ascendindg`
+**Sort** | `sort a/ATTRIBUTE_NAME [o/ORDER]`<br> Example: `sort a/Degree o/ascending`
 **Numerical Sort** | `sort-num a/ATTRIBUTE_NAME [o/ORDER]`<br> Example: `sort-num a/GPA o/descending`
 **Undo**   | `undo`
 **Navigate Past Commands** | <kbd>↑</kbd> <kbd>↓</kbd>
