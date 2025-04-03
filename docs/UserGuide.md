@@ -12,15 +12,15 @@ TalentFolio is a powerful yet easy-to-use application designed for hiring manage
 ## Table of Contents
 
 - [Quick start](#quick-start)
-  - [Install Java (if not already installed)](#install-java-if-not-already-installed)
-  - [Download TalentFolio](#download-talentfolio)
-  - [Set up TalentFolio](#set-up-talentfolio)
-  - [Running TalentFolio](#running-talentfolio)
-  - [Using TalentFolio](#using-talentfolio)
-  - [Need more help?](#need-more-help)
+  - [Install Java (if not already installed)](#1-install-java-if-not-already-installed)
+  - [Download TalentFolio](#2-download-talentfolio)
+  - [Set up TalentFolio](#3-set-up-talentfolio)
+  - [Running TalentFolio](#4-running-talentfolio)
+  - [Using TalentFolio](#5-using-talentfolio)
+  - [Need more help?](#6-need-more-help)
 - [Features](#features)
   - [Viewing help: `help`](#viewing-help-help)
-  - [Showing a person's details: `show`](#showing-a-persons-details-show)
+  - [Showing a person's details: `show`](#showing-a-person-s-details-show)
   - [Adding a person: `add`](#adding-a-person-add)
   - [Listing all persons: `list`](#listing-all-persons-list)
   - [Editing a person: `edit`](#editing-a-person-edit)
@@ -48,32 +48,35 @@ TalentFolio is a powerful yet easy-to-use application designed for hiring manage
 
 Follow these simple steps to get TalentFolio up and running:
 
-1. ### Install Java (if not already installed)
-   TalentFolio requires Java `17` or later to run. Check your Java version by opening a terminal or command prompt and typing:<br>
-   `java -version`<br>
-   If java is not installed or is an older version:
-   * **Windows/Linux users:** Download and install the latest Java Development Kit (JDK) from [Oracle's website](https://www.oracle.com/java/technologies/downloads/).
-   * **Mac users:** Follow the instructions and ensure you have the precise Java Development Kit (JDK) version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+### 1. Install Java (if not already installed)
+TalentFolio requires Java `17` or later to run. Check your Java version by opening a terminal or command prompt and typing:<br>
+`java -version`<br>If Java is not installed or is an older version:
+* **Windows/Linux users:** Download and install the latest Java Development Kit (JDK) from [Oracle's website](https://www.oracle.com/java/technologies/downloads/).
+* **Mac users:** Follow the instructions and ensure you have the precise Java Development Kit (JDK) version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-2. ### Download TalentFolio
-   Get the latest version of TalentFolio from our [official release page](https://github.com/AY2425S2-CS2103T-T10-1/tp/releases). Download the latest `.jar` file available.
+### 2. Download TalentFolio
+Get the latest version of TalentFolio from our [official release page](https://github.com/AY2425S2-CS2103T-T10-1/tp/releases). Download the latest `.jar` file available.
 
-3. ### Set up TalentFolio
-   Move the `.jar` file to the folder you want to use as the _home folder_ for TalentFolio. This folder will store the TalentFolio application data. We recommend choosing a convenient location that you have read, write and execute permissions for.
+### 3. Set up TalentFolio
+Move the `.jar` file to the folder you want to use as the _home folder_ for TalentFolio. This folder will store the TalentFolio application data. We recommend choosing a convenient location that you have read, write and execute permissions for.
 
-4. ### Running TalentFolio
-   Open a command terminal:
-   * **Windows users:** Press `Win + R`, type `cmd`, and hit Enter.
-   * **Mac/Linux users** Open the Terminal app.<br>
-   Navigate to the folder where you placed the `.jar` file. You can do this using the `cd` command. For example:<br>
-   `cd path/to/your/folder`<br>
-   Run the following command in the terminal to launch the application:<br>
-   `java -jar talentfolio.jar`<br>
-   After a few seconds, the TalentFolio application should open, and you should see a GUI similar to the one shown below. Note how the app contains some sample data. It is recommended to clear the sample data before your own personal use as the sample data will not be automatically overwritten.<br>
-   ![Ui](images/Ui.png)
+### 4. Running TalentFolio
+Open a command terminal:
+* **Windows users:** Press `Win + R`, type `cmd`, and hit Enter.
+* **Mac/Linux users** Open the Terminal app.<br>
+Navigate to the folder where you placed the `.jar` file. You can do this using the `cd` command. For example:<br>
+`cd path/to/your/folder`<br>
+Run the following command in the terminal to launch the application:<br>
+`java -jar talentfolio.jar`<br>
+After a few seconds, the TalentFolio application should open, and you should see a GUI similar to the one shown below. Note how the app contains some sample data. It is recommended to clear the sample data before your own personal use as the sample data will not be automatically overwritten.<br>
+<pic src="images/Ui.png" alt="GUI">
+TalentFolio's graphical user interface
+</pic>
+<br/>
 
-5. ### Using TalentFolio
-   Type the command in the command box and press Enter to execute it. E.g. typing **`help`** and pressing Enter will open the help window.<br>
+
+### 5. Using TalentFolio
+   Type the command in the command box and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all candidates.
@@ -94,7 +97,7 @@ Follow these simple steps to get TalentFolio up and running:
 
    * `exit` : Exits the app.
 
-6. ### Need more help?
+### 6. Need more help?
    For a complete list of features and detailed instructions of each command, check out the [Features](#features) section below.<br>
    Enjoy using TalentFolio to streamline your hiring process!
 
@@ -102,24 +105,24 @@ Follow these simple steps to get TalentFolio up and running:
 
 ## Features
 
-<box type="info" seamless>
+<box type="info">
 
 **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  For example: in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/Excel` or as `n/John Doe`.
+  For example: `n/NAME [t/TAG]` can be used as `n/John Doe t/Excel` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used as many times as desired–if the items are optional, 0 or more times; otherwise, 1 or more times. <br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Excel`, `t/C++ t/Java` etc.
+  For example: `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Excel`, `t/C++ t/Java` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  For example: if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  For example: if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
@@ -128,7 +131,9 @@ Follow these simple steps to get TalentFolio up and running:
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+<pic src="images/helpMessage.png" alt="Help message">
+Help message window
+</pic>
 
 Format: `help`
 
@@ -141,8 +146,10 @@ Format: `show INDEX`
 * You can also view a person's details by clicking on them in the left panel.
 
 Example:
-* `show 1` shows the details of the 1st person.<br>
-  ![result for 'show 1'](images/showAlexYeohResult.png)
+* `show 1` shows the details of the 1st person.<br/>
+  <pic src="images/showAlexYeohResult.png" alt="Results after typing `show 1`">
+  Results after typing `show 1`
+  </pic>
 
 ### Adding a person: `add`
 
@@ -154,12 +161,12 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com` Adds a person named `John Doe` with phone number `98765432` and email address `johnd@example.com`.
 * `add n/Betsy Crowe t/C++ e/betsycrowe@example.com p/1234567 t/Java a/Major=Data Science and Analytics` Adds a person named `Betsy Crowe` with phone number `1234567`, email address `betsycrowe@example.com`, tags `C++` and `Java`, and an attribute named `Major` with the value `Data Science and Analytics`.
 
-<box type="tip" seamless>
+<box type="tip">
 
 **Tip:** A person can have any number of tags and attributes (including 0).
 </box>
 
-<box type="info" seamless>
+<box type="info">
 
 **More information on attributes:**
 * Attribute names are unique. A person cannot have multiple attributes with the same name.
@@ -189,14 +196,14 @@ Examples:
 *  `edit 1 a/Graduation Year=2027` Adds or edits an attribute named `Graduation Year` to the 1st person.
 *  `edit 1 ra/Graduation Year` Removes the attribute named `Graduation Year` from the 1st person.
 
-<box type="info" seamless>
+<box type="info">
 
 **For tags:**
 * When editing tags, the existing tags of the person will be removed, i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 </box>
 
-<box type="info" seamless>
+<box type="info">
 
 **For attributes:**
 * Updating an attribute requires you to specify both the attribute name and attribute value.
@@ -226,17 +233,22 @@ Examples:
   * This will delete the association between `github` and `https://github.com/`.
   * Clicking the attribute now will have no effect.
 
-<box type="info" seamless>
+<box type="info">
 
 Attribute names are case-insensitive. `link a/github=https://github.com/` has the same effect as `link a/GitHub=https://github.com/`.
 </box>
 
-<box type="tip" seamless>
+<box type="tip">
 
 **Tip:** Associations for `github` and `linkedin` (`https://github.com/` and `https://www.linkedin.com/in/`) are added by default!
 
 Enjoy the easy management of websites!
 </box>
+
+<pic src="images/alexYeohDetails.png" alt="Alex Yeoh details">
+
+Clicking on the attribute <span class="badge" style="background-color: #773963; text-decoration: underline; font-weight: normal; color: #b8e6ff">GitHub: example-alexyeoh</span> opens<br/>the link `https://github.com/example-alexyeoh`
+</pic>
 
 ### Locating persons by name: `find`
 
@@ -257,7 +269,9 @@ Format: `find KEYWORD…`
 Examples:
 * `find John` matches any person with `John` as a substring in their name.
 * `find alex david` matches any person with `alex` **OR** `david` as a substring in their name.<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  <pic src="images/findAlexDavidResult.png" alt="Results after typing `find alex david`">
+  Results after typing `find alex david`
+  </pic>
 
 ### Deleting a person: `delete`
 
@@ -295,15 +309,20 @@ Format: `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE…`
   * For example, `GraduatOIn year` will be corrected to `GraduatIOn year` automatically, if only `Graduation year` exists as an attribute name.
 
 Examples:
-* `filter a/Major=Computer Science a/Graduation year=2028` filters all the candidates who major in Computer Science **AND** will graduate in 2028.
+* `filter a/Major=Computer Science a/Graduation year=2027` filters all the candidates who major in Computer Science **AND** will graduate in 2027.
 * `filter a/Major=Computer Science a/Major=Mathematics` filters all the candidates who major in Computer Science **OR** Mathematics.
-* `filter a/Major=Computer Science a/Major=Mathematics a/Graduation year=2028` filters all the candidates who major in either Computer Science **OR** Mathematics, **AND** also graduating in 2028. That is:
-  * A candidate majoring in Computer Science and graduating in 2028 will be matched.
-  * A candidate majoring in Mathematics and graduating in 2028 will be matched.
-  * A candidate majoring in Engineering and graduating in 2028 will **NOT** be matched, since they do not meet the first condition.
+* `filter a/Major=Computer Science a/Major=Mathematics a/Graduation year=2027` filters all the candidates who major in either Computer Science **OR** Mathematics, **AND** also graduating in 2027. That is:
+  * A candidate majoring in Computer Science and graduating in 2027 will be matched.
+  * A candidate majoring in Mathematics and graduating in 2027 will be matched.
+  * A candidate majoring in Engineering and graduating in 2027 will **NOT** be matched, since they do not meet the first condition.
   * A candidate majoring in Computer Science and graduating in 2027 will **NOT** be matched, since they do not meet the second condition.
-  * Please note that, in this case, candidates who are missing any of the attributes (i.e., do not have an attribute with the name Major or Graduation year) will **NOT** be matched. For instance, a candidate with no attributes will not be matched.
-  * You can also obtain the same result with `filter a/Major=Computer Science a/Graduation year=2028 a/Major=Mathematics`, because the order of the arguments does not matter.
+  * Candidates who are missing any of the attributes (i.e. do not have an attribute with the name Major or Graduation year) will **NOT** be matched. For instance, a candidate with no attributes will not be matched.
+  * You can also obtain the same result with `filter a/Major=Computer Science a/Graduation year=2027 a/Major=Mathematics`, because the order of the arguments does not matter.
+
+<pic src="images/filterMixedResult.png" alt="Filter results">
+
+Results after typing `filter a/Major=Computer Science`<br/>`a/Major=Mathematics a/Graduation year=2027`
+</pic>
 
 ### Sorting entries by an attribute: `sort`
 
@@ -311,14 +330,15 @@ Sorts the current view of entries by the value of the specified attribute name i
 
 Format: `sort a/ATTRIBUTE_NAME`
 
-* Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
-  * In the above scenario, a warning will indicate the last entry in the current view that contains the specified attribute name, if any; otherwise, it will display a warning that the specified attribute is missing.
+* Entries without the specified attribute will be placed at the back while preserving their relative order.
+  * In this case, a warning will indicate the last entry in the current view that contains the specified attribute name, if any; otherwise, it will display a warning that the specified attribute is missing.
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
 * Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it.
 * There is no option to specify sorting in reverse order.
 
 Example:
-* `sort a/major` sorts all entries with the `Major` attribute by lexicographical order of the attribute value of `Major`.
+* `sort a/major` sorts entries alphabetically according to their `Major`.
+  * Entries without `Major` as an attribute will be sorted to the end of the list.
 
 ### Sorting entries by the numerical value of an attribute: `sort-num`
 
@@ -327,16 +347,16 @@ Sorts the current view of entries by the numeric value of the specified attribut
 Format: `sort-num a/ATTRIBUTE_NAME`
 
 * For each attribute value which can be parsed into a number, its numerical value will be stored.
-* Entries without the specified attribute will be placed at the back while preserving their internal order prior to the command.
-  * In the above scenario, a warning will indicate the last entry in the current view that has the specified attribute, if any; otherwise, it will display a warning that the specified attribute is missing.
+* Entries without the specified attribute will be placed at the back while preserving their relative order.
+  * In this case, a warning will indicate the last entry in the current view that has the specified attribute, if any; otherwise, it will display a warning that the specified attribute is missing.
 * If there is at least one entry with the specified attribute name and some of these entries lack a valid numerical value, those entries will be placed at the back while preserving their internal order.
-  * In the above scenario, a warning will indicate the last entry in the current view that contains a valid numerical value, if any; otherwise, it will display a warning that numerical values are completely missing.
+  * In this case, a warning will indicate the last entry in the current view that contains a valid numerical value, if any; otherwise, it will display a warning that numerical values are completely missing.
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
 * Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it.
 * There is no option to specify sorting in descending order.
 
 Example:
-* `sort-num a/GPA` sorts all entries with the `GPA` attribute by ascending order of the numerical attribute value of `GPA`.
+* `sort-num a/GPA` sorts entries numerically (in ascending order) according to their `GPA`.
 
 ### Undoing the last data change: `undo`
 
@@ -391,11 +411,11 @@ TalentFolio data is saved in the hard disk automatically after any command that 
 
 TalentFolio data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<box type="warning" seamless>
+<box type="warning">
 
 **Caution:**
 If your changes to the data file makes its format invalid, TalentFolio will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause TalentFolio to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+Furthermore, certain edits can cause TalentFolio to behave in unexpected ways (for example, if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -411,7 +431,7 @@ Furthermore, certain edits can cause TalentFolio to behave in unexpected ways (e
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
-3. **If using Linux**, clicking on links will not open them. Instead, the link will be copied to the system clipboard, and a window will appear to notify you that the link has been copied. You will have to paste the link into your browser manually.
+3. **If using Linux or Unix**, clicking on links will not open them. Instead, the link will be copied to the system clipboard, and a window will appear to notify you that the link has been copied. You will have to paste the link into your browser manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -420,17 +440,17 @@ Furthermore, certain edits can cause TalentFolio to behave in unexpected ways (e
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Help**   | `help`
-**Show**   | `show INDEX` <br> e.g., `show 1`
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/C++ t/Java a/Major=Data Science and Analytics`
+**Show**   | `show INDEX` <br> Example: `show 1`
+**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]…` <br> Example: `add n/James Ho p/22224444 e/jamesho@example.com t/C++ t/Java a/Major=Data Science and Analytics`
 **List**   | `list`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/ATTRIBUTE_NAME]…` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/ATTRIBUTE_NAME]…` <br> Example: `edit 2 n/James Lee e/jameslee@example.com`
 **Link**   | `link a/ATTRIBUTE_NAME=SITE_LINK`
-**Find**   | `find KEYWORD…`<br> e.g., `find James Jake`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Find**   | `find KEYWORD…`<br> Example: `find James Jake`
+**Delete** | `delete INDEX`<br> Example: `delete 3`
 **Clear**  | `clear`
-**Filter** | `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE…` <br> e.g., `filter a/Major=Computer Science`
-**Sort** | `sort a/ATTRIBUTE_NAME`<br> e.g., `sort a/Degree`
-**Numerical Sort** | `sort-num a/ATTRIBUTE_NAME`<br> e.g., `sort-num a/Expected Salary`
+**Filter** | `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE…` <br> Example: `filter a/Major=Computer Science`
+**Sort** | `sort a/ATTRIBUTE_NAME`<br> Example: `sort a/Degree`
+**Numerical Sort** | `sort-num a/ATTRIBUTE_NAME`<br> Example: `sort-num a/Expected Salary`
 **Undo**   | `undo`
 **Navigate Past Commands** | <kbd>↑</kbd> <kbd>↓</kbd>
 **Exit**   | `exit`
