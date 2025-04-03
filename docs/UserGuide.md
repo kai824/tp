@@ -151,6 +151,11 @@ Example:
   Results after typing `show 1`
   </pic>
 
+<box type="tip">
+
+**Tip:** In the right panel, you can click on the phone number or email address to copy it to your clipboard.
+</box>
+
 ### Adding a person: `add`
 
 Adds a person to the database.
