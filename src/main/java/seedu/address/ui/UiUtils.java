@@ -54,15 +54,18 @@ public class UiUtils {
      * @param link The link to copy.
      */
     private static void copyLinkAndShowDialog(String link) {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent url = new ClipboardContent();
-        url.putString(link);
-        clipboard.setContent(url);
+        copyText(link);
+        showInformationDialog("Link copied", "The link has been copied to your clipboard.");
+    }
 
+    /**
+     * Shows an information dialog with the provided title and message.
+     */
+    public static void showInformationDialog(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
-        alert.setHeaderText("Link copied");
-        alert.setContentText("The link has been copied to your clipboard.");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
 
         // Solution below adapted from
         // https://stackoverflow.com/questions/27976345/how-do-you-set-the-icon-of-a-dialog-control-java-fx-java-8
@@ -70,5 +73,15 @@ public class UiUtils {
         stage.getIcons().add(new Image("/images/address_book_32.png"));
 
         alert.showAndWait();
+    }
+
+    /**
+     * Copies the provided text to the system clipboard.
+     */
+    public static void copyText(String text) {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent clipboardContent = new ClipboardContent();
+        clipboardContent.putString(text);
+        clipboard.setContent(clipboardContent);
     }
 }
