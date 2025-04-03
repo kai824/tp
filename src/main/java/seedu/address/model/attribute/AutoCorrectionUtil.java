@@ -95,7 +95,7 @@ public class AutoCorrectionUtil {
      * An empty {@code Optional} will be returned if there is no need for the warning message,
      * i.e., no correction took place and {@code originalName} appears in some {@code Person}'s attributes.
      */
-    public static Optional<String> warningForName(String originalName, Optional<String> correctedName) {
+    public static Optional<String> getWarningForName(String originalName, Optional<String> correctedName) {
         if (correctedName.isPresent()) {
             if (originalName.toLowerCase().equals(correctedName.get().toLowerCase())) {
                 return Optional.empty();
@@ -120,7 +120,7 @@ public class AutoCorrectionUtil {
      * An empty {@code Optional} will be returned if there is no need for the warning message,
      * i.e., no correction took place and {@code originalValue} appears in some {@code Person}'s attributes.
      */
-    public static Optional<String> warningForValue(String originalValue, Optional<String> correctedValue) {
+    public static Optional<String> getWarningForValue(String originalValue, Optional<String> correctedValue) {
         if (correctedValue.isPresent()) {
             if (originalValue.toLowerCase().equals(correctedValue.get().toLowerCase())) {
                 return Optional.empty();

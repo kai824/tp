@@ -59,7 +59,7 @@ public class FilterCommand extends Command {
     private String getWarningsForName(Model model) {
         return attributes.stream()
             .map(attribute -> attribute.getAttributeName())
-            .map(name -> AutoCorrectionUtil.warningForName(name, model.autocorrectAttributeName(name)))
+            .map(name -> AutoCorrectionUtil.getWarningForName(name, model.autocorrectAttributeName(name)))
             .filter(warning -> warning.isPresent())
             .map(warning -> warning.get())
             .reduce("", (x, y) -> x + y + "\n");
@@ -68,7 +68,7 @@ public class FilterCommand extends Command {
     private String getWarningsForValue(Model model) {
         return attributes.stream()
             .map(attribute -> attribute.getAttributeValue())
-            .map(value -> AutoCorrectionUtil.warningForValue(value, model.autocorrectAttributeValue(value)))
+            .map(value -> AutoCorrectionUtil.getWarningForValue(value, model.autocorrectAttributeValue(value)))
             .filter(warning -> warning.isPresent())
             .map(warning -> warning.get())
             .reduce("", (x, y) -> x + y + "\n");

@@ -42,7 +42,7 @@ public abstract class SortCommand extends Command {
      */
     public String getWarningMessage(Model model) {
         Optional<String> missingAttributeWarning =
-            AutoCorrectionUtil.warningForName(attributeName, adjustedAttributeName);
+            AutoCorrectionUtil.getWarningForName(attributeName, adjustedAttributeName);
         if (missingAttributeWarning.isPresent()) { //No entry has the specified attribute name
             return missingAttributeWarning.get() + "\n";
         }
