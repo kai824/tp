@@ -58,7 +58,13 @@ public abstract class SortCommand extends Command {
 
         this.adjustedAttributeName = model.findMostCloseEnoughAttributeName(this.attributeName);
         model.sortFilteredPersonList(this.getComparator(this.isAscending));
-        String message = this.getWarningMessage(model) + Messages.MESSAGE_PERSONS_SORTED_OVERVIEW;
+        String message = this.getWarningMessage(model);
+        if (this.isAscending) {
+            message += String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, "ascending");
+        }
+        else {
+            message += String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, "descending");
+        }
         return new CommandResult(message);
 
     }
