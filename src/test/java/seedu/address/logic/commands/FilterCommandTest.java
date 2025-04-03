@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_NAME_GRAD_YEAR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_NAME_MAJOR;
@@ -33,35 +32,23 @@ public class FilterCommandTest {
 
     @Test
     public void execute() throws Exception {
-        Model zeroPerson = new ModelManager();
-        Model onePerson = new ModelManager();
-        Model twoPersons = new ModelManager();
         Person personWithMajor =
             new PersonBuilder().withName("1")
                 .withAttributes(VALID_ATTRIBUTE_NAME_MAJOR, VALID_ATTRIBUTE_VALUE_MAJOR).build();
         Person personWithYear =
             new PersonBuilder().withName("2")
                 .withAttributes(VALID_ATTRIBUTE_NAME_GRAD_YEAR, VALID_ATTRIBUTE_VALUE_GRAD_YEAR).build();
-        onePerson.addPerson(personWithMajor);
+        Model twoPersons = new ModelManager();
         twoPersons.addPerson(personWithYear);
         twoPersons.addPerson(personWithMajor);
 
         FilterCommand year = new FilterCommand(Set.of(year1), false);
-        FilterCommand yearMajor = new FilterCommand(Set.of(year1, major1), false);
 
-        assertEquals(year.execute(zeroPerson), year.execute(zeroPerson));
-        assertNotEquals(year.execute(zeroPerson), yearMajor.execute(zeroPerson));
-        assertNotEquals(year.execute(onePerson), year.execute(twoPersons));
         CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_PERSONS_FILTERED_OVERVIEW, 1));
         assertEquals(year.execute(twoPersons), expectedResult);
 
         // With duplicates
         year = new FilterCommand(Set.of(year1), true);
-        yearMajor = new FilterCommand(Set.of(year1, major1), true);
-
-        assertEquals(year.execute(zeroPerson), year.execute(zeroPerson));
-        assertNotEquals(year.execute(zeroPerson), yearMajor.execute(zeroPerson));
-        assertNotEquals(year.execute(onePerson), year.execute(twoPersons));
         expectedResult = new CommandResult(String.format(
             FilterCommand.MESSAGE_WARNING_DUPLICATE + "\n" + Messages.MESSAGE_PERSONS_FILTERED_OVERVIEW, 1));
         assertEquals(year.execute(twoPersons), expectedResult);

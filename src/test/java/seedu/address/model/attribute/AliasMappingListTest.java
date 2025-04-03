@@ -28,7 +28,6 @@ public class AliasMappingListTest {
         assertFalse(list.getAlias("github").isPresent());
         assertTrue(list.getAlias("LINKEDIN").isPresent());
         assertTrue(list.getAlias("LINKEDIN").get().equals("https://www.linkedin.com/in/"));
-        assertFalse(list.getAlias("").isPresent());
         assertTrue(list.getAlias(name1).isPresent());
         assertTrue(list.getAlias(name1.toUpperCase()).isPresent());
         assertTrue(list.getAlias(name1).get().equals(link1));

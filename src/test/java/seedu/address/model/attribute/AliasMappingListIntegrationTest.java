@@ -15,10 +15,13 @@ import seedu.address.testutil.PersonBuilder;
  * Contains integration tests (interaction with the AddressBook) for {@code AliasMappingList}.
  */
 public class AliasMappingListIntegrationTest {
+    private Person personWithGithub = new PersonBuilder().withAttributes("gitHUB", "hoge").build();
+    private Person emptyPerson = new PersonBuilder().build();
+
     @Test
     void addPerson_success() {
         AddressBook book = new AddressBook();
-        book.addPerson(new PersonBuilder().withAttributes("gitHUB", "hoge").build());
+        book.addPerson(personWithGithub);
         Person added = book.getPersonList().get(0);
         assertTrue(added.getAttribute("github").isPresent());
         assertTrue(added.getAttribute("github").get().hasSiteLink());
@@ -26,8 +29,8 @@ public class AliasMappingListIntegrationTest {
     @Test
     void setPerson_success() {
         AddressBook book = new AddressBook();
-        book.addPerson(new PersonBuilder().build());
-        book.setPerson(new PersonBuilder().build(), new PersonBuilder().withAttributes("gitHUB", "hoge").build());
+        book.addPerson(emptyPerson);
+        book.setPerson(emptyPerson, personWithGithub);
         Person added = book.getPersonList().get(0);
         assertTrue(added.getAttribute("github").isPresent());
         assertTrue(added.getAttribute("github").get().hasSiteLink());
@@ -35,7 +38,7 @@ public class AliasMappingListIntegrationTest {
     @Test
     void updateAlias_sucess() {
         AddressBook book = new AddressBook();
-        book.addPerson(new PersonBuilder().withAttributes("gitHUB", "hoge").build());
+        book.addPerson(personWithGithub);
         book.updateAlias("github", Optional.empty());
         Person added = book.getPersonList().get(0);
         assertTrue(added.getAttribute("github").isPresent());

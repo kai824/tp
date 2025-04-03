@@ -9,6 +9,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_VALUE
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTRIBUTE_VALUE_MAJOR;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -19,33 +21,40 @@ import seedu.address.testutil.PersonBuilder;
 public class AttributeMatchesPredicateTest {
     private Attribute major1 = new Attribute(VALID_ATTRIBUTE_NAME_MAJOR.toLowerCase(), VALID_ATTRIBUTE_VALUE_MAJOR);
     private Attribute major2 = new Attribute(VALID_ATTRIBUTE_NAME_MAJOR.toUpperCase(), VALID_ATTRIBUTE_VALUE_ALT_MAJOR);
-    private Attribute year1 = new Attribute(VALID_ATTRIBUTE_NAME_GRAD_YEAR, VALID_ATTRIBUTE_VALUE_GRAD_YEAR);
+    private Attribute year = new Attribute(VALID_ATTRIBUTE_NAME_GRAD_YEAR, VALID_ATTRIBUTE_VALUE_GRAD_YEAR);
+    private Attribute university = new Attribute("University", "NUS");
+    private Attribute hobby = new Attribute("Hobby", "Baseball");
+    private Attribute cca = new Attribute("CCA", "Dance");
+
+    private Person buildPersonWithAttributes(Attribute... attributes) {
+        String[] parameters =
+            Arrays.stream(attributes)
+            .flatMap(attribute
+                -> List.of(attribute.getCaseAwareAttributeName(), attribute.getAttributeValue()).stream())
+            .toArray(String[]::new);
+        return new PersonBuilder().withAttributes(parameters).build();
+    }
 
     @Test
     public void test_attributeMatches_returnsTrue() {
         // One attribute
         AttributeMatchesPredicate predicate =
-            new AttributeMatchesPredicate(Set.of(new Attribute("Major", "Computer Science")));
-        assertTrue(predicate.test(new PersonBuilder()
-            .withAttributes("Major", "Computer Science").build()));
+            new AttributeMatchesPredicate(Set.of(major1));
+        assertTrue(predicate.test(buildPersonWithAttributes(major1)));
 
         // Multiple attributes
         predicate = new AttributeMatchesPredicate(
-            Set.of(new Attribute("University", "NUS"), new Attribute("Hobby", "Baseball")));
-        assertTrue(predicate.test(new PersonBuilder()
-            .withAttributes("University", "NUS", "Hobby", "Baseball").build()));
+            Set.of(university, hobby));
+        assertTrue(predicate.test(buildPersonWithAttributes(university, hobby)));
 
         // Person has extra attributes
         predicate = new AttributeMatchesPredicate(
-            Set.of(new Attribute("CCA", "Dance"), new Attribute("Graduation year", "2028")));
-        assertTrue(predicate.test(new PersonBuilder()
-            .withAttributes(
-                "CCA", "Dance", "Hobby", "k-pop", "Graduation year", "2028", "Age", "20")
-                    .build()));
+            Set.of(cca, year));
+        assertTrue(predicate.test(buildPersonWithAttributes(cca, hobby, year)));
 
         // Mixed-case attributes: name
         predicate =
-                new AttributeMatchesPredicate(Set.of(new Attribute("University", "NUS")));
+                new AttributeMatchesPredicate(Set.of(university));
         assertTrue(predicate.test(new PersonBuilder().withAttributes("university", "NUS").build()));
 
         // Two attribute values in the same attribute name: one of the values matches the person
@@ -63,29 +72,29 @@ public class AttributeMatchesPredicateTest {
     public void test_attributeMatches_returnsFalse() {
         // Mixed-case attributes: value
         AttributeMatchesPredicate predicate =
-            new AttributeMatchesPredicate(Set.of(new Attribute("University", "NUS")));
+            new AttributeMatchesPredicate(Set.of(university));
         assertFalse(predicate.test(new PersonBuilder().withAttributes("University", "nus").build()));
 
         // Non-matching attributes: value
         predicate = new AttributeMatchesPredicate(
-            Set.of(new Attribute("University", "NUS"), new Attribute("Hobby", "Baseball")));
+            Set.of(university, hobby));
         assertFalse(predicate.test(new PersonBuilder()
             .withAttributes("University", "NUS", "Hobby", "Softball").build()));
 
         // Non-matching attributes: name
         predicate = new AttributeMatchesPredicate(
-            Set.of(new Attribute("University", "NUS"), new Attribute("Hobby", "Baseball")));
+            Set.of(university, hobby));
         assertFalse(predicate.test(new PersonBuilder()
-            .withAttributes("University", "NUS", "CCA", "Softball").build()));
+            .withAttributes("University", "NUS", "CCA", "Baseball").build()));
 
         // No attribute
         predicate = new AttributeMatchesPredicate(
-            Set.of(new Attribute("Graduation year", "2022")));
+            Set.of(year));
         assertFalse(predicate.test(new PersonBuilder().build()));
 
         // Same name but different value
         predicate = new AttributeMatchesPredicate(
-            Set.of(new Attribute("University", "NUS")));
+            Set.of(university));
         assertFalse(predicate.test(new PersonBuilder()
             .withAttributes("University", "NTU").build()));
 
@@ -128,9 +137,9 @@ public class AttributeMatchesPredicateTest {
     @Test
     public void equals() {
         AttributeMatchesPredicate majorYear =
-            new AttributeMatchesPredicate(Set.of(major1, year1));
+            new AttributeMatchesPredicate(Set.of(major1, year));
         AttributeMatchesPredicate yearMajor =
-            new AttributeMatchesPredicate(Set.of(year1, major1));
+            new AttributeMatchesPredicate(Set.of(year, major1));
         AttributeMatchesPredicate majorA = new AttributeMatchesPredicate(Set.of(major1));
         AttributeMatchesPredicate majorB = new AttributeMatchesPredicate(Set.of(major2));
 
