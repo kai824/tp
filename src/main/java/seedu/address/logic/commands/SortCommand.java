@@ -20,7 +20,7 @@ public abstract class SortCommand extends Command {
 
     protected final String attributeName;
     protected Optional<String> adjustedAttributeName;
-    private boolean isAscending;
+    private final boolean isAscending;
 
     /**
      * Initializes an instance with the comparator based on the attribute name.
@@ -65,6 +65,16 @@ public abstract class SortCommand extends Command {
             message += String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, "descending");
         }
         return new CommandResult(message);
+    }
 
+    @Override
+    public boolean equals(Object other) {
+        if (this.getClass() != other.getClass()) {
+            return false;
+        } else {
+            SortCommand otherCommand = (SortCommand) other;
+            return this.attributeName.equals(otherCommand.attributeName)
+                    && this.isAscending == otherCommand.isAscending;
+        }
     }
 }
