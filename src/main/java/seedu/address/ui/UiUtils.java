@@ -4,6 +4,9 @@ import java.awt.Desktop;
 import java.net.URI;
 import java.util.logging.Logger;
 
+import com.sun.javafx.PlatformUtil;
+
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.input.Clipboard;
@@ -19,15 +22,20 @@ public class UiUtils {
 
     /**
      * Opens the link in the user's default browser.
-     * If the link could not be opened (most likely because the user is on Linux), it is copied instead
+     * If the link could not be opened (most likely because the user is on Linux/Unix), it is copied instead
      * and a dialog opens to notify the user that the link has been copied.
      *
      * @param link The link to open.
      */
     public static void browse(String link) {
         logger.info(String.format("Attempting to browse (%s).", link));
-        if (Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-            logger.info("Desktop::browse is supported.");
+
+        // Certain Linux/Unix distributions freeze when Desktop::browse is called, even though
+        // they return true for Desktop::isSupported(Desktop.Action.BROWSE)
+        if (Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)
+                && !PlatformUtil.isLinux() && !PlatformUtil.isUnix()) {
+            logger.info("Browsing is supported.");
+
             try {
                 Desktop.getDesktop().browse(new URI(link));
                 logger.info(String.format("Link (%s) has successfully opened.", link));
@@ -36,7 +44,7 @@ public class UiUtils {
                 copyLinkAndShowDialog(link);
             }
         } else {
-            logger.info(String.format("Copying the link (%s) as Desktop::browse is not supported.", link));
+            logger.info(String.format("Copying the link (%s) as browsing is not supported.", link));
             copyLinkAndShowDialog(link);
         }
     }
