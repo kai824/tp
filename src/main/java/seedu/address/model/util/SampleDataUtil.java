@@ -70,7 +70,7 @@ public class SampleDataUtil {
      * Returns an attribute set containing the list of strings given.
      */
     public static Set<Attribute> getAttributeSet(String... strings) {
-        assert strings.length % 2 == 0;
+        assert strings.length % 2 == 0 : "The number of Strings provided should be an even number";
 
         return IntStream.range(0, strings.length / 2)
                 .mapToObj(i -> new Attribute(strings[i * 2], strings[i * 2 + 1]))

@@ -61,8 +61,7 @@ public abstract class SortCommand extends Command {
         String message = this.getWarningMessage(model);
         if (this.isAscending) {
             message += String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, "ascending");
-        }
-        else {
+        } else {
             message += String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, "descending");
         }
         return new CommandResult(message);

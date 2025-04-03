@@ -63,13 +63,19 @@ public class Attribute implements Comparable<Attribute> {
 
     /**
      * Returns the attribute name in lowercase.
+     * This behaviour is desirable for the default getter since attribute names should be treated
+     * case-insensitively.
+     *
+     * @see #getCaseAwareAttributeName()
      */
     public String getAttributeName() {
         return attributeName.toLowerCase();
     }
 
     /**
-     * Returns the attribute name with the original case.
+     * Returns the attribute name in the original case.
+     *
+     * @see #getAttributeName()
      */
     public String getCaseAwareAttributeName() {
         return attributeName;
@@ -238,6 +244,7 @@ public class Attribute implements Comparable<Attribute> {
 
     /**
      * {@inheritDoc}
+     * <p>
      * Attributes with a site link appear after attributes without a site link.
      */
     @Override
