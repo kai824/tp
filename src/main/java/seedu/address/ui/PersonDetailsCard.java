@@ -57,6 +57,7 @@ public class PersonDetailsCard extends UiPart<Region> {
                 String link = attribute.getSiteLink().orElseThrow(() ->
                         new AssertionError("Unreachable, Optional<String> siteLink should not be empty"))
                         + attribute.getAttributeValue();
+                assert !link.isBlank() : "Link should not be blank";
                 UiUtils.browse(link);
             });
         }
