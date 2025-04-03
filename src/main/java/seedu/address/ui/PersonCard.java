@@ -54,20 +54,9 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
 
-        ImageView phoneIcon = new ImageView(new Image(Objects.requireNonNull(
-                getClass().getResourceAsStream("/images/telephone-receiver.png"))));
-        phoneIcon.setFitHeight(16);
-        phoneIcon.setFitWidth(16);
-        phoneIcon.setPreserveRatio(true);
-        phone.setGraphic(phoneIcon);
+        setLabelIcon(phone, "/images/telephone-receiver.png");
         phone.setText(person.getPhone().value);
-
-        ImageView emailIcon = new ImageView(new Image(Objects.requireNonNull(
-                getClass().getResourceAsStream("/images/email.png"))));
-        emailIcon.setFitHeight(16);
-        emailIcon.setFitWidth(16);
-        emailIcon.setPreserveRatio(true);
-        email.setGraphic(emailIcon);
+        setLabelIcon(phone, "/images/email.png");
         email.setText(person.getEmail().value);
 
         person.getTags().stream()
@@ -84,5 +73,16 @@ public class PersonCard extends UiPart<Region> {
             label.setId("site-attribute-list");
         }
         return label;
+    }
+
+    /**
+     * Sets the {@code Label}'s icon as the image represented in the provided {@code path}.
+     */
+    private void setLabelIcon(Label label, String path) {
+        ImageView icon = new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(path))));
+        icon.setFitHeight(16);
+        icon.setFitWidth(16);
+        icon.setPreserveRatio(true);
+        label.setGraphic(icon);
     }
 }
