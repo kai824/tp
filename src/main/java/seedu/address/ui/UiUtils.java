@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import static seedu.address.ui.HelpWindow.USERGUIDE_URL;
-
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -29,10 +27,15 @@ public class UiUtils {
      * @param link The link to open.
      */
     public static void browse(String link) {
-        try {
-            Desktop.getDesktop().browse(new URI(link));
-        } catch (IOException | URISyntaxException | UnsupportedOperationException e) {
-            logger.fine(String.format("Copying the link (%s) as it failed to open.", USERGUIDE_URL));
+        if (Desktop.isDesktopSupported()) {
+            try {
+                Desktop.getDesktop().browse(new URI(link));
+            } catch (IOException | URISyntaxException | UnsupportedOperationException e) {
+                logger.fine(String.format("Copying the link (%s) as it failed to open.", link));
+                copyLinkAndShowDialog(link);
+            }
+        } else {
+            logger.fine(String.format("Copying the link (%s) as java.awt.Desktop is not supported.", link));
             copyLinkAndShowDialog(link);
         }
     }
