@@ -365,7 +365,6 @@ Format: `sort a/ATTRIBUTE_NAME [o/ORDER]`
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
 * If no `ORDER` is specified, entries will be sorted in ascending order by default. Otherwise, the first character of the user input (case-insensitive) will determine the order: if it starts with 'a', entries will be sorted in ascending order; if it starts with 'd', they will be sorted in descending order.  
 * Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it with a warning message.
-* There is no option to specify sorting in reverse order.
 
 Example:
 * `sort a/major` sorts entries in ascending order according to their `Major` alphabetically.
@@ -386,7 +385,6 @@ Format: `sort-num a/ATTRIBUTE_NAME [o/ORDER]`
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
 * If no `ORDER` is specified, entries will be sorted in ascending order by default. Otherwise, the first character of the user input (case-insensitive) will determine the order: if it starts with 'a', entries will be sorted in ascending order; if it starts with 'd', they will be sorted in descending order.
 * Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it with a warning message.
-* There is no option to specify sorting in descending order.
 
 Example:
 * `sort-num a/expected salary` sorts entries numerically (in ascending order) according to their `Expected Salary`.
@@ -479,6 +477,7 @@ Here are some tips on website linking. You can manually modify the correspondenc
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 3. **If using Linux or Unix**, clicking on links will not open them. Instead, the link will be copied to the system clipboard, and a window will appear to notify you that the link has been copied. You will have to paste the link into your browser manually.
+4. **If names, phone numbers, emails, tags or attributes are too long** the data may not display correctly and may be truncated with "...".
 
 --------------------------------------------------------------------------------------------------------------------
 
