@@ -4,8 +4,6 @@ import java.awt.Desktop;
 import java.net.URI;
 import java.util.logging.Logger;
 
-import com.sun.javafx.PlatformUtil;
-
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.input.Clipboard;
@@ -31,8 +29,8 @@ public class UiUtils {
 
         // Certain Linux/Unix distributions freeze when Desktop::browse is called, even though
         // they return true for Desktop::isSupported(Desktop.Action.BROWSE)
-        if (Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)
-                && !PlatformUtil.isLinux() && !PlatformUtil.isUnix()) {
+        // Therefore, we require the OS to be Mac or Windows before attempt to use Desktop::browse
+        if (Desktop.getDesktop().isSupported(Desktop.Action.BROWSE) && isMacOrWindows()) {
             logger.info("Browsing is supported.");
 
             try {
@@ -46,6 +44,16 @@ public class UiUtils {
             logger.info(String.format("Copying the link (%s) as browsing is not supported.", link));
             copyLinkAndShowDialog(link);
         }
+    }
+
+    /**
+     * Checks if the user's operating system is Mac or Windows.
+     *
+     * @return {@code true} if the operating system is Mac or Windows, {@code false} otherwise;
+     */
+    private static boolean isMacOrWindows() {
+        String osName = System.getProperty("os.name").toLowerCase();
+        return osName.contains("mac") || osName.contains("win");
     }
 
     /**
