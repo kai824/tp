@@ -41,7 +41,11 @@ public class SampleDataUtil {
                         "LinkedIn", "example-irfanibrahim")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 getTagSet("BSL2", "Cell culture"),
-                getAttributeSet("Major", "Life Sciences", "LinkedIn", "example-roybalakrishnan"))
+                getAttributeSet("Major", "Life Sciences", "LinkedIn", "example-roybalakrishnan")),
+            new Person(new Name("Gavin Lee"), new Phone("89793238"), new Email("gavinl@example.com"),
+                    getTagSet("MATLAB", "LaTeX", "Python"),
+                    getAttributeSet("Major", "Mathematics", "Graduation Year", "2027",
+                            "GitHub", "example-gavinlee", "LinkedIn", "example-gavinlee"))
         };
     }
 
