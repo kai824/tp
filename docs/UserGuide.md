@@ -24,7 +24,7 @@ TalentFolio is a powerful yet easy-to-use application designed for hiring manage
   - [Adding a person: `add`](#adding-a-person-add)
   - [Listing all persons: `list`](#listing-all-persons-list)
   - [Editing a person: `edit`](#editing-a-person-edit)
-  - [Linking an attribute name to a site URL: `link`](#linking-an-attribute-name-to-a-website-link)
+  - [Linking an attribute name to a website: `link`](#linking-an-attribute-name-to-a-website-link)
   - [Locating persons by name: `find`](#locating-persons-by-name-find)
   - [Deleting a person: `delete`](#deleting-a-person-delete)
   - [Clearing all entries: `clear`](#clearing-all-entries-clear)
@@ -174,7 +174,8 @@ Examples:
 
 **More information on attributes:**
 * Attribute names are unique. A person cannot have multiple attributes with the same name.
-* Attribute names are case-aware, but case-insensitive. For example, `Major` is treated the same as `major`. The case you specify is the case that will be shown.
+* Attribute names are case-insensitive. For example, `Major` is treated the same as `major`, so a person cannot have both `Major` and `major` as an attribute.
+  * The original casing of your input is preserved. If you input `Major`, that's how it will be stored and displayed.
 * Attribute values are case-sensitive.
 </box>
 
