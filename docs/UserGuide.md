@@ -188,9 +188,9 @@ Examples:
 *    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 * 3. The email should not be longer than 50 characters.
 
-* Tag names should not contain '/' or '\' and should not be longer than 50 characters.
+* Tag names should not contain `/` or `\` and should not be longer than 50 characters.
 
-* Attribute names and values should not contain '/', '\', or '='.
+* Attribute names and values should not contain `/`, `\`, or `=`.
 * Attribute names and values should not be longer than 50 characters.
 </box>
 
