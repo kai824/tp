@@ -475,7 +475,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Checking for the default setting of site link
 
-   1. Delete `data/addressbook.json` and re-open the app.<br>
+   1. Delete `data/talentfolio.json` and re-open the app.<br>
       Expected: Attributes with the name `github` or `linkedin` have a different color (red-purple) from other attributes (blue-purple).
    
    1. Run a `show` command and click some `github` and `linkedin` attributes.<br>
