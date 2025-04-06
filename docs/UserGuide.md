@@ -441,7 +441,7 @@ TalentFolio data is saved in the hard disk automatically after any command that 
 
 ### Editing the data file
 
-TalentFolio data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+TalentFolio data is saved automatically as a JSON file `[JAR file location]/data/talentfolio.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning">
 
@@ -452,7 +452,7 @@ Furthermore, certain edits can cause TalentFolio to behave in unexpected ways (f
 
 <box type="info">
 
-Here are some tips on website linking. You can manually modify the correspondence between attribute names and site links by updating the `urlSettings` section in `addressbook.json`.
+Here are some tips on website linking. You can manually modify the correspondence between attribute names and site links by updating the `urlSettings` section in `talentfolio.json`.
 
 * Unlike the usual `link` command, you can leave the site link empty (i.e., `""`). This allows you to copy the raw attribute value!
 
