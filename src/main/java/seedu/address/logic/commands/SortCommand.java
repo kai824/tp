@@ -21,6 +21,7 @@ public abstract class SortCommand extends Command {
     protected final String attributeName;
     protected Optional<String> adjustedAttributeName;
     private final boolean isAscending;
+    protected boolean hasNothingToSort;
 
     /**
      * Initializes an instance with the comparator based on the attribute name.
@@ -31,6 +32,7 @@ public abstract class SortCommand extends Command {
         requireNonNull(attributeName);
         this.attributeName = attributeName;
         this.isAscending = isAscending;
+        this.hasNothingToSort = false;
     }
 
     /**
@@ -46,6 +48,7 @@ public abstract class SortCommand extends Command {
         Optional<String> missingAttributeWarning =
             AutoCorrectionUtil.getWarningForName(attributeName, adjustedAttributeName);
         if (missingAttributeWarning.isPresent()) { //No entry has the specified attribute name
+            hasNothingToSort = true;
             return missingAttributeWarning.get() + "\n";
         }
         Optional<Long> count = model.numOfPersonsWithAttribute(this.adjustedAttributeName.orElse(attributeName));
@@ -59,6 +62,9 @@ public abstract class SortCommand extends Command {
         this.adjustedAttributeName = model.autocorrectAttributeName(this.attributeName);
         model.sortFilteredPersonList(this.getComparator(this.isAscending));
         String message = this.getWarningMessage(model);
+        if (hasNothingToSort) {
+            return new CommandResult(message);
+        }
         if (this.isAscending) {
             message += String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, "ascending");
         } else {

@@ -49,6 +49,7 @@ public class NumSortCommand extends SortCommand {
         String warning = super.getWarningMessage(model);
         if (count.isPresent()) {
             if (count.get() == 0) {
+                hasNothingToSort = true;
                 warning += MESSAGE_WARNING_MISSING_NUMERICALS;
             } else {
                 warning += String.format(MESSAGE_WARNING_PARTIALLY_MISSING_NUMERICALS, count.get());
