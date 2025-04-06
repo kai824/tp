@@ -108,20 +108,20 @@ TalentFolio's graphical user interface
 
 **Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  For example: in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are parameters for you to supply.<br>
+  For example: in `add n/NAME`, `NAME` should be replaced with the person's actual name. For a person named John Doe, this would be `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   For example: `n/NAME [t/TAG]` can be used as `n/John Doe t/Excel` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used as many times as desired–if the items are optional, 0 or more times; otherwise, 1 or more times. <br>
-  For example: `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Excel`, `t/C++ t/Java` etc.
+* Items with `…` after them can be used as many times as desired – if the items are optional, 0 or more times; otherwise, 1 or more times. <br>
+  For example: `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/Excel`, `t/C++ t/Java`, etc.
 
 * Parameters can be in any order.<br>
   For example: if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  For example: if the command specifies `help 123`, it will be interpreted as `help`.
+  For example: if you type `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
@@ -172,26 +172,33 @@ Examples:
 
 <box type="info">
 
-**Restrictions on parameters:**
-* Names should only contain alphanumeric characters, spaces, and these special characters: `()/@-',._`.
-* Names cannot be blank and cannot be longer than 50 characters.
-* Names cannot start with special (non-alphanumeric) characters.
+**Restrictions on parameters**
 
-* Phone numbers should only contain numbers (no letters or other special characters).
-* Phone numbers cannot be blank and cannot be longer than 20 characters.
+**Names:**
+* Should only contain alphanumeric characters, spaces, and these special characters: `()/@-',._`.
+* Should not be blank and should not be longer than 50 characters.
+* Should not start with special (non-alphanumeric) characters.
 
-* Emails should be of the format local-part@domain and adhere to the following constraints:
-* 1. The local-part should only contain alphanumeric characters and these special characters: `+_.-`. The local-part may not start or end with any special characters.
-* 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must:
-*    - end with a domain label at least 2 characters long.
-*    - have each domain label start and end with alphanumeric characters.
-*    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-* 3. The email should not be longer than 50 characters.
+**Phone numbers:**
+* Should only contain numbers (no letters or other special characters).
+* Should not be blank and should not be longer than 20 characters.
 
-* Tag names should not contain `/` or `\` and should not be longer than 50 characters.
+**Email addresses:**
 
-* Attribute names and values should not contain `/`, `\`, or `=`.
-* Attribute names and values should not be longer than 50 characters.
+Should be of the format `local-part@domain` and adhere to the following constraints:
+1. The local-part should only contain alphanumeric characters and these special characters: `+_.-`. The local-part should not be blank and should not start or end with any special characters.
+2. The domain name is made up of domain labels separated by periods. The domain name must:
+   * end with a domain label at least 2 characters long.
+   * have each domain label start and end with alphanumeric characters.
+   * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+3. Should not be longer than 50 characters.
+
+**Tags:**
+* Should not contain `/` or `\`, should not be blank, and should not be longer than 50 characters.
+
+**Attribute names and values:**
+
+* Should not contain `/`, `\`, or `=`, should not be blank, and should not be longer than 50 characters.
 </box>
 
 <box type="info">
