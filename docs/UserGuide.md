@@ -178,7 +178,7 @@ Examples:
 
 <box type="info">
 
-**Restrictions on parameters**
+++**Restrictions on parameters**++
 
 **Names:**
 * Should only contain alphanumeric characters, spaces, and these special characters: `()/@-',._`.
