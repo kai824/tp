@@ -191,9 +191,9 @@ Examples:
 
 **Email addresses:**
 
-Should be of the format `local-part@domain` and adhere to the following constraints:
-1. The local-part should only contain alphanumeric characters and these special characters: `+_.-`. The local-part should not be blank and should not start or end with any special characters.
-2. The domain name is made up of domain labels separated by periods. The domain name must:
+Should be of the format `LOCAL_PART@DOMAIN` and adhere to the following constraints:
+1. `LOCAL_PART` should only contain alphanumeric characters and these special characters: `+_.-`. It should not be blank and should not start or end with any special characters.
+2. `DOMAIN` is a domain name, which is made up of domain labels separated by periods. The domain name must:
    * end with a domain label at least 2 characters long.
    * have each domain label start and end with alphanumeric characters.
    * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
@@ -275,6 +275,7 @@ Associates an attribute name with a website URL. This means that you can visit t
 Format (to add a link): `link a/ATTRIBUTE_NAME=SITE_LINK`
 
 * Associates `ATTRIBUTE_NAME` with `SITE_LINK`. This change applies to all persons that have an attribute with this name. Attributes with this name that are added in the future will also be linked to this site URL.
+* Note that the beginning of the URL (usually `https://`) has to be included too.
 
 Format (to remove an existing link): `link ra/ATTRIBUTE_NAME`
 
@@ -536,9 +537,10 @@ Here are some tips on website linking. You can manually modify the correspondenc
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
-3. **If using Linux or Unix**, clicking on links will not open them. Instead, the link will be copied to the system clipboard, and a window will appear to notify you that the link has been copied. You will have to paste the link into your browser manually.
-4. **If names, phone numbers, emails, tags or attributes are too long** the data may not display correctly and may be truncated with "...".
+1. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+1. **If using Linux or Unix**, clicking on links will not open them. Instead, the link will be copied to the system clipboard, and a window will appear to notify you that the link has been copied. You will have to paste the link into your browser manually.
+1. **If an attribute corresponds to an invalid link**, clicking on it may also copy it instead of opening it.
+1. **If names, phone numbers, emails, tags, or attributes are too long**, the data may not display correctly and may be truncated with "...".
 
 --------------------------------------------------------------------------------------------------------------------
 

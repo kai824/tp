@@ -32,6 +32,7 @@ pageNav: 3
    a. [Launch and shutdown](#launch-and-shutdown)  
    b. [Deleting a person](#deleting-a-person)  
    c. [Saving data](#saving-data)
+1. [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -478,7 +479,7 @@ Precondition: User must be viewing previous commands.
   * `{local-part}` contains only alphanumeric characters and the special characters `+_.-`, and cannot start or end with a special character.
   * `{domain}` consists of _domain labels_ separated by periods (`.`), where the last domain label is at least 2 characters long.
   * Each _domain label_ contains only alphanumeric characters and hyphens (`-`), and cannot start or end with a hyphen.
-* **Valid name**: Any sequence containing only whitespace, alphabetical characters, and the special characters `/@`. `/` should only be used in the phrase `s/o` or `d/o`.
+* **Valid name**: Any sequence containing only whitespace, alphanumeric characters, and the special characters `()/@-',._`. The sequence cannot start with a special character, and `/` should only be used in the phrase `s/o` or `d/o`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -571,3 +572,14 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: duplicated `attributeName`–change two attribute names to `linkedin`.
       Expected: The app works, taking the site link appearing first.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+Team size: 5
+
+1. **Add validation for links associated with an attribute name**<br>
+   Currently, the `SITE_LINK` field in the command `link a/ATTRIBUTE_NAME=SITE_LINK` is not checked to ensure that the user entered an actual link. We plan to add some validation to ensure that the link entered is a valid link.
+1. **Make error messages associated with an invalid index more consistent**<br>
+   Currently, using a command that accesses an index (such as `show`, `edit`, etc.) with a non-positive index gives the error message `Invalid command format!` followed with a description of the command. Specifying an index that is out of range instead gives the error message `The person index provided is invalid`. We plan to make this behaviour consistent, such that the same error message is shown in either case.
