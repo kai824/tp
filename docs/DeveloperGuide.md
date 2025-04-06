@@ -149,7 +149,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the candidates data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -170,7 +170,7 @@ The `Model` component,
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
+* can save both candidates data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -221,14 +221,14 @@ Please also note that, in the actual implementation, the command repeats the aut
 ### Undo feature
 
 The undo mechanism is implemented inside `Model`. `Model` now implements the following operations:
-* `Model#saveState()` - Saves the current address book state in its history. This is executed before every command in `LogicManager`.
-* `Model#revertLastState()` - Reverts the address book to the last state in its history.
+* `Model#saveState()` - Saves the current `AddressBook` in its history. This is executed before every command in `LogicManager`.
+* `Model#revertLastState()` - Reverts the `AddressBook` to the last state in `Model`'s history.
 
-`Model` stores a `Stack` of `AddressBook`-s. To save the current address book, it creates a copy of the current address book, but copies the `Person` object by reference. This feature therefore requires that `Person` is not modified in-place when editing, but instead re-constructed.
+`Model` stores a `Stack` of `AddressBook`-s. To save the current data, it creates a copy of the current `AddressBook` object, but copies the `Person` object by reference. This feature therefore requires that `Person` is not modified in-place when editing, but instead re-constructed.
 
 <box type="info">
 
-To prevent the case where an `UndoCommand` does not change the address book, `Model#saveState()` enforces that duplicate address books will not be saved. `Model#revertLastState()` enforces that it will not revert to an `AddressBook` which is equal to the current `AddressBook`, using the Java `Object#equals()` method.
+To prevent the case where an `UndoCommand` does not change any data, `Model#saveState()` enforces that duplicate states will not be saved. Similarly, `Model#revertLastState()` enforces that it will not revert to an `AddressBook` which is equal to the current `AddressBook`, using the Java `Object#equals()` method.
 
 As `AddressBook#equals()` only checks for `UniquePersonList` and `aliasMappings`, only changes to these will be undone.
 
