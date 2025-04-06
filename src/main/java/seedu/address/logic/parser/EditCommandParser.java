@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
@@ -92,34 +93,30 @@ public class EditCommandParser implements Parser<EditCommand> {
     /**
      * Parses {@code Collection<String> atttibutes} into a {@code Set<Attribute} if {@code attributes} is
      * non-empty.
-     * If {@code attributes} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Attribute>} containing zero attributes.
      */
     private Optional<Set<Attribute>> parseAttributesForEdit(Collection<String> attributes) throws ParseException {
         assert attributes != null;
 
-        if (attributes.isEmpty()) {
+        if (attributes.isEmpty() || attributes.stream().allMatch(String::isEmpty)) {
             return Optional.empty();
         }
         Collection<String> attributeSet =
-                attributes.size() == 1 && attributes.contains("") ? Collections.emptySet() : attributes;
+                attributes.stream().filter(s -> !s.isEmpty()).collect(Collectors.toSet());
         return Optional.of(ParserUtil.parseAttributes(attributeSet, false));
     }
 
     /**
      * Parses {@code Collection<String> attributes} into a {@code Set<String>} if {@code attributes} is
      * non-empty.
-     * If {@code attributes} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<String>} containing zero strings.
      */
     private Optional<Set<String>> parseAttributesForRemoval(Collection<String> attributes) throws ParseException {
         assert attributes != null;
 
-        if (attributes.isEmpty()) {
+        if (attributes.isEmpty() || attributes.stream().allMatch(String::isEmpty)) {
             return Optional.empty();
         }
         Collection<String> attributeSet =
-                attributes.size() == 1 && attributes.contains("") ? Collections.emptySet() : attributes;
+                attributes.stream().filter(s -> !s.isEmpty()).collect(Collectors.toSet());
         return Optional.of(ParserUtil.parseRemoveAttributes(attributeSet));
     }
 

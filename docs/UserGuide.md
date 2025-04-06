@@ -216,7 +216,7 @@ Edits an existing person in the database.
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/NAME_OF_ATTRIBUTE_TO_REMOVE]…`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
-* At least one of the optional fields must be provided.
+* At least one of the optional fields must be provided and be non-empty.
 * Existing values will be updated to the input values.
 
 Examples:
@@ -236,6 +236,10 @@ Examples:
 
 **For attributes:**
 * Updating an attribute requires you to specify both the attribute name and attribute value.
+* For updating an attribute: duplicate attribute names with different values are not allowed.
+* For updating an attribute: duplicate attribute names with same values will not show any warning.
+* For removing an attribute: duplicate attribute names will not show any warning.
+* Empty `a/` and `ra/` parameters will be ignored.
 * If the attribute name already exists for this person, the corresponding attribute value will be updated. Otherwise, the attribute name and attribute value will be added to this person as a new attribute.
 * Removing the attribute only requires you to specify the attribute name.
   * This must be an existing attribute.
