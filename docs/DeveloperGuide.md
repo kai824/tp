@@ -334,7 +334,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | busy user                                                                               | have my command predicted and auto-filled                                                                  | I can save time typing commands in full                          |
 | `*`      | event organizer                                                                         | quickly find people who live near to a certain location                                                    | I can choose suitable candidates to invite to an event           |
 | `*`    | user managing numeric properties of candidates (e.g., `GPA`)                            | sort their properties in numeric order                                                                     | I can rank candidates by this property                           |
-| `*`    | user managing various properties of candidates                                          | sort them in both ascending and descending order                                                           | I can rank candidates more easily                                
+| `*`    | user managing various properties of candidates                                          | sort them in both ascending and descending order                                                           | I can rank candidates more easily |
 
 ### Use cases
 
