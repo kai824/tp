@@ -126,6 +126,8 @@ TalentFolio's graphical user interface
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+<br>
+
 ### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
@@ -135,6 +137,8 @@ Help message window
 </pic>
 
 Format: `help`
+
+<br>
 
 ### Showing a person's details: `show`
 
@@ -154,6 +158,8 @@ Example:
 
 **Tip:** In the right panel, you can click on the phone number or email address to copy it to your clipboard.
 </box>
+
+<br>
 
 ### Adding a person: `add`
 
@@ -210,11 +216,15 @@ Should be of the format `local-part@domain` and adhere to the following constrai
 * Attribute values are case-sensitive.
 </box>
 
+<br>
+
 ### Listing all persons: `list`
 
 Shows a list of all persons in the database.
 
 Format: `list`
+
+<br>
 
 ### Editing a person: `edit`
 
@@ -256,6 +266,8 @@ Examples:
 
 </box>
 
+<br>
+
 ### Linking an attribute name to a website: `link`
 
 Associates an attribute name with a website URL. This means that you can visit the website by clicking on the attribute in the person's detailed view (which can be shown by clicking on them or by using the [`show`](#showing-a-persons-details-show) command).
@@ -292,7 +304,7 @@ Enjoy the easy management of websites!
 
 Clicking on the attribute <span class="badge" style="background-color: #773963; text-decoration: underline; font-weight: normal; color: #b8e6ff">GitHub: example-alexyeoh</span> opens<br/>the link `https://github.com/example-alexyeoh`
 </pic>
-
+<br>
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -316,6 +328,8 @@ Examples:
   Results after typing `find alex david`
   </pic>
 
+<br>
+
 ### Deleting a person: `delete`
 
 Deletes the specified person.
@@ -330,11 +344,15 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the database.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+<br>
+
 ### Clearing all entries: `clear`
 
 Clears all entries.
 
 Format: `clear`
+
+<br>
 
 ### Filtering candidates by attributes: `filter`
 
@@ -384,7 +402,7 @@ You can also obtain the same result with `filter a/Major=Computer Science a/Grad
 
 Results after typing `filter a/Major=Computer Science`<br/>`a/Major=Mathematics a/Graduation year=2027`
 </pic>
-
+<br>
 ### Sorting entries by an attribute: `sort`
 
 Sorts the current view of entries by the value of the specified attribute name in alphabetically ascending or descending order.
@@ -401,6 +419,8 @@ Example:
 * `sort a/major` sorts entries in ascending order according to their `Major` alphabetically.
   * Entries without `Major` as an attribute will be sorted to the end of the list.
 * `sort a/location o/desc` sorts entries in descending order according to their `Location` alphabetically.
+
+<br>
 
 ### Sorting entries by the numerical value of an attribute: `sort-num`
 
@@ -421,6 +441,8 @@ Example:
 * `sort-num a/expected salary` sorts entries numerically (in ascending order) according to their `Expected Salary`.
   * Entries without a numerical value for `Expected Salary` will be placed at the end of the list, with those having `Expected Salary` as an attribute but lacking a valid numerical value appearing first.
 * `sort-num a/GPA o/desc` sorts entries numerically (in descending order) according to their `GPA`.
+
+<br>
 
 ### Undoing the last data change: `undo`
 
@@ -446,6 +468,8 @@ Examples:
   * `filter a/Graduation Year=2025` then `undo`
 * `delete 4`, then `filter a/Graduation Year=2025`, then `undo` will skip over the filtering. It will undo `delete 4` and clear the filter
 
+<br>
+
 ### Navigating past commands: <kbd>↑</kbd> <kbd>↓</kbd>
 
 Navigates through command history, replacing the text in the command box with the past executed command.
@@ -461,15 +485,21 @@ Format: Press the up arrow (<kbd>↑</kbd>) or down arrow (<kbd>↓</kbd>) key w
 * After editing the command shown, navigating to previous or next executed commands will discard any edits done (these edits will not be maintained when navigating back).
 * Navigating past commands requires the command box to be in focus.
 
+<br>
+
 ### Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
+<br>
+
 ### Saving the data
 
 TalentFolio data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+<br>
 
 ### Editing the data file
 
