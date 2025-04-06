@@ -277,7 +277,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …                                                                                  | I want to …                                                                                                   | So that I can…​                                                  |
 |----------|-----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
 | `* * *`  | new user                                                                                | see a user guide                                                                                              | I can learn how to use the app                               |
-| `* * *`  | user                                                                                    | add a candidate                                                                                               | store their information in the address book                      |
+| `* * *`  | user                                                                                    | add a candidate                                                                                               | store their information in the app                      |
 | `* * *`  | user                                                                                    | delete a person                                                                                               | remove candidates that are no longer under consideration         |
 | `* * *`  | user                                                                                    | find a candidate by name                                                                                      | conveniently retrieve a candidate's information                  |
 | `* * *`  | user managing a number of candidates                                                    | sort candidates by some value (graduation years, discipline, etc.)                                            | I can view relevant candidates easily                            |
@@ -288,7 +288,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user stop using the app | clear the existing candidates all at once   | I can delete the confidential information easily |
 | `* *`    | user who is managing information of high privacy concerns                               | ensure that the system is safe enough (i.e., no significant risk of data leakage)                             | I can protect candidates' privacy well                           |
 | `* *`    | existing user who forgets about the available commands                                  | view a list of all commands and their syntax easily                                                           | I can check against the list                                     |
-| `* *`    | meticulous user                                                                         | edit a candidate's information                                                                                | I can keep my address book up to date                            |
+| `* *`    | meticulous user                                                                         | edit a candidate's information                                                                                | I can keep my app up to date                            |
 | `* *`    | user required to share the information on candidates with others                        | select candidates and print out their information, in an organized way                                        | I can present the candidates to others                           |
 | `* *`    | user interviewing the candidates                                                        | relate the date of interview to the candidates                                                                | I can organize my schedule easily                                |
 | `* *`    | user managing candidates across different positions                                     | tag candidates                                                                                                | I can easily categorize them |
@@ -446,7 +446,7 @@ Precondition: User must be viewing previous commands.
 
 * **Attribute**: A key-value pair associated with a candidate.
   * For example, `Graduation Year: 2027` is an attribute, where the **attribute name** is `Graduation Year` and the **attribute value** is `2027`.
-* **Candidate**: Any person in the address book. May be used interchangeably with the term "person".
+* **Candidate**: Any person in `TalentFolio`. May be used interchangeably with the term "person".
 * **Command**: A string of text that the user enters via the command line.
 * **Duplicate**: A string that matches another string exactly, ignoring case.
 * **Mainstream OS**: Windows, Linux, Unix, macOS.
