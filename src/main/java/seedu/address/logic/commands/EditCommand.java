@@ -54,11 +54,11 @@ public class EditCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one non-empty field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_ATTRIBUTE_DOES_NOT_EXIST = "This person does not have the attribute: %1$s";
     public static final String MESSAGE_ATTRIBUTE_REMOVED_IMMEDIATELY =
-            "This attribute is removed immediately after adding/editing: %1$s";
+            "This attribute is being added/edited and removed in the same command: %1$s";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
