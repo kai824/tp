@@ -32,6 +32,7 @@ pageNav: 3
    a. [Launch and shutdown](#launch-and-shutdown)  
    b. [Deleting a person](#deleting-a-person)  
    c. [Saving data](#saving-data)
+1. [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -298,42 +299,41 @@ The process of a numerical sort operation "sort-num a/GPA o/descending" is simil
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …                                                                                  | I want to …                                                                                                   | So that I can…​                                                  |
-|----------|-----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| `* * *`  | new user                                                                                | see a user guide                                                                                              | I can learn how to use the app                               |
-| `* * *`  | user                                                                                    | add a candidate                                                                                               | store their information in the app                      |
-| `* * *`  | user                                                                                    | delete a person                                                                                               | remove candidates that are no longer under consideration         |
-| `* * *`  | user                                                                                    | find a candidate by name                                                                                      | conveniently retrieve a candidate's information                  |
-| `* * *`  | user managing a number of candidates                                                    | sort candidates by some value (graduation years, discipline, etc.)                                            | I can view relevant candidates easily                            |
-| `* * *`  | user managing a number of candidates                                                    | filter candidates by some value (graduation years, discipline, etc.)                                          | I can view relevant candidates easily                            |
-| `* * *`  | user frequently exiting/reopening the app                                                    | I can restore the data of last session                                          | I can retain the data                           |
-| `* *`    | advanced user                                  | edit the data file directly   | I can update the information of candidates faster                                     |
-| `* *`    | new user                                  | delete the example candidates all at once   | I can easily start the use of app                                     |
-| `* *`    | user stop using the app | clear the existing candidates all at once   | I can delete the confidential information easily |
-| `* *`    | user who is managing information of high privacy concerns                               | ensure that the system is safe enough (i.e., no significant risk of data leakage)                             | I can protect candidates' privacy well                           |
-| `* *`    | existing user who forgets about the available commands                                  | view a list of all commands and their syntax easily                                                           | I can check against the list                                     |
-| `* *`    | meticulous user                                                                         | edit a candidate's information                                                                                | I can keep my app up to date                            |
-| `* *`    | user required to share the information on candidates with others                        | select candidates and print out their information, in an organized way                                        | I can present the candidates to others                           |
-| `* *`    | user interviewing the candidates                                                        | relate the date of interview to the candidates                                                                | I can organize my schedule easily                                |
-| `* *`    | user managing candidates across different positions                                     | tag candidates                                                                                                | I can easily categorize them |
-| `* *`    | user needing to look into each candidate                                     | display a panel showing their complete information                                                                   | I can view their details at a glance |
-| `* *`    | user managing socials of candidates                                     | open the website link to their profile | I can easily access and review them                                        |
-| `* *`    | user managing candidates' socials of common platforms (e.g., github)                                     | associate the site domain url with the site name | I do not have to type the url everytime                                        |
-| `* *`    | forgetful user                                                                          | see my most recent commands                                                                                   | I can be reminded of what changes I just made                    |
-| `* *`    | careless user                                                                           | navigate through my most recent commands                                                                               | I don't have to retype my previous command should there be typos |
-| `* *`    | careless user                                                                           | undo my most recent command                                                                                   | accidental changes I make can be reverted easily                 |
-| `* *`    | CLI-oriented user                                                                          | exit the app with a command                                                                                | I do not have to use the mouse at all                 |
-| `*`      | user changing their computer                                                            | import my data                                                                                                | I can transfer data over from my old computer                    |
-| `*`      | user changing their computer                                                            | export my data                                                                                                | I can transfer it over to the new computer                       |
-| `*`      | user who is familiar with regular expressions                                           | use regular expressions when searching for certain keywords among candidates                                  | more customized searches can be done                             |
-| `*`      | use who needs to collaborate with others                                                | synchronize my database with others                                                                           | we can stay on the same page                                     |
-| `*`      | frequent user                                                                           | create snippets for commands                                                                                  | I can enter frequently-used commands more quickly                |
+| Priority | As a …                                                                                  | I want to …                                                                                                | So that …                                                        |
+|----------|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| `* * *`  | new user                                                                                | see a user guide                                                                                           | I can learn how to use the app                                   |
+| `* * *`  | user                                                                                    | add a candidate                                                                                            | I can store their information in the app                         |
+| `* * *`  | user                                                                                    | delete a person                                                                                            | I can remove candidates that are no longer under consideration   |
+| `* * *`  | user                                                                                    | find a candidate by name                                                                                   | I can conveniently retrieve a candidate's information            |
+| `* * *`  | user managing a number of candidates                                                    | sort candidates by some value (graduation years, discipline, etc.)                                         | I can view relevant candidates easily                            |
+| `* * *`  | user managing a number of candidates                                                    | filter candidates by some value (graduation years, discipline, etc.)                                       | I can view relevant candidates easily                            |
+| `* * *`  | user frequently exiting/reopening the app                                               | restore last session's data                                                                                | exiting the app does not hinder my usage                         |
+| `* *`    | advanced user                                                                           | edit the data file directly                                                                                | I can update candidates' information more quickly                |
+| `* *`    | new user                                                                                | delete the sample candidates all at once                                                                   | I can start using the app with my own data easily                |
+| `* *`    | user who is managing information of high privacy concerns                               | ensure that the system is safe enough (i.e., no significant risk of data leakage)                          | I can protect candidates' privacy well                           |
+| `* *`    | existing user who forgets about the available commands                                  | view a list of all commands and their syntax easily                                                        | I can check against the list                                     |
+| `* *`    | meticulous user                                                                         | edit a candidate's information                                                                             | I can keep my app up to date                                     |
+| `* *`    | user required to share the information on candidates with others                        | select candidates and print out their information, in an organized way                                     | I can present the candidates to others                           |
+| `* *`    | user interviewing the candidates                                                        | relate the date of interview to the candidates                                                             | I can organize my schedule easily                                |
+| `* *`    | user managing candidates across different positions                                     | tag candidates                                                                                             | I can easily categorize them                                     |
+| `* *`    | user needing to look into each candidate                                                | display a panel showing their complete information                                                         | I can view their details at a glance                             |
+| `* *`    | user managing socials of candidates                                                     | open the website link to their profile                                                                     | I can easily access and review them                              |
+| `* *`    | user managing candidates' socials of common platforms (e.g., github)                    | associate the site domain url with the site name                                                           | I do not have to type the url every time                         |
+| `* *`    | forgetful user                                                                          | see my most recent commands                                                                                | I can be reminded of what changes I just made                    |
+| `* *`    | careless user                                                                           | navigate through my most recent commands                                                                   | I don't have to retype my previous command should there be typos |
+| `* *`    | careless user                                                                           | undo my most recent command                                                                                | accidental changes I make can be reverted easily                 |
+| `* *`    | CLI-oriented user                                                                       | exit the app with a command                                                                                | I do not have to use the mouse at all                            |
+| `*`      | user changing their computer                                                            | import my data                                                                                             | I can transfer data over from my old computer                    |
+| `*`      | user changing their computer                                                            | export my data                                                                                             | I can transfer it over to the new computer                       |
+| `*`      | user who is familiar with regular expressions                                           | use regular expressions when searching for certain keywords among candidates                               | more customized searches can be done                             |
+| `*`      | use who needs to collaborate with others                                                | synchronize my database with others                                                                        | we can stay on the same page                                     |
+| `*`      | frequent user                                                                           | create snippets for commands                                                                               | I can enter frequently-used commands more quickly                |
 | `*`      | recruiter who needs to regularly delete candidates at the end of each recruiting season | have built-in scripts to automatically delete irrelevant candidates (i.e., those who meet certain conditions) | I don't have to manually perform deletions routinely             |
-| `*`      | careless user                                                                           | have my command autocorrected                                                                                 | I don't need to fix my typos                                     |
-| `*`      | busy user                                                                               | have my command predicted and auto-filled                                                                     | I can save time typing commands in full                          |
-| `*`      | event organizer                                                                         | quickly find people who live near to a certain location                                                       | I can choose suitable candidates to invite to an event           |
-| `*`    | user managing numeric properties of candidates (e.g., `GPA`)                                     | sort their properties in numeric order                                                                   |
-| `*`    | user managing various properties of candidates                                | sort them in both ascending and descending order                                                                   | I can rank the candidates easier
+| `*`      | careless user                                                                           | have my command autocorrected                                                                              | I don't need to fix my typos                                     |
+| `*`      | busy user                                                                               | have my command predicted and auto-filled                                                                  | I can save time typing commands in full                          |
+| `*`      | event organizer                                                                         | quickly find people who live near to a certain location                                                    | I can choose suitable candidates to invite to an event           |
+| `*`    | user managing numeric properties of candidates (e.g., `GPA`)                            | sort their properties in numeric order                                                                     | I can rank candidates by this property                           |
+| `*`    | user managing various properties of candidates                                          | sort them in both ascending and descending order                                                           | I can rank candidates more easily |
 
 ### Use cases
 
@@ -478,7 +478,7 @@ Precondition: User must be viewing previous commands.
   * `{local-part}` contains only alphanumeric characters and the special characters `+_.-`, and cannot start or end with a special character.
   * `{domain}` consists of _domain labels_ separated by periods (`.`), where the last domain label is at least 2 characters long.
   * Each _domain label_ contains only alphanumeric characters and hyphens (`-`), and cannot start or end with a hyphen.
-* **Valid name**: Any sequence containing only whitespace, alphabetical characters, and the special characters `/@`. `/` should only be used in the phrase `s/o` or `d/o`.
+* **Valid name**: Any sequence containing only whitespace, alphanumeric characters, and the special characters `()/@-',._`. The sequence cannot start with a special character, and `/` should only be used in the phrase `s/o` or `d/o`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -571,3 +571,14 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: duplicated `attributeName`–change two attribute names to `linkedin`.
       Expected: The app works, taking the site link appearing first.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+Team size: 5
+
+1. **Add validation for links associated with an attribute name**<br>
+   Currently, the `SITE_LINK` field in the command `link a/ATTRIBUTE_NAME=SITE_LINK` is not checked to ensure that the user entered an actual link. We plan to add some validation to ensure that the link entered is a valid link.
+1. **Make error messages associated with an invalid index more consistent**<br>
+   Currently, using a command that accesses an index (such as `show`, `edit`, etc.) with a non-positive index gives the error message `Invalid command format!` followed with a description of the command. Specifying an index that is out of range instead gives the error message `The person index provided is invalid`. We plan to make this behaviour consistent, such that the same error message is shown in either case.

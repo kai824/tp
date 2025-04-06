@@ -108,23 +108,25 @@ TalentFolio's graphical user interface
 
 **Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  For example: in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are parameters for you to supply.<br>
+  For example: in `add n/NAME`, `NAME` should be replaced with the person's actual name. For a person named John Doe, this would be `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   For example: `n/NAME [t/TAG]` can be used as `n/John Doe t/Excel` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used as many times as desired–if the items are optional, 0 or more times; otherwise, 1 or more times. <br>
-  For example: `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Excel`, `t/C++ t/Java` etc.
+* Items with `…` after them can be used as many times as desired – if the items are optional, 0 or more times; otherwise, 1 or more times. <br>
+  For example: `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/Excel`, `t/C++ t/Java`, etc.
 
 * Parameters can be in any order.<br>
   For example: if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  For example: if the command specifies `help 123`, it will be interpreted as `help`.
+  For example: if you type `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
+
+<br>
 
 ### Viewing help: `help`
 
@@ -135,6 +137,8 @@ Help message window
 </pic>
 
 Format: `help`
+
+<br>
 
 ### Showing a person's details: `show`
 
@@ -155,6 +159,8 @@ Example:
 **Tip:** In the right panel, you can click on the phone number or email address to copy it to your clipboard.
 </box>
 
+<br>
+
 ### Adding a person: `add`
 
 Adds a person to the database.
@@ -172,26 +178,33 @@ Examples:
 
 <box type="info">
 
-**Restrictions on parameters:**
-* Names should only contain alphanumeric characters, spaces, and these special characters: `()/@-',._`.
-* Names cannot be blank and cannot be longer than 50 characters.
-* Names cannot start with special (non-alphanumeric) characters.
+++**Restrictions on parameters**++
 
-* Phone numbers should only contain numbers (no letters or other special characters).
-* Phone numbers cannot be blank and cannot be longer than 20 characters.
+**Names:**
+* Should only contain alphanumeric characters, spaces, and these special characters: `()/@-',._`.
+* Should not be blank and should not be longer than 50 characters.
+* Should not start with special (non-alphanumeric) characters.
 
-* Emails should be of the format local-part@domain and adhere to the following constraints:
-* 1. The local-part should only contain alphanumeric characters and these special characters: `+_.-`. The local-part may not start or end with any special characters.
-* 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must:
-*    - end with a domain label at least 2 characters long.
-*    - have each domain label start and end with alphanumeric characters.
-*    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-* 3. The email should not be longer than 50 characters.
+**Phone numbers:**
+* Should only contain numbers (no letters or other special characters).
+* Should not be blank and should not be longer than 20 characters.
 
-* Tag names should not contain `/` or `\` and should not be longer than 50 characters.
+**Email addresses:**
 
-* Attribute names and values should not contain `/`, `\`, or `=`.
-* Attribute names and values should not be longer than 50 characters.
+Should be of the format `LOCAL_PART@DOMAIN` and adhere to the following constraints:
+1. `LOCAL_PART` should only contain alphanumeric characters and these special characters: `+_.-`. It should not be blank and should not start or end with any special characters.
+2. `DOMAIN` is a domain name, which is made up of domain labels separated by periods. The domain name must:
+   * end with a domain label at least 2 characters long.
+   * have each domain label start and end with alphanumeric characters.
+   * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+3. Should not be longer than 50 characters.
+
+**Tags:**
+* Should not contain `/` or `\`, should not be blank, and should not be longer than 50 characters.
+
+**Attribute names and values:**
+
+* Should not contain `/`, `\`, or `=`, should not be blank, and should not be longer than 50 characters.
 </box>
 
 <box type="info">
@@ -203,11 +216,15 @@ Examples:
 * Attribute values are case-sensitive.
 </box>
 
+<br>
+
 ### Listing all persons: `list`
 
 Shows a list of all persons in the database.
 
 Format: `list`
+
+<br>
 
 ### Editing a person: `edit`
 
@@ -253,6 +270,8 @@ Examples:
 
 </box>
 
+<br>
+
 ### Linking an attribute name to a website: `link`
 
 Associates an attribute name with a website URL. This means that you can visit the website by clicking on the attribute in the person's detailed view (which can be shown by clicking on them or by using the [`show`](#showing-a-persons-details-show) command).
@@ -260,6 +279,7 @@ Associates an attribute name with a website URL. This means that you can visit t
 Format (to add a link): `link a/ATTRIBUTE_NAME=SITE_LINK`
 
 * Associates `ATTRIBUTE_NAME` with `SITE_LINK`. This change applies to all persons that have an attribute with this name. Attributes with this name that are added in the future will also be linked to this site URL.
+* Note that the beginning of the URL (usually `https://`) has to be included too.
 
 Format (to remove an existing link): `link ra/ATTRIBUTE_NAME`
 
@@ -289,7 +309,7 @@ Enjoy the easy management of websites!
 
 Clicking on the attribute <span class="badge" style="background-color: #773963; text-decoration: underline; font-weight: normal; color: #b8e6ff">GitHub: example-alexyeoh</span> opens<br/>the link `https://github.com/example-alexyeoh`
 </pic>
-
+<br>
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -313,6 +333,8 @@ Examples:
   Results after typing `find alex david`
   </pic>
 
+<br>
+
 ### Deleting a person: `delete`
 
 Deletes the specified person.
@@ -327,11 +349,15 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the database.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+<br>
+
 ### Clearing all entries: `clear`
 
 Clears all entries.
 
 Format: `clear`
+
+<br>
 
 ### Filtering candidates by attributes: `filter`
 
@@ -381,7 +407,7 @@ You can also obtain the same result with `filter a/Major=Computer Science a/Grad
 
 Results after typing `filter a/Major=Computer Science`<br/>`a/Major=Mathematics a/Graduation year=2027`
 </pic>
-
+<br>
 ### Sorting entries by an attribute: `sort`
 
 Sorts the current view of entries by the value of the specified attribute name in alphabetically ascending or descending order.
@@ -398,6 +424,8 @@ Example:
 * `sort a/major` sorts entries in ascending order according to their `Major` alphabetically.
   * Entries without `Major` as an attribute will be sorted to the end of the list.
 * `sort a/location o/desc` sorts entries in descending order according to their `Location` alphabetically.
+
+<br>
 
 ### Sorting entries by the numerical value of an attribute: `sort-num`
 
@@ -418,6 +446,8 @@ Example:
 * `sort-num a/expected salary` sorts entries numerically (in ascending order) according to their `Expected Salary`.
   * Entries without a numerical value for `Expected Salary` will be placed at the end of the list, with those having `Expected Salary` as an attribute but lacking a valid numerical value appearing first.
 * `sort-num a/GPA o/desc` sorts entries numerically (in descending order) according to their `GPA`.
+
+<br>
 
 ### Undoing the last data change: `undo`
 
@@ -443,6 +473,8 @@ Examples:
   * `filter a/Graduation Year=2025` then `undo`
 * `delete 4`, then `filter a/Graduation Year=2025`, then `undo` will skip over the filtering. It will undo `delete 4` and clear the filter
 
+<br>
+
 ### Navigating past commands: <kbd>↑</kbd> <kbd>↓</kbd>
 
 Navigates through command history, replacing the text in the command box with the past executed command.
@@ -458,15 +490,21 @@ Format: Press the up arrow (<kbd>↑</kbd>) or down arrow (<kbd>↓</kbd>) key w
 * After editing the command shown, navigating to previous or next executed commands will discard any edits done (these edits will not be maintained when navigating back).
 * Navigating past commands requires the command box to be in focus.
 
+<br>
+
 ### Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
+<br>
+
 ### Saving the data
 
 TalentFolio data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+<br>
 
 ### Editing the data file
 
@@ -503,9 +541,10 @@ Here are some tips on website linking. You can manually modify the correspondenc
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
-3. **If using Linux or Unix**, clicking on links will not open them. Instead, the link will be copied to the system clipboard, and a window will appear to notify you that the link has been copied. You will have to paste the link into your browser manually.
-4. **If names, phone numbers, emails, tags or attributes are too long** the data may not display correctly and may be truncated with "...".
+1. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+1. **If using Linux or Unix**, clicking on links will not open them. Instead, the link will be copied to the system clipboard, and a window will appear to notify you that the link has been copied. You will have to paste the link into your browser manually.
+1. **If an attribute corresponds to an invalid link**, clicking on it may also copy it instead of opening it.
+1. **If names, phone numbers, emails, tags, or attributes are too long**, the data may not display correctly and may be truncated with "...".
 
 --------------------------------------------------------------------------------------------------------------------
 
