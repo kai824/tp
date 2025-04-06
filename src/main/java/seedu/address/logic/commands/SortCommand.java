@@ -20,8 +20,8 @@ public abstract class SortCommand extends Command {
 
     protected final String attributeName;
     protected Optional<String> adjustedAttributeName;
-    private final boolean isAscending;
     protected boolean hasNothingToSort;
+    private final boolean isAscending;
 
     /**
      * Initializes an instance with the comparator based on the attribute name.
