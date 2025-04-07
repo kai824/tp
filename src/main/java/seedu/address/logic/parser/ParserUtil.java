@@ -34,6 +34,9 @@ public class ParserUtil {
     public static final String MESSAGE_MISSING_ARGUMENT_FOR_ATTRIBUTE =
             "Attribute names and values cannot be empty.";
 
+    public static final String MESSAGE_MISSING_ARGUMENT_FOR_TAG =
+            "Tag names cannot be empty.";
+
     public static final String MESSAGE_EMPTY_ARGUMENT_FOR_ATTRIBUTE =
             "You need to enter an attribute after " + PREFIX_ATTRIBUTE + ".\n"
                     + Attribute.MESSAGE_USAGE;
@@ -108,6 +111,9 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
+        if (trimmedTag.isEmpty()) {
+            throw new ParseException(MESSAGE_MISSING_ARGUMENT_FOR_TAG);
+        }
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
