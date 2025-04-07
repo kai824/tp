@@ -12,10 +12,10 @@ import seedu.address.model.person.Person;
 public class AutoCorrectionUtil {
     public static final String MESSAGE_WARNING_NAME_CORRECTION =
         "WARNING! The input attribute name '%1$s' is auto-corrected to '%2$s'. "
-            + "Note the case-insensitivitity.";
+            + "Note the case-insensitivity.";
     public static final String MESSAGE_WARNING_VALUE_CORRECTION =
         "WARNING! The input attribute value '%1$s' is auto-corrected to '%2$s'. "
-            + "Note the case-insensitivitity.";
+            + "Note the case-insensitivity.";
     public static final String MESSAGE_WARNING_NAME_NOT_EXIST =
         "WARNING! The input attribute name '%1$s' does not appear in any candidate's attributes.";
     public static final String MESSAGE_WARNING_VALUE_NOT_EXIST =
