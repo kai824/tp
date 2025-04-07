@@ -25,7 +25,8 @@ public class NumSortCommand extends SortCommand {
     public static final String MESSAGE_WARNING_PARTIALLY_MISSING_NUMERICALS =
             "WARNING! Only entries up to index %1$d have valid numerical values for the specified attribute name.\n";
     public static final String MESSAGE_WARNING_MISSING_NUMERICALS =
-            "WARNING! No entries have valid numerical values for the specified attribute name.\n";
+            "WARNING! No entries have valid numerical values for the specified attribute name.\n"
+            + "Entries with the specified attribute name have been moved to the front of the list.";
 
 
     /**
@@ -49,6 +50,7 @@ public class NumSortCommand extends SortCommand {
         String warning = super.getWarningMessage(model);
         if (count.isPresent()) {
             if (count.get() == 0) {
+                hasNothingToSort = true;
                 warning += MESSAGE_WARNING_MISSING_NUMERICALS;
             } else {
                 warning += String.format(MESSAGE_WARNING_PARTIALLY_MISSING_NUMERICALS, count.get());

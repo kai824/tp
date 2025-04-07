@@ -20,6 +20,7 @@ public abstract class SortCommand extends Command {
 
     protected final String attributeName;
     protected Optional<String> adjustedAttributeName;
+    protected boolean hasNothingToSort;
     private final boolean isAscending;
 
     /**
@@ -31,6 +32,7 @@ public abstract class SortCommand extends Command {
         requireNonNull(attributeName);
         this.attributeName = attributeName;
         this.isAscending = isAscending;
+        this.hasNothingToSort = false;
     }
 
     /**
@@ -45,11 +47,16 @@ public abstract class SortCommand extends Command {
     public String getWarningMessage(Model model) {
         Optional<String> missingAttributeWarning =
             AutoCorrectionUtil.getWarningForName(attributeName, adjustedAttributeName);
-        if (missingAttributeWarning.isPresent()) { //No entry has the specified attribute name
-            return missingAttributeWarning.get() + "\n";
+        String message = "";
+        if (missingAttributeWarning.isPresent()) {
+            message += missingAttributeWarning.get() + "\n";
+        }
+        if (adjustedAttributeName.isEmpty()) {
+            hasNothingToSort = true;
+            return message;
         }
         Optional<Long> count = model.numOfPersonsWithAttribute(this.adjustedAttributeName.orElse(attributeName));
-        return count.map(val -> String.format(MESSAGE_WARNING_MISSING_ATTRIBUTE, val)).orElse("");
+        return message + count.map(val -> String.format(MESSAGE_WARNING_MISSING_ATTRIBUTE, val)).orElse("");
     }
 
     @Override
@@ -59,6 +66,9 @@ public abstract class SortCommand extends Command {
         this.adjustedAttributeName = model.autocorrectAttributeName(this.attributeName);
         model.sortFilteredPersonList(this.getComparator(this.isAscending));
         String message = this.getWarningMessage(model);
+        if (hasNothingToSort) {
+            return new CommandResult(message);
+        }
         if (this.isAscending) {
             message += String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, "ascending");
         } else {
