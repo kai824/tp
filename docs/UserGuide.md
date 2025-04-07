@@ -96,6 +96,16 @@ TalentFolio's graphical user interface
 
    * `exit` : Exits the app.
 
+<box type="info">
+
+Quick notes on some commands:
+
+* The `find` command can be used to search candidates by **name**, while the `filter` command allows you to search by **attributes**.
+
+* The `add`/`edit` commands add/edit attributes **at the individual candidate level**, whereas the `link` command creates an association between the attribute name and a site link **at the app-wide level**.
+
+</box>
+
 ### 6. Need more help?
    For a complete list of features and detailed instructions of each command, check out the [Features](#features) section below.<br>
    Enjoy using TalentFolio to streamline your hiring process!
@@ -274,7 +284,7 @@ Examples:
 
 ### Linking an attribute name to a website: `link`
 
-Associates an attribute name with a website URL. This means that you can visit the website by clicking on the attribute in the person's detailed view (which can be shown by clicking on them or by using the [`show`](#showing-a-persons-details-show) command).
+Associates an attribute name with a website URL **for all candidates**. This means that you can visit the website by clicking on the attribute in a person's detailed view (which can be shown by clicking on them or by using the [`show`](#showing-a-persons-details-show) command).
 
 Format (to add a link): `link a/ATTRIBUTE_NAME=SITE_LINK`
 
@@ -371,6 +381,15 @@ Format: `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE…`
   1. You can specify attributes of different names, with multiple values of each. In this case, the 1st rule will be applied first, followed by the 2nd rule (see Examples).
   1. The order of input attributes does not matter (see Examples).
 * Both `ATTRIBUTE_NAME` and `ATTRIBUTE_VALUE` are matched case-insensitively.
+* `ATTRIBUTE_NAME` and `ATTRIBUTE_VALUE` are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it with a warning message.
+
+<box type="warning">
+
+Autocorrection is different from autocompletion. For example, `Majo` and `Makor` will match `Major`, but `Maj` will not, as it is considered too far from the original `Major`.
+
+This autocorrection only occurs if at least one candidate has an attribute with this name `Major`. The same logic applies to the attribute value.
+
+</box>
 
 <box type="info">
 
@@ -387,8 +406,8 @@ Examples:
 | Command | Filtered condition |
 | ------- | ------- |
 | `filter a/Major=Computer Science a/Graduation year=2027` | major in Computer Science **AND** will graduate in 2027 |
-| `filter a/Major=Computer Science a/Major=Mathematics` | major in Computer Science **OR** Mathematics. |
-| `filter a/Major=Computer Science a/Major=Mathematics a/Graduation year=2027` | major in either Computer Science **OR** Mathematics, **AND** also graduating in 2027 | 
+| `filter a/Major=Computer Science a/Major=Mathematics` | major in Computer Science **OR** Mathematics |
+| `filter a/Major=Computer Science a/Major=Mathematics a/Graduation year=2027` | major in either Computer Science **OR** Mathematics, **AND** will graduate in 2027 | 
 
 For the last command example,
 
@@ -419,6 +438,14 @@ Format: `sort a/ATTRIBUTE_NAME [o/ORDER]`
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
 * If no `ORDER` is specified, entries will be sorted in ascending order by default. Otherwise, the first character of the user input (case-insensitive) will determine the order: if it starts with 'a', entries will be sorted in ascending order; if it starts with 'd', they will be sorted in descending order.  
 * Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it with a warning message.
+
+<box type="warning">
+
+Autocorrection is different from autocompletion. For example, `Majo` and `Makor` will match `Major`, but `Maj` will not, as it is considered too far from the original `Major`.
+
+This autocorrection only occurs if at least one candidate has an attribute with this name `Major`.
+
+</box>
 
 Example:
 * `sort a/major` sorts entries in ascending order according to their `Major` alphabetically.

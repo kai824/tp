@@ -589,3 +589,13 @@ Team size: 5
 
 1. **Add validation for the inputs in the `find` command**<br>
    Currently, the `find` command has no input validation, so a command such as `find symbols$*&)123` is valid syntax. Since the `find` command only finds names, a valid search should only involve characters that can appear in names. We plan to add some validation, so that the user can be warned if they are trying to find a symbol that cannot appear in a name.
+
+1. **Allow duplicate names**<br>
+   Currently, candidates are distinguished solely by their name. However, as the user manages a larger number of candidates, duplicate names are likely to occur. Therefore, we plan to use a combination of name and phone number as the identifier, since:
+
+      * it is unlikely that different candidates will share the same name and phone number, and
+
+      * if they do, it is likely the result of an error.<br>
+
+1. **Warn on duplicate contact info (phone number and email addresses)**<br>
+   Currently, the user can add (or edit) candidates with duplicate phone numbers or email addresses. However, since it is quite rare for different candidates to share the same contact information, we plan to enable a warning when such a duplicate is detected. This will help the user notice and correct potential errors more easily.
