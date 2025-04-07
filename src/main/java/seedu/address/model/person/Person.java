@@ -39,6 +39,21 @@ public class Person {
         this.attributes.addAll(attributes);
     }
 
+    /**
+     * Alternate constructor for creating a new edited person
+     */
+    public static Person of(Name name, Phone phone, Email email, Set<Tag> oldTags,
+                            Set<Tag> newTags, Set<Tag> removeTags, Set<Attribute> attributes) {
+        Person newPerson = new Person(name, phone, email, oldTags, attributes);
+        if (newTags != null) {
+            newPerson.tags.addAll(newTags);
+        }
+        if (removeTags != null) {
+            newPerson.tags.removeAll(removeTags);
+        }
+        return newPerson;
+    }
+
     public Name getName() {
         return name;
     }
