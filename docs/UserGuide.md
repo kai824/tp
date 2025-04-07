@@ -457,7 +457,7 @@ Example:
 * `sort a/major` sorts entries in ascending order according to their `Major` alphabetically.
   * Entries without `Major` as an attribute will be sorted to the end of the list.
 * `sort a/locaton o/desc` sorts entries in descending order according to their `Location` alphabetically.
-  
+  * Note that `locaton` can be autocorrect to `Location` with a warning.
 <pic src="images/sortResult.png" alt="Sort results">
 Results after typing `sort a/locaton o/desc`
 </pic>
@@ -514,9 +514,12 @@ Examples:
   * `filter a/Graduation Year=2025` then `undo`
 * `delete 4`, then `filter a/Graduation Year=2026`, then `undo` will skip over the filtering. It will undo `delete 4` and clear the filter
 
-<pic src="images/undoResult.png" alt="Sort-num results">
-Results after typing `delete 4`, then `filter a/Graduation Year=2026`, then `undo`
-</pic>
+<div align="center">
+  <img src="images/deleteResult.png" width="30%" />
+  <img src="images/filterResult.png" width="30%" />
+  <img src="images/undoResult.png" width="30%" />
+  <p>Results after typing `delete 4`, then `filter a/Graduation Year=2026`, then `undo`</p>
+</div>
 
 <br>
 
