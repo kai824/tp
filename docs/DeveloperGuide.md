@@ -592,8 +592,10 @@ Team size: 5
 
 1. **Allow duplicate names**<br>
    Currently, candidates are distinguished solely by their name. However, as the user manages a larger number of candidates, duplicate names are likely to occur. Therefore, we plan to use a combination of name and phone number as the identifier, since:
-      * it is unlikely that different candidates will share the same name and phone number, and
-      * if they do, it is likely the result of an error.
 
-1. **Warn on duplicate contact info (phone number and email addresses)**
+      * it is unlikely that different candidates will share the same name and phone number, and
+
+      * if they do, it is likely the result of an error.<br>
+
+1. **Warn on duplicate contact info (phone number and email addresses)**<br>
    Currently, the user can add (or edit) candidates with duplicate phone numbers or email addresses. However, since it is quite rare for different candidates to share the same contact information, we plan to enable a warning when such a duplicate is detected. This will help the user notice and correct potential errors more easily.
