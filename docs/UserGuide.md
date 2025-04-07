@@ -371,6 +371,15 @@ Format: `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE…`
   1. You can specify attributes of different names, with multiple values of each. In this case, the 1st rule will be applied first, followed by the 2nd rule (see Examples).
   1. The order of input attributes does not matter (see Examples).
 * `ATTRIBUTE_NAME` is matched case-insensitively, while `ATTRIBUTE_VALUE` is matched case-sensitively.
+* `ATTRIBUTE_NAME` and `ATTRIBUTE_VALUE` are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it with a warning message.
+
+<box type="warning">
+
+Autocorrection is different from autocompletion. For example, `Majo` and `Makor` will match `Major`, but `Maj` will not, as it is considered too far from the original `Major`.
+
+This autocorrection only occurs if at least one candidate has an attribute with this name `Major`. The same logic applies to the attribute value.
+
+</box>
 
 <box type="info">
 
@@ -419,6 +428,14 @@ Format: `sort a/ATTRIBUTE_NAME [o/ORDER]`
 * `ATTRIBUTE_NAME` is matched case-insensitively. For instance, a command `sort a/graduation year` can sort all entries that have an attribute with name `Graduation Year`.
 * If no `ORDER` is specified, entries will be sorted in ascending order by default. Otherwise, the first character of the user input (case-insensitive) will determine the order: if it starts with 'a', entries will be sorted in ascending order; if it starts with 'd', they will be sorted in descending order.  
 * Attribute names are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it with a warning message.
+
+<box type="warning">
+
+Autocorrection is different from autocompletion. For example, `Majo` and `Makor` will match `Major`, but `Maj` will not, as it is considered too far from the original `Major`.
+
+This autocorrection only occurs if at least one candidate has an attribute with this name `Major`.
+
+</box>
 
 Example:
 * `sort a/major` sorts entries in ascending order according to their `Major` alphabetically.
