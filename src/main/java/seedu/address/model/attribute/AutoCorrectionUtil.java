@@ -22,10 +22,10 @@ public class AutoCorrectionUtil {
         "WARNING! The input attribute value '%1$s' does not appear in any candidate's attributes.";
 
     // Based on: https://leetcode.com/problems/edit-distance/submissions/1583973463,
-    // but prohibit replacement between numerics (see line 51 - 54),
-    // and addition/deletion on numerics (see line 42 and 45).
-    // Also, the distance is calculated case-insensitively (see line 29 and 30).
+    // but prohibit replacement involving numerics and addition/deletion on numerics.
+    // Also, the distance is calculated case-insensitively.
     private static int editDistance(String str1, String str2) {
+        // Ensure case-insensitivity.
         String s = str1.toLowerCase();
         String t = str2.toLowerCase();
         int n = s.length();
@@ -39,6 +39,7 @@ public class AutoCorrectionUtil {
                 if (i == 0 && j == 0) {
                     dp[i][j] = 0;
                 }
+                // The third condition prohibits addition/deletion of numerics.
                 if (0 < i && dp[i - 1][j] + 1 < dp[i][j] && !Character.isDigit(s.charAt(i - 1))) {
                     dp[i][j] = dp[i - 1][j] + 1;
                 }
@@ -49,6 +50,7 @@ public class AutoCorrectionUtil {
                     int updateValue = dp[i - 1][j - 1];
                     if (s.charAt(i - 1) != t.charAt(j - 1)) {
                         // Either s[i] or t[j] (1-indexed) is numeric -> skip the update
+                        // (prevent the replacement involving numerics)
                         if (Character.isDigit(s.charAt(i - 1)) || Character.isDigit(t.charAt(j - 1))) {
                             continue;
                         }
