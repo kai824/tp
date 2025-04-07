@@ -543,7 +543,7 @@ Here are some tips on website linking. You can manually modify the correspondenc
 <p>
 
 **Q**: How do I manage multiple candidates with the same name?<br>
-**A**: While the app does not currently allow candidates with the same name, you can mitigate this by slightly modifying the name based on your use case. For instance, with 2 candidates of the name "John Tan", the second candidate "John Tan 2" or "John Tan (NUS)". Note that names are case sensitive, naming them "John Tan" and "john tan" wouldn't work.
+**A**: While the app does not currently allow candidates with the same name, you can mitigate this by slightly modifying the name based on your use case. For instance, with 2 candidates of the name "John Tan", the second candidate "John Tan 2" or "John Tan (NUS)". Note that names are case-insensitive, naming them "John Tan" and "john tan" wouldn't work.
 
 </p>
 
