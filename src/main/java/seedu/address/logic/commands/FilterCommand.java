@@ -58,7 +58,7 @@ public class FilterCommand extends Command {
 
     private String getWarningsForName(Model model) {
         return attributes.stream()
-            .map(attribute -> attribute.getAttributeName())
+            .map(attribute -> attribute.getCaseAwareAttributeName())
             .map(name -> AutoCorrectionUtil.getWarningForName(name, model.autocorrectAttributeName(name)))
             .filter(warning -> warning.isPresent())
             .map(warning -> warning.get())
