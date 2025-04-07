@@ -98,7 +98,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g., `CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2425S2-CS2103T-T10-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103T-T10-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -151,7 +151,7 @@ How the parsing works:
 The `Model` component,
 
 * stores the candidates' data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' (e.g., the UI can be bound to this list so that the UI automatically updates when the data in the list changes).
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -580,7 +580,12 @@ Team size: 5
 
 1. **Add validation for links associated with an attribute name**<br>
    Currently, the `SITE_LINK` field in the command `link a/ATTRIBUTE_NAME=SITE_LINK` is not checked to ensure that the user entered an actual link. We plan to add some validation to ensure that the link entered is a valid link.
+
 1. **Make error messages associated with an invalid index more consistent**<br>
    Currently, using a command that accesses an index (such as `show`, `edit`, etc.) with a non-positive index gives the error message `Invalid command format!` followed with a description of the command. Specifying an index that is out of range instead gives the error message `The person index provided is invalid`. We plan to make this behaviour consistent, such that the same error message is shown in either case.
+
 1. **Support international phone number formats**<br>
    Currently, only numbers are allowed in the phone number field. We plan to allow spaces and characters such as `+-()`, so that the user can store phone numbers in international formats such as `+65 8841 9716` and `+1 (209) 749-4459`. This may also require us to perform validation on the phone number, to verify that it matches one of the valid international phone number formats (if it contains symbols).
+
+1. **Add validation for the inputs in the `find` command**<br>
+   Currently, the `find` command has no input validation, so a command such as `find symbols$*&)123` is valid syntax. Since the `find` command only finds names, a valid search should only involve characters that can appear in names. We plan to add some validation, so that the user can be warned if they are trying to find a symbol that cannot appear in a name.
