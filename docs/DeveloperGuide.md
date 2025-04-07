@@ -205,7 +205,7 @@ To autocorrect the attribute name `Mayor`, the Model goes through the following 
 
 <puml src="diagrams/AutoCorrection.puml" alt="Autocorrection of 'Mayor'" />
 
-The attribute value `CS` will be autocorrected in a similar way. The only difference lies in case-sensitivity: attribute names are converted to lowercase internally, while attribute values remain unchanged (as per the behavior of `Attribute::getAttributeName/Value`).
+The attribute value `CS` will be autocorrected in a similar way.
 
 Alternatively, if there is no attribute name/value close enough to `Mayor`/`CS`, nothing will be returned from `autocorrectAttributeName/Value`; this is why their return value is `Optional<String>`.
 

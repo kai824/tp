@@ -24,12 +24,12 @@ public class AutoCorrectionUtil {
     // Based on: https://leetcode.com/problems/edit-distance/submissions/1583973463,
     // but prohibit replacement between numerics (see line 51 - 54),
     // and addition/deletion on numerics (see line 42 and 45).
-    private static int editDistance(String s, String t) {
+    // Also, the distance is calculated case-insensitively (see line 29 and 30).
+    private static int editDistance(String str1, String str2) {
+        String s = str1.toLowerCase();
+        String t = str2.toLowerCase();
         int n = s.length();
         int m = t.length();
-        if (n > m) {
-            return editDistance(t, s);
-        }
         int[][] dp = new int[n + 1][m + 1];
         // dp[i][j] holds the edit distance between s[1:i] and t[1:j].
         for (int i = 0; i <= n; i++) {
@@ -82,9 +82,8 @@ public class AutoCorrectionUtil {
      */
     public static Optional<String> autocorrectAttributeName(
         ObservableList<Person> persons, String target) {
-        String adjustedTarget = target.toLowerCase();
         Stream<String> attributeNames = getAttributesFromPersons(persons).map(Attribute::getAttributeName);
-        return autocorrectName(attributeNames, adjustedTarget);
+        return autocorrectName(attributeNames, target);
     }
 
     /**
