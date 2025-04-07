@@ -181,6 +181,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Set<Tag> tags;
+        private Set<Tag> removeTags;
         private Set<Attribute> updateAttributes;
         private Set<String> removeAttributes;
 
@@ -195,6 +196,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setTags(toCopy.tags);
+            setRemoveTags(toCopy.removeTags);
             setUpdateAttributes(toCopy.updateAttributes);
             setRemoveAttributes(toCopy.removeAttributes);
         }
@@ -203,7 +205,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, tags, updateAttributes, removeAttributes);
+            return CollectionUtil.isAnyNonNull(name, phone, email, tags,
+                    removeTags, updateAttributes, removeAttributes);
         }
 
         public void setName(Name name) {
@@ -253,6 +256,14 @@ public class EditCommand extends Command {
          */
         public void setUpdateAttributes(Set<Attribute> updateAttributes) {
             this.updateAttributes = (updateAttributes != null) ? new HashSet<>(updateAttributes) : null;
+        }
+
+        public void setRemoveTags(Set<Tag> removeTags) {
+            this.removeTags = (removeTags != null) ? new HashSet<>(removeTags) : null;
+        }
+
+        public Optional<Set<Tag>> getRemoveTags() {
+            return (removeTags != null) ? Optional.of(Collections.unmodifiableSet(removeTags)) : Optional.empty();
         }
 
         /**
