@@ -456,7 +456,11 @@ This autocorrection only occurs if at least one candidate has an attribute with 
 Example:
 * `sort a/major` sorts entries in ascending order according to their `Major` alphabetically.
   * Entries without `Major` as an attribute will be sorted to the end of the list.
-* `sort a/location o/desc` sorts entries in descending order according to their `Location` alphabetically.
+* `sort a/locaton o/desc` sorts entries in descending order according to their `Location` alphabetically.
+  
+<pic src="images/sortResult.png" alt="Sort results">
+Results after typing `sort a/locaton o/desc`
+</pic>
 
 <br>
 
@@ -479,6 +483,10 @@ Example:
 * `sort-num a/expected salary` sorts entries numerically (in ascending order) according to their `Expected Salary`.
   * Entries without a numerical value for `Expected Salary` will be placed at the end of the list, with those having `Expected Salary` as an attribute but lacking a valid numerical value appearing first.
 * `sort-num a/GPA o/desc` sorts entries numerically (in descending order) according to their `GPA`.
+
+<pic src="images/sortNumResult.png" alt="Sort-num results">
+Results after typing `sort-num a/GPA o/desc`
+</pic>
 
 <br>
 
@@ -504,7 +512,11 @@ Examples:
   * `show 3` then `undo`
   * `find n/Alex` then `undo`
   * `filter a/Graduation Year=2025` then `undo`
-* `delete 4`, then `filter a/Graduation Year=2025`, then `undo` will skip over the filtering. It will undo `delete 4` and clear the filter
+* `delete 4`, then `filter a/Graduation Year=2026`, then `undo` will skip over the filtering. It will undo `delete 4` and clear the filter
+
+<pic src="images/undoResult.png" alt="Sort-num results">
+Results after typing `delete 4`, then `filter a/Graduation Year=2026`, then `undo`
+</pic>
 
 <br>
 
