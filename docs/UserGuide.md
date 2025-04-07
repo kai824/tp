@@ -96,6 +96,16 @@ TalentFolio's graphical user interface
 
    * `exit` : Exits the app.
 
+<box type="info">
+
+Quick notes on some commands:
+
+* The `find` command can be used to search candidates by **name**, while the `filter` command allows you to search by **attributes**.
+
+* The `add`/`edit` commands add/edit attributes **at the individual candidate level**, whereas the `link` command creates an association between the attribute name and a site link **at the app-wide level**.
+
+</box>
+
 ### 6. Need more help?
    For a complete list of features and detailed instructions of each command, check out the [Features](#features) section below.<br>
    Enjoy using TalentFolio to streamline your hiring process!
@@ -274,7 +284,7 @@ Examples:
 
 ### Linking an attribute name to a website: `link`
 
-Associates an attribute name with a website URL. This means that you can visit the website by clicking on the attribute in the person's detailed view (which can be shown by clicking on them or by using the [`show`](#showing-a-persons-details-show) command).
+Associates an attribute name with a website URL **for all candidates**. This means that you can visit the website by clicking on the attribute in a person's detailed view (which can be shown by clicking on them or by using the [`show`](#showing-a-persons-details-show) command).
 
 Format (to add a link): `link a/ATTRIBUTE_NAME=SITE_LINK`
 
