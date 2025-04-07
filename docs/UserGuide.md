@@ -533,8 +533,62 @@ Here are some tips on website linking. You can manually modify the correspondenc
 
 ## FAQ
 
+<p>
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TalentFolio home folder.
+
+</p>
+
+<p>
+
+**Q**: How do I manage multiple candidates with the same name?<br>
+**A**: While the app does not currently allow candidates with the same name, you can mitigate this by slightly modifying the name based on your use case. For instance, with 2 candidates of the name "John Tan", the second candidate "John Tan 2" or "John Tan (NUS)". Note that names are case sensitive, naming them "John Tan" and "john tan" wouldn't work.
+
+</p>
+
+<p>
+
+**Q**: Can I sort students by multiple different attributes?<br>
+**A**: Unfortunately, TalentFolio currently only allows sorting by one attribute at a time. If really needed, you can create new attributes that combine multiple attributes, and sort them. For example, if you want to sort by graduation year then GPA, you can create a new attribute "Grad yr and GPA" that concatenates both (e.g. 2028, 4.67 becomes "2028;4.67").
+
+</p>
+
+<p>
+
+**Q**: Does TalentFolio support international phone numbers?<br>
+**A**: We will implement that in the future, but phone numbers currently must be all numeric. However, phone numbers still work without spaces and hyphens. One possible workaround is to use a `00` prefix to denote the `+` symbol.
+
+</p>
+
+<p>
+
+**Q**: What can I do if I accidentally delete an entry?<br>
+**A**: No worries, you can simply `undo` the last command!
+
+</p>
+
+<p>
+
+**Q**: What can I do if I accidentally press `Enter` when I was typing my command halfway, and the command executed?<br>
+**A**: If the command executed changes any data, you can use `undo` to undo the data change. Then, to continue typing the last command, you can use the arrow key <kbd>↑</kbd> to retrieve the command you typed halfway, and resume typing it.
+
+</p>
+
+<p>
+
+**Q**: Is there a limit to how many candidates I can add?<br>
+**A**: There is no limit we impose. However, with an excessively large number of candidates, the app would use more computer memory, which may cause your computer to lag.
+
+</p>
+
+<p>
+
+**Q**: Does linking create a new attribute?<br>
+**A**: No. `link` is intended for portfolio websites. For instance, the default data links `github` attribute to `https://github.com/`, so that if a user has an attribute `github`=`example-username`, that attribute will have a link to `https://github.com/example-username`. Linking is intended to be universal, and not user-specific.
+
+</p>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
