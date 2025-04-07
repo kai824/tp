@@ -240,7 +240,7 @@ Format: `list`
 
 Edits an existing person in the database.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/NAME_OF_ATTRIBUTE_TO_REMOVE]…`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [rt/TAG_TO_REMOVE]… [a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE]… [ra/NAME_OF_ATTRIBUTE_TO_REMOVE]…`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided and be non-empty.
@@ -248,15 +248,21 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [a/ATTRIBUTE_
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower t/Top candidate` Edits the name of the 2nd person to be `Betsy Crower` and adds a tag `Top candidate`.
+*  `edit 3 rt/SQL` Edits the 3rd person, removing the tag `SQL`.
 *  `edit 1 a/Graduation Year=2027` Adds or edits an attribute named `Graduation Year` to the 1st person.
 *  `edit 1 ra/Graduation Year` Removes the attribute named `Graduation Year` from the 1st person.
 
 <box type="info">
 
 **For tags:**
-* When editing tags, the existing tags of the person will be removed, i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* Note that empty tags are not allowed, regardless of whether they are to be added or removed.
+* Note that tags are case-sensitive.
+* Duplicate tags are ignored:
+  * If you attempt to add a tag that already exists, it will not be added a second time.
+  * A tag that is added multiple times in the same command will only be added once.
+  * Similarly, a tag that is removed multiple times in the same command will only be removed once.
+* The same tag cannot be added and removed in the same command. For instance, `edit 1 t/Ideal rt/Ideal` is not allowed.
 </box>
 
 <box type="info">
