@@ -487,7 +487,6 @@ Example:
 * `sort-num a/expected salary` sorts entries numerically (in ascending order) according to their `Expected Salary`.
   * Entries without a numerical value for `Expected Salary` will be placed at the end of the list, with those having `Expected Salary` as an attribute but lacking a valid numerical value appearing first.
 * `sort-num a/GPA o/desc` sorts entries numerically (in descending order) according to their `GPA`.
-
 <pic src="images/sortNumResult.png" alt="Sort-num results">
 Results after typing `sort-num a/GPA o/desc`
 </pic>
