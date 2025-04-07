@@ -14,31 +14,44 @@ public class AutoCorrectionUtil {
         "WARNING! The input attribute name '%1$s' is auto-corrected to '%2$s'. "
             + "Note the case-insensitivitity.";
     public static final String MESSAGE_WARNING_VALUE_CORRECTION =
-        "WARNING! The input attribute value '%1$s' is auto-corrected to '%2$s'.";
+        "WARNING! The input attribute value '%1$s' is auto-corrected to '%2$s'. "
+            + "Note the case-insensitivitity.";
     public static final String MESSAGE_WARNING_NAME_NOT_EXIST =
         "WARNING! The input attribute name '%1$s' does not appear in any candidate's attributes.";
     public static final String MESSAGE_WARNING_VALUE_NOT_EXIST =
-        "WARNING! The input attribute value '%1$s' does not appear in any candidate's attributes. "
-            + "Note the case-sensitivity.";
+        "WARNING! The input attribute value '%1$s' does not appear in any candidate's attributes.";
 
-    // Verified on LeetCode: https://leetcode.com/problems/edit-distance/submissions/1583973463.
+    // Based on: https://leetcode.com/problems/edit-distance/submissions/1583973463,
+    // but prohibit replacement between numerics (see line 51 - 54),
+    // and addition/deletion on numerics (see line 42 and 45).
     private static int editDistance(String s, String t) {
         int n = s.length();
         int m = t.length();
+        if (n > m) {
+            return editDistance(t, s);
+        }
         int[][] dp = new int[n + 1][m + 1];
         // dp[i][j] holds the edit distance between s[1:i] and t[1:j].
         for (int i = 0; i <= n; i++) {
             for (int j = 0; j <= m; j++) {
-                dp[i][j] = i + j;
-                if (0 < i && dp[i - 1][j] + 1 < dp[i][j]) {
+                // Initialize with high enough value (in case s cannot be converted to t, n + m is returned).
+                dp[i][j] = n + m;
+                if (i == 0 && j == 0) {
+                    dp[i][j] = 0;
+                }
+                if (0 < i && dp[i - 1][j] + 1 < dp[i][j] && !Character.isDigit(s.charAt(i - 1))) {
                     dp[i][j] = dp[i - 1][j] + 1;
                 }
-                if (0 < j && dp[i][j - 1] + 1 < dp[i][j]) {
+                if (0 < j && dp[i][j - 1] + 1 < dp[i][j] && !Character.isDigit(t.charAt(j - 1))) {
                     dp[i][j] = dp[i][j - 1] + 1;
                 }
                 if (0 < i && 0 < j) {
                     int updateValue = dp[i - 1][j - 1];
                     if (s.charAt(i - 1) != t.charAt(j - 1)) {
+                        // Either s[i] or t[j] (1-indexed) is numeric -> skip the update
+                        if (Character.isDigit(s.charAt(i - 1)) || Character.isDigit(t.charAt(j - 1))) {
+                            continue;
+                        }
                         updateValue++;
                     }
                     if (updateValue < dp[i][j]) {
