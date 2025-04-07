@@ -538,6 +538,59 @@ testers are expected to do more *exploratory* testing.
       1. Test case: `delete 1`<br>
          Expected: First candidate in the filtered list (not the original, entire list) is deleted. The filtering is cleared.
 
+### Sorting the list (alphabetically and numerically)
+
+1. Sorting the list by an attribute name that all persons have
+
+   1. Prerequisites: Multiple persons in the list. All have the attribute name `Degree`.
+   
+   1. Test case: `sort a/Degree` <br>
+      Expected: All persons are sorted by their `Degree` in ascending alphabetical order.
+   
+   1. Test case: `sort a/Degree o/dsc` <br>
+      Expected: All persons are sorted by their `Degree` in descending alphabetical order.
+
+   1. Test case: `sort a/Degre` <br>
+      Expected: A warning is shown for autocorrecting `Degre` into `Degree`. Remaining behaviour is same as `sort a/Degree`
+
+1. Sorting the list by an attribute name that some but not all persons have
+
+   1. Prerequisites: Multiple persons in the list, Some have the attribute "Location" but some don't.
+   
+   1. Test case: `sort a/Location` <br>
+   
+      Expected: Persons with the attribute name `Location` is placed to the front of the list, and they are sorted by their `Location` in ascending alphabetical order. A warning is displayed to highlight the last person with the attribute name in the sorted view.
+
+1. Sorting the list by an attribute name that is missing from the current list view
+
+   1. Prerequisites: No persons in the list have the attribute name "Graduation Year".
+
+   1. Test case: `sort a/Graduation Year` <br>
+
+      Expected: A warning is shown for the missing attribute name. No change in the order of persons in the list.
+
+1. Repeating above tests for sorting numerically (i.e., replace `sort` in the test cases by `sort-num`, make all relevant attribute values numerical)
+
+1. Sorting the list by the numerical value of an attribute name, where some entries have the attribute but lack a numerical value
+   
+   1. Prerequisites: Multiple persons in the list. Some have the attribute name `Expected Salary` with a numerical value (without the dollar sign), and some have `Expected Salary` with an `NA` value.
+
+   1. Test case: `sort-num a/Expected Salary` <br>
+
+      Expected: In the sorted view, you will see persons with numerical values for `Expected Salary` sorted by ascending `Expected Salary` values, followed by persons with an `NA` value for `Expected Salary` in their original order, then all other persons without the `Expected Salary` attribute name in their original order. Warnings are shown to highlight the last person with the specified attribute and the last person with a numerical value respectively. 
+
+1. Sorting the list by the numerical value of an attribute name, where some entries have the attribute but none of them have a numerical value
+
+   1. Prerequisites: Multiple persons in the list. All have the attribute name `School` with non-numerical attribute values.
+   
+   1. Test case: `sort-num a/School`
+      
+      Expected: A warning about numerical value for `School` being completely missing will be displayed. Still, all persons with the `School` attribute will be placed at the front of the list.
+
+   1. Test case: `sort-num a/School o/d`
+      
+      Expected: Exact same behaviour as the previous test.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
