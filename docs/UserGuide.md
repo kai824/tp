@@ -483,12 +483,12 @@ Format: Press the up arrow (<kbd>↑</kbd>) or down arrow (<kbd>↓</kbd>) key w
 * The up arrow (<kbd>↑</kbd>) key shows the previous executed command while the down arrow (<kbd>↓</kbd>) key shows the next executed command.
 * `ENTER` is not required to be pressed for navigation.
 * No error message will be shown if attempting to navigate beyond the first and last executed commands.
-* If attempting to navigate beyond the first executed command, the first executed command will remain shown.
-* If attempting to navigate beyond the last executed command, the command box will be emptied.
-* Executing any valid command will reset the last executed command to the command that was just executed.
+  * If attempting to navigate beyond the first executed command, the first executed command will remain shown.
+  * If attempting to navigate beyond the last executed command, the command box will be emptied.
+* Only successfully executed commands are stored in the command history.
+* Executing any command successfully will reset the last executed command to the command that was just executed.
 * Editing the command shown without execution will not change the previous and next executed commands.
 * After editing the command shown, navigating to previous or next executed commands will discard any edits done (these edits will not be maintained when navigating back).
-* Navigating past commands requires the command box to be in focus.
 
 <br>
 
