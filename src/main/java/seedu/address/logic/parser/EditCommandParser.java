@@ -7,9 +7,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_ATTRIBUTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -35,7 +37,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG,
-                        PREFIX_ATTRIBUTE, PREFIX_REMOVE_ATTRIBUTE);
+                        PREFIX_REMOVE_TAG, PREFIX_ATTRIBUTE, PREFIX_REMOVE_ATTRIBUTE);
 
         Index index;
 
@@ -61,6 +63,8 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
+        parseTagsForRemoval(argMultimap.getAllValues(PREFIX_REMOVE_TAG)).ifPresent(editPersonDescriptor::setRemoveTags);
+
         parseAttributesForEdit(argMultimap.getAllValues(PREFIX_ATTRIBUTE))
                 .ifPresent(editPersonDescriptor::setUpdateAttributes);
 
@@ -84,6 +88,19 @@ public class EditCommandParser implements Parser<EditCommand> {
             return Optional.empty();
         }
         return Optional.of(ParserUtil.parseTags(tags));
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     */
+    private Optional<Set<Tag>> parseTagsForRemoval(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        if (tags.isEmpty() || tags.stream().allMatch(String::isEmpty)) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
     /**
