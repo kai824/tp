@@ -580,7 +580,17 @@ Team size: 5
 
 1. **Add validation for links associated with an attribute name**<br>
    Currently, the `SITE_LINK` field in the command `link a/ATTRIBUTE_NAME=SITE_LINK` is not checked to ensure that the user entered an actual link. We plan to add some validation to ensure that the link entered is a valid link.
+
 1. **Make error messages associated with an invalid index more consistent**<br>
    Currently, using a command that accesses an index (such as `show`, `edit`, etc.) with a non-positive index gives the error message `Invalid command format!` followed with a description of the command. Specifying an index that is out of range instead gives the error message `The person index provided is invalid`. We plan to make this behaviour consistent, such that the same error message is shown in either case.
+
 1. **Support international phone number formats**<br>
    Currently, only numbers are allowed in the phone number field. We plan to allow spaces and characters such as `+-()`, so that the user can store phone numbers in international formats such as `+65 8841 9716` and `+1 (209) 749-4459`. This may also require us to perform validation on the phone number, to verify that it matches one of the valid international phone number formats (if it contains symbols).
+
+1. **Allow duplicate names**<br>
+   Currently, candidates are distinguished solely by their name. However, as the user manages a larger number of candidates, duplicate names are likely to occur. Therefore, we plan to use a combination of name and phone number as the identifier, since:
+      * it is unlikely that different candidates will share the same name and phone number, and
+      * if they do, it is likely the result of an error.
+
+1. **Warn on duplicate contact info (phone number and email addresses)**
+   Currently, the user can add (or edit) candidates with duplicate phone numbers or email addresses. However, since it is quite rare for different candidates to share the same contact information, we plan to enable a warning when such a duplicate is detected. This will help the user notice and correct potential errors more easily.
