@@ -387,8 +387,8 @@ Examples:
 | Command | Filtered condition |
 | ------- | ------- |
 | `filter a/Major=Computer Science a/Graduation year=2027` | major in Computer Science **AND** will graduate in 2027 |
-| `filter a/Major=Computer Science a/Major=Mathematics` | major in Computer Science **OR** Mathematics. |
-| `filter a/Major=Computer Science a/Major=Mathematics a/Graduation year=2027` | major in either Computer Science **OR** Mathematics, **AND** also graduating in 2027 | 
+| `filter a/Major=Computer Science a/Major=Mathematics` | major in Computer Science **OR** Mathematics |
+| `filter a/Major=Computer Science a/Major=Mathematics a/Graduation year=2027` | major in either Computer Science **OR** Mathematics, **AND** will graduate in 2027 | 
 
 For the last command example,
 
