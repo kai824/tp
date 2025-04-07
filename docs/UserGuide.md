@@ -518,7 +518,7 @@ Examples:
   <img src="images/deleteResult.png" width="30%" />
   <img src="images/filterResult.png" width="30%" />
   <img src="images/undoResult.png" width="30%" />
-  <p>Results after typing `delete 4`, then `filter a/Graduation Year=2026`, then `undo`</p>
+  <p>Results after typing <code>delete 4</code>, then <code>filter a/Graduation Year=2026</code>, then <code>undo</code></p>
 </div>
 
 <br>
