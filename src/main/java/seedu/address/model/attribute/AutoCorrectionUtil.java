@@ -12,33 +12,48 @@ import seedu.address.model.person.Person;
 public class AutoCorrectionUtil {
     public static final String MESSAGE_WARNING_NAME_CORRECTION =
         "WARNING! The input attribute name '%1$s' is auto-corrected to '%2$s'. "
-            + "Note the case-insensitivitity.";
+            + "Note the case-insensitivity.";
     public static final String MESSAGE_WARNING_VALUE_CORRECTION =
-        "WARNING! The input attribute value '%1$s' is auto-corrected to '%2$s'.";
+        "WARNING! The input attribute value '%1$s' is auto-corrected to '%2$s'. "
+            + "Note the case-insensitivity.";
     public static final String MESSAGE_WARNING_NAME_NOT_EXIST =
         "WARNING! The input attribute name '%1$s' does not appear in any candidate's attributes.";
     public static final String MESSAGE_WARNING_VALUE_NOT_EXIST =
-        "WARNING! The input attribute value '%1$s' does not appear in any candidate's attributes. "
-            + "Note the case-sensitivity.";
+        "WARNING! The input attribute value '%1$s' does not appear in any candidate's attributes.";
 
-    // Verified on LeetCode: https://leetcode.com/problems/edit-distance/submissions/1583973463.
-    private static int editDistance(String s, String t) {
+    // Based on: https://leetcode.com/problems/edit-distance/submissions/1583973463,
+    // but prohibit replacement involving numerics and addition/deletion on numerics.
+    // Also, the distance is calculated case-insensitively.
+    private static int editDistance(String str1, String str2) {
+        // Ensure case-insensitivity.
+        String s = str1.toLowerCase();
+        String t = str2.toLowerCase();
         int n = s.length();
         int m = t.length();
         int[][] dp = new int[n + 1][m + 1];
         // dp[i][j] holds the edit distance between s[1:i] and t[1:j].
         for (int i = 0; i <= n; i++) {
             for (int j = 0; j <= m; j++) {
-                dp[i][j] = i + j;
-                if (0 < i && dp[i - 1][j] + 1 < dp[i][j]) {
+                // Initialize with high enough value (in case s cannot be converted to t, n + m is returned).
+                dp[i][j] = n + m;
+                if (i == 0 && j == 0) {
+                    dp[i][j] = 0;
+                }
+                // The third condition prohibits addition/deletion of numerics.
+                if (0 < i && dp[i - 1][j] + 1 < dp[i][j] && !Character.isDigit(s.charAt(i - 1))) {
                     dp[i][j] = dp[i - 1][j] + 1;
                 }
-                if (0 < j && dp[i][j - 1] + 1 < dp[i][j]) {
+                if (0 < j && dp[i][j - 1] + 1 < dp[i][j] && !Character.isDigit(t.charAt(j - 1))) {
                     dp[i][j] = dp[i][j - 1] + 1;
                 }
                 if (0 < i && 0 < j) {
                     int updateValue = dp[i - 1][j - 1];
                     if (s.charAt(i - 1) != t.charAt(j - 1)) {
+                        // Either s[i] or t[j] (1-indexed) is numeric -> skip the update
+                        // (prevent the replacement involving numerics)
+                        if (Character.isDigit(s.charAt(i - 1)) || Character.isDigit(t.charAt(j - 1))) {
+                            continue;
+                        }
                         updateValue++;
                     }
                     if (updateValue < dp[i][j]) {
@@ -69,9 +84,8 @@ public class AutoCorrectionUtil {
      */
     public static Optional<String> autocorrectAttributeName(
         ObservableList<Person> persons, String target) {
-        String adjustedTarget = target.toLowerCase();
         Stream<String> attributeNames = getAttributesFromPersons(persons).map(Attribute::getAttributeName);
-        return autocorrectName(attributeNames, adjustedTarget);
+        return autocorrectName(attributeNames, target);
     }
 
     /**
