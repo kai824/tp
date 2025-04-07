@@ -380,7 +380,7 @@ Format: `filter a/ATTRIBUTE_NAME=ATTRIBUTE_VALUE…`
   1. If you specify multiple attributes of **DIFFERENT** names, candidates who meet **ALL** of them will be shown.
   1. You can specify attributes of different names, with multiple values of each. In this case, the 1st rule will be applied first, followed by the 2nd rule (see Examples).
   1. The order of input attributes does not matter (see Examples).
-* `ATTRIBUTE_NAME` is matched case-insensitively, while `ATTRIBUTE_VALUE` is matched case-sensitively.
+* Both `ATTRIBUTE_NAME` and `ATTRIBUTE_VALUE` are matched case-insensitively.
 * `ATTRIBUTE_NAME` and `ATTRIBUTE_VALUE` are tolerant of typos. If no attribute with the specified attribute name is found due to a minor typo, the app corrects it with a warning message.
 
 <box type="warning">

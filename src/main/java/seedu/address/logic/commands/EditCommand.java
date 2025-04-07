@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_ATTRIBUTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -47,6 +48,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_REMOVE_TAG + "TAG]...\n"
             + "[" + PREFIX_ATTRIBUTE + "ATTRIBUTE_NAME=ATTRIBUTE_VALUE]... "
             + "[" + PREFIX_REMOVE_ATTRIBUTE + "ATTRIBUTE_NAME]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -59,6 +61,9 @@ public class EditCommand extends Command {
     public static final String MESSAGE_ATTRIBUTE_DOES_NOT_EXIST = "This person does not have the attribute: %1$s";
     public static final String MESSAGE_ATTRIBUTE_REMOVED_IMMEDIATELY =
             "This attribute is being added/edited and removed in the same command: %1$s";
+    public static final String MESSAGE_TAG_DOES_NOT_EXIST = "This person does not have the tag: %1$s";
+    public static final String MESSAGE_TAG_REMOVED_IMMEDIATELY =
+            "This tag is being added/edited and removed in the same command: %1$s";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -107,12 +112,31 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(null);
+        Set<Tag> removedTags = editPersonDescriptor.getRemoveTags().orElse(null);
 
         // relies on Attribute being immutable
         Set<Attribute> prevAttributes = personToEdit.getAttributes();
 
-        Person personToReturn = new Person(updatedName, updatedPhone, updatedEmail, updatedTags, prevAttributes);
+        if (removedTags != null) {
+            if (updatedTags != null) {
+                Set<Tag> intersection = new HashSet<>(updatedTags);
+                intersection.retainAll(removedTags);
+                if (!intersection.isEmpty()) {
+                    throw new CommandException(String.format(MESSAGE_TAG_REMOVED_IMMEDIATELY,
+                            intersection.iterator().next()));
+                }
+            }
+
+            Set<Tag> tagsToRemove = new HashSet<>(removedTags);
+            tagsToRemove.removeAll(personToEdit.getTags());
+            if (!tagsToRemove.isEmpty()) {
+                throw new CommandException(String.format(MESSAGE_TAG_DOES_NOT_EXIST, tagsToRemove.iterator().next()));
+            }
+        }
+
+        Person personToReturn = Person.of(updatedName, updatedPhone, updatedEmail, personToEdit.getTags(),
+                updatedTags, removedTags, prevAttributes);
 
         Set<Attribute> updatedAttributes = editPersonDescriptor.getUpdateAttributes().orElse(null);
         Set<String> removedAttributes = editPersonDescriptor.getRemoveAttributes().orElse(null);
@@ -181,6 +205,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Set<Tag> tags;
+        private Set<Tag> removeTags;
         private Set<Attribute> updateAttributes;
         private Set<String> removeAttributes;
 
@@ -195,6 +220,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setTags(toCopy.tags);
+            setRemoveTags(toCopy.removeTags);
             setUpdateAttributes(toCopy.updateAttributes);
             setRemoveAttributes(toCopy.removeAttributes);
         }
@@ -203,7 +229,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, tags, updateAttributes, removeAttributes);
+            return CollectionUtil.isAnyNonNull(name, phone, email, tags,
+                    removeTags, updateAttributes, removeAttributes);
         }
 
         public void setName(Name name) {
@@ -253,6 +280,14 @@ public class EditCommand extends Command {
          */
         public void setUpdateAttributes(Set<Attribute> updateAttributes) {
             this.updateAttributes = (updateAttributes != null) ? new HashSet<>(updateAttributes) : null;
+        }
+
+        public void setRemoveTags(Set<Tag> removeTags) {
+            this.removeTags = (removeTags != null) ? new HashSet<>(removeTags) : null;
+        }
+
+        public Optional<Set<Tag>> getRemoveTags() {
+            return (removeTags != null) ? Optional.of(Collections.unmodifiableSet(removeTags)) : Optional.empty();
         }
 
         /**
