@@ -389,6 +389,8 @@ Autocorrection is different from autocompletion. For example, `Majo` and `Makor`
 
 This autocorrection only occurs if at least one candidate has an attribute with this name `Major`. The same logic applies to the attribute value.
 
+To avoid unintentional corrections, autocorrection does not modify the numeric portions of attribute names/values. For example, the attribute value `2022` would not be autocorrected to `2027`, nor would the attribute name `TOEFL 2023` be changed to `TOEFL 2024`.
+
 </box>
 
 <box type="info">
@@ -444,6 +446,8 @@ Format: `sort a/ATTRIBUTE_NAME [o/ORDER]`
 Autocorrection is different from autocompletion. For example, `Majo` and `Makor` will match `Major`, but `Maj` will not, as it is considered too far from the original `Major`.
 
 This autocorrection only occurs if at least one candidate has an attribute with this name `Major`.
+
+To avoid unintentional corrections, autocorrection does not modify the numeric portions of attribute names/values. For example, the attribute name `TOEFL 2023` will not be autocorrected to `TOEFL 2024`.
 
 </box>
 
